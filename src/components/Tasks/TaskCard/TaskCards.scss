@@ -1,0 +1,55 @@
+.task-cards {
+  border-top: 2px solid #f5f7fa;
+  margin-top: 101px;
+
+  a {
+    color: #000000 !important;
+  }
+
+  &.float {
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    border-top: unset;
+    margin-top: 90px;
+  }
+
+  .t-card {
+    background-color: #ffffff;
+    padding: 20px;
+    border-bottom: 2px solid #f5f7fa;
+
+    &.float {
+      border-bottom: unset;
+    }
+
+    .dot {
+      width: 5px;
+      height: 5px;
+      background: #c5cdd9;
+      border-radius: 50%;
+    }
+
+    label {
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+    }
+
+    p {
+      font-style: normal;
+      font-weight: 510;
+      font-size: 15px;
+      line-height: 18px;
+    }
+
+    span {
+      padding-left: 10px;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+}

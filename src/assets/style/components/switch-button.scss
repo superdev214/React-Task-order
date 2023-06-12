@@ -1,0 +1,23 @@
+.switch-button {
+  display: flex;
+
+  & > :first-child {
+    border-radius: 100px 0px 0px 100px;
+    margin-right: 5px;
+  }
+
+  & > :last-child {
+    border-radius: 0px 100px 100px 0px;
+    margin-left: 5px;
+  }
+
+  .active {
+    color: #ffffff;
+    background: #2d93c7;
+    border: 0;
+  }
+
+  button {
+    outline: none;
+  }
+}

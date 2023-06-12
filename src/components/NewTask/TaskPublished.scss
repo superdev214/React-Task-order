@@ -1,0 +1,28 @@
+@import "../../assets/style/utils/Variables.scss";
+@import "../../assets/style/utils/placeholders.scss";
+@import "../../assets/style/utils/mixins.scss";
+
+.TaskPublished {
+  ul {
+    padding: 0;
+    li {
+      display: block;
+      margin-top: 20px;
+
+      span {
+        background: #435863;
+        border-radius: 100px;
+        color: #ffffff;
+        padding: 4px 8px;
+        font-size: 12px;
+        margin-right: 10px;
+      }
+    }
+  }
+  .py-13 {
+    padding: 13px 0;
+  }
+  .py-20 {
+    padding: 20px 0;
+  }
+}

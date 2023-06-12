@@ -1,0 +1,188 @@
+@import "../../assets/style/utils/Variables.scss";
+@import "../../assets/style/utils/placeholders.scss";
+@import "../../assets/style/utils/mixins.scss";
+@import "../../assets/style/components/switch-button.scss";
+
+#flash-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.NewTask {
+  p {
+    font-style: normal;
+    font-family: SF Pro Text Bold;
+    font-size: 15px;
+    line-height: 18px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+
+    &.check-box-area {
+      input {
+        position: absolute;
+        opacity: 0;
+        cursor: pointer;
+      }
+
+      .check-box {
+        border-radius: 100px;
+        width: 20px;
+        height: 20px;
+        display: inline-block;
+        margin-right: 10px;
+        border: 2px solid #42ade2;
+
+        &.checked {
+          background: #6eb925;
+          border: unset;
+        }
+      }
+    }
+  }
+
+  .time-picker-radio {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 0;
+
+    li {
+      width: 100%;
+      margin-top: 10px;
+      background: #f5f7fa;
+      border-radius: 3px;
+      display: block;
+      display: flex;
+      justify-content: space-between;
+      text-align: left;
+      align-items: center;
+      padding: 10px 10px;
+
+      img {
+        margin-right: 10px;
+      }
+
+      span {
+        border-radius: 100px;
+        width: 15px;
+        height: 15px;
+        float: right;
+        background: #6eb925;
+      }
+    }
+  }
+
+  .note {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    text-align: initial;
+    color: #000000;
+
+    img {
+      margin-right: 10px;
+    }
+  }
+
+  .form-control-group {
+    .form-control-group-description {
+      float: right;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 16px;
+      /* identical to box height */
+
+      text-align: right;
+
+      color: #000000;
+
+      &.danger {
+        color: #d90000;
+
+        b {
+          color: #d90000;
+        }
+      }
+    }
+  }
+
+  .button-continue {
+    background: #6eb925;
+    color: #ffffff;
+
+    &:disabled {
+      background: #89c949;
+    }
+  }
+
+  .slide-content.active {
+    display: block;
+  }
+
+  .new-task {
+    text-align: center;
+
+    .close-btn {
+      right: 20px;
+      top: 10px;
+    }
+
+    .resend-code {
+      font-family: "SF Pro Text Medium";
+      border: none;
+    }
+
+    .input-code {
+      width: 55px;
+      height: 55px;
+      margin: 4px;
+      background: #ffffff;
+      border: 1px solid #c5cdd9;
+      border-radius: 3px;
+      font-family: "SF Pro Text Bold";
+      text-align: center;
+      @extend %text-caption;
+    }
+  }
+
+  .bottom-txt {
+    padding-bottom: 10px;
+  }
+
+  @include mq("xs", max) {
+    .btn-w-350 {
+      width: 100%;
+    }
+  }
+}
+
+.btn-w-350 {
+  width: 100%;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 80vh;
+  overflow-y: scroll;
+  justify-content: center;
+}
+
+.custom-input {
+  box-sizing: border-box;
+  border: 1px solid #dfe1e5;
+  border-radius: 3px;
+  padding: 10px 5px;
+  font-size: 12px;
+  text-align: left;
+}

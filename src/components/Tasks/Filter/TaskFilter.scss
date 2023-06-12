@@ -1,0 +1,14 @@
+.filter {
+  .range-track {
+    border: unset;
+    height: 2px;
+    background-color: #c5cdd9;
+  }
+  .range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    top: -8px;
+    background: #000000;
+  }
+}

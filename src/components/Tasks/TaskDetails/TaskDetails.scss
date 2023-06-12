@@ -1,0 +1,52 @@
+.TaskDetails {
+  .title {
+    font-size: 27px;
+  }
+
+  .card-info-img {
+    width: 42px;
+    text-align: center;
+  }
+
+  .header {
+    .features-area {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+    }
+  }
+
+  .line {
+    border: 1.5px solid #d9d9d9;
+    margin: 20px;
+  }
+
+  .gallery {
+    .img-area {
+      width: 105px;
+      height: 80px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  input {
+    background: #ffffff;
+    border: 1px solid #d9d9d9;
+    border-radius: 3px;
+    padding: 6px 10px;
+
+    &::placeholder {
+      color: #d9d9d9;
+    }
+  }
+}
+
+.poster {
+  font-weight: 1000;
+  font-size: 8px;
+  line-height: 10px;
+}

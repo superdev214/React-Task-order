@@ -1,0 +1,137 @@
+@import "../utils/Variables.scss";
+@import "../utils/placeholders.scss";
+@import "../utils/mixins.scss";
+
+.btn {
+  &-bell {
+    padding: 0;
+  }
+
+  &:checked,
+  &:hover,
+  &:active {
+    opacity: 0.8;
+    box-shadow: none !important;
+  }
+
+  &-info,
+  &-green,
+  &-blue {
+    &:checked,
+    &:hover,
+    &:active {
+      color: white;
+    }
+  }
+
+  &-blue {
+    padding: 13px;
+    background: $blue;
+    color: white;
+    font-family: "SF Pro Text Bold";
+    @extend %button;
+    @extend %text-body1;
+
+    &:disabled {
+      background: $blue;
+      color: #ffffff;
+    }
+  }
+
+  &-green {
+    background-color: $green;
+    color: white;
+    font-family: "SF Pro Text Bold";
+    @extend %button;
+    @extend %text-body1;
+
+    &:disabled {
+      background: $green;
+      color: #ffffff;
+    }
+  }
+
+  &-gray {
+    background: #f5f7fa;
+    border: 1px solid $gray;
+    color: #000000;
+    font-family: "SF Pro Text Bold";
+    @extend %button;
+    @extend %text-body1;
+  }
+
+  &-gray-1 {
+    background: #c5cdd9;
+    border: unset;
+    color: #ffffff;
+    font-family: "SF Pro Text Bold";
+    @extend %button;
+    @extend %text-body1;
+
+    &:disabled {
+      background: #c5cdd9;
+      color: #ffffff;
+    }
+  }
+
+  &-info {
+    background: #42ade2;
+    border: unset;
+    color: #ffffff;
+    font-family: "SF Pro Text Bold";
+    @extend %button;
+    @extend %text-body1;
+
+    &:disabled {
+      background: #42ade2;
+      color: #ffffff;
+    }
+
+    &.small {
+      padding: 7px 10px;
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+
+  &-danger {
+    background: #ff3b30;
+    border: unset;
+    color: #ffffff;
+    font-family: "SF Pro Text Bold";
+    @extend %button;
+    @extend %text-body1;
+
+    &:disabled {
+      background: #ff3b30;
+      color: #ffffff;
+    }
+
+    &.small {
+      padding: 7px 10px;
+      font-size: 13px;
+      line-height: 16px;
+    }
+  }
+
+  &-continue,
+  &-skip {
+    margin-top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-continue {
+    bottom: 90px;
+  }
+
+  &-skip {
+    bottom: 30px;
+  }
+
+  &-w-350 {
+    @include mq("xs", max) {
+      width: 100%;
+    }
+  }
+}

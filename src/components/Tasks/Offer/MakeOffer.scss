@@ -1,0 +1,16 @@
+.make-offer {
+  ul {
+    padding: 0;
+
+    li {
+      display: block;
+      background: #f5f7fa;
+      border-radius: 3px;
+      margin-top: 20px;
+      padding: 11px 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+}

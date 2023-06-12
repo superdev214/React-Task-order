@@ -1,0 +1,158 @@
+@import "../../assets/style/utils/Variables.scss";
+@import "../../assets/style/utils/placeholders.scss";
+@import "../../assets/style/utils/mixins.scss";
+
+#flash-img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#login-main {
+  .onboard-img {
+    max-width: 90%;
+    padding-top: 10px;
+  }
+
+  .slide-content {
+    position: absolute;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    height: 80vh;
+    opacity: 0;
+  }
+
+  .slide-content.active {
+    opacity: 1;
+  }
+
+  .onboard-content {
+    padding-top: 20px;
+    &__heading {
+      margin-bottom: 16px;
+      font-family: "SF Pro Text Bold";
+      @extend %text-caption;
+    }
+
+    &__txt {
+      @extend %text-body2;
+    }
+  }
+
+  .progress {
+    width: 18px;
+    height: 18px;
+    margin: 0 15px;
+    background-color: #000;
+    flex-shrink: 0;
+
+    &.active {
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  #phone-number {
+    .logo-big {
+      margin-top: 80px;
+    }
+
+    .phone {
+      &-field {
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      &-input {
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #c5cdd9;
+        border-radius: 3px;
+
+        @extend %text-body1;
+
+        &::placeholder {
+          color: #435863;
+        }
+      }
+    }
+
+    .bottom-txt {
+      font-family: "SF Pro Text Bold";
+      @extend %text-body2;
+    }
+  }
+
+  #verify-code {
+    text-align: center;
+
+    .close-btn {
+      right: 20px;
+    }
+
+    .resend-code {
+      font-family: "SF Pro Text Medium";
+      border: none;
+    }
+
+    .input-code {
+      width: 55px;
+      height: 55px;
+      margin: 6px;
+      background: #ffffff;
+      border: 1px solid #c5cdd9;
+      border-radius: 3px;
+      font-family: "SF Pro Text Bold";
+      text-align: center;
+      @extend %text-caption;
+    }
+  }
+
+  .bottom-txt {
+    padding-bottom: 10px;
+  }
+
+  @include mq("xs", max) {
+    .btn-w-350 {
+      width: 100%;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 70vh;
+  overflow-y: scroll;
+  justify-content: center;
+}
+
+.area-inputs {
+  max-width: 320px;
+  margin: 20px auto;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.area-progress {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 96px;
+}
+
+@media only screen and (max-width: 320px) and (max-height: 546px) {
+  #login-main {
+    .onboard-img {
+      max-width: 70% !important;
+      padding-top: 4px;
+    }
+    .onboard-content {
+      padding-top: 0;
+    }
+  }
+}

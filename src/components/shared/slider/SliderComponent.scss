@@ -1,0 +1,17 @@
+.swiper {
+  height: 88vh;
+}
+
+.swiper-pagination-bullet {
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 15px !important;
+  flex-shrink: 0 !important;
+  background: #000 !important;
+  opacity: unset !important;
+}
+
+.swiper-pagination-bullet-active {
+  width: 20px !important;
+  height: 20px !important;
+}

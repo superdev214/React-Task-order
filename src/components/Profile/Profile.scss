@@ -1,0 +1,31 @@
+.profile {
+  .header-top {
+    height: 226px;
+    background: #dbdfe3;
+
+    .under-avatar {
+      height: 150px;
+      border-radius: 50%;
+      width: 150px;
+      position: absolute;
+      bottom: -66px;
+      left: 0;
+      right: 0;
+      margin: auto;
+      background-color: #ffffff;
+    }
+  }
+
+  .card-detail {
+    background: #f5f7fa;
+    border-radius: 10px;
+  }
+
+  .chip {
+    text-align: center;
+    padding: 5px 10px;
+    height: 30px;
+    background: #8aa4c6;
+    border-radius: 100px;
+  }
+}

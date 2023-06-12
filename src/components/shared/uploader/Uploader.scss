@@ -1,0 +1,34 @@
+.uploader {
+  position: relative;
+
+  .area {
+    .input {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0;
+      margin: 0 auto;
+      padding: 10px;
+    }
+  }
+
+  .area-img {
+    position: relative;
+    width: 33.3%;
+    height: 90px;
+    padding: 5px;
+    margin-top: 10px;
+
+    img {
+      border-radius: 3px;
+      object-fit: cover;
+      width: 25px;
+    }
+
+    .close {
+      top: 7px;
+      right: 7px;
+    }
+  }
+}
