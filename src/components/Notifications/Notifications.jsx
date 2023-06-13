@@ -41,7 +41,7 @@ export default function Notifications({ close }) {
           return (
             <div
               key={index}
-              className={`flex py-10 container justify-content-between ${
+              className={`flex py-10 container ${
                 !message.seen ? "chat-grey" : ""
               }`}
             >
