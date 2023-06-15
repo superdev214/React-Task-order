@@ -10,6 +10,8 @@ export default function WalkthroughStep(props) {
             className="phone-input w-100 text-center"
             type="tel"
             placeholder="Enter phone number"
+            oninput="this.value=this.value.slice(0,this.maxLength)"
+            maxlength="10"
           />
           <p style={{ fontSize: "13px" }}>
             By joining you agree to Taklief’s
