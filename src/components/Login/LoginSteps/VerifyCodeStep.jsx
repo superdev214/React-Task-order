@@ -72,7 +72,10 @@ export default function VerifyCodeStep(props) {
             alt="code number"
           />
         </div>
-        <p style={{ fontFamily: "SF Pro Text Bold" }}>Time remining: 0m 60s</p>
+        <p>
+          Time remining:
+          <span style={{ fontFamily: "SF Pro Text Bold" }}>0m 60s</span>
+        </p>
       </div>
       <div className="fixed-bottom">
         <button className="resend-code bottom-txt bg-transparent">
