@@ -3,9 +3,12 @@ export default function AboutStep(props) {
     <>
       {" "}
       <section id="verify-code">
-        <div style={{ padding: "13px 0", borderBottom: "2px solid #F5F7FA" }}>
+        <div style={{ padding: "13px 0" }}>
           <div className="container">
-            <div className="d-flex align-items-center justify-content-center">
+            <div
+              className="d-flex align-items-center justify-content-center"
+              style={{ paddingTop: "44px" }}
+            >
               <button className="position-absolute bg-transparent border-0 close-btn">
                 <img
                   src="./assets/images/close.png"
