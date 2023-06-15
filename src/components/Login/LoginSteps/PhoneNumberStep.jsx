@@ -1,10 +1,12 @@
 import { NavLink } from "react-router-dom";
+import logoSvg from "../../../assets/images/logo.svg";
 
 export default function WalkthroughStep(props) {
   return (
     <div className="text-center" id="phone-number">
       <div className="form">
-        <img src="./assets/images/logo-big.png" alt="logo big" />
+        {/* <img src="./assets/images/logo-big.png" alt="logo big" /> */}
+        <img src={logoSvg} alt="logo" />
         <div className="container" style={{ paddingTop: "50px" }}>
           <input
             className="phone-input w-100 text-center"
