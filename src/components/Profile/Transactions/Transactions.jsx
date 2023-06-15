@@ -238,7 +238,7 @@ export default function TransactionsPage() {
           </div>
           <p className="mt-10">20 transactions for Thursday 25 May 2023 </p>
           <li className="large font-bold mt-20 flex justify-content-between items-center">
-            <span className="font-bold">Net earning:</span>
+            <span className="font-bold">Net paid:</span>
             <span className="font-bold">SR 900.00</span>
           </li>
           <div className="flex mt-20 justify-content-between items-center">
