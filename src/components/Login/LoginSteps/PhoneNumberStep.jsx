@@ -25,7 +25,7 @@ export default function WalkthroughStep(props) {
         </div>
       </div>
       <div className="fixed-bottom">
-        <p className="bottom-txt">Made for the community</p>
+        <p className="made-for-community">Made for the community</p>
         <NavLink to={"/home"}>
           <button className="d-block btn btn-gray btn-w-350" id="skipBtn">
             Skip
