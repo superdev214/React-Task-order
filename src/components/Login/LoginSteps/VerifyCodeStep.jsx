@@ -33,26 +33,42 @@ export default function VerifyCodeStep(props) {
         <div className="d-flex align-items-center justify-content-between area-inputs">
           <input
             className="input-code"
-            type="tel"
-            maxLength={1}
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onInput={(event) => {
+              event.target.value = event.target.value.slice(0, 1);
+            }}
             alt="code number"
           />
           <input
             className="input-code"
-            type="tel"
-            maxLength={1}
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onInput={(event) => {
+              event.target.value = event.target.value.slice(0, 1);
+            }}
             alt="code number"
           />
           <input
             className="input-code"
-            type="tel"
-            maxLength={1}
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onInput={(event) => {
+              event.target.value = event.target.value.slice(0, 1);
+            }}
             alt="code number"
           />
           <input
             className="input-code"
-            type="tel"
-            maxLength={1}
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onInput={(event) => {
+              event.target.value = event.target.value.slice(0, 1);
+            }}
             alt="code number"
           />
         </div>

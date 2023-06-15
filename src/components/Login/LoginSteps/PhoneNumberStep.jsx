@@ -9,9 +9,12 @@ export default function WalkthroughStep(props) {
           <input
             className="phone-input w-100 text-center"
             type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onInput={(event) => {
+              event.target.value = event.target.value.slice(0, 10);
+            }}
             placeholder="Enter phone number"
-            oninput="this.value=this.value.slice(0,this.maxLength)"
-            maxlength="10"
           />
           <p style={{ fontSize: "13px" }}>
             By joining you agree to Taklief’s
