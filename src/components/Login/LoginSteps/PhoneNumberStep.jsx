@@ -19,7 +19,7 @@ export default function WalkthroughStep(props) {
           <p style={{ fontSize: "13px" }}>
             By joining you agree to Taklief’s
             <br />
-            <a href="/">Terms & Conditions</a> and
+            <a href="/">Terms & Conditions</a> and&nbsp;
             <a href="/">Community Guidlines</a>
           </p>
         </div>
