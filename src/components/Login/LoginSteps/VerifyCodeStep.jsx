@@ -1,7 +1,7 @@
 export default function VerifyCodeStep(props) {
   return (
     <section id="verify-code">
-      <div style={{ padding: "13px 0" }}>
+      <div style={{ padding: "13px 0", borderBottom: "2px solid #F5F7FA" }}>
         <div className="container">
           <div className="d-flex align-items-center justify-content-center">
             {/* onclick="getLogin()" */}
