@@ -8,7 +8,7 @@ export default function WalkthroughStep(props) {
         <div className="container" style={{ paddingTop: "50px" }}>
           <input
             className="phone-input w-100 text-center"
-            type="tel"
+            type="number"
             placeholder="Enter phone number"
             oninput="this.value=this.value.slice(0,this.maxLength)"
             maxlength="10"
