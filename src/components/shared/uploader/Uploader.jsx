@@ -9,17 +9,7 @@ export default class UploaderComponent extends React.Component {
 
   handleChange = (event) => {
     let images_url = this.state.images ? [...this.state.images] : [];
-    const files = event.target.files;
-    const fileCount = files.length;
-
-    // Check if the number of selected files exceeds the limit
-    if (fileCount > 3) {
-      alert("You can select a maximum of 3 files.");
-      event.target.value = null; // Clear the selected files
-      return;
-    }
-
-    Object.entries(files).forEach(async (element) => {
+    Object.entries(event.target.files).forEach(async (element) => {
       let file = element[1];
       if (
         !file.type.match("image/png") &&
