@@ -1,4 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 export default function TaskCategories() {
+  const navigate = useNavigate();
+
+  const handleImageClick = () => {
+    navigate("/new-task");
+  };
+
   const categories = [
     { title: "Moving furniture", iconSrc: "./assets/images/truck.png" },
     { title: "Events & Photography", iconSrc: "./assets/images/video.png" },
@@ -27,6 +35,7 @@ export default function TaskCategories() {
     { title: "Web & design", iconSrc: "./assets/images/web-design.png" },
     { title: "Baby care", iconSrc: "./assets/images/blocks-child.png" },
   ];
+
   return (
     <section className="py-4">
       <div className="container">
@@ -38,7 +47,7 @@ export default function TaskCategories() {
           {categories.map((category, key) => (
             <div key={key} className="col">
               <div className="task-card">
-                <div className="task-image">
+                <div className="task-image" onClick={handleImageClick}>
                   <img src={category.iconSrc} alt={category.title} />
                 </div>
                 <p className="task-name">{category.title}</p>
