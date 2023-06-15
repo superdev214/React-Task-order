@@ -12,7 +12,7 @@ export default function VerifyCodeStep(props) {
                 onClick={props.onClose}
               />
             </button>
-            <p className="font-bold">Verification Code</p>
+            <p className="login-nav-heading">Verification Code</p>
           </div>
         </div>
       </div>

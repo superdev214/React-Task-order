@@ -13,12 +13,12 @@ export default function AboutStep(props) {
                   onClick={props.onClose}
                 />
               </button>
-              <p className="font-bold">About</p>
+              <p className="login-nav-heading">About</p>
             </div>
           </div>
         </div>
         <div className="container text-initial mt-20">
-          <p className="font-bold">
+          <p className="about-heading">
             Tell us about yourself to setup your profile
           </p>
           <div className="form-control-group mt-20">
