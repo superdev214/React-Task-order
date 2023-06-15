@@ -7,7 +7,6 @@ export default function LocationAccessStep() {
         style={{
           padding: "13px 0",
           borderBottom: "2px solid #F5F7FA",
-          paddingTop: "44px",
         }}
       >
         <p className="login-nav-heading">Location</p>

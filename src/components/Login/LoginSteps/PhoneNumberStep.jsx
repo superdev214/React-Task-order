@@ -6,8 +6,8 @@ export default function WalkthroughStep(props) {
     <div className="text-center" id="phone-number">
       <div className="form">
         {/* <img src="./assets/images/logo-big.png" alt="logo big" /> */}
-        <img src={logoSvg} alt="logo" />
-        <div className="container" style={{ paddingTop: "50px" }}>
+        <img className="logo-login" src={logoSvg} alt="logo" />
+        <div className="container">
           <input
             className="phone-input w-100 text-center"
             type="number"
