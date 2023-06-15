@@ -33,7 +33,7 @@ export default function WalkthroughStep(props) {
         </NavLink>
         <button
           className="d-block btn btn-green btn-w-350"
-          style={{ marginTop: "10px" }}
+          style={{ marginTop: "20px" }}
           onClick={props.onContinue}
         >
           Continue
