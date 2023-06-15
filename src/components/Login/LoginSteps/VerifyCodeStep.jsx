@@ -33,25 +33,25 @@ export default function VerifyCodeStep(props) {
         <div className="d-flex align-items-center justify-content-between area-inputs">
           <input
             className="input-code"
-            type="text"
+            type="tel"
             maxLength={1}
             alt="code number"
           />
           <input
             className="input-code"
-            type="text"
+            type="tel"
             maxLength={1}
             alt="code number"
           />
           <input
             className="input-code"
-            type="text"
+            type="tel"
             maxLength={1}
             alt="code number"
           />
           <input
             className="input-code"
-            type="text"
+            type="tel"
             maxLength={1}
             alt="code number"
           />
