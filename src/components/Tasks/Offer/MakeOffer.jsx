@@ -10,10 +10,10 @@ export default function MakeOffer(props) {
   const [description, setDescription] = useState("");
   const [updateNow, setUpdateNow] = useState(true);
   const [mustHavesItems, setMustHavesItems] = useState([
-    { label: "Ladder", isSelected: false },
-    { label: "Brush", isSelected: false },
+    { label: "Ladder", isSelected: true },
+    { label: "Brush", isSelected: true },
     { label: "Sheet", isSelected: true },
-    { label: "Tools", isSelected: false },
+    { label: "Tools", isSelected: true },
   ]);
 
   let btnCaptions = {
@@ -22,10 +22,25 @@ export default function MakeOffer(props) {
     3: "Submit offer",
     4: "Close",
   };
-
+  const [handleMsg,sethandleMsg] = useState("");
   const handleStep = () => {
+    sethandleMsg('')
     if (step === 4) return props.close();
+    if(step === 1){
+      let check_must_have = mustHavesItems.find((item)=>item.isSelected===false);
+      if(check_must_have){
+        sethandleMsg('Please Select All')
+        return false;
+      }
+    }
     setStep(step + 1);
+  };
+  
+  const handleTextAreaChange = (event) => {
+    const inputText = event.target.value;
+    if (inputText.length <= 2000) {
+      setDescription(inputText)
+    }
   };
 
   const onSelect = (index) => {
@@ -56,6 +71,7 @@ export default function MakeOffer(props) {
             );
           })}
         </ul>
+        {handleMsg ? <div className="text-danger" >{handleMsg}</div>: ""}
       </div>
     );
   };
@@ -87,9 +103,10 @@ export default function MakeOffer(props) {
             <textarea
               className="phone-input w-100"
               minLength={15}
-              maxLength={200}
+              maxLength={2000}
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              // onChange={(e) => setDescription(e.target.value)}
+              onChange={handleTextAreaChange}
             />
           </div>
           <div className="my-20">

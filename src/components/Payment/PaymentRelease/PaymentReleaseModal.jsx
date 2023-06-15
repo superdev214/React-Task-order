@@ -23,7 +23,7 @@ let titles = {
 };
 
 export default function PaymentReleaseModal({ close }) {
-  const [filter, setFilter] = useState(1);
+  const [filter, setFilter] = useState('');
   const [description, setDescription] = useState("");
   const [step, setStep] = useState(1);
 
@@ -57,7 +57,15 @@ export default function PaymentReleaseModal({ close }) {
           return (
             <div key={index} className="py-10">
               <button
-                onClick={() => setFilter(item.key)}
+                onClick={() => {
+                  if(filter === item.key){
+                    setFilter('')
+                  }else{
+                    setFilter(item.key)
+                  }
+                }
+                  
+                  }
                 className={`d-block x btn btn-w-350 ${
                   filter === item.key
                     ? "btn-blue text-white"
