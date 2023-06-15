@@ -42,7 +42,7 @@ export default class UploaderComponent extends React.Component {
         <div>
           <div>
             {images && images.length > 0 && (
-              <div className="flex">
+              <div className="attachment-task">
                 {images.map((image, key) => {
                   return (
                     <div className="area-img pt-md" key={key}>
