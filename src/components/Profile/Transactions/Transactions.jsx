@@ -97,17 +97,17 @@ export default function TransactionsPage() {
         {transactions.map((item, index) => {
           return (
             <ul className="mt-20" key={index}>
-              <li className="large flex column font-bold mt-20 items-initial">
+              <li className="large d-flex flex-column font-bold mt-20">
                 <div onClick={() => toggle(item.id)}>
-                  <div className="flex mt-10 justify-content-between items-center">
+                  <div className="d-flex mt-10 justify-content-between align-items-center">
                     <span>{item.date}</span>
                     <span className="text-green">{item.status}</span>
                   </div>
-                  <div className="flex mt-10 justify-content-between items-center">
+                  <div className="d-flex mt-10 justify-content-between align-items-center">
                     <span className="font-bold size-13">{item.title}</span>
                     <span className="font-bold">SR {item.price}</span>
                   </div>
-                  <div className="flex mt-10 justify-content-between items-center">
+                  <div className="d-flex mt-10 justify-content-between align-items-center">
                     <span className="size-13">
                       {type === "Earned" ? "Poster by" : "Assigned to"}
                     </span>
@@ -130,29 +130,29 @@ export default function TransactionsPage() {
                         {type === "Earned" ? (
                           <>
                             <div className="line my-10"></div>
-                            <div className="flex mt-10 justify-content-between items-center">
+                            <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Gross earning</span>
                               <span>SR {item.price}</span>
                             </div>
-                            <div className="flex mt-10 justify-content-between items-center">
+                            <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Service fee</span>
                               <span>SR {item.serviceFee}</span>
                             </div>
                             <div className="line my-10"></div>
-                            <div className="flex mt-10 justify-content-between items-center">
+                            <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Net profit</span>
                               <span>SR {item.netProfile}</span>
                             </div>
                             <div className="line my-10"></div>
-                            <div className="flex mt-10 justify-content-between items-center">
+                            <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Bank reference</span>
                               <span>SR {item.bankReference}</span>
                             </div>
-                            <div className="flex mt-10 justify-content-between items-center">
+                            <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Company</span>
                               <span>SR {item.company}</span>
                             </div>
-                            <div className="flex mt-10 justify-content-between items-center">
+                            <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">CR number</span>
                               <span>SR {item.cRNumber}</span>
                             </div>
@@ -160,15 +160,15 @@ export default function TransactionsPage() {
                         ) : (
                           <>
                             <div className="line my-10"></div>
-                            <div className="flex justify-content-between items-center">
+                            <div className="d-flex justify-content-between align-items-center">
                               <span className="size-13">Funds secured on</span>
                               <span className="size-13">{item.releaseAt}</span>
                             </div>
-                            <div className="flex mt-10 justify-content-between items-center">
+                            <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Funds release on</span>
                               <span className="size-13">{item.releaseAt}</span>
                             </div>
-                            <div className="flex mt-10 justify-content-between items-center">
+                            <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Payment mthod</span>
                               <span>{item.gate && item.gate.title}</span>
                             </div>
@@ -229,7 +229,7 @@ export default function TransactionsPage() {
       <div className="pa-20 gray-list" style={{ marginTop: "30px" }}>
         {tabView()}
         <div className="mt-20">
-          <div className="flex justify-content-between items-center">
+          <div className="d-flex justify-content-between align-items-center">
             <p className="font-bold">Showing:</p>
             <div className="text-info">
               <img src="./assets/images/history.png" alt="close" />
@@ -237,11 +237,11 @@ export default function TransactionsPage() {
             </div>
           </div>
           <p className="mt-10">20 transactions for Thursday 25 May 2023 </p>
-          <li className="large font-bold mt-20 flex justify-content-between items-center">
+          <li className="large font-bold mt-20 d-flex justify-content-between align-items-center">
             <span className="font-bold">Net paid:</span>
             <span className="font-bold">SR 900.00</span>
           </li>
-          <div className="flex mt-20 justify-content-between items-center">
+          <div className="d-flex mt-20 justify-content-between align-items-center">
             <p className="font-bold">Records</p>
             <div className="text-info">
               <img src="./assets/images/statistics.png" alt="statistics" />

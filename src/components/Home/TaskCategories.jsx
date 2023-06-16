@@ -61,7 +61,7 @@ export default function TaskCategories() {
     <section className="py-4">
       <div className="container">
         <div className="d-flex align-items-center">
-          <img src="./assets/images/icons/poster.svg" alt="Post a task" />
+          <img src="./assets/images/icons/post.svg" alt="Post a task" />
           <p className="tasks-title">Post a task & get offers</p>
         </div>
         <div className="row row-cols-3 g-3 task-list">

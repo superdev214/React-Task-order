@@ -59,7 +59,7 @@ let menuItems = [
 export default function UserAccount() {
   const informationView = () => {
     return (
-      <div className="mt-20 flex items-center">
+      <div className="mt-20 d-flex align-items-center">
         <div>
           <img
             src="./assets/images/avatar.png"
@@ -71,7 +71,7 @@ export default function UserAccount() {
           <div className="font-bold">User name</div>
           <p className="mt-5">
             <span className="font-bold">3.8 </span>
-            <img src={`./assets/images/star-gold.png`} alt="star" /> (5)
+            <img src={`./assets/images/icons/star-gold.svg`} alt="star" /> (5)
           </p>
           <p className="mt-5">
             <span className="font-bold"> 94% </span> Completion rate

@@ -101,7 +101,10 @@ export default function ProfilePage() {
         <ul>
           {badges.map((badge, index) => {
             return (
-              <li key={index} className="font-bold mt-10 flex items-center">
+              <li
+                key={index}
+                className="font-bold mt-10 d-flex align-items-center"
+              >
                 <img
                   src={`./assets/images/profile/${badge.icon}.png`}
                   alt="avatar"
@@ -135,7 +138,7 @@ export default function ProfilePage() {
                 <span className="ml-10">{skill.label}</span>
                 {expansion.length > 0 &&
                   expansion.filter(({ id }) => id === skill.id)[0].isOpened && (
-                    <div className="flex warp mt-10">
+                    <div className="d-flex flex-wrap mt-10">
                       {skill.children &&
                         skill.children.map((child, childIndex) => {
                           return (
@@ -181,18 +184,18 @@ export default function ProfilePage() {
           <div className="line light my-20"></div>
           {tabView()}
           <div className="mt-20 card-detail pa-20">
-            <div className="flex justify-content-between">
+            <div className="d-flex justify-content-between">
               <div className="font-bold">
                 4.8
-                <img src={`./assets/images/star-gold.png`} alt="star" />
+                <img src={`./assets/images/icons/star-gold.svg`} alt="star" />
               </div>
               <div className="font-bold">98%</div>
             </div>
-            <div className="flex justify-content-between mt-10">
+            <div className="d-flex justify-content-between mt-10">
               <div className="font-bold">Overall rating</div>
               <div className="font-bold">Completion rate</div>
             </div>
-            <div className="size-13 flex justify-content-between mt-10">
+            <div className="size-13 d-flex justify-content-between mt-10">
               <span>9 Review</span>
               <span>14 Completed task</span>
             </div>

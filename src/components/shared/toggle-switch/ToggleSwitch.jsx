@@ -2,7 +2,7 @@ import "./ToggleSwitch.scss";
 
 export default function ToggleSwitch(props) {
   return (
-    <div className="switch flex items-center">
+    <div className="switch d-flex align-items-center">
       <label htmlFor={props.id || "toggle"}>
         <input
           type="checkbox"

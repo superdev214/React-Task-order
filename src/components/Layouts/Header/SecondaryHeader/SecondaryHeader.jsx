@@ -17,7 +17,7 @@ export default function SecondaryHeader(props) {
             props.hideSearch ? "border-bottom short" : ""
           }`}
         >
-          <div className="p flex justify-between items-center">
+          <div className="p d-flex justify-content-between align-items-center">
             <div style={{ width: "25%" }}>
               {props.appendEvent && props.appendEvent()}
             </div>
@@ -39,7 +39,7 @@ export default function SecondaryHeader(props) {
                 className="position-absolute"
                 to={`/search?query=${search}`}
               >
-                <img src="./assets/images/search.png" alt="" />
+                <img src="./assets/images/icons/search.svg" alt="" />
               </NavLink>
               <input
                 className="search"
