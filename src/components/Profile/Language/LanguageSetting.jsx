@@ -34,10 +34,10 @@ const LanguageSetting = () => {
           {preferences.map((preference, index) => (
             <li
               key={index}
-              className="flex items-center justify-between bg-grey pointer mt-10"
+              className="d-flex align-items-center justify-content-between bg-grey pointer mt-10"
               onClick={() => setLanguage(preference.key)}
             >
-              <div className="flex items-center">
+              <div className="d-flex align-items-center">
                 <img
                   src={`./assets/images/flags/${preference.key}.png`}
                   alt="flag"

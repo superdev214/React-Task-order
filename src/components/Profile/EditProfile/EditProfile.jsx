@@ -8,13 +8,13 @@ export default function EditProfile() {
         <div className="pa-20">
           <div className="gray-list">
             <ul>
-              <li className="flex justify-content-between">
+              <li className="d-flex justify-content-between">
                 <span className="font-bold">Avatar</span>
-                <img src="./assets/images/fly-dark.png" alt="logo big" />
+                <img src="./assets/images/icons/fly-dark.svg" alt="logo big" />
               </li>
-              <li className="flex justify-content-between mt-10">
+              <li className="d-flex justify-content-between mt-10">
                 <span className="font-bold">Profile header image</span>
-                <img src="./assets/images/fly-dark.png" alt="logo big" />
+                <img src="./assets/images/icons/fly-dark.svg" alt="logo big" />
               </li>
             </ul>
           </div>

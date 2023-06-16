@@ -62,7 +62,7 @@ const NotificationPreferences = () => {
         <div className="mt-20">
           {preferences.map((preference, index) => (
             <div key={index} className="bg-grey py-10 px-20">
-              <div className="flex items-center justify-content-between">
+              <div className="d-flex align-items-center justify-content-between">
                 <p className="font-bold">{preference.title}</p>
                 <ToggleSwitch
                   dark={true}

@@ -41,11 +41,11 @@ export default function Notifications({ close }) {
           return (
             <div
               key={index}
-              className={`flex py-10 container ${
+              className={`d-flex py-10 container ${
                 !message.seen ? "chat-grey" : ""
               }`}
             >
-              <div className="flex items-center">
+              <div className="d-flex align-items-center">
                 <img src={`./assets/images/${message.image}.png`} alt="" />
               </div>
               <div className="ml-10 mr-20">
@@ -55,7 +55,7 @@ export default function Notifications({ close }) {
                 )}
                 <p className="mt-10">{message.description}</p>
               </div>
-              <div className="flex column justify-between">
+              <div className="d-flex flex-column justify-content-between">
                 <span className="size-13">{message.createdAt}</span>
                 <div></div>
               </div>

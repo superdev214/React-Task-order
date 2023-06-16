@@ -129,7 +129,7 @@ export default function NewTask() {
             {task.mustHaves.map((item, index) => {
               return (
                 <div
-                  className="mb-10 radius-3 bg-light p-2 flex justify-content-between"
+                  className="mb-10 radius-3 bg-light p-2 d-flex justify-content-between"
                   key={index}
                 >
                   <div>
@@ -330,7 +330,10 @@ export default function NewTask() {
                     style={{ left: "20px" }}
                     onClick={() => setStep(step - 1)}
                   >
-                    <img src="./assets/images/arrow-back.png" alt="close" />
+                    <img
+                      src="./assets/images/icons/arrow-back.svg"
+                      alt="close"
+                    />
                   </button>
                 )}
                 <p>New Task</p>

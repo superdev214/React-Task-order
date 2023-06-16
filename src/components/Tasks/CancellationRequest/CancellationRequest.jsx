@@ -115,7 +115,7 @@ export default function CancellationRequest({ close }) {
         style={{ left: "20px" }}
         onClick={() => setStep(step - 1)}
       >
-        <img src="./assets/images/arrow-back.png" alt="close" />
+        <img src="./assets/images/icons/arrow-back.svg" alt="close" />
       </button>
     );
   };

@@ -17,7 +17,7 @@ export default function VerifyCodeStep(props) {
         </div>
       </div>
       <div
-        className="container flex justify-content-center flex-column align-items-center"
+        className="container d-flex justify-content-center flex-column align-items-center"
         style={{ height: "70vh", overflowY: "scroll" }}
       >
         <img

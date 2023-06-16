@@ -10,7 +10,7 @@ export default function ProfileHeader(props) {
               className="position-absolute bg-transparent border-0"
               style={{ left: "20px", top: "12px" }}
             >
-              <img src="./assets/images/arrow-back.png" alt="close" />
+              <img src="./assets/images/icons/arrow-back.svg" alt="close" />
             </button>
           </NavLink>
           <p className="font-bold">{props.title}</p>
