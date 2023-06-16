@@ -359,7 +359,7 @@ export default function TaskDetails() {
             className="mt-20 w-100"
             type="text"
             placeholder="Ask Aftab a question"
-            maxLength={10}
+            maxLength={2000}
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
           />
