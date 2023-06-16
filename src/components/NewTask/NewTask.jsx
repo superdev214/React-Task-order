@@ -19,6 +19,28 @@ export default function NewTask() {
     haveCertainTime: true,
     certainTime: "Morning",
   });
+  //
+  const handleTitleChange = (e) => {
+    const value = e.target.value;
+    setTask({ ...task, title: value });
+  };
+
+  const handleDescriptionChange = (e) => {
+    const value = e.target.value;
+    setTask({ ...task, description: value });
+  };
+
+  const getTitleCharacterCount = () => {
+    return task.title.length;
+  };
+
+  const getDescriptionCharacterCount = () => {
+    return task.description.length;
+  };
+
+  const remainingTitleWords = 50 - getTitleCharacterCount();
+  const remainingDescriptionWords = 50 - getDescriptionCharacterCount();
+  //
 
   const isValidForm = () => {
     if (
@@ -58,8 +80,13 @@ export default function NewTask() {
             minLength={10}
             maxLength={50}
             value={task.title}
-            onChange={(e) => setTask({ ...task, title: e.target.value })}
+            onChange={handleTitleChange}
           />
+          <div className="form-control-group-description">
+            {remainingTitleWords >= 0 && (
+              <span className="word-count">{remainingTitleWords}</span>
+            )}
+          </div>
         </div>
 
         <div className="form-control-group mt-20">
@@ -72,7 +99,7 @@ export default function NewTask() {
             minLength={25}
             maxLength={2000}
             value={task.description}
-            onChange={(e) => setTask({ ...task, description: e.target.value })}
+            onChange={handleDescriptionChange}
           />
         </div>
         <p className="mt-20">How this task can be done?</p>
