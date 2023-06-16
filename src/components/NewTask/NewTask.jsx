@@ -19,28 +19,31 @@ export default function NewTask() {
     haveCertainTime: true,
     certainTime: "Morning",
   });
-  //
+
+  //title input handler
   const handleTitleChange = (e) => {
     const value = e.target.value;
     setTask({ ...task, title: value });
   };
 
+  //Description input handler
+
   const handleDescriptionChange = (e) => {
     const value = e.target.value;
     setTask({ ...task, description: value });
   };
-
+  // count Remaining of title char
   const getTitleCharacterCount = () => {
     return task.title.length;
   };
+  const remainingTitleWords = 50 - getTitleCharacterCount();
+
+  // count Remaining of title Description.
 
   const getDescriptionCharacterCount = () => {
     return task.description.length;
   };
-
-  const remainingTitleWords = 50 - getTitleCharacterCount();
-  const remainingDescriptionWords = 50 - getDescriptionCharacterCount();
-  //
+  const remainingDescriptionWords = 2000 - getDescriptionCharacterCount();
 
   const isValidForm = () => {
     if (
@@ -69,12 +72,13 @@ export default function NewTask() {
     return (
       <>
         <p className="mb-20">ABOUT</p>
-        <div className="form-control-group">
+        <div className="form-control-group" style={{ position: "relative" }}>
           <div className="form-control-group-label mb-10">Task title</div>
           <div className="form-control-group-description">
             Minimum 10 characters
           </div>
           <input
+            style={{ marginBottom: "5px" }}
             className="phone-input w-100"
             type="text"
             minLength={10}
@@ -84,12 +88,15 @@ export default function NewTask() {
           />
           <div className="form-control-group-description">
             {remainingTitleWords >= 0 && (
-              <span className="word-count">{remainingTitleWords}</span>
+              <span className="word-count-title">{remainingTitleWords}</span>
             )}
           </div>
         </div>
 
-        <div className="form-control-group mt-20">
+        <div
+          className="form-control-group mt-20"
+          style={{ position: "relative" }}
+        >
           <div className="form-control-group-label mb-10">Task description</div>
           <div className="form-control-group-description">
             Minimum 25 characters
@@ -101,7 +108,15 @@ export default function NewTask() {
             value={task.description}
             onChange={handleDescriptionChange}
           />
+          <div className="form-control-group-description">
+            {remainingDescriptionWords >= 0 && (
+              <span className="word-count-description">
+                {remainingDescriptionWords}
+              </span>
+            )}
+          </div>
         </div>
+
         <p className="mt-20">How this task can be done?</p>
         <div className="switch-button">
           <button
@@ -274,6 +289,24 @@ export default function NewTask() {
     );
   };
 
+  //
+  const handleBudgetChange = (e) => {
+    const value = parseFloat(e.target.value);
+    setTask({ ...task, budget: value });
+  };
+
+  const isBudgetValid = () => {
+    return task.budget >= 15 && task.budget <= 2000;
+  };
+
+  const handleSubmit = () => {
+    if (isBudgetValid()) {
+      // Proceed with task submission
+    } else {
+      // Show an error message or prevent task submission
+    }
+  };
+  //
   const stepBudget = () => {
     return (
       <>
@@ -290,9 +323,7 @@ export default function NewTask() {
             className="phone-input w-100"
             type="number"
             value={task.budget}
-            onChange={(e) =>
-              setTask({ ...task, budget: parseFloat(e.target.value) })
-            }
+            onChange={handleBudgetChange}
           />
         </div>
       </>
@@ -373,8 +404,12 @@ export default function NewTask() {
                 Continue
               </button>
             ) : (
-              <NavLink to={"/new-task-published"}>
-                <button className="d-block btn btn-gray btn-w-350 button-continue">
+              <NavLink to={isBudgetValid() ? "/new-task-published" : "#"}>
+                <button
+                  className="d-block btn btn-gray btn-w-350 button-continue"
+                  disabled={!isBudgetValid()} // Disable if the budget is not valid
+                  onClick={handleSubmit}
+                >
                   Publish
                 </button>
               </NavLink>
