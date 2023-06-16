@@ -13,7 +13,7 @@
 .NewTask {
   p {
     font-style: normal;
-    font-family: 'SF Pro Text Bold';
+    font-family: "SF Pro Text Bold";
     font-size: 17px;
     line-height: 18px;
     /* identical to box height */
@@ -44,6 +44,20 @@
         }
       }
     }
+  }
+  .word-count-title {
+    position: absolute;
+    font-family: "SF Pro Text Regular";
+    color: gray;
+    right: 2px;
+    bottom: 3px;
+  }
+  .word-count-description {
+    position: absolute;
+    font-family: "SF Pro Text Regular";
+    color: gray;
+    right: 2px;
+    bottom: 6px;
   }
 
   .time-picker-radio {
