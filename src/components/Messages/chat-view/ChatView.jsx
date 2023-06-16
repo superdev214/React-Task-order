@@ -62,7 +62,7 @@ export default function ChatView() {
           style={{ position: "sticky", top: 0 }}
         >
           <div className="d-flex">
-            <img src={`./assets/images/${message.image}.png`} alt="" />
+            <img src={`./assets/images/icons/${message.image}.svg`} alt="" />
             <div className="ml-10">
               <span className="font-bold">Task title</span>
               <p>User name</p>
@@ -78,7 +78,7 @@ export default function ChatView() {
           className="ma-20 radius-10 bg-blue text-white pa-10 d-flex align-items-center justify-content-between"
         >
           <span>Hey! type something with attch</span>
-          <img src={`./assets/images/${message.image}.png`} alt="" />
+          <img src={`./assets/images/icons/${message.image}.svg`} alt="" />
         </div>
         <div className="pa-20">
           {chats.map((item, index) => {
@@ -88,7 +88,10 @@ export default function ChatView() {
                 className={`d-flex chat-grey radius-10 mb-20 pa-10`}
               >
                 <div className="d-flex items-end">
-                  <img src={`./assets/images/${message.image}.png`} alt="" />
+                  <img
+                    src={`./assets/images/icons/${message.image}.svg`}
+                    alt=""
+                  />
                 </div>
                 <div className="ml-10 mr-20">
                   <p>{item.text}</p>

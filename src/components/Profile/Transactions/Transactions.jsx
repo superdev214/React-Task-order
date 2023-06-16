@@ -113,7 +113,7 @@ export default function TransactionsPage() {
                     </span>
                     <span>
                       <img
-                        src={`./assets/images/${item.owner.icon}.png`}
+                        src={`./assets/images/icons/${item.owner.icon}.svg`}
                         style={{ width: "20px", height: "20px" }}
                         alt=""
                         className="mr-10"
