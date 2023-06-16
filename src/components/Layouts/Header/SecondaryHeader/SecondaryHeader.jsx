@@ -9,8 +9,9 @@ export default function SecondaryHeader(props) {
   const [modal, setModal] = useState(false);
 
   return (
-    <div>
+    <>
       {modal && <Notifications close={() => setModal(false)} />}
+
       <header className="secondary-header">
         <nav
           className={`navbar-top ${
@@ -25,7 +26,7 @@ export default function SecondaryHeader(props) {
             <div style={{ width: "25%" }} className="text-end">
               <img
                 src="./assets/images/icons/bell.svg"
-                alt=""
+                alt="bell"
                 onClick={() => setModal(true)}
               />
             </div>
@@ -52,6 +53,6 @@ export default function SecondaryHeader(props) {
           )}
         </nav>
       </header>
-    </div>
+    </>
   );
 }
