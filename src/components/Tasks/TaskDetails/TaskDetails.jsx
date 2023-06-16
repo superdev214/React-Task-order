@@ -85,7 +85,7 @@ export default function TaskDetails() {
                 <img src="./assets/images/icons/fly-mark.svg" alt="logo big" />
               </div>
               <div className="ml-20">
-                <div className="mb-10 font-bold size-15">POSTED BY</div>
+                <div className="mbb-5 font-bold size-15">POSTED BY</div>
                 <span className="text-blue size-15">Aftab .A</span>
               </div>
             </div>
@@ -252,7 +252,12 @@ export default function TaskDetails() {
                 <img src="./assets/images/icons/fly-dark.svg" alt="logo big" />
               </div>
               <div className="ml-20">
-                <div className="mb-10 font-bold size-15">Gaurav C.</div>
+                <div
+                  className="mbb-5 font-bold size-15"
+                  // style={{ marginBottom: "5px" }}
+                >
+                  Gaurav C.
+                </div>
                 <span>
                   <span className="font-bold size-15">
                     3.8{" "}
