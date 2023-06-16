@@ -1,24 +1,24 @@
-import { useState } from "react"
-import { NavLink } from "react-router-dom"
-import TasksOffer from "./TasksOffer/TasksOffer"
-import LocationSelection from "./LocationSelection/LocationSelection"
-import DatePickerComponent from "../shared/date-picker/DatePicker"
-import Uploader from "../shared/uploader/Uploader"
-import TickIcon from "../../assets/images/TickDark.svg"
-import "./NewTask.scss"
-import "../../assets/style/components/task-tab-bar.scss"
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import TasksOffer from "./TasksOffer/TasksOffer";
+import LocationSelection from "./LocationSelection/LocationSelection";
+import DatePickerComponent from "../shared/date-picker/DatePicker";
+import Uploader from "../shared/uploader/Uploader";
+import TickIcon from "../../assets/images/TickDark.svg";
+import "./NewTask.scss";
+import "../../assets/style/components/task-tab-bar.scss";
 
 export default function NewTask() {
-  const [step, setStep] = useState(1)
-  const [modal, setModal] = useState(false)
-  const [locationSelectionModal, setLocationSelectionModal] = useState(false)
+  const [step, setStep] = useState(1);
+  const [modal, setModal] = useState(false);
+  const [locationSelectionModal, setLocationSelectionModal] = useState(false);
   const [task, setTask] = useState({
     type: "InPerson",
     description: "",
     title: "",
     haveCertainTime: true,
-    certainTime: "Morning"
-  })
+    certainTime: "Morning",
+  });
 
   const isValidForm = () => {
     if (
@@ -27,21 +27,21 @@ export default function NewTask() {
       task.description &&
       task.description.length > 25
     )
-      return true
-    return false
-  }
+      return true;
+    return false;
+  };
 
-  const setHaveMust = items => {
-    setTask({ ...task, mustHaves: items })
-  }
+  const setHaveMust = (items) => {
+    setTask({ ...task, mustHaves: items });
+  };
 
-  const remove = index => {
-    if (task.mustHaves === undefined) return
-    let temp = task.mustHaves
-    temp.splice(index, 1)
+  const remove = (index) => {
+    if (task.mustHaves === undefined) return;
+    let temp = task.mustHaves;
+    temp.splice(index, 1);
 
-    setHaveMust(temp)
-  }
+    setHaveMust(temp);
+  };
 
   const stepAbout = () => {
     return (
@@ -57,7 +57,7 @@ export default function NewTask() {
             type="text"
             minLength={10}
             value={task.title}
-            onChange={e => setTask({ ...task, title: e.target.value })}
+            onChange={(e) => setTask({ ...task, title: e.target.value })}
           />
         </div>
 
@@ -70,7 +70,7 @@ export default function NewTask() {
             className="phone-input w-100"
             minLength={25}
             value={task.description}
-            onChange={e => setTask({ ...task, description: e.target.value })}
+            onChange={(e) => setTask({ ...task, description: e.target.value })}
           />
         </div>
         <p className="mt-20">How this task can be done?</p>
@@ -114,7 +114,7 @@ export default function NewTask() {
                     <img src="./assets/images/close.png" alt="close" />
                   </button>
                 </div>
-              )
+              );
             })}
           </div>
         )}
@@ -152,8 +152,8 @@ export default function NewTask() {
           </button>
         )}
       </>
-    )
-  }
+    );
+  };
 
   const dateTime = () => {
     return (
@@ -161,7 +161,7 @@ export default function NewTask() {
         <p className="mb-20">DATE AND TIME</p>
         <p className="mb-10">When do you need this done?</p>
         <DatePickerComponent
-          onChange={date => setTask({ ...task, date: date })}
+          onChange={(date) => setTask({ ...task, date: date })}
         />
         {task.date && (
           <>
@@ -238,8 +238,8 @@ export default function NewTask() {
           </>
         )}
       </>
-    )
-  }
+    );
+  };
 
   const stepBudget = () => {
     return (
@@ -251,33 +251,33 @@ export default function NewTask() {
             You can always negotiate the price later
           </div>
           <div className="form-control-group-description danger mb-10">
-            Maximum budget <b>SR 15</b>
+            Minimum budget <b>SR 15</b>
           </div>
           <input
             className="phone-input w-100"
             type="number"
             value={task.budget}
-            onChange={e =>
+            onChange={(e) =>
               setTask({ ...task, budget: parseFloat(e.target.value) })
             }
           />
         </div>
       </>
-    )
-  }
+    );
+  };
 
   return (
     <>
       {modal && (
         <TasksOffer
           allItems={task.mustHaves || []}
-          onChange={items => setHaveMust(items)}
+          onChange={(items) => setHaveMust(items)}
           close={() => setModal(false)}
         />
       )}
       {locationSelectionModal && (
         <LocationSelection
-          onChange={address => setTask({ ...task, location: address })}
+          onChange={(address) => setTask({ ...task, location: address })}
           close={() => setLocationSelectionModal(false)}
         />
       )}
@@ -320,7 +320,7 @@ export default function NewTask() {
             style={{
               height: "80vh",
               overflowY: "scroll",
-              paddingBottom: "30px"
+              paddingBottom: "30px",
             }}
           >
             {step === 1 ? stepAbout() : step === 2 ? dateTime() : stepBudget()}
@@ -331,7 +331,7 @@ export default function NewTask() {
                 className="d-block btn btn-gray btn-w-350 button-continue"
                 disabled={!isValidForm()}
                 onClick={() => {
-                  setTimeout(() => setStep(step + 1))
+                  setTimeout(() => setStep(step + 1));
                 }}
               >
                 Continue
@@ -347,5 +347,5 @@ export default function NewTask() {
         </div>
       </div>
     </>
-  )
+  );
 }
