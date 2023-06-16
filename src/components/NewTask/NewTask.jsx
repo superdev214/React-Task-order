@@ -326,7 +326,7 @@ export default function NewTask() {
             style={{
               height: "80vh",
               overflowY: "scroll",
-              paddingBottom: "30px",
+              paddingBottom: "36px",
             }}
           >
             {step === 1 ? stepAbout() : step === 2 ? dateTime() : stepBudget()}
