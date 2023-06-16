@@ -1,48 +1,48 @@
-import React from "react"
-import "./Uploader.scss"
+import React from "react";
+import "./Uploader.scss";
 
 export default class UploaderComponent extends React.Component {
   constructor(props) {
-    super(props)
-    this.state = { images: [] }
+    super(props);
+    this.state = { images: [] };
   }
 
-  handleChange = event => {
-    let images_url = this.state.images ? [...this.state.images] : []
-    Object.entries(event.target.files).forEach(async element => {
-      let file = element[1]
+  handleChange = (event) => {
+    let images_url = this.state.images ? [...this.state.images] : [];
+    Object.entries(event.target.files).forEach(async (element) => {
+      let file = element[1];
       if (
         !file.type.match("image/png") &&
         !file.type.match("image/jpeg") &&
         !file.type.match("image/jpg")
       )
-        return
-      images_url.push({ path: URL.createObjectURL(file) })
-      this.setState({ images: images_url })
-    })
-  }
+        return;
+      images_url.push({ path: URL.createObjectURL(file) });
+      this.setState({ images: images_url });
+    });
+  };
 
-  remove = index => {
-    let tempImages = [...this.state.images]
-    tempImages.splice(index, 1)
+  remove = (index) => {
+    let tempImages = [...this.state.images];
+    tempImages.splice(index, 1);
 
-    this.setState({ images: tempImages })
-    this.forceUpdate()
-  }
+    this.setState({ images: tempImages });
+    this.forceUpdate();
+  };
 
   clear = () => {
-    this.setState({ images: [] })
-  }
+    this.setState({ images: [] });
+  };
 
   render() {
-    const { images } = this.state
+    const { images } = this.state;
 
     return (
       <div className="uploader">
         <div>
           <div>
             {images && images.length > 0 && (
-              <div className="flex">
+              <div className="attachment-task">
                 {images.map((image, key) => {
                   return (
                     <div className="area-img pt-md" key={key}>
@@ -59,7 +59,7 @@ export default class UploaderComponent extends React.Component {
                         />
                       </button>
                     </div>
-                  )
+                  );
                 })}
               </div>
             )}
@@ -90,6 +90,6 @@ export default class UploaderComponent extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }

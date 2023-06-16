@@ -3,8 +3,13 @@ import { NavLink } from "react-router-dom";
 export default function LocationAccessStep() {
   return (
     <section id="location-access">
-      <div style={{ padding: "13px 0" }}>
-        <p className="text-center font-bold">Location</p>
+      <div
+        style={{
+          padding: "13px 0",
+          borderBottom: "2px solid #F5F7FA",
+        }}
+      >
+        <p className="login-nav-heading">Location</p>
       </div>
       <div className="container">
         <div

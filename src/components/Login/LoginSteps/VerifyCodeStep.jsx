@@ -1,7 +1,7 @@
 export default function VerifyCodeStep(props) {
   return (
     <section id="verify-code">
-      <div style={{ padding: "13px 0" }}>
+      <div style={{ padding: "13px 0", borderBottom: "2px solid #F5F7FA" }}>
         <div className="container">
           <div className="d-flex align-items-center justify-content-center">
             {/* onclick="getLogin()" */}
@@ -12,7 +12,7 @@ export default function VerifyCodeStep(props) {
                 onClick={props.onClose}
               />
             </button>
-            <p className="font-bold">Verification Code</p>
+            <p className="login-nav-heading">Verification Code</p>
           </div>
         </div>
       </div>
@@ -33,30 +33,49 @@ export default function VerifyCodeStep(props) {
         <div className="d-flex align-items-center justify-content-between area-inputs">
           <input
             className="input-code"
-            type="text"
-            maxLength={1}
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onInput={(event) => {
+              event.target.value = event.target.value.slice(0, 1);
+            }}
             alt="code number"
           />
           <input
             className="input-code"
-            type="text"
-            maxLength={1}
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onInput={(event) => {
+              event.target.value = event.target.value.slice(0, 1);
+            }}
             alt="code number"
           />
           <input
             className="input-code"
-            type="text"
-            maxLength={1}
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onInput={(event) => {
+              event.target.value = event.target.value.slice(0, 1);
+            }}
             alt="code number"
           />
           <input
             className="input-code"
-            type="text"
-            maxLength={1}
+            type="number"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            onInput={(event) => {
+              event.target.value = event.target.value.slice(0, 1);
+            }}
             alt="code number"
           />
         </div>
-        <p style={{ fontFamily: "SF Pro Text Bold" }}>Time remining: 0m 60s</p>
+        <p>
+          Time remining:
+          <span style={{ fontFamily: "SF Pro Text Bold" }}>0m 60s</span>
+        </p>
       </div>
       <div className="fixed-bottom">
         <button className="resend-code bottom-txt bg-transparent">
