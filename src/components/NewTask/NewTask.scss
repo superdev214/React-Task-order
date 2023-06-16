@@ -36,10 +36,11 @@
         height: 20px;
         display: inline-block;
         margin-right: 10px;
-        border: 2px solid #42ade2;
+        // border: 2px solid #42ade2;
+        background: #42ade2;
 
         &.checked {
-          background: #6eb925;
+          background: #42ade2;
           border: unset;
         }
       }

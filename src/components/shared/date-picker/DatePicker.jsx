@@ -33,7 +33,7 @@ export default function DatePickerComponent(props) {
         props.onChange(
           new Date(dateValue.year, dateValue.month - 1, dateValue.day)
         );
-      console.log(dateValue); // Log selected date to the console
+      // console.log(dateValue); // Log selected date to the console
     }
   };
 
