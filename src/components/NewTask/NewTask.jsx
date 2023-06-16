@@ -111,7 +111,7 @@ export default function NewTask() {
                     onClick={() => remove(index)}
                     className="bg-transparent border-0 close-btn"
                   >
-                    <img src="./assets/images/close.png" alt="close" />
+                    <img src="./assets/images/icons/close.svg" alt="close" />
                   </button>
                 </div>
               );
@@ -122,7 +122,11 @@ export default function NewTask() {
           className="d-block btn btn-gray btn-w-350 mt-3"
           onClick={() => setModal(true)}
         >
-          <img src="./assets/images/check.png" alt="close" className="mr-10" />
+          <img
+            src="./assets/images/icons/check.svg"
+            alt="close"
+            className="mr-10"
+          />
           Add must haves
         </button>
         {task.type === "InPerson" && (
@@ -142,7 +146,7 @@ export default function NewTask() {
             ) : (
               <>
                 <img
-                  src="./assets/images/map.png"
+                  src="./assets/images/icons/marker.svg"
                   className="mr-10"
                   alt="close"
                 />
@@ -288,7 +292,7 @@ export default function NewTask() {
               <div className="d-flex align-items-center justify-content-center">
                 <NavLink to={"/home"}>
                   <button className="position-absolute bg-transparent border-0 close-btn">
-                    <img src="./assets/images/close.png" alt="close" />
+                    <img src="./assets/images/icons/close.svg" alt="close" />
                   </button>
                 </NavLink>
                 {step > 1 && (

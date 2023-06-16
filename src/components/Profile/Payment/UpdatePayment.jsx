@@ -55,7 +55,7 @@ export default function UpdatePayment() {
             </div>
           </div>
           <button className="bg-transparent border-0">
-            <img src="./assets/images/close.png" alt="close" />
+            <img src="./assets/images/icons/close.svg" alt="close" />
           </button>
         </li>
         <p className="font-bold text-uppercase mt-20">Receive payment</p>
@@ -70,7 +70,7 @@ export default function UpdatePayment() {
             </span>
           </div>
           <button className="bg-transparent border-0">
-            <img src="./assets/images/close.png" alt="close" />
+            <img src="./assets/images/icons/close.svg" alt="close" />
           </button>
         </li>
       </div>

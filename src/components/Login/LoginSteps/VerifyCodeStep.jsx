@@ -7,7 +7,7 @@ export default function VerifyCodeStep(props) {
             {/* onclick="getLogin()" */}
             <button className="position-absolute bg-transparent border-0 close-btn">
               <img
-                src="./assets/images/close.png"
+                src="./assets/images/icons/close.svg"
                 alt="close"
                 onClick={props.onClose}
               />
