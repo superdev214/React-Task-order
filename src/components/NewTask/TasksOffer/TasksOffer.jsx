@@ -88,7 +88,7 @@ const TasksOffer = ({ close, onChange, allItems }) => {
                 onClick={() => remove(index)}
                 className="bg-transparent border-0 close-btn"
               >
-                <img src="./assets/images/close.png" alt="close" />
+                <img src="./assets/images/icons/close.svg" alt="close" />
               </button>
             </div>
           ))}

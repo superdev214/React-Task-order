@@ -71,7 +71,7 @@ const LocationSelection = ({ close, onChange }) => {
           onClick={close}
           className="position-absolute bg-transparent border-0 close-btn"
         >
-          <img src="./assets/images/close.png" alt="close" />
+          <img src="./assets/images/icons/close.svg" alt="close" />
         </button>
         <p style={{ margin: "3px auto" }} className="font-bold">
           Location

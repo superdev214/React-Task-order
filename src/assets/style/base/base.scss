@@ -282,22 +282,16 @@ hr {
   border-radius: 10px;
 }
 
-@media only screen and (max-width: 360px) {
-  .fixed-bottom {
-    padding: 10px 20px 25px !important;
-  }
-}
-
 .btn-w-350 {
   width: 100%;
 }
 
 .fixed-bottom {
   position: fixed;
+  margin: 0 auto;
+  padding: 10px 20px;
   background-color: #fff;
   bottom: 0;
-  padding: 10px 20px 15px;
-  margin: 0 auto;
 }
 
 .DatePicker {
@@ -333,7 +327,7 @@ hr {
     border: 1px solid #dfe1e5;
     border-radius: 3px;
     padding: 8px 5px;
-    font-size: 12px;
+    font-size: 13px;
     text-align: left;
     margin: 0;
     resize: none;
@@ -453,10 +447,8 @@ p {
   background: #f5f7fa;
 }
 
-
-.nav-title{
+.nav-title {
   font-size: 17px;
   font-weight: 700;
   font-family: SF Pro Text Bold !important;
-  
 }

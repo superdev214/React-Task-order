@@ -12,7 +12,7 @@ export default function Header() {
             <img src="./assets/images/logo.svg" alt="logo" />
           </NavLink>
           <button className="btn btn-bell" type="button">
-            <img src="./assets/images/bell.svg" alt="logo" />
+            <img src="./assets/images/icons/bell.svg" alt="logo" />
           </button>
         </div>
       </nav>

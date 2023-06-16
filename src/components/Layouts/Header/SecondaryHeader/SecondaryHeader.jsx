@@ -24,7 +24,7 @@ export default function SecondaryHeader(props) {
             <p className="font-bold nav-title">{props.title}</p>
             <div style={{ width: "25%" }} className="text-end">
               <img
-                src="./assets/images/notice.png"
+                src="./assets/images/icons/bell.svg"
                 alt=""
                 onClick={() => setModal(true)}
               />

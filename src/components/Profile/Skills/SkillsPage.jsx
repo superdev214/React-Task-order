@@ -198,7 +198,7 @@ export default class SkillsPage extends React.Component {
                       }}
                       className="bg-transparent border-0 close-btn"
                     >
-                      <img src="./assets/images/close.png" alt="close" />
+                      <img src="./assets/images/icons/close.svg" alt="close" />
                     </button>
                   </div>
                 );

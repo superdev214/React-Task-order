@@ -53,7 +53,7 @@ export default class UploaderComponent extends React.Component {
                       />
                       <button className="close position-absolute bg-transparent border-0">
                         <img
-                          src="./assets/images/close.png"
+                          src="./assets/images/icons/close.svg"
                           alt="close"
                           onClick={() => this.remove(key)}
                         />
@@ -71,7 +71,7 @@ export default class UploaderComponent extends React.Component {
               ) : (
                 <button className="d-block btn btn-gray btn-w-350 mt-3">
                   <img
-                    src="./assets/images/attachment.png"
+                    src="./assets/images/icons/attachment.svg"
                     alt="close"
                     className="mr-10"
                   />
