@@ -56,6 +56,7 @@ export default function NewTask() {
             className="phone-input w-100"
             type="text"
             minLength={10}
+            maxLength={50}
             value={task.title}
             onChange={(e) => setTask({ ...task, title: e.target.value })}
           />
@@ -69,6 +70,7 @@ export default function NewTask() {
           <textarea
             className="phone-input w-100"
             minLength={25}
+            maxLength={2000}
             value={task.description}
             onChange={(e) => setTask({ ...task, description: e.target.value })}
           />
