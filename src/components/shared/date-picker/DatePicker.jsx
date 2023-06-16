@@ -7,15 +7,9 @@ export default function DatePickerComponent(props) {
 
   const renderCustomInput = ({ ref }) => {
     const formattedDate = date
-      ? new Date(date.year, date.month - 1, date.day).toLocaleDateString(
-          "en-US",
-          {
-            weekday: "short",
-            day: "2-digit",
-            month: "short",
-            year: "numeric",
-          }
-        )
+      ? new Date(Date.UTC(date.year, date.month - 1, date.day))
+          .toUTCString()
+          .slice(0, 16)
       : "";
 
     return (
