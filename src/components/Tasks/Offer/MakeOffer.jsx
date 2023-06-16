@@ -119,7 +119,8 @@ export default function MakeOffer(props) {
               }}
             />
           </div>
-          {useTemplate && <Uploader />}
+          {/* {useTemplate && <Uploader />} */}
+          <Uploader />
           <div className="my-20">
             <img src="./assets/images/task.png" alt="Post a task" />
             <span className="text-info ml-10">Forgot task details?</span>
