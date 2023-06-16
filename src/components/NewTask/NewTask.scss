@@ -88,6 +88,10 @@
         height: 15px;
         float: right;
         background: #6eb925;
+        border: 2px solid #6eb925; /* Add default border style */
+      }
+      span.checked {
+        border: unset; /* Remove border when selected */
       }
     }
   }
