@@ -18,7 +18,7 @@ export default function UpdateCreditCardFrom() {
           <div className="col-1"></div>
           <div className="col-5 form-control-group mt-20">
             <div className="mb-10 font-bold text-end">CCV</div>
-            <div className="flex items-center">
+            <div className="d-flex align-items-center">
               <img
                 src="./assets/images/info.png"
                 alt="Post a task"

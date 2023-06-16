@@ -2,7 +2,7 @@ const ModalComponent = (props) => {
   return (
     <div className="modal-area">
       <div
-        className={`py-md flex justify-content-between p-3 weight-700 ${
+        className={`py-md d-flex justify-content-between p-3 weight-700 ${
           props.bordered && " border-bottom"
         }`}
       >

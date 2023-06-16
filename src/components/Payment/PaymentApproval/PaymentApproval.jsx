@@ -20,7 +20,7 @@ export default function PaymentApproval() {
   const acceptedView = () => {
     return (
       <>
-        <div className="flex items-center">
+        <div className="d-flex align-items-center">
           <img
             src="./assets/images/credit-card-accepted.png"
             style={{ width: "100%" }}
@@ -41,7 +41,7 @@ export default function PaymentApproval() {
   const approvalView = () => {
     return (
       <>
-        <div className="flex items-center">
+        <div className="d-flex align-items-center">
           <img
             src="./assets/images/credit-card.png"
             alt="Post a task"
@@ -50,11 +50,11 @@ export default function PaymentApproval() {
         </div>
         <div className="mt-20">
           <p className="font-bold">You’re paying</p>
-          <div className="flex justify-content-between mt-10">
+          <div className="d-flex justify-content-between mt-10">
             <p>Task price</p>
             <p className="font-bold">SR 220</p>
           </div>
-          <div className="flex justify-content-between mt-10">
+          <div className="d-flex justify-content-between mt-10">
             <p>Total</p>
             <p className="font-bold">SR 220</p>
           </div>
@@ -81,13 +81,13 @@ export default function PaymentApproval() {
   return (
     <>
       <div className="modal-area">
-        <div className={`py-md flex justify-content-between p-3 weight-700`}>
+        <div className={`py-md d-flex justify-content-between p-3 weight-700`}>
           {step === 1 && (
             <button
               className="position-absolute bg-transparent border-0"
               style={{ left: "20px" }}
             >
-              <img src="./assets/images/arrow-back.png" alt="close" />
+              <img src="./assets/images/icons/arrow-back.svg" alt="close" />
             </button>
           )}
           <p style={{ margin: "3px auto" }} className="font-bold">

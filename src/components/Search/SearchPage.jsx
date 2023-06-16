@@ -51,7 +51,9 @@ export default function SearchPage(query) {
           onClick={() => setLocationModal(!locationModal)}
         >
           <img
-            src={`./assets/images/${!locationModal ? "frame.png" : "list.png"}`}
+            src={`./assets/images/icons/${
+              !locationModal ? "frame.svg" : "list.png"
+            }`}
             alt=""
           />
         </button>
@@ -59,7 +61,7 @@ export default function SearchPage(query) {
           className="bg-transparent border-0 ml-10"
           onClick={() => setFilterModal(true)}
         >
-          <img src="./assets/images/filter-2.png" alt="" />
+          <img src="./assets/images/icons/filter.svg" alt="" />
         </button>
       </>
     );

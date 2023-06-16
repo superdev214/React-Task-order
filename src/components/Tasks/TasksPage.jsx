@@ -51,7 +51,7 @@ export default function TasksPage() {
           className="bg-transparent border-0"
           onClick={() => setFilterModal(true)}
         >
-          <img src="./assets/images/filter-2.png" alt="" />
+          <img src="./assets/images/icons/filter.svg" alt="" />
         </button>
       </>
     );
