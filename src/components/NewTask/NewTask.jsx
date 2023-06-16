@@ -56,6 +56,7 @@ export default function NewTask() {
             className="phone-input w-100"
             type="text"
             minLength={10}
+            maxLength={50}
             value={task.title}
             onChange={(e) => setTask({ ...task, title: e.target.value })}
           />
@@ -69,6 +70,7 @@ export default function NewTask() {
           <textarea
             className="phone-input w-100"
             minLength={25}
+            maxLength={2000}
             value={task.description}
             onChange={(e) => setTask({ ...task, description: e.target.value })}
           />
@@ -255,7 +257,7 @@ export default function NewTask() {
             You can always negotiate the price later
           </div>
           <div className="form-control-group-description danger mb-10">
-            Maximum budget <b>SR 15</b>
+            Minimum budget <b>SR 15</b>
           </div>
           <input
             className="phone-input w-100"
@@ -327,7 +329,7 @@ export default function NewTask() {
             style={{
               height: "80vh",
               overflowY: "scroll",
-              paddingBottom: "30px",
+              paddingBottom: "36px",
             }}
           >
             {step === 1 ? stepAbout() : step === 2 ? dateTime() : stepBudget()}
