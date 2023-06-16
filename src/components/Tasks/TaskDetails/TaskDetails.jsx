@@ -379,7 +379,7 @@ export default function TaskDetails() {
             <button
               disabled={!question}
               className="d-block btn btn-info small position-absolute"
-              style={{ right: 0, top: 0 }}
+              style={{ right: 0, bottom: 0 }}
             >
               Send
             </button>
