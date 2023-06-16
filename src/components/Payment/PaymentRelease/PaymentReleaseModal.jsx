@@ -116,6 +116,7 @@ export default function PaymentReleaseModal({ close }) {
           <textarea
             className="phone-input w-100 mt-10"
             minLength={25}
+            maxLength={2000}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
