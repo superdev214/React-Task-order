@@ -9,9 +9,9 @@ import categorySagas from './category/saga';
 export default function* rootSaga() {
     yield all ([
         userSagas(),
-        categorySagas(),
-        defaultSagas(),
-        taskSagas(),
-        paymentSagas(),
+        // categorySagas(),
+        // defaultSagas(),
+        // taskSagas(),
+        // paymentSagas(),
     ]);
 }
