@@ -37,6 +37,20 @@
       }
     }
   }
+  .word-count-title {
+    position: absolute;
+    font-family: "SF Pro Text Regular";
+    color: gray;
+    right: 2px;
+    bottom: 3px;
+  }
+  .word-count-description {
+    position: absolute;
+    font-family: "SF Pro Text Regular";
+    color: gray;
+    right: 2px;
+    bottom: 6px;
+  }
 
   .time-picker-radio {
     width: 100%;
@@ -66,6 +80,10 @@
         height: 15px;
         float: right;
         background: #6eb925;
+        border: 2px solid #6eb925; /* Add default border style */
+      }
+      span.checked {
+        border: unset; /* Remove border when selected */
       }
     }
   }

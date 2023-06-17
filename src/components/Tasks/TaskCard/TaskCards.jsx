@@ -20,7 +20,7 @@ export default function TaskCards(props) {
                     <img
                       src="./assets/images/icons/location-light.svg"
                       alt="logo big"
-                      style={{ paddingLeft: "1px", paddingRight: "2px" }}
+                      style={{ paddingLeft: "1px", paddingRight: "1px" }}
                     />
                     <span>{task.location}</span>
                   </div>

@@ -9,8 +9,9 @@ export default function RatingComponent() {
       <Rating
         onClick={(value) => setRate(value)}
         ratingValue={rate}
-        size={38}
+        size={40}
         transition
+        SVGstyle={{ marginLeft: "16px", marginRight: "16px" }}
         fillColor="#FFE818"
         emptyColor="#C5CDD9"
       />
