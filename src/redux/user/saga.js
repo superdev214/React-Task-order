@@ -1,6 +1,7 @@
 import { all, call, fork, put, take, takeEvery} from "redux-saga/effects";
 import {
-    LOGIN_WITH_SMS, VERIFY_OTP
+    LOGIN_WITH_SMS, VERIFY_OTP,
+    EDIT_PROFILE,
 } from '../actions'
 
 import {
@@ -8,6 +9,8 @@ import {
     loginWithSMSSuccess,
     verifyOtpSuccess,
     verifyOtpFail,
+    editProfileSuccess,
+    editProfileFail,
 } from './actions';
 
 import axios from 'axios';
@@ -46,7 +49,6 @@ export function* watchVerifyOtp() {
 }
 
 const verifyOtpAsync = async (payload) => {
-    console.log(payload)
     return axios.post(`${server_url}/user/verify-otp`, {payload})
     .then((response) => response)
     .catch((error) => error)
@@ -66,10 +68,30 @@ function*  verifyOtpFunc({payload}) {
     }
 }
 
+export function* watchEditProfile() {
+    yield takeEvery(EDIT_PROFILE, editProfileFunc)
+}
+
+const editProfileAsync = async(payload) =>{
+    return axios.post(`${server_url}/edit-profile`)
+    .then((response) => response)
+    .catch((error) => error)
+}
+
+function* editProfileFunc({payload}) {
+    try{
+        const result = yield call(editProfileAsync, payload)
+        yield put(editProfileSuccess(result))
+    } catch (error) {
+        yield put(editProfileFail(error))
+    }
+}
+
 
 export default function* rootSaga() {
     yield all([
         fork(watchLoginSMS),
         fork(watchVerifyOtp),
-    ]);
+        fork(watchEditProfile)
+,    ]);
 }
