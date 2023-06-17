@@ -26,7 +26,7 @@ const backView = () => {
           className="position-absolute bg-transparent border-0"
           style={{ left: "20px", top: "10px" }}
         >
-          <img src="./assets/images/arrow-back.png" alt="close" />
+          <img src="./assets/images/icons/arrow-back.svg" alt="close" />
         </button>
       </NavLink>
     </>
@@ -58,11 +58,11 @@ export default function ChatView() {
       />
       <div className={`scroll-area`} style={{ marginTop: "46px" }}>
         <div
-          className="chat-grey flex justify-content-between container py-10"
+          className="chat-grey d-flex justify-content-between container py-10"
           style={{ position: "sticky", top: 0 }}
         >
-          <div className="flex">
-            <img src={`./assets/images/${message.image}.png`} alt="" />
+          <div className="d-flex">
+            <img src={`./assets/images/icons/${message.image}.svg`} alt="" />
             <div className="ml-10">
               <span className="font-bold">Task title</span>
               <p>User name</p>
@@ -75,20 +75,23 @@ export default function ChatView() {
         </div>
         <div
           style={{ background: "#42ADE2" }}
-          className="ma-20 radius-10 bg-blue text-white pa-10 flex items-center justify-content-between"
+          className="ma-20 radius-10 bg-blue text-white pa-10 d-flex align-items-center justify-content-between"
         >
           <span>Hey! type something with attch</span>
-          <img src={`./assets/images/${message.image}.png`} alt="" />
+          <img src={`./assets/images/icons/${message.image}.svg`} alt="" />
         </div>
         <div className="pa-20">
           {chats.map((item, index) => {
             return (
               <div
                 key={index}
-                className={`flex chat-grey radius-10 mb-20 pa-10`}
+                className={`d-flex chat-grey radius-10 mb-20 pa-10`}
               >
-                <div className="flex items-end">
-                  <img src={`./assets/images/${message.image}.png`} alt="" />
+                <div className="d-flex items-end">
+                  <img
+                    src={`./assets/images/icons/${message.image}.svg`}
+                    alt=""
+                  />
                 </div>
                 <div className="ml-10 mr-20">
                   <p>{item.text}</p>
@@ -96,7 +99,7 @@ export default function ChatView() {
                     <>
                       <div className="line my-10"></div>
                       <p>Here are some attachments as well!</p>
-                      <div className="flex">
+                      <div className="d-flex">
                         {item.attachments.map((image, key) => {
                           return (
                             <div className="area-img pt-md" key={key}>
@@ -132,7 +135,7 @@ export default function ChatView() {
             renderBtn={() => {
               return (
                 <img
-                  src="./assets/images/img-blue.png"
+                  src="./assets/images/icons/attach-icon.svg"
                   alt="logo big"
                   className="mr-10"
                 />

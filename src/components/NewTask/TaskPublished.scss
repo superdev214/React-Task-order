@@ -5,17 +5,14 @@
 .TaskPublished {
   ul {
     padding: 0;
+    list-style: none;
     li {
-      display: block;
       margin-top: 20px;
-
-      span {
-        background: #435863;
-        border-radius: 100px;
-        color: #ffffff;
-        padding: 4px 8px;
-        font-size: 12px;
+      img {
+        width: 20px;
+        height: 20px;
         margin-right: 10px;
+        flex-shrink: 0;
       }
     }
   }

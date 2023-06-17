@@ -67,7 +67,7 @@ const TasksOffer = ({ close, onChange, allItems }) => {
             onChange={(e) => setText(e.target.value)}
           />
         </div>
-        <div className="pt-sm flex justify-end">
+        <div className="pt-sm d-flex justify-content-end">
           <button
             disabled={!text || items.length >= 3}
             className="d-block btn btn-info"
@@ -80,7 +80,7 @@ const TasksOffer = ({ close, onChange, allItems }) => {
         <div className="pt-sm">
           {items.map((item, index) => (
             <div
-              className="my-xs radius-3 bg-light p-2 flex justify-content-between"
+              className="my-xs radius-3 bg-light p-2 d-flex justify-content-between"
               key={index}
             >
               <span>{item.value}</span>
@@ -88,7 +88,7 @@ const TasksOffer = ({ close, onChange, allItems }) => {
                 onClick={() => remove(index)}
                 className="bg-transparent border-0 close-btn"
               >
-                <img src="./assets/images/close.png" alt="close" />
+                <img src="./assets/images/icons/close.svg" alt="close" />
               </button>
             </div>
           ))}

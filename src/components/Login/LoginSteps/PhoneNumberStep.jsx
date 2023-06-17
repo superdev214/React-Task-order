@@ -20,7 +20,6 @@ function WalkthroughStep(props) {
   return (
     <div className="text-center" id="phone-number">
       <div className="form">
-        {/* <img src="./assets/images/logo-big.png" alt="logo big" /> */}
         <img className="logo-login" src={logoSvg} alt="logo" />
         <div className="container">
           <input

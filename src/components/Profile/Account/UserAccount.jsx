@@ -6,7 +6,7 @@ let menuItems = [
     title: "Payment settings",
     children: [
       {
-        icon: "transaction",
+        icon: "bill",
         label: "Transaction history",
         link: "/transactions",
       },
@@ -21,7 +21,7 @@ let menuItems = [
         label: "Notification preferences",
         link: "/notification-preferences",
       },
-      { icon: "list", label: "Skills", link: "/skills" },
+      { icon: "skills", label: "Skills", link: "/skills" },
     ],
   },
   {
@@ -36,6 +36,16 @@ let menuItems = [
         icon: "community",
         label: "Community guidelines",
         link: "/transactions",
+      },
+      {
+        icon: "poster",
+        label: "Poster principles",
+        link: "/poster-principles",
+      },
+      {
+        icon: "tasker",
+        label: "Tasker principles",
+        link: "/tasker-principles",
       },
       { icon: "language", label: "Language", link: "/language-setting" },
     ],
@@ -59,7 +69,7 @@ let menuItems = [
 export default function UserAccount() {
   const informationView = () => {
     return (
-      <div className="mt-20 flex items-center">
+      <div className="mt-20 d-flex align-items-center">
         <div>
           <img
             src="./assets/images/avatar.png"
@@ -69,9 +79,14 @@ export default function UserAccount() {
         </div>
         <div className="ml-10">
           <div className="font-bold">User name</div>
-          <p className="mt-5">
-            <span className="font-bold">3.8 </span>
-            <img src={`./assets/images/star-gold.png`} alt="star" /> (5)
+          <p className="mt-5 d-flex align-items-center">
+            <span className="font-bold">3.8</span>
+            <img
+              style={{ margin: "0 5px" }}
+              src={`./assets/images/icons/star-gold.svg`}
+              alt="star"
+            />{" "}
+            (5)
           </p>
           <p className="mt-5">
             <span className="font-bold"> 94% </span> Completion rate
@@ -94,7 +109,7 @@ export default function UserAccount() {
                   <NavLink to={item.link} key={index}>
                     <li key={index} className="mt-10">
                       <img
-                        src={`./assets/images/profile/${item.icon}.png`}
+                        src={`./assets/images/profile/${item.icon}.svg`}
                         alt=""
                       />
                       <span className="pl-10">{item.label}</span>

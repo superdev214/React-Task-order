@@ -1,24 +1,49 @@
-import { useState } from "react"
-import { NavLink } from "react-router-dom"
-import TasksOffer from "./TasksOffer/TasksOffer"
-import LocationSelection from "./LocationSelection/LocationSelection"
-import DatePickerComponent from "../shared/date-picker/DatePicker"
-import Uploader from "../shared/uploader/Uploader"
-import TickIcon from "../../assets/images/TickDark.svg"
-import "./NewTask.scss"
-import "../../assets/style/components/task-tab-bar.scss"
+import { useState } from "react";
+import { NavLink } from "react-router-dom";
+import TasksOffer from "./TasksOffer/TasksOffer";
+import LocationSelection from "./LocationSelection/LocationSelection";
+import DatePickerComponent from "../shared/date-picker/DatePicker";
+import Uploader from "../shared/uploader/Uploader";
+import TickIcon from "../../assets/images/TickDark.svg";
+import "./NewTask.scss";
+import "../../assets/style/components/task-tab-bar.scss";
 
 export default function NewTask() {
-  const [step, setStep] = useState(1)
-  const [modal, setModal] = useState(false)
-  const [locationSelectionModal, setLocationSelectionModal] = useState(false)
+  const [step, setStep] = useState(1);
+  const [modal, setModal] = useState(false);
+  const [locationSelectionModal, setLocationSelectionModal] = useState(false);
   const [task, setTask] = useState({
     type: "InPerson",
     description: "",
     title: "",
     haveCertainTime: true,
-    certainTime: "Morning"
-  })
+    certainTime: "Morning",
+  });
+
+  //title input handler
+  const handleTitleChange = (e) => {
+    const value = e.target.value;
+    setTask({ ...task, title: value });
+  };
+
+  //Description input handler
+
+  const handleDescriptionChange = (e) => {
+    const value = e.target.value;
+    setTask({ ...task, description: value });
+  };
+  // count Remaining of title char
+  const getTitleCharacterCount = () => {
+    return task.title.length;
+  };
+  const remainingTitleWords = 50 - getTitleCharacterCount();
+
+  // count Remaining of title Description.
+
+  const getDescriptionCharacterCount = () => {
+    return task.description.length;
+  };
+  const remainingDescriptionWords = 2000 - getDescriptionCharacterCount();
 
   const isValidForm = () => {
     if (
@@ -27,53 +52,72 @@ export default function NewTask() {
       task.description &&
       task.description.length > 25
     )
-      return true
-    return false
-  }
+      return true;
+    return false;
+  };
 
-  const setHaveMust = items => {
-    setTask({ ...task, mustHaves: items })
-  }
+  const setHaveMust = (items) => {
+    setTask({ ...task, mustHaves: items });
+  };
 
-  const remove = index => {
-    if (task.mustHaves === undefined) return
-    let temp = task.mustHaves
-    temp.splice(index, 1)
+  const remove = (index) => {
+    if (task.mustHaves === undefined) return;
+    let temp = task.mustHaves;
+    temp.splice(index, 1);
 
-    setHaveMust(temp)
-  }
+    setHaveMust(temp);
+  };
 
   const stepAbout = () => {
     return (
       <>
-        <p className="mb-20">ABOUT</p>
+        <p className="mb-20 font-bold">ABOUT</p>
         <div className="form-control-group">
-          <div className="form-control-group-label mb-10">Task title</div>
-          <div className="form-control-group-description">
-            Minimum 10 characters
+          <div className="d-flex align-items-center justify-content-between mb-10">
+            <p className="form-control-group-label">Task title</p>
+            <p className="form-control-group-description">
+              Minimum 10 characters
+            </p>
           </div>
           <input
+            style={{ marginBottom: "5px" }}
             className="phone-input w-100"
             type="text"
             minLength={10}
+            maxLength={50}
             value={task.title}
-            onChange={e => setTask({ ...task, title: e.target.value })}
+            onChange={handleTitleChange}
           />
+          <div className="form-control-group-description">
+            {remainingTitleWords >= 0 && (
+              <span className="word-count-title">{remainingTitleWords}</span>
+            )}
+          </div>
         </div>
 
         <div className="form-control-group mt-20">
-          <div className="form-control-group-label mb-10">Task description</div>
-          <div className="form-control-group-description">
-            Minimum 25 characters
+          <div className="d-flex align-items-center justify-content-between mb-10">
+            <p className="form-control-group-label">Task description</p>
+            <p className="form-control-group-description">
+              Minimum 25 characters
+            </p>
           </div>
           <textarea
             className="phone-input w-100"
             minLength={25}
+            maxLength={2000}
             value={task.description}
-            onChange={e => setTask({ ...task, description: e.target.value })}
+            onChange={handleDescriptionChange}
           />
+          <div className="form-control-group-description">
+            {remainingDescriptionWords >= 0 && (
+              <span className="word-count-description">
+                {remainingDescriptionWords}
+              </span>
+            )}
+          </div>
         </div>
-        <p className="mt-20">How this task can be done?</p>
+        <p className="mt-20 font-bold">How this task can be done?</p>
         <div className="switch-button">
           <button
             className={
@@ -100,7 +144,7 @@ export default function NewTask() {
             {task.mustHaves.map((item, index) => {
               return (
                 <div
-                  className="mb-10 radius-3 bg-light p-2 flex justify-content-between"
+                  className="mb-10 radius-3 bg-light p-2 d-flex justify-content-between"
                   key={index}
                 >
                   <div>
@@ -111,10 +155,10 @@ export default function NewTask() {
                     onClick={() => remove(index)}
                     className="bg-transparent border-0 close-btn"
                   >
-                    <img src="./assets/images/close.png" alt="close" />
+                    <img src="./assets/images/icons/close.svg" alt="close" />
                   </button>
                 </div>
-              )
+              );
             })}
           </div>
         )}
@@ -122,7 +166,11 @@ export default function NewTask() {
           className="d-block btn btn-gray btn-w-350 mt-3"
           onClick={() => setModal(true)}
         >
-          <img src="./assets/images/check.png" alt="close" className="mr-10" />
+          <img
+            src="./assets/images/icons/check.svg"
+            alt="close"
+            className="mr-10"
+          />
           Add must haves
         </button>
         {task.type === "InPerson" && (
@@ -130,42 +178,31 @@ export default function NewTask() {
             className="d-block btn btn-gray btn-w-350 mt-3"
             onClick={() => setLocationSelectionModal(true)}
           >
-            {task.location ? (
-              <>
-                <img
-                  src="./assets/images/location.svg"
-                  className="mr-10"
-                  alt="close"
-                />
-                {task.location}
-              </>
-            ) : (
-              <>
-                <img
-                  src="./assets/images/map.png"
-                  className="mr-10"
-                  alt="close"
-                />
-                Choose location
-              </>
-            )}
+            <>
+              <img
+                src="./assets/images/icons/marker.svg"
+                className="mr-10"
+                alt="location marker"
+              />
+              {task.location ? task.location : "Choose location"}
+            </>
           </button>
         )}
       </>
-    )
-  }
+    );
+  };
 
   const dateTime = () => {
     return (
       <>
-        <p className="mb-20">DATE AND TIME</p>
-        <p className="mb-10">When do you need this done?</p>
+        <p className="mb-20 font-bold size-15">DATE AND TIME</p>
+        <p className="mb-10 font-bold size-15">When do you need this done?</p>
         <DatePickerComponent
-          onChange={date => setTask({ ...task, date: date })}
+          onChange={(date) => setTask({ ...task, date: date })}
         />
         {task.date && (
           <>
-            <p style={{ marginBottom: "3px" }} className="check-box-area mt-20">
+            <p className="check-box-area mt-20 mb-10">
               <input
                 type="checkbox"
                 id="checkbox"
@@ -180,7 +217,7 @@ export default function NewTask() {
               <span
                 className={"check-box " + (task.haveCertainTime && "checked")}
               ></span>
-              <label htmlFor="checkbox">
+              <label htmlFor="checkbox" className="font-medium">
                 I need it at certain time of the day
               </label>
             </p>
@@ -191,7 +228,10 @@ export default function NewTask() {
                     onClick={() => setTask({ ...task, certainTime: "Morning" })}
                   >
                     <div>
-                      <img src="./assets/images/morning.png" alt="Morning" />
+                      <img
+                        src="./assets/images/icons/sunrise.svg"
+                        alt="Morning"
+                      />
                       <b>Morning</b> Before 10 am
                     </div>
                     {task.certainTime === "Morning" && <span></span>}
@@ -200,7 +240,7 @@ export default function NewTask() {
                     onClick={() => setTask({ ...task, certainTime: "Miday" })}
                   >
                     <div>
-                      <img src="./assets/images/miday.png" alt="Miday" />
+                      <img src="./assets/images/icons/sun.svg" alt="Miday" />
                       <b>Miday</b> 10am to 2pm
                     </div>
                     {task.certainTime === "Miday" && <span></span>}
@@ -212,7 +252,7 @@ export default function NewTask() {
                   >
                     <div>
                       <img
-                        src="./assets/images/afternoon.png"
+                        src="./assets/images/icons/sunset.svg"
                         alt="Afternoon"
                       />
                       <b>Afternoon</b> 1pm - 6pm
@@ -223,14 +263,14 @@ export default function NewTask() {
                     onClick={() => setTask({ ...task, certainTime: "Evening" })}
                   >
                     <div>
-                      <img src="./assets/images/evening.png" alt="Evening" />
+                      <img src="./assets/images/icons/moon.svg" alt="Evening" />
                       <b>Evening</b> After 6pm
                     </div>
                     {task.certainTime === "Evening" && <span></span>}
                   </li>
                 </ul>
                 <div className="note mt-20">
-                  <img src="./assets/images/caution.png" alt="Evening" />
+                  <img src="./assets/images/icons/caution.svg" alt="note" />
                   You can discuss exact times with your Tasker later.
                 </div>
               </>
@@ -238,46 +278,60 @@ export default function NewTask() {
           </>
         )}
       </>
-    )
-  }
+    );
+  };
 
+  //
+  const handleBudgetChange = (e) => {
+    const value = parseFloat(e.target.value);
+    setTask({ ...task, budget: value });
+  };
+
+  const isBudgetValid = () => {
+    return task.budget >= 15 && task.budget <= 2000;
+  };
+
+  const handleSubmit = () => {
+    if (isBudgetValid()) {
+      // Proceed with task submission
+    } else {
+      // Show an error message or prevent task submission
+    }
+  };
+  //
   const stepBudget = () => {
     return (
       <>
-        <p className="mb-20">DATE AND TIME</p>
-        <p>Enter your budget</p>
+        <p className="mb-20 font-bold">DATE AND TIME</p>
+        <p className="font-bold">Enter your budget</p>
         <div className="form-control-group">
-          <div className="mute my-10" style={{ textAlign: "initial" }}>
-            You can always negotiate the price later
-          </div>
-          <div className="form-control-group-description danger mb-10">
-            Maximum budget <b>SR 15</b>
-          </div>
+          <p className="my-10">You can always negotiate the price later</p>
+          <p className="form-control-group-description danger mb-10">
+            Minimum budget <span className="font-heavy">SR 15</span>
+          </p>
           <input
             className="phone-input w-100"
             type="number"
             value={task.budget}
-            onChange={e =>
-              setTask({ ...task, budget: parseFloat(e.target.value) })
-            }
+            onChange={handleBudgetChange}
           />
         </div>
       </>
-    )
-  }
+    );
+  };
 
   return (
     <>
       {modal && (
         <TasksOffer
           allItems={task.mustHaves || []}
-          onChange={items => setHaveMust(items)}
+          onChange={(items) => setHaveMust(items)}
           close={() => setModal(false)}
         />
       )}
       {locationSelectionModal && (
         <LocationSelection
-          onChange={address => setTask({ ...task, location: address })}
+          onChange={(address) => setTask({ ...task, location: address })}
           close={() => setLocationSelectionModal(false)}
         />
       )}
@@ -288,7 +342,7 @@ export default function NewTask() {
               <div className="d-flex align-items-center justify-content-center">
                 <NavLink to={"/home"}>
                   <button className="position-absolute bg-transparent border-0 close-btn">
-                    <img src="./assets/images/close.png" alt="close" />
+                    <img src="./assets/images/icons/close.svg" alt="close" />
                   </button>
                 </NavLink>
                 {step > 1 && (
@@ -297,10 +351,13 @@ export default function NewTask() {
                     style={{ left: "20px" }}
                     onClick={() => setStep(step - 1)}
                   >
-                    <img src="./assets/images/arrow-back.png" alt="close" />
+                    <img
+                      src="./assets/images/icons/arrow-back.svg"
+                      alt="close"
+                    />
                   </button>
                 )}
-                <p>New Task</p>
+                <p className="nav-title">New Task</p>
               </div>
               <div className={"task-tab-bar step" + step}>
                 <div className="tab1">
@@ -320,7 +377,7 @@ export default function NewTask() {
             style={{
               height: "80vh",
               overflowY: "scroll",
-              paddingBottom: "30px"
+              paddingBottom: "36px",
             }}
           >
             {step === 1 ? stepAbout() : step === 2 ? dateTime() : stepBudget()}
@@ -331,14 +388,18 @@ export default function NewTask() {
                 className="d-block btn btn-gray btn-w-350 button-continue"
                 disabled={!isValidForm()}
                 onClick={() => {
-                  setTimeout(() => setStep(step + 1))
+                  setTimeout(() => setStep(step + 1));
                 }}
               >
                 Continue
               </button>
             ) : (
-              <NavLink to={"/new-task-published"}>
-                <button className="d-block btn btn-gray btn-w-350 button-continue">
+              <NavLink to={isBudgetValid() ? "/new-task-published" : "#"}>
+                <button
+                  className="d-block btn btn-gray btn-w-350 button-continue"
+                  disabled={!isBudgetValid()} // Disable if the budget is not valid
+                  onClick={handleSubmit}
+                >
                   Publish
                 </button>
               </NavLink>
@@ -347,5 +408,5 @@ export default function NewTask() {
         </div>
       </div>
     </>
-  )
+  );
 }

@@ -1,9 +1,9 @@
 export default function CardReview() {
   return (
     <>
-      <div className="flex column">
-        <div className="d-flex flex items-center">
-          <img src="./assets/images/fly-dark.png" alt="logo big" />
+      <div className="d-flex flex-column">
+        <div className="d-flex align-items-center">
+          <img src="./assets/images/icons/fly-dark.svg" alt="logo big" />
           <div className="ml-20 font-bold">Gaurav C.</div>
         </div>
         <p className="mt-10">

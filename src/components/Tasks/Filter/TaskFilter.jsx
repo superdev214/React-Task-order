@@ -55,7 +55,7 @@ export default function FilterComponent(props) {
             className="d-block btn btn-gray btn-w-350 mt-10"
           >
             <img
-              src="./assets/images/location-dark.png"
+              src="./assets/images/icons/location-dark.svg"
               alt="location"
               className="mr-10"
             />
@@ -63,7 +63,7 @@ export default function FilterComponent(props) {
           </button>
         </div>
         <div style={{ marginTop: "40px" }}>
-          <div className="flex justify-content-between mb-20">
+          <div className="d-flex justify-content-between mb-20">
             <p className="font-bold">Location</p>
             <span>{radiusValue} km</span>
           </div>
@@ -79,7 +79,7 @@ export default function FilterComponent(props) {
           />
         </div>
         <div style={{ marginTop: "60px" }} className="pb-20">
-          <div className="flex justify-content-between mb-20">
+          <div className="d-flex justify-content-between mb-20">
             <p className="font-bold">Location</p>
             <span>
               SR {priceValue.min} - {priceValue.max}

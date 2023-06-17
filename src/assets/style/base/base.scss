@@ -51,44 +51,6 @@ a {
   margin: 20px 0;
 }
 
-.flex {
-  display: flex;
-
-  &.column {
-    flex-direction: column;
-  }
-
-  &.justify-around {
-    justify-content: space-around;
-  }
-
-  &.justify-center {
-    justify-content: center;
-  }
-
-  &.items-center {
-    align-items: center;
-  }
-  &.items-end {
-    align-items: flex-end;
-  }
-  &.items-initial {
-    align-items: initial;
-  }
-
-  &.justify-between {
-    justify-content: space-between;
-  }
-
-  &.justify-end {
-    justify-content: flex-end;
-  }
-
-  &.warp {
-    flex-wrap: wrap;
-  }
-}
-
 .pa-md {
   padding: 16px;
 }
@@ -140,25 +102,6 @@ a {
   padding-right: 12px;
 }
 
-.weight-700 {
-  font-family: SF Pro Text Bold;
-  font-size: 17px;
-}
-
-.weight-900 {
-  font-family: SF Pro Text Bold;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 15px;
-  line-height: 18px;
-}
-
-.font-bold {
-  font-family: SF Pro Text Bold;
-  // line-height: 17px;
-  // font-size: 17px;
-}
-
 .bg-light {
   background-color: #f5f7fa;
 }
@@ -194,6 +137,14 @@ hr {
 
 .ml-10 {
   margin-left: 10px;
+}
+
+.mr-5 {
+  margin-right: 5px;
+}
+
+.ml-5 {
+  margin-left: 5px;
 }
 
 .pl-10 {
@@ -251,6 +202,9 @@ hr {
   margin-bottom: 10px;
 }
 
+.mbb-5 {
+  margin-bottom: 5px;
+}
 .mt-10 {
   margin-top: 10px;
 }
@@ -282,22 +236,16 @@ hr {
   border-radius: 10px;
 }
 
-@media only screen and (max-width: 360px) {
-  .fixed-bottom {
-    padding: 10px 20px 25px !important;
-  }
-}
-
 .btn-w-350 {
   width: 100%;
 }
 
 .fixed-bottom {
   position: fixed;
+  margin: 0 auto;
+  padding: 10px 20px;
   background-color: #fff;
   bottom: 0;
-  padding: 10px 20px 15px;
-  margin: 0 auto;
 }
 
 .DatePicker {
@@ -333,7 +281,7 @@ hr {
     border: 1px solid #dfe1e5;
     border-radius: 3px;
     padding: 8px 5px;
-    font-size: 12px;
+    font-size: 13px;
     text-align: left;
     margin: 0;
     resize: none;
@@ -353,21 +301,13 @@ hr {
   }
 
   .form-control-group-label {
-    float: left;
     font-style: normal;
-    font-family: SF Pro Text Bold;
+    font-family: "SF Pro Text Bold";
     font-size: 15px;
     line-height: 18px;
-
     display: flex;
     align-items: center;
-
     color: #000000;
-
-    &.mute {
-      font-size: 15px;
-      font-weight: normal;
-    }
   }
 }
 
@@ -377,8 +317,17 @@ hr {
   border-radius: 50%;
 }
 
+.size-27 {
+  @extend %text-heavy;
+}
+.size-17 {
+  @extend %text-caption;
+}
+.size-15 {
+  @extend %text-body1;
+}
 .size-13 {
-  font-size: 13px;
+  @extend %text-body2;
 }
 
 .circle {
@@ -453,10 +402,8 @@ p {
   background: #f5f7fa;
 }
 
-
-.nav-title{
-  font-size: 17px;
-  font-weight: 700;
-  font-family: SF Pro Text Bold !important;
-  
+.nav-title {
+  font-family: "SF Pro Text Bold" !important;
+  text-align: center;
+  @extend %text-caption;
 }

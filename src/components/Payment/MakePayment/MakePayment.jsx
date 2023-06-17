@@ -5,8 +5,13 @@ import CreditCardView from "../CreditCardView/CreditCardView";
 import UpdateCreditCardFrom from "../UpdateCreditCard/UpdateCreditCard";
 
 let paymentMethods = [
-  { title: "MasterCard *** 4473", desc: "Expires 5/27", image: "gate", key: 1 },
-  { title: "", desc: "", image: "gate2", key: 2 },
+  {
+    title: "MasterCard *** 4473",
+    desc: "Expires 5/27",
+    image: "master-card",
+    key: 1,
+  },
+  { title: "", desc: "", image: "apple-pay", key: 2 },
 ];
 
 export default function MakePaymentModal(props) {
@@ -33,7 +38,7 @@ export default function MakePaymentModal(props) {
   const paymentRequiredView = () => {
     return (
       <>
-        <div className="pa-20 flex items-center bg-grey">
+        <div className="pa-20 d-flex align-items-center bg-grey">
           <img
             src="./assets/images/avatar.png"
             className="avatar"
@@ -46,11 +51,11 @@ export default function MakePaymentModal(props) {
         </div>
         <div className="pa-20">
           <p className="font-bold">Summery</p>
-          <div className="flex justify-content-between mt-10">
+          <div className="d-flex justify-content-between mt-10">
             <p>Task price</p>
             <p className="font-bold">SR 220</p>
           </div>
-          <div className="flex justify-content-between mt-10">
+          <div className="d-flex justify-content-between mt-10">
             <p>Total</p>
             <p className="font-bold">SR 220</p>
           </div>

@@ -11,7 +11,7 @@ export default function HomeFooter() {
       <img
         className="home-bottom__img"
         style={{ paddingTop: "20px", paddingBottom: "20px" }}
-        src="./assets/images/world.png"
+        src="./assets/images/earth.png"
         alt="earth"
       />
     </section>

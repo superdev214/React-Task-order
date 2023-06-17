@@ -1,9 +1,9 @@
 export default function CreditCardView({ img, title, desc, isSelected }) {
   return (
-    <div className="flex items-center justify-between bg-grey gate-item">
-      <div className="flex items-center">
+    <div className="d-flex align-items-center justify-content-between bg-grey gate-item">
+      <div className="d-flex align-items-center">
         <img
-          src={`./assets/images/${img}.png`}
+          src={`./assets/images/icons/${img}.svg`}
           className="gate"
           alt="Post a task"
         />

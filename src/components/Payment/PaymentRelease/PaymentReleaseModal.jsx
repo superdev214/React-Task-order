@@ -23,7 +23,7 @@ let titles = {
 };
 
 export default function PaymentReleaseModal({ close }) {
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState("");
   const [description, setDescription] = useState("");
   const [step, setStep] = useState(1);
 
@@ -44,11 +44,15 @@ export default function PaymentReleaseModal({ close }) {
             payment!
           </p>
         </div>
-        <div className="mt-20 flex items-center justify-end">
-          <img className="mr-2" src="./assets/images/lock.png" alt="logo big" />
+        <div className="mt-20 d-flex align-items-center justify-content-end">
+          <img
+            className="mr-10"
+            src="./assets/images/icons/lock.svg"
+            alt="logo big"
+          />
           <p className="text-green font-bold">Payment secured</p>
         </div>
-        <div className="mt-20 flex justify-content-between">
+        <div className="mt-20 d-flex justify-content-between">
           <p>Task price</p>
           <p>SR 330</p>
         </div>
@@ -58,14 +62,12 @@ export default function PaymentReleaseModal({ close }) {
             <div key={index} className="py-10">
               <button
                 onClick={() => {
-                  if(filter === item.key){
-                    setFilter('')
-                  }else{
-                    setFilter(item.key)
+                  if (filter === item.key) {
+                    setFilter("");
+                  } else {
+                    setFilter(item.key);
                   }
-                }
-                  
-                  }
+                }}
                 className={`d-block x btn btn-w-350 ${
                   filter === item.key
                     ? "btn-blue text-white"
@@ -118,6 +120,7 @@ export default function PaymentReleaseModal({ close }) {
           <textarea
             className="phone-input w-100 mt-10"
             minLength={25}
+            maxLength={2000}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />

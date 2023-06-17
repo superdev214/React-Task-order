@@ -45,18 +45,21 @@ export default function MessagesPage() {
           return (
             <NavLink key={index} to={"/message"}>
               <div
-                className={`flex pa-20 justify-content-between ${
+                className={`d-flex pa-20 justify-content-between ${
                   !message.seen ? "chat-grey" : ""
                 }`}
               >
-                <div className="flex items-center">
-                  <img src={`./assets/images/${message.image}.png`} alt="" />
+                <div className="d-flex align-items-center">
+                  <img
+                    src={`./assets/images/icons/${message.image}.svg`}
+                    alt=""
+                  />
                 </div>
                 <div className="ml-10 mr-20">
                   <span className="font-bold">{message.title}</span>
                   <p className="mt-10">{message.description}</p>
                 </div>
-                <div className="flex column justify-between">
+                <div className="d-flex flex-column justify-content-between">
                   <span className="size-13">{message.createdAt}</span>
                   <div>
                     {!message.seen && (

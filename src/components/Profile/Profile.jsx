@@ -59,11 +59,14 @@ export default function ProfilePage() {
       <div className="position-absolute" style={{ right: "20px", top: "10px" }}>
         <NavLink to={"/edit-profile"}>
           <button className="bg-transparent border-0">
-            <img src="./assets/images/edit-profile.png" alt="edit profile" />
+            <img
+              src="./assets/images/icons/edit-profile.svg"
+              alt="edit profile"
+            />
           </button>
         </NavLink>
         <button className="bg-transparent border-0 ml-20">
-          <img src="./assets/images/install.png" alt="install" />
+          <img src="./assets/images/icons/install.svg" alt="install" />
         </button>
       </div>
     );
@@ -101,9 +104,12 @@ export default function ProfilePage() {
         <ul>
           {badges.map((badge, index) => {
             return (
-              <li key={index} className="font-bold mt-10 flex items-center">
+              <li
+                key={index}
+                className="font-bold mt-10 d-flex align-items-center"
+              >
                 <img
-                  src={`./assets/images/profile/${badge.icon}.png`}
+                  src={`./assets/images/profile/${badge.icon}.svg`}
                   alt="avatar"
                 />
                 <span className="ml-10">{badge.label}</span>
@@ -129,22 +135,22 @@ export default function ProfilePage() {
                 onClick={() => toggle(skill.id)}
               >
                 <img
-                  src={`./assets/images/profile/${skill.icon}.png`}
+                  src={`./assets/images/profile/${skill.icon}.svg`}
                   alt="avatar"
                 />
                 <span className="ml-10">{skill.label}</span>
                 {expansion.length > 0 &&
                   expansion.filter(({ id }) => id === skill.id)[0].isOpened && (
-                    <div className="flex warp mt-10">
+                    <div className="d-flex flex-wrap mt-10">
                       {skill.children &&
                         skill.children.map((child, childIndex) => {
                           return (
                             <div className="chip m-1" key={childIndex}>
                               <img
-                                src={`./assets/images/profile/${child.icon}.png`}
+                                src={`./assets/images/profile/${child.icon}.svg`}
                                 alt="avatar"
                               />
-                              <span className="text-white ml-10">
+                              <span className="text-white ml-10 size-15">
                                 {child.label}
                               </span>
                             </div>
@@ -181,18 +187,18 @@ export default function ProfilePage() {
           <div className="line light my-20"></div>
           {tabView()}
           <div className="mt-20 card-detail pa-20">
-            <div className="flex justify-content-between">
-              <div className="font-bold">
-                4.8
-                <img src={`./assets/images/star-gold.png`} alt="star" />
+            <div className="d-flex justify-content-between">
+              <div className="d-flex align-items-center">
+                <p className="font-bold mr-5">4.8</p>
+                <img src={`./assets/images/icons/star-gold.svg`} alt="star" />
               </div>
-              <div className="font-bold">98%</div>
+              <p className="font-bold">98%</p>
             </div>
-            <div className="flex justify-content-between mt-10">
-              <div className="font-bold">Overall rating</div>
-              <div className="font-bold">Completion rate</div>
+            <div className="d-flex justify-content-between mt-10">
+              <p className="font-bold">Overall rating</p>
+              <p className="font-bold">Completion rate</p>
             </div>
-            <div className="size-13 flex justify-content-between mt-10">
+            <div className="size-13 d-flex justify-content-between mt-10">
               <span>9 Review</span>
               <span>14 Completed task</span>
             </div>

@@ -117,7 +117,7 @@ export default class SkillsPage extends React.Component {
       <>
         <p className="mt-20 font-bold container">
           <img
-            src="./assets/images/transportation.png"
+            src="./assets/images/profile/transportation.svg"
             className="mr-10"
             alt="Post a task"
           />
@@ -127,7 +127,7 @@ export default class SkillsPage extends React.Component {
           {transportations.map((preference, index) => {
             return (
               <div key={index} className="py-10 px-20">
-                <div className="flex items-center justify-content-between">
+                <div className="d-flex align-items-center justify-content-between">
                   <p className="font-bold">{preference.title}</p>
                   <ToggleSwitch
                     dark={true}
@@ -157,7 +157,7 @@ export default class SkillsPage extends React.Component {
             <div className="mt-20" key={parentIndex}>
               <p className="font-bold">
                 <img
-                  src={`./assets/images/profile/${skill.icon}.png`}
+                  src={`./assets/images/profile/${skill.icon}.svg`}
                   className="mr-10"
                   alt="Post a task"
                 />
@@ -174,7 +174,7 @@ export default class SkillsPage extends React.Component {
                   }}
                 />
               </div>
-              <div className="pt-sm flex justify-end">
+              <div className="pt-sm d-flex justify-content-end">
                 <button
                   disabled={!skill.value}
                   className="d-block small btn btn-info"
@@ -188,7 +188,7 @@ export default class SkillsPage extends React.Component {
               {skill.items.map((item, index) => {
                 return (
                   <div
-                    className="my-xs radius-3 bg-light p-2  flex justify-content-between"
+                    className="my-xs radius-3 bg-light p-2 d-flex justify-content-between"
                     key={index}
                   >
                     <span>{item}</span>
@@ -198,7 +198,7 @@ export default class SkillsPage extends React.Component {
                       }}
                       className="bg-transparent border-0 close-btn"
                     >
-                      <img src="./assets/images/close.png" alt="close" />
+                      <img src="./assets/images/icons/close.svg" alt="close" />
                     </button>
                   </div>
                 );

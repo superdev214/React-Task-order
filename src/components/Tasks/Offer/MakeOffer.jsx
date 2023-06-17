@@ -22,24 +22,26 @@ export default function MakeOffer(props) {
     3: "Submit offer",
     4: "Close",
   };
-  const [handleMsg,sethandleMsg] = useState("");
+  const [handleMsg, sethandleMsg] = useState("");
   const handleStep = () => {
-    sethandleMsg('')
+    sethandleMsg("");
     if (step === 4) return props.close();
-    if(step === 1){
-      let check_must_have = mustHavesItems.find((item)=>item.isSelected===false);
-      if(check_must_have){
-        sethandleMsg('Please Select All')
+    if (step === 1) {
+      let check_must_have = mustHavesItems.find(
+        (item) => item.isSelected === false
+      );
+      if (check_must_have) {
+        sethandleMsg("Please Select All");
         return false;
       }
     }
     setStep(step + 1);
   };
-  
+
   const handleTextAreaChange = (event) => {
     const inputText = event.target.value;
     if (inputText.length <= 2000) {
-      setDescription(inputText)
+      setDescription(inputText);
     }
   };
 
@@ -71,7 +73,7 @@ export default function MakeOffer(props) {
             );
           })}
         </ul>
-        {handleMsg ? <div className="text-danger" >{handleMsg}</div>: ""}
+        {handleMsg ? <div className="text-danger">{handleMsg}</div> : ""}
       </div>
     );
   };
@@ -80,16 +82,14 @@ export default function MakeOffer(props) {
     return (
       <div>
         <div className="bg-grey text-center" style={{ padding: "55px 20px" }}>
-          <p className="weight-900 mt-10" style={{ fontSize: "27px" }}>
-            SR 330
-          </p>
+          <p className="mt-10 font-bold size-27">SR 330</p>
         </div>
         <div className="pa-20 border-bottom">
-          <div className="flex justify-content-between">
+          <div className="d-flex justify-content-between">
             <p>Service fees</p>
             <p className="font-bold">-SR 40</p>
           </div>
-          <div className="flex justify-content-between mt-10">
+          <div className="d-flex justify-content-between mt-10">
             <p className="font-bold">You’ll recieve</p>
             <p className="font-bold">SR 354</p>
           </div>
@@ -117,9 +117,10 @@ export default function MakeOffer(props) {
               }}
             />
           </div>
-          {useTemplate && <Uploader />}
+          {/* {useTemplate && <Uploader />} */}
+          <Uploader />
           <div className="my-20">
-            <img src="./assets/images/task.png" alt="Post a task" />
+            <img src="./assets/images/icons/task.svg" alt="Post a task" />
             <span className="text-info ml-10">Forgot task details?</span>
           </div>
         </div>
@@ -130,7 +131,7 @@ export default function MakeOffer(props) {
   const confirmOfferView = () => {
     return (
       <div>
-        <div className="pa-20 flex items-center">
+        <div className="pa-20 d-flex align-items-center">
           <div>
             <img
               src="./assets/images/avatar.png"
@@ -139,10 +140,10 @@ export default function MakeOffer(props) {
             />
           </div>
           <div className="ml-10">
-            <div className="font-bold">The user whos is making offer</div>
+            <p className="font-bold">The user whos is making offer</p>
             <p className="mt-5">
               <span className="font-bold">3.8 </span>
-              <img src={`./assets/images/star-gold.png`} alt="star" /> (5)
+              <img src={`./assets/images/icons/star-gold.svg`} alt="star" /> (5)
             </p>
             <p className="mt-5">
               <span className="font-bold"> 94% </span> Completion rate
@@ -151,17 +152,15 @@ export default function MakeOffer(props) {
         </div>
         <div className="bg-grey text-center" style={{ padding: "40px 20px" }}>
           <p>TOTAL</p>
-          <p className="weight-900 mt-10" style={{ fontSize: "27px" }}>
-            SR 330
-          </p>
+          <p className="mt-10 font-bold size-27">SR 330</p>
         </div>
         <div className="pa-20">
           <p className="font-bold">Includes:</p>
-          <div className="flex justify-content-between mt-10">
+          <div className="d-flex justify-content-between mt-10">
             <p>“Task title”</p>
             <p>SR 999.91</p>
           </div>
-          <div className="flex justify-content-between mt-10">
+          <div className="d-flex justify-content-between mt-10">
             <p>Service fees</p>
             <p>SR 99.99</p>
           </div>
@@ -178,7 +177,7 @@ export default function MakeOffer(props) {
     return (
       <div className="pa-20">
         <div className="text-center">
-          <img src="./assets/images/congratulation.png" alt="Post a task" />
+          <img src="./assets/images/congratulation.png" alt="congratulation" />
         </div>
         <div className="mt-20">
           <p className="font-bold">Congratulations!</p>
@@ -189,7 +188,10 @@ export default function MakeOffer(props) {
         </div>
         <ul className="mt-20">
           <li>
-            <img src="./assets/images/bank-accont.png" alt="Post a task" />
+            <img
+              src="./assets/images/profile/bank-account.svg"
+              alt="bank account"
+            />
             <span className="pl-10">
               Bank account: <b>****-7001</b>
             </span>
@@ -206,7 +208,7 @@ export default function MakeOffer(props) {
         style={{ left: "20px", top: "10px" }}
         onClick={() => setStep(step - 1)}
       >
-        <img src="./assets/images/arrow-back.png" alt="close" />
+        <img src="./assets/images/icons/arrow-back.svg" alt="close" />
       </button>
     );
   };

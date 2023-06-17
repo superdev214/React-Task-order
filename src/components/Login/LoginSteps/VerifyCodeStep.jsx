@@ -27,17 +27,17 @@ function VerifyCodeStep(props) {
             {/* onclick="getLogin()" */}
             <button className="position-absolute bg-transparent border-0 close-btn">
               <img
-                src="./assets/images/close.png"
+                src="./assets/images/icons/close.svg"
                 alt="close"
                 onClick={props.onClose}
               />
             </button>
-            <p className="login-nav-heading">Verification Code</p>
+            <p className="nav-title">Verification Code</p>
           </div>
         </div>
       </div>
       <div
-        className="container flex justify-content-center flex-column align-items-center"
+        className="container d-flex justify-content-center flex-column align-items-center"
         style={{ height: "70vh", overflowY: "scroll" }}
       >
         <img

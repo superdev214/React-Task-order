@@ -18,25 +18,32 @@ export default function TaskCards(props) {
                   </div>
                   <div className="mt-10">
                     <img
-                      src="./assets/images/location-light.png"
+                      src="./assets/images/icons/location-light.svg"
                       alt="logo big"
+                      style={{ paddingLeft: "1px", paddingRight: "1px" }}
                     />
                     <span>{task.location}</span>
                   </div>
                   <div className="mt-10">
                     <img
-                      src="./assets/images/calendar-light.png"
+                      src="./assets/images/icons/calendar-light.svg"
                       alt="logo big"
                     />
                     <span>{task.date}</span>
                   </div>
                   <div className="mt-10">
-                    <img src="./assets/images/time-light.png" alt="logo big" />
+                    <img
+                      src="./assets/images/icons/clock-light.svg"
+                      alt="logo big"
+                    />
                     <span>Anytime</span>
                   </div>
-                  <div className="d-flex flex justify-content-between items-center mt-10">
+                  <div className="d-flex justify-content-between align-items-center mt-10">
                     {taskStatusDisplayBadge(task.status)}
-                    <img src="./assets/images/fly-mark.png" alt="logo big" />
+                    <img
+                      src="./assets/images/icons/fly-mark.svg"
+                      alt="logo big"
+                    />
                   </div>
                 </div>
               </NavLink>
