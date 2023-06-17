@@ -49,6 +49,13 @@ export default function ChatView() {
     uploaderRef.current.clear();
   };
 
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
+  };
+
   return (
     <div>
       <SecondaryHeader
@@ -126,6 +133,7 @@ export default function ChatView() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             className="w-100"
+            onKeyDown={handleKeyPress}
             placeholder="Reply to Shivum C."
           />
         </div>
