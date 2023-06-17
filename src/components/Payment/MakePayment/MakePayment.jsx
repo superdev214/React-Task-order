@@ -5,8 +5,13 @@ import CreditCardView from "../CreditCardView/CreditCardView";
 import UpdateCreditCardFrom from "../UpdateCreditCard/UpdateCreditCard";
 
 let paymentMethods = [
-  { title: "MasterCard *** 4473", desc: "Expires 5/27", image: "gate", key: 1 },
-  { title: "", desc: "", image: "gate2", key: 2 },
+  {
+    title: "MasterCard *** 4473",
+    desc: "Expires 5/27",
+    image: "master-card",
+    key: 1,
+  },
+  { title: "", desc: "", image: "apple-pay", key: 2 },
 ];
 
 export default function MakePaymentModal(props) {

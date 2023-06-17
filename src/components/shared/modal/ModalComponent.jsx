@@ -2,14 +2,12 @@ const ModalComponent = (props) => {
   return (
     <div className="modal-area">
       <div
-        className={`py-md d-flex justify-content-between p-3 weight-700 ${
-          props.bordered && " border-bottom"
+        className={`py-md d-flex justify-content-between align-items-center p-3 font-bold ${
+          props.bordered && "border-bottom"
         }`}
       >
         {props.append && !props.hideAction && props.append()}
-        <p style={{ margin: "3px auto" }} className="font-bold">
-          {props.title}
-        </p>
+        <p className="nav-title mx-auto">{props.title}</p>
         {!props.hideAction && (
           <button
             onClick={props.close}

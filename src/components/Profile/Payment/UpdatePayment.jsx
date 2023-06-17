@@ -48,7 +48,7 @@ export default function UpdatePayment() {
           onClick={() => setModal(true)}
         >
           <div className="d-flex align-items-center">
-            <img src="./assets/images/profile/wallet.png" alt="Post a task" />
+            <img src="./assets/images/profile/wallet.svg" alt="Post a task" />
             <div className="pl-10">
               <div>**** 2863</div>
               <div>Expires 5/2028</div>
@@ -64,7 +64,10 @@ export default function UpdatePayment() {
           onClick={() => setUpdateReceiveModal(true)}
         >
           <div className="d-flex align-items-center">
-            <img src="./assets/images/bank-accont.png" alt="Post a task" />
+            <img
+              src="./assets/images/profile/bank-account.svg"
+              alt="Post a task"
+            />
             <span className="pl-10">
               Bank account: <b>****-7001</b>
             </span>

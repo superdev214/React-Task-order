@@ -117,7 +117,7 @@ export default class SkillsPage extends React.Component {
       <>
         <p className="mt-20 font-bold container">
           <img
-            src="./assets/images/transportation.png"
+            src="./assets/images/profile/transportation.svg"
             className="mr-10"
             alt="Post a task"
           />
@@ -157,7 +157,7 @@ export default class SkillsPage extends React.Component {
             <div className="mt-20" key={parentIndex}>
               <p className="font-bold">
                 <img
-                  src={`./assets/images/profile/${skill.icon}.png`}
+                  src={`./assets/images/profile/${skill.icon}.svg`}
                   className="mr-10"
                   alt="Post a task"
                 />

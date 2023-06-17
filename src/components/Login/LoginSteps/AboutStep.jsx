@@ -13,7 +13,7 @@ export default function AboutStep(props) {
                   onClick={props.onClose}
                 />
               </button>
-              <p className="login-nav-heading">About</p>
+              <p className="nav-title">About</p>
             </div>
           </div>
         </div>

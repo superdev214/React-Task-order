@@ -5,7 +5,7 @@ import CreditCardView from "../CreditCardView/CreditCardView";
 let gate = {
   title: "MasterCard *** 4473",
   desc: "Expires 5/27",
-  image: "gate",
+  image: "master-card",
   key: 1,
 };
 
@@ -81,7 +81,7 @@ export default function PaymentApproval() {
   return (
     <>
       <div className="modal-area">
-        <div className={`py-md d-flex justify-content-between p-3 weight-700`}>
+        <div className={`py-md d-flex justify-content-between p-3 font-bold`}>
           {step === 1 && (
             <button
               className="position-absolute bg-transparent border-0"

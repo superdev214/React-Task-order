@@ -11,38 +11,29 @@
 }
 
 .NewTask {
-  p {
-    font-style: normal;
-    font-family: "SF Pro Text Bold";
-    font-size: 17px;
-    line-height: 18px;
-    /* identical to box height */
-
+  .btn-date::placeholder {
+    color: #000000;
+  }
+  .check-box-area {
     display: flex;
     align-items: center;
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+    }
 
-    color: #000000;
+    .check-box {
+      border-radius: 100px;
+      width: 20px;
+      height: 20px;
+      display: inline-block;
+      margin-right: 10px;
+      border: 2px solid $blue;
 
-    &.check-box-area {
-      input {
-        position: absolute;
-        opacity: 0;
-        cursor: pointer;
-      }
-
-      .check-box {
-        border-radius: 100px;
-        width: 20px;
-        height: 20px;
-        display: inline-block;
-        margin-right: 10px;
-        // border: 2px solid #42ade2;
-        background: #42ade2;
-
-        &.checked {
-          background: #42ade2;
-          border: unset;
-        }
+      &.checked {
+        background: $blue;
+        border: unset;
       }
     }
   }
@@ -68,7 +59,7 @@
 
     li {
       width: 100%;
-      margin-top: 10px;
+      margin-bottom: 10px;
       background: #f5f7fa;
       border-radius: 3px;
       display: block;
@@ -76,7 +67,8 @@
       justify-content: space-between;
       text-align: left;
       align-items: center;
-      padding: 10px 10px;
+      padding: 10px 20px;
+      @extend %text-body1;
 
       img {
         margin-right: 10px;
@@ -148,8 +140,6 @@
   }
 
   .new-task {
-    text-align: center;
-
     .close-btn {
       right: 20px;
       top: 10px;

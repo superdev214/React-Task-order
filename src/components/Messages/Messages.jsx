@@ -50,7 +50,10 @@ export default function MessagesPage() {
                 }`}
               >
                 <div className="d-flex align-items-center">
-                  <img src={`./assets/images/${message.image}.png`} alt="" />
+                  <img
+                    src={`./assets/images/icons/${message.image}.svg`}
+                    alt=""
+                  />
                 </div>
                 <div className="ml-10 mr-20">
                   <span className="font-bold">{message.title}</span>

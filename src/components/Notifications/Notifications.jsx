@@ -46,10 +46,13 @@ export default function Notifications({ close }) {
               }`}
             >
               <div className="d-flex align-items-center">
-                <img src={`./assets/images/${message.image}.png`} alt="" />
+                <img
+                  src={`./assets/images/icons/${message.image}.svg`}
+                  alt=""
+                />
               </div>
               <div className="ml-10 mr-20">
-                <img src={`./assets/images/${message.icon}.png`} alt="" />
+                <img src={`./assets/images/icons/${message.icon}.svg`} alt="" />
                 {message.title && (
                   <p className="mt-10 font-bold">{message.title}</p>
                 )}

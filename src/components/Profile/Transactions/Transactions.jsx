@@ -98,7 +98,7 @@ export default function TransactionsPage() {
           return (
             <ul className="mt-20" key={index}>
               <li className="large d-flex flex-column font-bold mt-20">
-                <div onClick={() => toggle(item.id)}>
+                <div className="w-100" onClick={() => toggle(item.id)}>
                   <div className="d-flex mt-10 justify-content-between align-items-center">
                     <span>{item.date}</span>
                     <span className="text-green">{item.status}</span>
@@ -113,7 +113,7 @@ export default function TransactionsPage() {
                     </span>
                     <span>
                       <img
-                        src={`./assets/images/${item.owner.icon}.png`}
+                        src={`./assets/images/icons/${item.owner.icon}.svg`}
                         style={{ width: "20px", height: "20px" }}
                         alt=""
                         className="mr-10"
@@ -126,7 +126,7 @@ export default function TransactionsPage() {
                   {expansion.length > 0 &&
                     expansion.find((expItem) => expItem.id === item.id)
                       ?.isOpened && (
-                      <>
+                      <div className="w-100">
                         {type === "Earned" ? (
                           <>
                             <div className="line my-10"></div>
@@ -174,7 +174,7 @@ export default function TransactionsPage() {
                             </div>
                           </>
                         )}
-                      </>
+                      </div>
                     )}
                 </>
               </li>
@@ -224,7 +224,7 @@ export default function TransactionsPage() {
   };
 
   return (
-    <div>
+    <>
       <ProfileHeader title="Transaction history" />
       <div className="pa-20 gray-list" style={{ marginTop: "30px" }}>
         {tabView()}
@@ -232,7 +232,7 @@ export default function TransactionsPage() {
           <div className="d-flex justify-content-between align-items-center">
             <p className="font-bold">Showing:</p>
             <div className="text-info">
-              <img src="./assets/images/history.png" alt="close" />
+              <img src="./assets/images/icons/history.svg" alt="close" />
               <span className="ml-10">Today</span>
             </div>
           </div>
@@ -244,17 +244,18 @@ export default function TransactionsPage() {
           <div className="d-flex mt-20 justify-content-between align-items-center">
             <p className="font-bold">Records</p>
             <div className="text-info">
-              <img src="./assets/images/statistics.png" alt="statistics" />
+              <img
+                src="./assets/images/icons/statistics.svg"
+                alt="statistics"
+              />
               <span className="ml-10">Download CSV file</span>
             </div>
           </div>
         </div>
-        {activeTab === "Earned" ? (
-          <div>{transactionsList(earnedData, "Earned")}</div>
-        ) : (
-          <div> {transactionsList(paidData, "Paid")}</div>
-        )}
+        {activeTab === "Earned"
+          ? transactionsList(earnedData, "Earned")
+          : transactionsList(paidData, "Paid")}
       </div>
-    </div>
+    </>
   );
 }

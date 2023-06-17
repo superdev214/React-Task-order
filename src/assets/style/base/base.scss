@@ -139,6 +139,14 @@ hr {
   margin-left: 10px;
 }
 
+.mr-5 {
+  margin-right: 5px;
+}
+
+.ml-5 {
+  margin-left: 5px;
+}
+
 .pl-10 {
   padding-left: 10px;
 }
@@ -293,21 +301,13 @@ hr {
   }
 
   .form-control-group-label {
-    float: left;
     font-style: normal;
     font-family: "SF Pro Text Bold";
     font-size: 15px;
     line-height: 18px;
-
     display: flex;
     align-items: center;
-
     color: #000000;
-
-    &.mute {
-      font-size: 15px;
-      font-weight: normal;
-    }
   }
 }
 
@@ -319,6 +319,9 @@ hr {
 
 .size-27 {
   @extend %text-heavy;
+}
+.size-17 {
+  @extend %text-caption;
 }
 .size-15 {
   @extend %text-body1;
@@ -400,7 +403,7 @@ p {
 }
 
 .nav-title {
-  font-size: 17px;
-  font-weight: 700;
   font-family: "SF Pro Text Bold" !important;
+  text-align: center;
+  @extend %text-caption;
 }
