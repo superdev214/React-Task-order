@@ -139,7 +139,7 @@ export default class SkillsPage extends React.Component {
                       src={`./assets/images/profile/${preference.icon}.svg`}
                       alt="avatar"
                     />
-                    <p className="font-bold">{preference.title}</p>
+                    <p className="font-text">{preference.title}</p>
                   </div>
 
                   <ToggleSwitch
