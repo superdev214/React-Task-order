@@ -1,4 +1,24 @@
-export default function VerifyCodeStep(props) {
+import { useState } from "react";
+import { connect } from 'react-redux';
+import { verifyOtp } from "../../../redux/actions"
+
+function VerifyCodeStep(props) {
+  
+  const [firstNum, setFirst] = useState();
+  const [secondNum, setSecond] = useState();
+  const [thirdNum, setThird] = useState();
+  const [forthNum, setForth] = useState()
+
+  const onContinue = () => {
+    const verifyCode = firstNum*1000+secondNum*100+thirdNum*10 + forthNum*1;
+    if(firstNum !== null | secondNum !== null | thirdNum !== null | forthNum !== null) {//change, props.verifyCode === verifyCode
+      props.verifyOtp({phone_no:props.phone_no, verifyCode:verifyCode})
+    }
+    if(verifyCode !== 0) { /// chanage code. props.otp != null
+      props.onContinue()
+    }
+  }
+
   return (
     <section id="verify-code">
       <div style={{ padding: "13px 0", borderBottom: "2px solid #F5F7FA" }}>
@@ -39,6 +59,7 @@ export default function VerifyCodeStep(props) {
             onInput={(event) => {
               event.target.value = event.target.value.slice(0, 1);
             }}
+            onChange={(e) => setFirst(e.target.value)}
             alt="code number"
           />
           <input
@@ -49,6 +70,7 @@ export default function VerifyCodeStep(props) {
             onInput={(event) => {
               event.target.value = event.target.value.slice(0, 1);
             }}
+            onChange={(e) => setSecond(e.target.value)}
             alt="code number"
           />
           <input
@@ -59,6 +81,7 @@ export default function VerifyCodeStep(props) {
             onInput={(event) => {
               event.target.value = event.target.value.slice(0, 1);
             }}
+            onChange={(e) => setThird(e.target.value)}
             alt="code number"
           />
           <input
@@ -69,6 +92,7 @@ export default function VerifyCodeStep(props) {
             onInput={(event) => {
               event.target.value = event.target.value.slice(0, 1);
             }}
+            onChange={(e) => setForth(e.target.value)}
             alt="code number"
           />
         </div>
@@ -83,7 +107,7 @@ export default function VerifyCodeStep(props) {
         </button>
         <button
           className="d-block btn btn-green btn-w-350"
-          onClick={props.onContinue}
+          onClick={onContinue}
         >
           Continue
         </button>
@@ -91,3 +115,15 @@ export default function VerifyCodeStep(props) {
     </section>
   );
 }
+
+
+const mapStateToProps = ({ userReducer}) => {
+  const {phone_no, otp, error, verifyCode} = userReducer;
+  return {phone_no, error, verifyCode, otp};
+};
+
+const mapDispatchToProps = {
+  verifyOtp,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(VerifyCodeStep);

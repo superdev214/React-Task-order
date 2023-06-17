@@ -1,7 +1,22 @@
 import { NavLink } from "react-router-dom";
 import logoSvg from "../../../assets/images/logo.svg";
+import { loginWithSMS } from "../../../redux/actions"
+import { connect } from 'react-redux';
+import { useState } from "react";
 
-export default function WalkthroughStep(props) {
+function WalkthroughStep(props) {
+
+  const [phoneNum, setPhoneNum] = useState();
+
+  const continueTo = () => {
+    if(phoneNum !== "") {
+      props.loginWithSMS(phoneNum)
+    } 
+    if(props.phone_no !== "") {///Insert Verifycode condition.
+      props.onContinue()
+    }
+  }
+
   return (
     <div className="text-center" id="phone-number">
       <div className="form">
@@ -16,6 +31,7 @@ export default function WalkthroughStep(props) {
               event.target.value = event.target.value.slice(0, 10);
             }}
             placeholder="Enter phone number"
+            onChange={(e) => setPhoneNum(e.target.value)}
           />
           <p style={{ fontSize: "13px" }}>
             By joining you agree to Taklief’s
@@ -40,7 +56,7 @@ export default function WalkthroughStep(props) {
         <button
           className="d-block btn btn-green btn-w-350"
           style={{ marginTop: "20px" }}
-          onClick={props.onContinue}
+          onClick={continueTo}
         >
           Continue
         </button>
@@ -48,3 +64,14 @@ export default function WalkthroughStep(props) {
     </div>
   );
 }
+
+const mapStateToProps = ({ userReducer}) => {
+  const {phone_no, error, verifyCode} = userReducer;
+  return {phone_no, error};
+};
+
+const mapDispatchToProps = {
+  loginWithSMS,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WalkthroughStep);
