@@ -45,7 +45,11 @@ export default function PaymentReleaseModal({ close }) {
           </p>
         </div>
         <div className="mt-20 d-flex align-items-center justify-content-end">
-          <img className="mr-2" src="./assets/images/lock.png" alt="logo big" />
+          <img
+            className="mr-10"
+            src="./assets/images/icons/lock.svg"
+            alt="logo big"
+          />
           <p className="text-green font-bold">Payment secured</p>
         </div>
         <div className="mt-20 d-flex justify-content-between">

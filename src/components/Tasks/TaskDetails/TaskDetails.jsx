@@ -239,7 +239,7 @@ export default function TaskDetails() {
             >
               <span>Accept</span>
               <img
-                src="./assets/images/dot-light.png"
+                src="./assets/images/icons/ellipse.svg"
                 alt="logo big"
                 className="mr-10 ml-10"
               />

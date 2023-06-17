@@ -22,7 +22,7 @@ export default function SecondaryHeader(props) {
             <div style={{ width: "25%" }}>
               {props.appendEvent && props.appendEvent()}
             </div>
-            <p className="font-bold nav-title">{props.title}</p>
+            <p className="nav-title">{props.title}</p>
             <div style={{ width: "25%" }} className="text-end">
               <img
                 src="./assets/images/icons/bell.svg"

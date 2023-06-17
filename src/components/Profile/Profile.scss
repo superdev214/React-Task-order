@@ -22,10 +22,12 @@
   }
 
   .chip {
-    text-align: center;
     padding: 5px 10px;
+    display: flex;
+    align-items: center;
     height: 30px;
     background: #8aa4c6;
     border-radius: 100px;
+    text-align: center;
   }
 }

@@ -82,9 +82,7 @@ export default function MakeOffer(props) {
     return (
       <div>
         <div className="bg-grey text-center" style={{ padding: "55px 20px" }}>
-          <p className="weight-900 mt-10" style={{ fontSize: "27px" }}>
-            SR 330
-          </p>
+          <p className="mt-10 font-bold size-27">SR 330</p>
         </div>
         <div className="pa-20 border-bottom">
           <div className="d-flex justify-content-between">
@@ -121,7 +119,7 @@ export default function MakeOffer(props) {
           </div>
           {useTemplate && <Uploader />}
           <div className="my-20">
-            <img src="./assets/images/task.png" alt="Post a task" />
+            <img src="./assets/images/icons/task.svg" alt="Post a task" />
             <span className="text-info ml-10">Forgot task details?</span>
           </div>
         </div>
@@ -141,7 +139,7 @@ export default function MakeOffer(props) {
             />
           </div>
           <div className="ml-10">
-            <div className="font-bold">The user whos is making offer</div>
+            <p className="font-bold">The user whos is making offer</p>
             <p className="mt-5">
               <span className="font-bold">3.8 </span>
               <img src={`./assets/images/icons/star-gold.svg`} alt="star" /> (5)
@@ -153,9 +151,7 @@ export default function MakeOffer(props) {
         </div>
         <div className="bg-grey text-center" style={{ padding: "40px 20px" }}>
           <p>TOTAL</p>
-          <p className="weight-900 mt-10" style={{ fontSize: "27px" }}>
-            SR 330
-          </p>
+          <p className="mt-10 font-bold size-27">SR 330</p>
         </div>
         <div className="pa-20">
           <p className="font-bold">Includes:</p>
@@ -180,7 +176,7 @@ export default function MakeOffer(props) {
     return (
       <div className="pa-20">
         <div className="text-center">
-          <img src="./assets/images/congratulation.png" alt="Post a task" />
+          <img src="./assets/images/congratulation.png" alt="congratulation" />
         </div>
         <div className="mt-20">
           <p className="font-bold">Congratulations!</p>
@@ -191,7 +187,10 @@ export default function MakeOffer(props) {
         </div>
         <ul className="mt-20">
           <li>
-            <img src="./assets/images/bank-accont.png" alt="Post a task" />
+            <img
+              src="./assets/images/profile/bank-account.svg"
+              alt="bank account"
+            />
             <span className="pl-10">
               Bank account: <b>****-7001</b>
             </span>

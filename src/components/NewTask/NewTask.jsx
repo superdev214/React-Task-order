@@ -68,11 +68,13 @@ export default function NewTask() {
   const stepAbout = () => {
     return (
       <>
-        <p className="mb-20">ABOUT</p>
+        <p className="mb-20 font-bold">ABOUT</p>
         <div className="form-control-group">
-          <div className="form-control-group-label mb-10">Task title</div>
-          <div className="form-control-group-description">
-            Minimum 10 characters
+          <div className="d-flex align-items-center justify-content-between mb-10">
+            <p className="form-control-group-label">Task title</p>
+            <p className="form-control-group-description">
+              Minimum 10 characters
+            </p>
           </div>
           <input
             className="phone-input w-100"
@@ -90,9 +92,11 @@ export default function NewTask() {
         </div>
 
         <div className="form-control-group mt-20">
-          <div className="form-control-group-label mb-10">Task description</div>
-          <div className="form-control-group-description">
-            Minimum 25 characters
+          <div className="d-flex align-items-center justify-content-between mb-10">
+            <p className="form-control-group-label">Task description</p>
+            <p className="form-control-group-description">
+              Minimum 25 characters
+            </p>
           </div>
           <textarea
             className="phone-input w-100"
@@ -102,7 +106,7 @@ export default function NewTask() {
             onChange={handleDescriptionChange}
           />
         </div>
-        <p className="mt-20">How this task can be done?</p>
+        <p className="mt-20 font-bold">How this task can be done?</p>
         <div className="switch-button">
           <button
             className={
@@ -163,25 +167,14 @@ export default function NewTask() {
             className="d-block btn btn-gray btn-w-350 mt-3"
             onClick={() => setLocationSelectionModal(true)}
           >
-            {task.location ? (
-              <>
-                <img
-                  src="./assets/images/location.svg"
-                  className="mr-10"
-                  alt="close"
-                />
-                {task.location}
-              </>
-            ) : (
-              <>
-                <img
-                  src="./assets/images/icons/marker.svg"
-                  className="mr-10"
-                  alt="close"
-                />
-                Choose location
-              </>
-            )}
+            <>
+              <img
+                src="./assets/images/icons/marker.svg"
+                className="mr-10"
+                alt="location marker"
+              />
+              {task.location ? task.location : "Choose location"}
+            </>
           </button>
         )}
       </>
@@ -191,14 +184,14 @@ export default function NewTask() {
   const dateTime = () => {
     return (
       <>
-        <p className="mb-20">DATE AND TIME</p>
-        <p className="mb-10">When do you need this done?</p>
+        <p className="mb-20 font-bold size-15">DATE AND TIME</p>
+        <p className="mb-10 font-bold size-15">When do you need this done?</p>
         <DatePickerComponent
           onChange={(date) => setTask({ ...task, date: date })}
         />
         {task.date && (
           <>
-            <p style={{ marginBottom: "3px" }} className="check-box-area mt-20">
+            <p className="check-box-area mt-20 mb-10">
               <input
                 type="checkbox"
                 id="checkbox"
@@ -213,7 +206,7 @@ export default function NewTask() {
               <span
                 className={"check-box " + (task.haveCertainTime && "checked")}
               ></span>
-              <label htmlFor="checkbox">
+              <label htmlFor="checkbox" className="font-medium">
                 I need it at certain time of the day
               </label>
             </p>
@@ -224,7 +217,10 @@ export default function NewTask() {
                     onClick={() => setTask({ ...task, certainTime: "Morning" })}
                   >
                     <div>
-                      <img src="./assets/images/morning.png" alt="Morning" />
+                      <img
+                        src="./assets/images/icons/sunrise.svg"
+                        alt="Morning"
+                      />
                       <b>Morning</b> Before 10 am
                     </div>
                     {task.certainTime === "Morning" && <span></span>}
@@ -233,7 +229,7 @@ export default function NewTask() {
                     onClick={() => setTask({ ...task, certainTime: "Miday" })}
                   >
                     <div>
-                      <img src="./assets/images/miday.png" alt="Miday" />
+                      <img src="./assets/images/icons/sun.svg" alt="Miday" />
                       <b>Miday</b> 10am to 2pm
                     </div>
                     {task.certainTime === "Miday" && <span></span>}
@@ -245,7 +241,7 @@ export default function NewTask() {
                   >
                     <div>
                       <img
-                        src="./assets/images/afternoon.png"
+                        src="./assets/images/icons/sunset.svg"
                         alt="Afternoon"
                       />
                       <b>Afternoon</b> 1pm - 6pm
@@ -256,14 +252,14 @@ export default function NewTask() {
                     onClick={() => setTask({ ...task, certainTime: "Evening" })}
                   >
                     <div>
-                      <img src="./assets/images/evening.png" alt="Evening" />
+                      <img src="./assets/images/icons/moon.svg" alt="Evening" />
                       <b>Evening</b> After 6pm
                     </div>
                     {task.certainTime === "Evening" && <span></span>}
                   </li>
                 </ul>
                 <div className="note mt-20">
-                  <img src="./assets/images/caution.png" alt="Evening" />
+                  <img src="./assets/images/icons/caution.svg" alt="note" />
                   You can discuss exact times with your Tasker later.
                 </div>
               </>
@@ -277,15 +273,13 @@ export default function NewTask() {
   const stepBudget = () => {
     return (
       <>
-        <p className="mb-20">DATE AND TIME</p>
-        <p>Enter your budget</p>
+        <p className="mb-20 font-bold">DATE AND TIME</p>
+        <p className="font-bold">Enter your budget</p>
         <div className="form-control-group">
-          <div className="mute my-10" style={{ textAlign: "initial" }}>
-            You can always negotiate the price later
-          </div>
-          <div className="form-control-group-description danger mb-10">
-            Minimum budget <b>SR 15</b>
-          </div>
+          <p className="my-10">You can always negotiate the price later</p>
+          <p className="form-control-group-description danger mb-10">
+            Minimum budget <span className="font-heavy">SR 15</span>
+          </p>
           <input
             className="phone-input w-100"
             type="number"
@@ -336,7 +330,7 @@ export default function NewTask() {
                     />
                   </button>
                 )}
-                <p>New Task</p>
+                <p className="nav-title">New Task</p>
               </div>
               <div className={"task-tab-bar step" + step}>
                 <div className="tab1">

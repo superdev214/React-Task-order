@@ -13,16 +13,16 @@ export default function DatePickerComponent(props) {
       : "";
 
     return (
-      <div>
+      <>
         <input
           readOnly
           placeholder={"Choose date"}
           style={{ width: "100%" }}
           ref={ref}
           value={formattedDate}
-          className="btn btn-gray btn-w-350"
+          className="btn btn-gray btn-date btn-w-350"
         />
-      </div>
+      </>
     );
   };
 

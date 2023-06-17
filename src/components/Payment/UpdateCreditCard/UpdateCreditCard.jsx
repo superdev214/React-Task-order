@@ -20,7 +20,7 @@ export default function UpdateCreditCardFrom() {
             <div className="mb-10 font-bold text-end">CCV</div>
             <div className="d-flex align-items-center">
               <img
-                src="./assets/images/info.png"
+                src="./assets/images/icons/info.svg"
                 alt="Post a task"
                 className="mr-10"
               />

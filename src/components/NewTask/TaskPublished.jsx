@@ -5,26 +5,31 @@ export default function TaskPublished() {
   return (
     <div className="TaskPublished">
       <div className="py-13">
-        <p className="text-center font-bold">Published</p>
+        <p className="text-center nav-title">Published</p>
       </div>
       <div className="container">
         <div className="text-center py-20">
           <img src="./assets/images/published.png" alt="location" />
         </div>
         <p className="mb-20 font-bold">All Done!</p>
-        <p>Your task is posted, here is what will happen next:</p>
+        <p className="size-17">
+          Your task is posted, here is what will happen next:
+        </p>
         <ul>
-          <li>
-            <span>1</span>
-            Taskers will make offers
+          <li className="d-flex align-items-center">
+            <img src="./assets/images/icons/circle-num1.svg" alt="circle one" />
+            <p className="size-17">Taskers will make offers</p>
           </li>
-          <li>
-            <span>2</span>
-            Accept an offer
+          <li className="d-flex align-items-center">
+            <img src="./assets/images/icons/circle-num2.svg" alt="circle two" />
+            <p className="size-17">Accept an offer</p>
           </li>
-          <li>
-            <span>3</span>
-            Chat and get it done!
+          <li className="d-flex align-items-center">
+            <img
+              src="./assets/images/icons/circle-num3.svg"
+              alt="circle three"
+            />
+            <p className="size-17">Chat and get it done!</p>
           </li>
         </ul>
       </div>

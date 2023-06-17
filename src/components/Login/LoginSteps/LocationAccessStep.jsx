@@ -9,7 +9,7 @@ export default function LocationAccessStep() {
           borderBottom: "2px solid #F5F7FA",
         }}
       >
-        <p className="login-nav-heading">Location</p>
+        <p className="nav-title">Location</p>
       </div>
       <div className="container">
         <div

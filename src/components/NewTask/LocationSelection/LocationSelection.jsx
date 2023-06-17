@@ -66,7 +66,7 @@ const LocationSelection = ({ close, onChange }) => {
 
   return (
     <div className="modal-area">
-      <div className="py-md d-flex justify-content-between p-3 weight-700">
+      <div className="py-md d-flex justify-content-between p-3 font-bold">
         <button
           onClick={close}
           className="position-absolute bg-transparent border-0 close-btn"
