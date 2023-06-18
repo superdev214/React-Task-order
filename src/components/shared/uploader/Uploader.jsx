@@ -22,9 +22,8 @@ export default function UploaderComponent({ renderBtn }) {
   const remove = (index) => {
     let tempImages = [...images];
     tempImages.splice(index, 1);
-
     setImages(tempImages);
-    this.forceUpdate();
+    // this.forceUpdate();
   };
 
   const clear = () => {

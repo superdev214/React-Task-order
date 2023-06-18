@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { NavLink } from "react-router-dom";
 import TasksOffer from "./TasksOffer/TasksOffer";
 import LocationSelection from "./LocationSelection/LocationSelection";
@@ -20,9 +20,17 @@ export default function NewTask() {
     certainTime: "Morning",
   });
 
+  const titleInputRef = useRef();
+
   //title input handler
-  const handleTitleChange = (e) => {
-    const value = e.target.value;
+  // const handleTitleChange = (e) => {
+  //   const value = e.target.value;
+  //   setTask({ ...task, title: value });
+  // };
+
+  //
+  const handleTitleChange = () => {
+    const value = titleInputRef.current.textContent;
     setTask({ ...task, title: value });
   };
 
@@ -49,8 +57,10 @@ export default function NewTask() {
     if (
       task.title &&
       task.title.length > 10 &&
+      task.title.length < 51 &&
       task.description &&
-      task.description.length > 25
+      task.description.length > 25 &&
+      task.description.length < 2000
     )
       return true;
     return false;
@@ -79,17 +89,24 @@ export default function NewTask() {
               Minimum 10 characters
             </p>
           </div>
-          <input
+          <div
+            ref={titleInputRef}
             style={{ marginBottom: "5px" }}
             className="phone-input w-100"
-            type="text"
-            minLength={10}
-            maxLength={50}
-            value={task.title}
-            onChange={handleTitleChange}
-          />
+            contentEditable="true"
+            onInput={handleTitleChange}
+            spellCheck={false}
+          ></div>
           <div className="form-control-group-description">
-            {remainingTitleWords >= 0 && (
+            {(
+              <span
+                className={`word-count-title ${
+                  remainingTitleWords < 0 && "text-red-title"
+                }`}
+              >
+                {remainingTitleWords}
+              </span>
+            ) || (
               <span className="word-count-title">{remainingTitleWords}</span>
             )}
           </div>
@@ -105,12 +122,20 @@ export default function NewTask() {
           <textarea
             className="phone-input w-100"
             minLength={25}
-            maxLength={2000}
+            // maxLength={2000}
             value={task.description}
             onChange={handleDescriptionChange}
           />
           <div className="form-control-group-description">
-            {remainingDescriptionWords >= 0 && (
+            {(
+              <span
+                className={`word-count-description ${
+                  remainingDescriptionWords < 0 && "text-red-description"
+                }`}
+              >
+                {remainingDescriptionWords}
+              </span>
+            ) || (
               <span className="word-count-description">
                 {remainingDescriptionWords}
               </span>
@@ -288,7 +313,7 @@ export default function NewTask() {
   };
 
   const isBudgetValid = () => {
-    return task.budget >= 15 && task.budget <= 2000;
+    return task.budget >= 15 && task.budget <= 20000;
   };
 
   const handleSubmit = () => {
