@@ -337,38 +337,33 @@ export default function NewTask() {
       )}
       <div className="NewTask">
         <div className="new-task">
-          <div style={{ padding: "13px 13px 0px" }}>
-            <div>
-              <div className="d-flex align-items-center justify-content-center">
-                <NavLink to={"/home"}>
-                  <button className="position-absolute bg-transparent border-0 close-btn">
-                    <img src="./assets/images/icons/close.svg" alt="close" />
-                  </button>
-                </NavLink>
-                {step > 1 && (
-                  <button
-                    className="position-absolute bg-transparent border-0"
-                    style={{ left: "20px" }}
-                    onClick={() => setStep(step - 1)}
-                  >
-                    <img
-                      src="./assets/images/icons/arrow-back.svg"
-                      alt="close"
-                    />
-                  </button>
-                )}
-                <p className="nav-title">New Task</p>
+          <div className="top-bar d-flex align-items-center justify-content-center">
+            <NavLink to={"/home"}>
+              <button className="position-absolute bg-transparent border-0 close-btn">
+                <img src="./assets/images/icons/close.svg" alt="close" />
+              </button>
+            </NavLink>
+            {step > 1 && (
+              <button
+                className="position-absolute bg-transparent border-0"
+                style={{ left: "20px" }}
+                onClick={() => setStep(step - 1)}
+              >
+                <img src="./assets/images/icons/arrow-back.svg" alt="close" />
+              </button>
+            )}
+            <p className="nav-title">New Task</p>
+          </div>
+          <div className="px-20">
+            <div className={"task-tab-bar step" + step}>
+              <div className="tab1">
+                <button>ABOUT</button>
               </div>
-              <div className={"task-tab-bar step" + step}>
-                <div className="tab1">
-                  <button>ABOUT</button>
-                </div>
-                <div className="tab2">
-                  <button>DATE & TIME</button>
-                </div>
-                <div className="tab3">
-                  <button>BUDGET</button>
-                </div>
+              <div className="tab2">
+                <button>DATE & TIME</button>
+              </div>
+              <div className="tab3">
+                <button>BUDGET</button>
               </div>
             </div>
           </div>

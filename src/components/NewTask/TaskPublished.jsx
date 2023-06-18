@@ -4,7 +4,7 @@ import "./TaskPublished.scss";
 export default function TaskPublished() {
   return (
     <div className="TaskPublished">
-      <div className="py-13">
+      <div className="top-bar d-flex align-items-center justify-content-center">
         <p className="text-center nav-title">Published</p>
       </div>
       <div className="container">

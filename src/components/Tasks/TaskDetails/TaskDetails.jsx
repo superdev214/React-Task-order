@@ -424,29 +424,29 @@ export default function TaskDetails() {
       <>
         <div className="TaskDetails">
           <div className="header">
-            <div style={{ padding: "16px 16px 0px" }}>
-              <div className="d-flex align-items-center justify-content-center">
-                <div className="features-area">
-                  <button className="bg-transparent border-0 mr-10">
-                    <img src="./assets/images/icons/flag.svg" alt="close" />
-                  </button>
-                  <button className="bg-transparent border-0 ml-10">
-                    <img src="./assets/images/icons/forward.svg" alt="close" />
-                  </button>
-                </div>
-                <NavLink to={"/tasks"}>
-                  <button
-                    className="position-absolute bg-transparent border-0"
-                    style={{ left: "20px", top: "10px" }}
-                  >
-                    <img
-                      src="./assets/images/icons/arrow-back.svg"
-                      alt="close"
-                    />
-                  </button>
-                </NavLink>
-                <p className="font-bold">Task details</p>
+            <div className="top-bar d-flex align-items-center justify-content-center border-bottom1">
+              <div className="features-area">
+                <button className="bg-transparent border-0 mr-10">
+                  <img src="./assets/images/icons/flag.svg" alt="flag" />
+                </button>
+                <button className="bg-transparent border-0 ml-10">
+                  <img src="./assets/images/icons/forward.svg" alt="forward" />
+                </button>
               </div>
+              <NavLink to={"/tasks"}>
+                <button
+                  className="position-absolute bg-transparent border-0"
+                  style={{ left: "20px", top: "10px" }}
+                >
+                  <img
+                    src="./assets/images/icons/arrow-back.svg"
+                    alt="arrow back"
+                  />
+                </button>
+              </NavLink>
+              <p className="font-bold">Task details</p>
+            </div>
+            <div className="px-20">
               <div className={" task-tab-bar step" + step}>
                 <div className="tab1">
                   <button onClick={() => setStep(1)}>OPEN</button>
