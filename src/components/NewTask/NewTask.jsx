@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import TasksOffer from "./TasksOffer/TasksOffer";
 import LocationSelection from "./LocationSelection/LocationSelection";
@@ -27,10 +27,25 @@ export default function NewTask() {
   //   const value = e.target.value;
   //   setTask({ ...task, title: value });
   // };
+  // const handleTitleChange = (e) => {
+  //   const value = e.target.textContent;
+  //   setTask({ ...task, title: value });
+  // };
 
-  //
   const handleTitleChange = () => {
-    const value = titleInputRef.current.textContent;
+    const element = titleInputRef.current;
+    const maxLength = 50;
+    let text = element.textContent;
+
+    if (text.length > maxLength) {
+      const overText = text.substr(maxLength);
+      text = text.substr(0, maxLength);
+      element.innerHTML = `${text}<span class="highlight">${overText}</span>`;
+    } else {
+      element.innerHTML = text;
+    }
+
+    const value = element.textContent.trim();
     setTask({ ...task, title: value });
   };
 
@@ -89,14 +104,37 @@ export default function NewTask() {
               Minimum 10 characters
             </p>
           </div>
+          {/* //title highlight// */}
           <div
             ref={titleInputRef}
-            style={{ marginBottom: "5px" }}
-            className="phone-input w-100"
+            // style={{ direction: "ltr", unicodeBidi: "plaintext" }}
+            className="asdasd"
             contentEditable="true"
             onInput={handleTitleChange}
             spellCheck={false}
-          ></div>
+          >
+            {task.title}
+            {task.excessCharacters && (
+              <span className="excess-characters">{task.excessCharacters}</span>
+            )}
+          </div>
+          {/* <div
+            className="phone-input w-100"
+            contentEditable="true"
+            onInput={handleTitleChange}
+          >
+            {task.title.length > 50 ? (
+              <>
+                <span>{task.title.slice(0, 50)}</span>
+                <span style={{ backgroundColor: "yellow" }}>
+                  {task.title.slice(50)}
+                </span>
+              </>
+            ) : (
+              task.title
+            )}
+          </div> */}
+
           <div className="form-control-group-description">
             {(
               <span
@@ -306,7 +344,6 @@ export default function NewTask() {
     );
   };
 
-  //
   const handleBudgetChange = (e) => {
     const value = parseFloat(e.target.value);
     setTask({ ...task, budget: value });
@@ -323,7 +360,7 @@ export default function NewTask() {
       // Show an error message or prevent task submission
     }
   };
-  //
+
   const stepBudget = () => {
     return (
       <>
