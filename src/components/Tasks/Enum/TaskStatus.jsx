@@ -33,7 +33,7 @@ export default function TaskStatusDisplayBadge(status) {
   return (
     <>
       <div className={`badge  text-${taskStatusColor(status)}`}>
-        {taskStatusDisplayCaption(status)}
+        <p className="font-heavy size-13">{taskStatusDisplayCaption(status)}</p>
         {status === 1 && (
           <>
             <div className="dot ml-10 mr-10"></div>
