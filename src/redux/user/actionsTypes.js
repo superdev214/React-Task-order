@@ -28,8 +28,8 @@ export const CANCEL_REQUEST_FOR_DELETE_ACCOUNT = "CANCEL_REQUEST_FOR_DELETE_ACCO
 
 
 
-export * from './user/actions';
-export * from './category/actions';
-export * from './default/actions';
-export * from './task/actions';
-export * from './payment/actions';
+export * from './actions';
+export * from '../category/actions';
+export * from '../default/actions';
+export * from '../task/actions';
+export * from '../payment/actions';
