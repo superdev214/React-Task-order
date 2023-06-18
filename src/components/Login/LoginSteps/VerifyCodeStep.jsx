@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { connect } from 'react-redux';
-import { verifyOtp } from "../../../redux/actions"
+import { verifyOtp } from "../../../redux/user/actions"
 
 function VerifyCodeStep(props) {
   

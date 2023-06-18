@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import logoSvg from "../../../assets/images/logo.svg";
-import { loginWithSMS } from "../../../redux/actions"
+import { loginWithSMS } from "../../../redux/user/actions"
 import { connect } from 'react-redux';
 import { useState } from "react";
 
