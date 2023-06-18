@@ -2,6 +2,9 @@ import { useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import SecondaryHeader from "../../Layouts/Header/SecondaryHeader/SecondaryHeader";
 import Uploader from "../../shared/uploader/Uploader";
+import { useDispatch } from 'react-redux';
+import { sendData } from "../../../redux/chat/actions";
+// import { sendMessage } from './path/to/actions';
 
 let message = {
   title: "Gaurav C.",
@@ -37,16 +40,23 @@ export default function ChatView() {
   const [text, setText] = useState("");
   const uploaderRef = useRef(null);
   const [chats, setChats] = useState(message.chats);
+  const dispatch = useDispatch();
+
 
   const sendMessage = () => {
-    let temp = [...chats];
+    let temp = [];
+    console.log("set state",...chats);
+    
     temp.push({
-      attachments: uploaderRef.current?.state.images,
+      // attachments: uploaderRef.current?.state.images,
       text: text,
     });
+    const messageData = temp;
+    console.log(messageData);
+    dispatch(sendData(messageData));
     setText("");
     setChats(temp);
-    uploaderRef.current.clear();
+    // uploaderRef.current.clear();
   };
 
   const handleKeyPress = (e) => {

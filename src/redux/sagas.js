@@ -5,12 +5,13 @@ import defaultSagas from './default/saga';
 import taskSagas from './task/saga';
 import paymentSagas from './payment/saga';
 import categorySagas from './category/saga';
+import rootSag from './chat/saga';
 
 
 export default function* rootSaga() {
     yield all ([
         userSagas(),
-        chatSaga(),
+        rootSag()
         // categorySagas(),
         // defaultSagas(),
         // taskSagas(),

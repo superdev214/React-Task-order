@@ -5,3 +5,10 @@ export function getChat(chats) {
       payload: chats,
     }
 }
+
+export const sendData = (messageData) => {
+  return {
+    type: types.SEND_MESSAGE,
+    payload: messageData,
+  };
+};

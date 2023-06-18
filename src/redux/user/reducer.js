@@ -6,7 +6,7 @@ import {
     VERIFY_OTP_FAIL,
     EDIT_PROFILE_SUCCESS,
     EDIT_PROFILE_FAIL
-} from './actionsTypes';
+} from '../actions';
 
 
 const INIT_STATE = {
