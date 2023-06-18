@@ -23,31 +23,27 @@ export default function NewTask() {
   const titleInputRef = useRef();
 
   //title input handler
-  // const handleTitleChange = (e) => {
-  //   const value = e.target.value;
-  //   setTask({ ...task, title: value });
-  // };
-  // const handleTitleChange = (e) => {
-  //   const value = e.target.textContent;
-  //   setTask({ ...task, title: value });
-  // };
-
-  const handleTitleChange = () => {
-    const element = titleInputRef.current;
-    const maxLength = 50;
-    let text = element.textContent;
-
-    if (text.length > maxLength) {
-      const overText = text.substr(maxLength);
-      text = text.substr(0, maxLength);
-      element.innerHTML = `${text}<span class="highlight">${overText}</span>`;
-    } else {
-      element.innerHTML = text;
-    }
-
-    const value = element.textContent.trim();
+  const handleTitleChange = (e) => {
+    const value = e.target.value;
     setTask({ ...task, title: value });
   };
+
+  // const handleTitleChange = () => {
+  //   const element = titleInputRef.current;
+  //   const maxLength = 50;
+  //   let text = element.textContent;
+
+  //   if (text.length > maxLength) {
+  //     const overText = text.substr(maxLength);
+  //     text = text.substr(0, maxLength);
+  //     element.innerHTML = `${text}<span class="highlight">${overText}</span>`;
+  //   } else {
+  //     element.innerHTML = text;
+  //   }
+
+  //   const value = element.textContent.trim();
+  //   setTask({ ...task, title: value });
+  // };
 
   //Description input handler
 
@@ -104,8 +100,16 @@ export default function NewTask() {
               Minimum 10 characters
             </p>
           </div>
+          <input
+            className="phone-input w-100"
+            type="text"
+            minLength={10}
+            value={task.title}
+            onChange={handleTitleChange}
+          />
+
           {/* //title highlight// */}
-          <div
+          {/* <div
             ref={titleInputRef}
             // style={{ direction: "ltr", unicodeBidi: "plaintext" }}
             className="asdasd"
@@ -116,22 +120,6 @@ export default function NewTask() {
             {task.title}
             {task.excessCharacters && (
               <span className="excess-characters">{task.excessCharacters}</span>
-            )}
-          </div>
-          {/* <div
-            className="phone-input w-100"
-            contentEditable="true"
-            onInput={handleTitleChange}
-          >
-            {task.title.length > 50 ? (
-              <>
-                <span>{task.title.slice(0, 50)}</span>
-                <span style={{ backgroundColor: "yellow" }}>
-                  {task.title.slice(50)}
-                </span>
-              </>
-            ) : (
-              task.title
             )}
           </div> */}
 
@@ -434,7 +422,7 @@ export default function NewTask() {
             style={{
               height: "80vh",
               overflowY: "scroll",
-              paddingBottom: "36px",
+              paddingBottom: "40px",
             }}
           >
             {step === 1 ? stepAbout() : step === 2 ? dateTime() : stepBudget()}
