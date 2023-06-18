@@ -10,7 +10,7 @@ import {
     EDIT_PROFILE,
     EDIT_PROFILE_SUCCESS,
     EDIT_PROFILE_FAIL,
-} from './actionsTypes';
+} from '../actions';
 
 
 export const loginToken = () => ({
