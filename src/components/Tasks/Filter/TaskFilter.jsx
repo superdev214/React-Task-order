@@ -31,7 +31,7 @@ export default function FilterComponent(props) {
       onClick={apply}
     >
       <div className="filter">
-        <p className="font-bold">To be done</p>
+        <div className="font-bold">To be done</div>
         {filters.map((item, index) => {
           return (
             <div key={index} className="py-10">

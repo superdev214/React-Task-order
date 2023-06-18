@@ -6,13 +6,13 @@ import { useState } from "react";
 
 function WalkthroughStep(props) {
 
-  const [phoneNum, setPhoneNum] = useState();
+  const [phoneNum, setPhoneNum] = useState("");
 
   const continueTo = () => {
     if(phoneNum !== "") {
       props.loginWithSMS(phoneNum)
     } 
-    if(props.phone_no !== "") {///Insert Verifycode condition.
+    if(phoneNum !== "") {///Insert Verifycode condition.
       props.onContinue()
     }
   }

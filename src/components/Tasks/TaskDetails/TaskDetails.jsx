@@ -369,9 +369,9 @@ export default function TaskDetails() {
               renderBtn={() => {
                 return (
                   <img
+                    className="mr-10"
                     src="./assets/images/icons/attach-icon.svg"
                     alt="logo big"
-                    className="mr-10"
                   />
                 );
               }}
@@ -379,7 +379,7 @@ export default function TaskDetails() {
             <button
               disabled={!question}
               className="d-block btn btn-info small position-absolute"
-              style={{ right: 0, bottom: 0 }}
+              style={{ right: 0, bottom: "-2px" }}
             >
               Send
             </button>
@@ -460,7 +460,7 @@ export default function TaskDetails() {
               </div>
             </div>
           </div>
-          <div className="scroll-area" style={{ height: "90vh" }}>
+          <div className="scroll-area">
             <>
               {step === 1
                 ? openView()

@@ -30,10 +30,10 @@
       display: inline-block;
       margin-right: 10px;
       border: 2px solid $blue;
+      background: $blue;
 
       &.checked {
-        background: $blue;
-        border: unset;
+        background: white;
       }
     }
   }
@@ -104,6 +104,12 @@
   }
 
   .form-control-group {
+    .phone-input {
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+      }
+    }
     .form-control-group-description {
       float: right;
       font-style: normal;
@@ -111,14 +117,11 @@
       font-size: 13px;
       line-height: 16px;
       /* identical to box height */
-
       text-align: right;
-
       color: #000000;
 
       &.danger {
         color: #d90000;
-
         b {
           color: #d90000;
         }
@@ -160,6 +163,11 @@
       font-family: "SF Pro Text Bold";
       text-align: center;
       @extend %text-caption;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
     }
   }
 
