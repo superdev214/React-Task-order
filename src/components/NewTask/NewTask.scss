@@ -37,17 +37,39 @@
       }
     }
   }
+  //words limit exceed label for title
+
   .word-count-title {
-    position: absolute;
+    position: relative;
     font-family: "SF Pro Text Regular";
     color: gray;
     right: 2px;
     bottom: 3px;
   }
+  //words limit after exceed the char above 50 for title
+  .text-red-title {
+    position: relative;
+    font-family: "SF Pro Text Regular";
+    color: red;
+    right: 2px;
+    bottom: 3px;
+  }
+
+  //words limit exceed label for description
+
   .word-count-description {
-    position: absolute;
+    position: relative;
     font-family: "SF Pro Text Regular";
     color: gray;
+    right: 2px;
+    bottom: 6px;
+  }
+
+  //words limit after exceed the char above 2000 for title
+  .text-red-description {
+    position: relative;
+    font-family: "SF Pro Text Regular";
+    color: red;
     right: 2px;
     bottom: 6px;
   }

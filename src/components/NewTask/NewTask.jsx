@@ -49,8 +49,10 @@ export default function NewTask() {
     if (
       task.title &&
       task.title.length > 10 &&
+      task.title.length < 51 &&
       task.description &&
-      task.description.length > 25
+      task.description.length > 25 &&
+      task.description.length < 2000
     )
       return true;
     return false;
@@ -84,12 +86,20 @@ export default function NewTask() {
             className="phone-input w-100"
             type="text"
             minLength={10}
-            maxLength={50}
+            // maxLength={50}
             value={task.title}
             onChange={handleTitleChange}
           />
           <div className="form-control-group-description">
-            {remainingTitleWords >= 0 && (
+            {(
+              <span
+                className={`word-count-title ${
+                  remainingTitleWords < 0 && "text-red-title"
+                }`}
+              >
+                {remainingTitleWords}
+              </span>
+            ) || (
               <span className="word-count-title">{remainingTitleWords}</span>
             )}
           </div>
@@ -105,12 +115,20 @@ export default function NewTask() {
           <textarea
             className="phone-input w-100"
             minLength={25}
-            maxLength={2000}
+            // maxLength={2000}
             value={task.description}
             onChange={handleDescriptionChange}
           />
           <div className="form-control-group-description">
-            {remainingDescriptionWords >= 0 && (
+            {(
+              <span
+                className={`word-count-description ${
+                  remainingDescriptionWords < 0 && "text-red-description"
+                }`}
+              >
+                {remainingDescriptionWords}
+              </span>
+            ) || (
               <span className="word-count-description">
                 {remainingDescriptionWords}
               </span>
