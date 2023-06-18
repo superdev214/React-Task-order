@@ -6,7 +6,8 @@ import {
     VERIFY_OTP_FAIL,
     EDIT_PROFILE_SUCCESS,
     EDIT_PROFILE_FAIL
-} from '../actions';
+} from './actionsTypes';
+
 
 const INIT_STATE = {
     phone_no:"",

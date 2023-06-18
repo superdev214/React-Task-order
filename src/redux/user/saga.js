@@ -2,7 +2,7 @@ import { all, call, fork, put, take, takeEvery} from "redux-saga/effects";
 import {
     LOGIN_WITH_SMS, VERIFY_OTP,
     EDIT_PROFILE,
-} from '../actions'
+} from './actionsTypes'
 
 import {
     loginWithSMSFail,
