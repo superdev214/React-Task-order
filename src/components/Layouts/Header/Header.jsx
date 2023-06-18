@@ -18,13 +18,11 @@ export default function Header() {
             >
               <img src="./assets/images/logo.svg" alt="logo" />
             </NavLink>
-            <button className="btn btn-bell" type="button">
-              <img
-                src="./assets/images/icons/bell.svg"
-                alt="bell"
-                onClick={() => setModal(true)}
-              />
-            </button>
+            <img
+              src="./assets/images/icons/bell.svg"
+              alt="bell"
+              onClick={() => setModal(true)}
+            />
           </div>
         </nav>
       </header>
