@@ -1,18 +1,18 @@
 import { NavLink } from "react-router-dom";
 import logoSvg from "../../../assets/images/logo.svg";
-import { loginWithSMS } from "../../../redux/actions"
+import { loginWithSMS } from "../../../redux/actions";
 import { connect } from 'react-redux';
 import { useState } from "react";
 
 function WalkthroughStep(props) {
 
-  const [phoneNum, setPhoneNum] = useState();
+  const [phoneNum, setPhoneNum] = useState("");
 
   const continueTo = () => {
     if(phoneNum !== "") {
       props.loginWithSMS(phoneNum)
     } 
-    if(props.phone_no !== "") {///Insert Verifycode condition.
+    if(phoneNum !== "") {///Insert Verifycode condition.
       props.onContinue()
     }
   }

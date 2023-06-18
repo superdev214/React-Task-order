@@ -1,35 +1,36 @@
 .uploader {
   position: relative;
+  margin-top: 3px;
+  width: 24px;
+  height: 24px;
 
-  .area {
-    .input {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      opacity: 0;
-      margin: 0 auto;
-      padding: 10px;
-    }
+  .file-upload-input {
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+    padding: 0px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.area-img {
+  position: relative;
+  width: 33.3%;
+  height: 90px;
+  padding: 0 5px;
+  margin-bottom: 10px;
+
+  img {
+    border-radius: 3px;
+    object-fit: cover;
+    width: 25px;
   }
 
-  .area-img {
-    position: relative;
-    width: 33.3%;
-    height: 90px;
-    padding: 5px;
-    margin-top: 10px;
-
-    img {
-      border-radius: 3px;
-      object-fit: cover;
-      width: 25px;
-    }
-
-    .close {
-      top: 7px;
-      right: 7px;
-    }
+  .close {
+    top: 7px;
+    right: 7px;
   }
 }
 

@@ -82,6 +82,10 @@
         &::placeholder {
           color: #435863;
         }
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+        }
       }
     }
 
@@ -115,6 +119,11 @@
       font-family: "SF Pro Text Bold";
       text-align: center;
       @extend %text-caption;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
     }
   }
 
