@@ -11,6 +11,7 @@ import ModalComponent from "../../shared/modal/ModalComponent";
 import TickIcon from "../../../assets/images/Tick.svg";
 import "./TaskDetails.scss";
 import "../../../assets/style/components/task-tab-bar.scss";
+import LocationSelection from "../../NewTask/LocationSelection/LocationSelection";
 
 const task = {
   images: [
@@ -40,6 +41,8 @@ const offers = [
 
 export default function TaskDetails() {
   const [step, setStep] = useState(1);
+  const [address, setAddress] = useState("");
+  const [latlng, setLatlng] = useState({ lat: 0, lng: 0 });
   const [question, setQuestion] = useState("");
   const [makeOfferModal, setMakeOfferModal] = useState(false);
   const [increasePriceModal, setIncreasePriceModal] = useState(false);
@@ -102,7 +105,9 @@ export default function TaskDetails() {
               <div className="ml-20 mr-20">
                 <div className="mb-10 font-bold size-15">LOCATION</div>
                 <span className="size-15">
-                  Qaisar Bagh 226001, Lucknow, Uttar Pradesh, India{" "}
+                  {address
+                    ? address
+                    : "Qaisar Bagh 226001, Lucknow, Uttar Pradesh, India"}
                 </span>
               </div>
             </div>
@@ -414,11 +419,17 @@ export default function TaskDetails() {
           btnStyle="btn-gray text-blue"
           noPadding
           onClick={() => {}}
+          onGetValue={(latlng) => setLatlng(latlng)}
           btnCaption="Get directions"
           title="Task location"
           close={() => setLocationModal(false)}
         >
-          <MapComponent onChange={(text) => {}} />
+          <LocationSelection
+            onChange={(address) => setAddress(address)}
+            onGetValue={(latlng) => setLatlng(latlng)}
+            close={() => setLocationModal(false)}
+          />
+          <MapComponent onChange={(text) => setAddress(text)} />
         </ModalComponent>
       )}
       <>
