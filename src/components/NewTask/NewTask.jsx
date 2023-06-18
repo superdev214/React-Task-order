@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import TasksOffer from "./TasksOffer/TasksOffer";
 import LocationSelection from "./LocationSelection/LocationSelection";
@@ -19,6 +19,7 @@ export default function NewTask() {
     haveCertainTime: true,
     certainTime: "Morning",
   });
+  const titleInputRef = useRef();
 
   //title input handler
   const handleTitleChange = (e) => {
@@ -70,6 +71,21 @@ export default function NewTask() {
     setHaveMust(temp);
   };
 
+  useEffect(() => {
+    const inputElement = titleInputRef.current;
+
+    if (inputElement) {
+      const value = inputElement.value;
+      const excessCharacters = value.length - 50;
+
+      if (excessCharacters > 0) {
+        inputElement.classList.add("highlighted-text");
+      } else {
+        inputElement.classList.remove("highlighted-text");
+      }
+    }
+  }, [task.title]);
+
   const stepAbout = () => {
     return (
       <>
@@ -83,12 +99,15 @@ export default function NewTask() {
           </div>
           <input
             style={{ marginBottom: "5px" }}
-            className="phone-input w-100"
+            className={`phone-input w-100 ${
+              task.title.length > 50 ? "highlighted-text" : ""
+            }`}
             type="text"
             minLength={10}
             // maxLength={50}
             value={task.title}
             onChange={handleTitleChange}
+            ref={titleInputRef}
           />
           <div className="form-control-group-description">
             {(
@@ -306,7 +325,7 @@ export default function NewTask() {
   };
 
   const isBudgetValid = () => {
-    return task.budget >= 15 && task.budget <= 2000;
+    return task.budget >= 15 && task.budget <= 20000;
   };
 
   const handleSubmit = () => {
