@@ -29,7 +29,7 @@ const allTasks = [
   },
 ];
 
-export default function SearchPage(query) {
+export default function SearchPage({ query }) {
   const [filter, setFilter] = useState("");
   const [filterModal, setFilterModal] = useState(false);
   const [locationModal, setLocationModal] = useState(false);
