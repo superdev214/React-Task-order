@@ -14,8 +14,6 @@ import {
 } from './actions';
 
 import axios from 'axios';
-import { redirect } from "react-router";
-import { async } from "q";
 
 const server_url = "http://8.213.23.19/api"
 

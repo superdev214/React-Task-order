@@ -26,10 +26,16 @@ export const NOTIFICATIONS  = "NOTIFICATIONS";
 export const NOTIFICATIONS_SETTINGS_SHOW = "NOTIFICATIONS_SETTINGS_SHOW";
 export const CANCEL_REQUEST_FOR_DELETE_ACCOUNT = "CANCEL_REQUEST_FOR_DELETE_ACCOUNT";
 
+/*POST API CONST*/
+
+export const POST_TASK = "POST_TASK";
+export const POST_TASK_SUCCESS = "POST_TASK_SUCCESS";
+export const POST_TASK_FAIL = "POST_TASK_FAIL";
+
 
 
 export * from './user/actions';
 export * from './category/actions';
-export * from './default/actions';
+export * from './Post/actions';
 export * from './task/actions';
 export * from './payment/actions';
