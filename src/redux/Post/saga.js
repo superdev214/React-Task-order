@@ -1,4 +1,4 @@
-import { all, call, fork, put, take, takeEvery } from "redux-saga/effects";
+import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 import {
     POST_TASK,
 } from "../actions";
@@ -10,10 +10,10 @@ import {
 
 import axios from 'axios';
 
-const server_url = "http://8.213.23.19"
+const server_url = "http://8.213.23.19/api"
 
 export function* watchPostTask() {
-    takeEvery(POST_TASK, postTaskFunc);
+    yield takeEvery(POST_TASK, postTaskFunc);
 }
 
 const postTaskAsync = async ({payload}) => {
@@ -35,5 +35,5 @@ function* postTaskFunc({payload}) {
 export default function* rootSaga() {
     yield all([
         fork(watchPostTask),
-    ])
+    ]);
 }

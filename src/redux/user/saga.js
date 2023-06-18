@@ -47,12 +47,12 @@ export function* watchVerifyOtp() {
 }
 
 const verifyOtpAsync = async (payload) => {
-    return axios.post(`${server_url}/user/verify-otp`, {payload})
+    return axios.post(`${server_url}/user/verify-otp`, payload.payload)
     .then((response) => response)
     .catch((error) => error)
 }
 
-function*  verifyOtpFunc({payload}) {
+function*  verifyOtpFunc(payload) {
     try{
         const response = yield call(verifyOtpAsync, payload);
         yield put(verifyOtpSuccess(payload.phone_no))
@@ -90,6 +90,6 @@ export default function* rootSaga() {
     yield all([
         fork(watchLoginSMS),
         fork(watchVerifyOtp),
-        fork(watchEditProfile)
-,    ]);
+        fork(watchEditProfile),
+    ]);
 }

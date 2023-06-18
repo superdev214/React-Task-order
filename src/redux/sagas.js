@@ -9,7 +9,6 @@ import categorySagas from './category/saga';
 export default function* rootSaga() {
     yield all ([
         userSagas(),
-        // categorySagas(),
         postSagas(),
         // taskSagas(),
         // paymentSagas(),

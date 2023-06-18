@@ -4,9 +4,10 @@ import {
     POST_TASK_FAIL,
 } from "../actions";
 
-export const postTask =  ({task}) => ({
+export const postTask =  (task) => (
+{
     type: POST_TASK,
-    payload:task,
+    payload: task,
 });
 
 export const postTaskSuccess = ({message}) => ({

@@ -308,8 +308,7 @@ function NewTask(props) {
 
   const handleSubmit = () => {
     if (isBudgetValid()) {
-      console.log("success==============>")
-      props.postTask({task:task, address:address})
+      props.postTask({task:task, address: address})
     } else {
       // Show an error message or prevent task submission
     }
