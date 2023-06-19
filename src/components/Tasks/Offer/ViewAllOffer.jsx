@@ -180,9 +180,10 @@ export default function ViewAllOffer({ close }) {
         bordered
         noPadding
         append={renderBackBtn}
+        // hideAction={step}
         close={() => close()}
       >
-        <div>{detailsView()}</div>
+        <div className="scroll-area">{detailsView()}</div>
       </ModalComponent>
     </>
   );
