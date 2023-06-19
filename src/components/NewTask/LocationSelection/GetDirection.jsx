@@ -65,16 +65,14 @@ const GetDirection = ({ close, onChange, onGetValue }) => {
 
   return (
     <div className="modal-area">
-      <div className="py-md d-flex justify-content-between p-3 font-bold">
+      <div className="top-bar d-flex align-items-center justify-content-center">
         <button
           onClick={close}
           className="position-absolute bg-transparent border-0 close-btn"
         >
           <img src="./assets/images/icons/close.svg" alt="close" />
         </button>
-        <p style={{ margin: "3px auto" }} className="font-bold">
-          Location
-        </p>
+        <p className="nav-title">Location</p>
       </div>
       <div>
         <div
