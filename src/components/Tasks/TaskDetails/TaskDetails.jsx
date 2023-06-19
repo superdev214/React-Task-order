@@ -12,7 +12,7 @@ import TickIcon from "../../../assets/images/Tick.svg";
 import "./TaskDetails.scss";
 import "../../../assets/style/components/task-tab-bar.scss";
 import LocationSelection from "../../NewTask/LocationSelection/LocationSelection";
-
+import GetDirection from "../../NewTask/LocationSelection/GetDirection";
 const task = {
   images: [
     { path: "person/1" },
@@ -424,7 +424,12 @@ export default function TaskDetails() {
           title="Task location"
           close={() => setLocationModal(false)}
         >
-          <LocationSelection
+          {/* <LocationSelection
+            onChange={(address) => setAddress(address)}
+            onGetValue={(latlng) => setLatlng(latlng)}
+            close={() => setLocationModal(false)}
+          /> */}
+          <GetDirection
             onChange={(address) => setAddress(address)}
             onGetValue={(latlng) => setLatlng(latlng)}
             close={() => setLocationModal(false)}
