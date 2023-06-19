@@ -1,0 +1,40 @@
+.make-offer {
+  ul {
+    padding: 0;
+
+    li {
+      display: block;
+      background: #f5f7fa;
+      border-radius: 3px;
+      margin-top: 20px;
+      padding: 11px 20px;
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+    }
+  }
+}
+
+//words limit exceed label for description
+
+.text-red-description {
+  position: relative;
+  font-family: "SF Pro Text Regular";
+  font-size: 13px;
+  color: red;
+  right: 2px;
+  bottom: 11px;
+}
+
+.word-count-description {
+  position: relative;
+  font-family: "SF Pro Text Regular";
+  color: gray;
+  font-size: 13px;
+  right: 2px;
+  bottom: 11px;
+}
+.remaining-letter-description {
+  font-family: "SF Pro Text Regular";
+  text-align: end;
+}

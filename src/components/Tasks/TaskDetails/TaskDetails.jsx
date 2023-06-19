@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import MakeOffer from "../Offer/MakeOffer";
+import ViewAllOffer from "../Offer/ViewAllOffer";
 import PaymentReleaseModal from "../../Payment/PaymentRelease/PaymentReleaseModal";
 import MakePaymentModal from "../../Payment/MakePayment/MakePayment";
 import CancellationRequest from "../CancellationRequest/CancellationRequest";
@@ -12,7 +13,7 @@ import TickIcon from "../../../assets/images/Tick.svg";
 import "./TaskDetails.scss";
 import "../../../assets/style/components/task-tab-bar.scss";
 import LocationSelection from "../../NewTask/LocationSelection/LocationSelection";
-
+import GetDirection from "../../NewTask/LocationSelection/GetDirection";
 const task = {
   images: [
     { path: "person/1" },
@@ -51,6 +52,7 @@ export default function TaskDetails() {
   const [makePaymentModal, setMakePaymentModal] = useState(false);
   const [paymentReleaseModal, setPaymentReleaseModal] = useState(false);
   const [locationModal, setLocationModal] = useState(false);
+  const [viewAllOfferModal, setviewAllOfferModal] = useState(false);
 
   const actions = [
     {
@@ -335,6 +337,7 @@ export default function TaskDetails() {
             <button
               className="d-block btn btn-gray btn-w-350"
               style={{ color: "#42ADE2" }}
+              onClick={() => setviewAllOfferModal(true)}
             >
               View all offers
             </button>
@@ -394,6 +397,9 @@ export default function TaskDetails() {
   return (
     <>
       {makeOfferModal && <MakeOffer close={() => setMakeOfferModal(false)} />}
+      {viewAllOfferModal && (
+        <ViewAllOffer close={() => setviewAllOfferModal(false)} />
+      )}
       {makePaymentModal && (
         <MakePaymentModal close={() => setMakePaymentModal(false)} />
       )}
@@ -419,7 +425,12 @@ export default function TaskDetails() {
           title="Task location"
           close={() => setLocationModal(false)}
         >
-          <LocationSelection
+          {/* <LocationSelection
+            onChange={(address) => setAddress(address)}
+            onGetValue={(latlng) => setLatlng(latlng)}
+            close={() => setLocationModal(false)}
+          /> */}
+          <GetDirection
             onChange={(address) => setAddress(address)}
             onGetValue={(latlng) => setLatlng(latlng)}
             close={() => setLocationModal(false)}
