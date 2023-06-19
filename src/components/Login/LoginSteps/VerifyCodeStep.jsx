@@ -1,30 +1,53 @@
-import { useState } from "react";
-import { connect } from 'react-redux';
-import { verifyOtp } from "../../../redux/user/actions"
+import { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { verifyOtp } from "../../../redux/user/actions";
+import { loginWithSMS } from "../../../redux/user/actions";
 
 function VerifyCodeStep(props) {
-  
-  const [firstNum, setFirst] = useState();
-  const [secondNum, setSecond] = useState();
-  const [thirdNum, setThird] = useState();
-  const [forthNum, setForth] = useState()
+  const [firstNum, setFirst] = useState("");
+  const [secondNum, setSecond] = useState("");
+  const [thirdNum, setThird] = useState("");
+  const [forthNum, setForth] = useState("");
+  const [timer, setTimer] = useState(60);
+  const [showResend, setShowResend] = useState(false);
+
+  useEffect(() => {
+    let interval = null;
+    if (timer > 0) {
+      interval = setInterval(() => {
+        setTimer((prevTimer) => prevTimer - 1);
+      }, 1000);
+    } else {
+      setShowResend(true);
+    }
+    return () => {
+      clearInterval(interval);
+    };
+  }, [timer]);
 
   const onContinue = () => {
-    const verifyCode = firstNum*1000+secondNum*100+thirdNum*10 + forthNum*1;
-    if(firstNum !== null | secondNum !== null | thirdNum !== null | forthNum !== null) {//change, props.verifyCode === verifyCode
-      props.verifyOtp({phone_no:props.phone_no, otp:verifyCode})
+    const verifyCode =
+      firstNum * 1000 + secondNum * 100 + thirdNum * 10 + forthNum * 1;
+    if (verifyCode !== 0) {
+      props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
+      props.onContinue();
     }
-    if(verifyCode !== 0) { /// chanage code. props.otp != null
-      props.onContinue()
-    }
-  }
+  };
+
+  const onResend = () => {
+    setTimer(60);
+    setShowResend(false);
+    props.loginWithSMS(props.phone_no);
+    // Add logic to resend the code
+  };
+
+  const isContinueDisabled = firstNum === "" || secondNum === "" || thirdNum === "" || forthNum === "";
 
   return (
     <section id="verify-code">
       <div style={{ padding: "13px 0", borderBottom: "2px solid #F5F7FA" }}>
         <div className="container">
           <div className="d-flex align-items-center justify-content-center">
-            {/* onclick="getLogin()" */}
             <button className="position-absolute bg-transparent border-0 close-btn">
               <img
                 src="./assets/images/icons/close.svg"
@@ -48,7 +71,9 @@ function VerifyCodeStep(props) {
         <p style={{ lineHeight: "22px", paddingTop: "45px" }}>
           Please enter the SMS code sent to
           <br />
-          <span style={{ fontFamily: "SF Pro Text Bold" }}>+966123456789</span>
+          <span style={{ fontFamily: "SF Pro Text Bold" }}>
+            {props.phone_no}
+          </span>
         </p>
         <div className="d-flex align-items-center justify-content-between area-inputs">
           <input
@@ -97,33 +122,38 @@ function VerifyCodeStep(props) {
           />
         </div>
         <p>
-          Time remining:
-          <span style={{ fontFamily: "SF Pro Text Bold" }}>0m 60s</span>
+          Time remaining:{" "}
+          <span style={{ fontFamily: "SF Pro Text Bold" }}>{timer}s</span>
         </p>
       </div>
       <div className="fixed-bottom">
-        <button className="resend-code bottom-txt bg-transparent">
-          Didn't recieve the code?
-        </button>
-        <button
-          className="d-block btn btn-green btn-w-350"
-          onClick={onContinue}
-        >
-          Continue
-        </button>
+        {showResend && (
+          <button className="d-block btn btn-green btn-w-350" onClick={onResend}>
+            Resend code
+          </button>
+        )}
+        {!showResend && (
+          <button
+            className="d-block btn btn-green btn-w-350"
+            onClick={onContinue}
+            disabled={isContinueDisabled}
+          >
+             Continue
+          </button>
+        )}
       </div>
     </section>
   );
 }
 
-
-const mapStateToProps = ({ userReducer}) => {
-  const {phone_no, otp, error, verifyCode} = userReducer;
-  return {phone_no, error, verifyCode, otp};
+const mapStateToProps = ({ userReducer }) => {
+  const { phone_no, otp, error, verifyCode } = userReducer;
+  return { phone_no, error, verifyCode, otp };
 };
 
 const mapDispatchToProps = {
   verifyOtp,
-}
+  loginWithSMS
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(VerifyCodeStep);
