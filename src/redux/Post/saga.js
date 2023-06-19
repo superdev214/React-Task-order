@@ -11,6 +11,7 @@ import {
     getAllCategoryFail,
     getAllCategorySuccess,
     storeCategoryIdSuccess,
+    storeCategoryId
 } from "./actions"
 
 import axios from 'axios';
@@ -62,7 +63,7 @@ export function* watchCategoryID() {
 }
 
 function* storeCategoryIdFunc({payload}) {
-    yield put(storeCategoryIdSuccess(payload))
+    yield put(storeCategoryId(payload))
 }
 
 export default function* rootSaga() {
