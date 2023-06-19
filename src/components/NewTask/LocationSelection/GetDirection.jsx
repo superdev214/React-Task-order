@@ -85,8 +85,7 @@ const GetDirection = ({ close, onChange, onGetValue }) => {
       </div>
       <div className="fixed-bottom">
         <button
-          className="d-block btn btn-gray btn-w-350"
-          style={{ color: "#42ADE2", justifyContent: "center" }}
+          className="d-flex align-items-center justify-content-center btn btn-gray text-blue btn-w-350"
           onClick={onContinue}
         >
           <>

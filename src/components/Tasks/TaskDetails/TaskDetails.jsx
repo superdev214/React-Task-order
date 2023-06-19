@@ -9,11 +9,11 @@ import IncreasePrice from "../IncreasePrice/IncreasePrice";
 import Uploader from "../../shared/uploader/Uploader";
 import MapComponent from "../../shared/map/MapComponent";
 import ModalComponent from "../../shared/modal/ModalComponent";
+import GetDirection from "../../NewTask/LocationSelection/GetDirection";
 import TickIcon from "../../../assets/images/Tick.svg";
 import "./TaskDetails.scss";
 import "../../../assets/style/components/task-tab-bar.scss";
-import LocationSelection from "../../NewTask/LocationSelection/LocationSelection";
-import GetDirection from "../../NewTask/LocationSelection/GetDirection";
+
 const task = {
   images: [
     { path: "person/1" },

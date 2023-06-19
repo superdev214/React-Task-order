@@ -1,7 +1,5 @@
-import { useState } from "react";
 import ModalComponent from "../../shared/modal/ModalComponent";
-
-let titles = "All offers";
+import "./ViewAllOffer.scss";
 
 const offers = [
   {
@@ -10,8 +8,6 @@ const offers = [
 ];
 
 export default function ViewAllOffer({ close }) {
-  const [description, setDescription] = useState("");
-  const [step, setStep] = useState(1);
   const gallery = (images) => {
     return (
       <div className="d-flex justify-content-between gallery flex-wrap">
@@ -168,7 +164,7 @@ export default function ViewAllOffer({ close }) {
         style={{ left: "20px" }}
         onClick={() => close()}
       >
-        <img src="./assets/images/icons/arrow-back.svg" alt="close" />
+        <img src="./assets/images/icons/arrow-back.svg" alt="arrow back" />
       </button>
     );
   };
@@ -176,14 +172,14 @@ export default function ViewAllOffer({ close }) {
   return (
     <>
       <ModalComponent
-        title={titles}
+        title="All offers"
         bordered
         noPadding
         append={renderBackBtn}
-        // hideAction={step}
+        hideAction
         close={() => close()}
       >
-        <div className="scroll-area">{detailsView()}</div>
+        <div className="scroll-area all-offers">{detailsView()}</div>
       </ModalComponent>
     </>
   );

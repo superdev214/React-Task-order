@@ -6,7 +6,7 @@ const ModalComponent = (props) => {
           props.bordered && "border-bottom"
         }`}
       >
-        {props.append && !props.hideAction && props.append()}
+        {props.append && props.append()}
         <p className="nav-title mx-auto">{props.title}</p>
         {!props.hideAction && (
           <button
