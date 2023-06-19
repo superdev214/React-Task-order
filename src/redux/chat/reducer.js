@@ -35,7 +35,7 @@ export default function chat(state = initalState, action) {
         return {
           ...state,
           loading: false,
-          text: action.text
+          text: action.payload
         }
       
     default:

@@ -13,6 +13,7 @@ export default function MessagesPage() {
     dispatch(getChat());
   }, [dispatch])
 
+
   return (
     <>
     {/* {
@@ -25,9 +26,9 @@ export default function MessagesPage() {
       <div className={`task-cards scroll-area`}>
         {chats?.map((message, index) => {
           return (
-            <NavLink key={index} to={"/message"}>
+            <NavLink key={index} to={`/message?messageData=${encodeURIComponent(JSON.stringify(message))}`}>
               <div
-                className={`d-flex pa-20 justify-content-between ${
+                className={`d-flex pa-20 justify-content-between border ${
                   !message.seen ? "chat-grey" : ""
                 }`}
               >
@@ -37,7 +38,7 @@ export default function MessagesPage() {
                     alt=""
                   />
                 </div>
-                <div className="ml-10 mr-20">
+                <div className="ml-10 mr-20 ">
                   <span className="font-bold">{message.task_title}</span>
                   <p className="mt-10">{message.description}</p>
                 </div>
