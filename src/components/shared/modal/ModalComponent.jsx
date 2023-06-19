@@ -17,7 +17,7 @@ const ModalComponent = (props) => {
           </button>
         )}
       </div>
-      <div className={`${!props.noPadding ? "p-3  scroll-area" : ""}`}>
+      <div className={`${!props.noPadding ? "px-20 scroll-area" : ""}`}>
         {props.children}
       </div>
       {props.btnCaption && (

@@ -1,4 +1,7 @@
 .TaskDetails {
+  .scroll-area {
+    height: calc(100vh - 115px);
+  }
   .title {
     font-size: 27px;
   }

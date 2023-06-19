@@ -87,8 +87,8 @@ export default function SearchPage({ query }) {
           <MapComponent
             style={{
               width: "100%",
-              height: "75vh",
-              top: "95px",
+              height: "calc(100vh - 183px)",
+              top: "100px",
               position: "absolute",
             }}
             onChange={(text) => setAddress(text)}
