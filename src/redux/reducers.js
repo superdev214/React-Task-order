@@ -4,6 +4,7 @@ import postApi from './Post/reducer';
 import payment from './payment/reducer';
 import task from './task/reducer';
 import category from './category/reducer';
+import chat from './chat/reducer';
 
 const reducers = combineReducers({
     userReducer,
@@ -11,6 +12,7 @@ const reducers = combineReducers({
     payment, 
     task,
     category,
+    chat
 });
 
 export default reducers;

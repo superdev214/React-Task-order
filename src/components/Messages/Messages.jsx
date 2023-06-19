@@ -1,51 +1,34 @@
 import { NavLink } from "react-router-dom";
 import SecondaryHeader from "../Layouts/Header/SecondaryHeader/SecondaryHeader";
-
-let messages = [
-  {
-    seen: true,
-    title: "Gaurav C.",
-    createdAt: "8s",
-    description:
-      "Hi, i’m happy to help today, i have the tools and experience. Please check my portfolio for peace of mind. ",
-    image: "fly-dark",
-  },
-  {
-    seen: false,
-    title: "Gaurav C.",
-    createdAt: "10m",
-    description:
-      "Hi, i’m happy to help today, i have the tools and experience. Please check my portfolio for peace of mind. ",
-    image: "fly-dark",
-  },
-  {
-    seen: true,
-    title: "Gaurav C.",
-    createdAt: "Mon",
-    description:
-      "Hi, i’m happy to help today, i have the tools and experience. Please check my portfolio for peace of mind. ",
-    image: "fly-dark",
-  },
-  {
-    seen: true,
-    title: "Gaurav C.",
-    createdAt: "Mon",
-    description:
-      "Hi, i’m happy to help today, i have the tools and experience. Please check my portfolio for peace of mind. ",
-    image: "fly-dark",
-  },
-];
+import { useEffect } from "react"; 
+import { useDispatch, useSelector } from 'react-redux';
+import { getChat } from "../../redux/chat/actions";
 
 export default function MessagesPage() {
+  const dispatch = useDispatch();
+  const chats = useSelector(state => state.chat.chats)
+  const loading = useSelector(state => state.chat.loading)
+  const error = useSelector(state => state.chat.error)
+  useEffect(() => {
+    dispatch(getChat());
+  }, [dispatch])
+
+
   return (
+    <>
+    {/* {
+        chats.length > 0 && chats.map(chat => (
+          <p>{chat.id}</p>
+        ))
+      } */}
     <div className="task-page">
       <SecondaryHeader title="Messages" />
       <div className={`task-cards scroll-area`}>
-        {messages.map((message, index) => {
+        {chats?.map((message, index) => {
           return (
-            <NavLink key={index} to={"/message"}>
+            <NavLink key={index} to={`/message?messageData=${encodeURIComponent(JSON.stringify(message))}`}>
               <div
-                className={`d-flex pa-20 justify-content-between ${
+                className={`d-flex pa-20 justify-content-between border ${
                   !message.seen ? "chat-grey" : ""
                 }`}
               >
@@ -55,8 +38,8 @@ export default function MessagesPage() {
                     alt=""
                   />
                 </div>
-                <div className="ml-10 mr-20">
-                  <span className="font-bold">{message.title}</span>
+                <div className="ml-10 mr-20 ">
+                  <span className="font-bold">{message.task_title}</span>
                   <p className="mt-10">{message.description}</p>
                 </div>
                 <div className="d-flex flex-column justify-content-between">
@@ -79,8 +62,9 @@ export default function MessagesPage() {
               </div>
             </NavLink>
           );
-        })}
-      </div>
+        })}      </div>
     </div>
+    
+    </>
   );
 }

@@ -12,6 +12,7 @@ import {
     EDIT_PROFILE_FAIL,
 } from '../actions';
 
+
 export const loginToken = () => ({
 
 })

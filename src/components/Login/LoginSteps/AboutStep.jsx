@@ -1,6 +1,6 @@
 import { useState } from "react";
 import LocationSelection from "../../NewTask/LocationSelection/LocationSelection";
-import { editProfile } from "../../../redux/actions";
+import { editProfile } from "../../../redux/user/actions";
 import { connect } from "react-redux";
 
 function AboutStep(props) {
