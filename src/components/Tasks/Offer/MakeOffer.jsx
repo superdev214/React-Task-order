@@ -6,8 +6,12 @@ import "./MakeOffer.scss";
 
 export default function MakeOffer(props) {
   const [step, setStep] = useState(1);
+  const [task, setTask] = useState({
+    type: "InPerson",
+    description: "",
+    title: "",
+  });
   const [useTemplate, setUseTemplate] = useState(false);
-  const [description, setDescription] = useState("");
   const [updateNow, setUpdateNow] = useState(true);
   const [mustHavesItems, setMustHavesItems] = useState([
     { label: "Ladder", isSelected: true },
@@ -38,12 +42,21 @@ export default function MakeOffer(props) {
     setStep(step + 1);
   };
 
-  const handleTextAreaChange = (event) => {
-    const inputText = event.target.value;
-    if (inputText.length <= 2000) {
-      setDescription(inputText);
-    }
+  // const handleTextAreaChange = (event) => {
+  //   const inputText = event.target.value;
+  //   if (inputText.length <= 2000) {
+  //     setDescription(inputText);
+  //   }
+  // };
+  const handleDescriptionChange = (e) => {
+    const value = e.target.value;
+    setTask({ ...task, description: value });
   };
+
+  const getDescriptionCharacterCount = () => {
+    return task.description.length;
+  };
+  const remainingDescriptionWords = 2000 - getDescriptionCharacterCount();
 
   const onSelect = (index) => {
     let temp = mustHavesItems;
@@ -103,11 +116,24 @@ export default function MakeOffer(props) {
             <textarea
               className="phone-input w-100"
               minLength={15}
-              maxLength={2000}
-              value={description}
-              // onChange={(e) => setDescription(e.target.value)}
-              onChange={handleTextAreaChange}
+              // maxLength={2000}
+              value={task.description}
+              onChange={handleDescriptionChange}
             />
+            <div
+              className="remaining-letter-description"
+              style={{ textAlign: "end" }}
+            >
+              {remainingDescriptionWords < 0 ? (
+                <span className="text-red-description">
+                  {remainingDescriptionWords}
+                </span>
+              ) : (
+                <span className="word-count-description">
+                  {remainingDescriptionWords}
+                </span>
+              )}
+            </div>
           </div>
           <div className="my-20">
             <ToggleSwitch

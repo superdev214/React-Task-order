@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import TasksOffer from "./TasksOffer/TasksOffer";
 import LocationSelection from "./LocationSelection/LocationSelection";
@@ -23,16 +23,27 @@ export default function NewTask() {
   const titleInputRef = useRef();
 
   //title input handler
-  // const handleTitleChange = (e) => {
-  //   const value = e.target.value;
-  //   setTask({ ...task, title: value });
-  // };
-
-  //
-  const handleTitleChange = () => {
-    const value = titleInputRef.current.textContent;
+  const handleTitleChange = (e) => {
+    const value = e.target.value;
     setTask({ ...task, title: value });
   };
+
+  // const handleTitleChange = () => {
+  //   const element = titleInputRef.current;
+  //   const maxLength = 50;
+  //   let text = element.textContent;
+
+  //   if (text.length > maxLength) {
+  //     const overText = text.substr(maxLength);
+  //     text = text.substr(0, maxLength);
+  //     element.innerHTML = `${text}<span class="highlight">${overText}</span>`;
+  //   } else {
+  //     element.innerHTML = text;
+  //   }
+
+  //   const value = element.textContent.trim();
+  //   setTask({ ...task, title: value });
+  // };
 
   //Description input handler
 
@@ -89,14 +100,29 @@ export default function NewTask() {
               Minimum 10 characters
             </p>
           </div>
-          <div
-            ref={titleInputRef}
-            style={{ marginBottom: "5px" }}
+          <input
             className="phone-input w-100"
+            type="text"
+            minLength={10}
+            value={task.title}
+            onChange={handleTitleChange}
+          />
+
+          {/* //title highlight// */}
+          {/* <div
+            ref={titleInputRef}
+            // style={{ direction: "ltr", unicodeBidi: "plaintext" }}
+            className="asdasd"
             contentEditable="true"
             onInput={handleTitleChange}
             spellCheck={false}
-          ></div>
+          >
+            {task.title}
+            {task.excessCharacters && (
+              <span className="excess-characters">{task.excessCharacters}</span>
+            )}
+          </div> */}
+
           <div className="form-control-group-description">
             {(
               <span
@@ -306,7 +332,6 @@ export default function NewTask() {
     );
   };
 
-  //
   const handleBudgetChange = (e) => {
     const value = parseFloat(e.target.value);
     setTask({ ...task, budget: value });
@@ -323,7 +348,7 @@ export default function NewTask() {
       // Show an error message or prevent task submission
     }
   };
-  //
+
   const stepBudget = () => {
     return (
       <>
@@ -397,7 +422,7 @@ export default function NewTask() {
             style={{
               height: "80vh",
               overflowY: "scroll",
-              paddingBottom: "36px",
+              paddingBottom: "40px",
             }}
           >
             {step === 1 ? stepAbout() : step === 2 ? dateTime() : stepBudget()}
