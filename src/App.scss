@@ -1,0 +1,55 @@
+@keyframes zoomAnimation {
+    0% { transform: scale(1); }
+    15% { transform: scale(1); }
+    30% { transform: scale(0.35); }
+    50% { transform: scale(0.38); }
+    80% { transform: scale(0.38); }
+    90% { transform: scale(0.35);}
+    92% { opacity: .8; }
+    94% { opacity: .6; }
+    96% { opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
+  }
+  
+  #earth-img {
+    overflow: hidden;
+    position: absolute;
+    top: -7%;
+    height: 113%;
+    animation: zoomAnimation 3s infinite;
+  }
+  
+  .earth-flash {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .vector-flash {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 42%;
+    left: 33%;
+  }
+  
+  @media (min-width: 601px) and (max-width: 1200px) {
+    .vector-flash {
+      left: 45%;
+    }
+  }
+  
+  @media (min-width: 1201px) and (max-width: 1800px) {
+    .vector-flash {
+      left: 45%;
+    }
+  }
+
+  @media (min-width: 1801px) and (max-width: 2400px) {
+    .vector-flash {
+      left: 46%;
+    }
+  }
+
+  #vector-img {
+    position: absolute;
+  }
