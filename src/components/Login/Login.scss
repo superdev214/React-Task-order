@@ -1,4 +1,4 @@
-@import "../../assets/style/utils/Variables.scss";
+@import "../../assets/style/utils/variables.scss";
 @import "../../assets/style/utils/placeholders.scss";
 @import "../../assets/style/utils/mixins.scss";
 
@@ -10,11 +10,6 @@
 }
 
 #login-main {
-  .onboard-img {
-    max-width: 90%;
-    padding-top: 10px;
-  }
-
   .slide-content {
     position: absolute;
     flex-direction: column;
@@ -30,15 +25,14 @@
   }
 
   .onboard-content {
-    padding-top: 20px;
     &__heading {
-      margin-bottom: 16px;
+      margin-bottom: 20px;
       font-family: "SF Pro Text Bold";
       @extend %text-caption;
     }
 
     &__txt {
-      @extend %text-body2;
+      @extend %text-body1;
     }
   }
 
@@ -82,6 +76,10 @@
         &::placeholder {
           color: #435863;
         }
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+          -webkit-appearance: none;
+        }
       }
     }
 
@@ -115,6 +113,11 @@
       font-family: "SF Pro Text Bold";
       text-align: center;
       @extend %text-caption;
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
     }
   }
 

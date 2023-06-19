@@ -31,7 +31,7 @@ export default function FilterComponent(props) {
       onClick={apply}
     >
       <div className="filter">
-        <p className="font-bold">To be done</p>
+        <p className="font-bold mt-20">To be done</p>
         {filters.map((item, index) => {
           return (
             <div key={index} className="py-10">
@@ -65,7 +65,7 @@ export default function FilterComponent(props) {
         <div style={{ marginTop: "40px" }}>
           <div className="d-flex justify-content-between mb-20">
             <p className="font-bold">Location</p>
-            <span>{radiusValue} km</span>
+            <span className="size-15">{radiusValue} km</span>
           </div>
           <ReactSlider
             marks={[5, 10, 25, 50, 100]}
@@ -81,7 +81,7 @@ export default function FilterComponent(props) {
         <div style={{ marginTop: "60px" }} className="pb-20">
           <div className="d-flex justify-content-between mb-20">
             <p className="font-bold">Location</p>
-            <span>
+            <span className="size-15">
               SR {priceValue.min} - {priceValue.max}
             </span>
           </div>

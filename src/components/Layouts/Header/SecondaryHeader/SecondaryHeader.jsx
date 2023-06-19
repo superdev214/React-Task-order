@@ -18,7 +18,7 @@ export default function SecondaryHeader(props) {
             props.hideSearch ? "border-bottom short" : ""
           }`}
         >
-          <div className="p d-flex justify-content-between align-items-center">
+          <div className="top-bar px-20 d-flex justify-content-between align-items-center">
             <div style={{ width: "25%" }}>
               {props.appendEvent && props.appendEvent()}
             </div>
@@ -32,10 +32,7 @@ export default function SecondaryHeader(props) {
             </div>
           </div>
           {!props.hideSearch && (
-            <div
-              className="p search position-relative"
-              style={{ width: "100%" }}
-            >
+            <div className="search position-relative w-100 py-10 px-20">
               <NavLink
                 className="position-absolute"
                 to={`/search?query=${search}`}

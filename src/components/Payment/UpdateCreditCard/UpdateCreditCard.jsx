@@ -32,7 +32,7 @@ export default function UpdateCreditCardFrom() {
           <span>
             Ny adding your credit card details, you agree to the provider’s
           </span>
-          <span className="text-info p-1">Terms of use</span>
+          <span className="text-blue p-1">Terms of use</span>
         </div>
       </div>
     </>

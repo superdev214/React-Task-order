@@ -9,8 +9,8 @@ let btnCaptions = {
 };
 
 let titles = {
-  1: "Cancellation request",
-  2: "Cancel task",
+  1: "Cancel task",
+  2: "Cancellation request",
   3: "Cancellation reason",
   4: "Cancellation request submitted",
 };
@@ -137,9 +137,9 @@ export default function CancellationRequest({ close }) {
       >
         <div className="scroll-area container">
           {step === 1
-            ? detailsView()
-            : step === 2
             ? cancelTaskView()
+            : step === 2
+            ? detailsView()
             : step === 3
             ? reasonView()
             : submittedView()}

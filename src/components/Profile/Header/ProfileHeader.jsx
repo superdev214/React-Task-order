@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 export default function ProfileHeader(props) {
   return (
     <header className="header">
-      <nav className={`navbar border-bottom p-3`} style={{ height: "auto" }}>
+      <nav className="navbar top-bar border-bottom px-20">
         <NavLink to={props.redirect || "/account"}>
           <button
             className="position-absolute bg-transparent border-0"
-            style={{ left: "20px", top: "12px" }}
+            style={{ left: "20px", top: "10px" }}
           >
             <img src="./assets/images/icons/arrow-back.svg" alt="close" />
           </button>

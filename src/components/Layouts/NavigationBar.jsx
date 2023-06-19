@@ -19,17 +19,17 @@ export default function NavigationBar() {
     <nav className="footer-nav">
       <ul className="nav justify-content-between">
         <li className={"nav-item"} onClick={() => setActiveItem("/home")}>
-          <NavLink to={"/home"} className="nav-link px-2">
+          <NavLink to={"/home"} className="nav-link px-2 py-0">
             {HomeIcon(activeItem === "/home" && "fill")}
           </NavLink>
         </li>
         <li className={"nav-item"} onClick={() => setActiveItem("/tasks")}>
-          <NavLink to={"/tasks"} className="nav-link px-2">
+          <NavLink to={"/tasks"} className="nav-link px-2 py-0">
             {TaskListIcon(activeItem === "/tasks" && "fill")}
           </NavLink>
         </li>
         <li className={"nav-item"} onClick={() => setActiveItem("/search")}>
-          <NavLink to={"/search"} className="nav-link px-2">
+          <NavLink to={"/search"} className="nav-link px-2 py-0">
             {SearchIcon(activeItem === "/search" && "fill")}
           </NavLink>
         </li>
@@ -39,7 +39,7 @@ export default function NavigationBar() {
           }
           onClick={() => setActiveItem("/messages")}
         >
-          <NavLink to={"/messages"} className="nav-link px-2">
+          <NavLink to={"/messages"} className="nav-link px-2 py-0">
             {ChatIcon(activeItem === "/messages" && "fill")}
           </NavLink>
         </li>
@@ -47,7 +47,7 @@ export default function NavigationBar() {
           className={"nav-item " + (activeItem === "/account" && "active-item")}
           onClick={() => setActiveItem("/account")}
         >
-          <NavLink to={"/account"} className="nav-link px-2">
+          <NavLink to={"/account"} className="nav-link px-2 py-0">
             {UserProfileIcon(activeItem === "/account" && "fill")}
           </NavLink>
         </li>

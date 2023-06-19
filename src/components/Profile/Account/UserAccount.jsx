@@ -27,11 +27,11 @@ let menuItems = [
   {
     title: "More",
     children: [
-      {
-        icon: "setup-task",
-        label: "Set up task alerts",
-        link: "/transactions",
-      },
+      // {
+      //   icon: "setup-task",
+      //   label: "Set up task alerts",
+      //   link: "/transactions",
+      // },
       {
         icon: "community",
         label: "Community guidelines",

@@ -1,6 +1,6 @@
-import { useState } from "react"
-import { taskStatusColor } from "../Enum/TaskStatus"
-import ModalComponent from "../../shared/modal/ModalComponent"
+import { useState } from "react";
+import { taskStatusColor } from "../Enum/TaskStatus";
+import ModalComponent from "../../shared/modal/ModalComponent";
 
 let filters = [
   { key: 0, value: "DRAFT" },
@@ -10,16 +10,16 @@ let filters = [
   { key: 4, value: "UNPAID" },
   { key: 5, value: "POSTED" },
   { key: 6, value: "EXPIRED" },
-  { key: null, value: "All" }
-]
+  { key: null, value: "All" },
+];
 
 export default function FilterComponent(props) {
-  const [filter, setFilter] = useState(props.filter)
+  const [filter, setFilter] = useState(props.filter);
 
   const apply = () => {
-    props.onFilter(filter)
-    props.close()
-  }
+    props.onFilter(filter);
+    props.close();
+  };
 
   return (
     <ModalComponent
@@ -29,10 +29,10 @@ export default function FilterComponent(props) {
       close={props.close}
       onClick={apply}
     >
-      <div>
+      <>
         {filters.map((item, index) => {
           return (
-            <div key={index} className="py-10">
+            <div key={index} className="pt-20">
               <button
                 onClick={() => setFilter(item.key)}
                 className={`d-block x btn btn-w-350 ${
@@ -48,9 +48,9 @@ export default function FilterComponent(props) {
                 </span>
               </button>
             </div>
-          )
+          );
         })}
-      </div>
+      </>
     </ModalComponent>
-  )
+  );
 }

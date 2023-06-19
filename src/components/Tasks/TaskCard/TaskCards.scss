@@ -1,5 +1,6 @@
 .task-cards {
-  border-top: 2px solid #f5f7fa;
+  border-top: 1px solid #f5f7fa;
+  height: calc(100vh - 184px) !important;
   margin-top: 101px;
 
   a {
@@ -35,13 +36,6 @@
       font-weight: 400;
       font-size: 13px;
       line-height: 16px;
-    }
-
-    p {
-      font-style: normal;
-      font-weight: 510;
-      font-size: 15px;
-      line-height: 18px;
     }
 
     span {
