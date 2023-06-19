@@ -3,6 +3,7 @@ import {
     POST_TASK_FAIL,
     GET_ALL_CATEGORY_SUCCESS,
     GET_ALL_CATEGORY_FAIL,
+    STORE_CATEGORY_ID_SUCCESS,
 } from "../actions";
 
 
@@ -21,6 +22,8 @@ export default(state = INIT_STATE, action) => {
             return {...state, message : "", error : action.payload}
         case GET_ALL_CATEGORY_SUCCESS:
             return {...state, categories:action.payload};
+        case STORE_CATEGORY_ID_SUCCESS:
+            return {...state, category:action.payload};
         case GET_ALL_CATEGORY_FAIL:
             return {...state, error:action.payload}
         default:

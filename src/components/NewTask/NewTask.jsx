@@ -310,7 +310,7 @@ function NewTask(props) {
   const handleSubmit = () => {
     if (isBudgetValid()) {
       props.postTask({title:task.title, details:task.description, is_task_remotely:task.type, task_complete_date:`${task.task_complete_date.getDate().toString().padStart(2, '0')}-${(task.task_complete_date.getMonth() + 1).toString().padStart(2, '0')}-${task.task_complete_date.getFullYear().toString()}`,
-    category:props.category, user_id:props.user_id})
+    category:props.category, user_id:props.user_id, total_budget:task.budget, latitude:task.lat, longtude:task.lng, address:address})
     } else {
       // Show an error message or prevent task submission
     }
