@@ -103,7 +103,7 @@ export default function TaskDetails() {
                 />
               </div>
               <div className="ml-20 mr-20">
-                <div className="mb-10 font-bold size-15">LOCATION</div>
+                <div className="mbb-5 font-bold size-15">LOCATION</div>
                 <span className="size-15">
                   {address
                     ? address
@@ -127,7 +127,7 @@ export default function TaskDetails() {
                 />
               </div>
               <div className="ml-20 mr-20">
-                <div className="mb-10 font-bold size-15">TO BE DONE ON</div>
+                <div className="mbb-5 font-bold size-15">TO BE DONE ON</div>
                 <span className="size-15">
                   Thursday, 25 August Afternoon (2pm - 6pm){" "}
                 </span>
@@ -257,12 +257,7 @@ export default function TaskDetails() {
                 <img src="./assets/images/icons/fly-dark.svg" alt="logo big" />
               </div>
               <div className="ml-20">
-                <div
-                  className="mbb-5 font-bold size-15"
-                  // style={{ marginBottom: "5px" }}
-                >
-                  Gaurav C.
-                </div>
+                <div className="mbb-5 font-bold size-15">Gaurav C.</div>
                 <span>
                   <span className="font-bold size-15">
                     3.8{" "}
@@ -345,8 +340,8 @@ export default function TaskDetails() {
             </button>
           </div>
         </div>
-        <div className="container">
-          <p className="font-bold mt-20">QUESTIONS (12)</p>
+        <div className="container my-20">
+          <p className="font-bold">QUESTIONS (12)</p>
           <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex justify-content-between align-items-center">
               <div>
@@ -457,7 +452,7 @@ export default function TaskDetails() {
               </NavLink>
               <p className="font-bold">Task details</p>
             </div>
-            <div className="px-20">
+            <div className="pa-20">
               <div className={" task-tab-bar step" + step}>
                 <div className="tab1">
                   <button onClick={() => setStep(1)}>OPEN</button>

@@ -81,7 +81,9 @@ export default function PaymentApproval() {
   return (
     <>
       <div className="modal-area">
-        <div className={`py-md d-flex justify-content-between p-3 font-bold`}>
+        <div
+          className={`top-bar d-flex align-items-center justify-content-center`}
+        >
           {step === 1 && (
             <button
               className="position-absolute bg-transparent border-0"
@@ -90,7 +92,7 @@ export default function PaymentApproval() {
               <img src="./assets/images/icons/arrow-back.svg" alt="close" />
             </button>
           )}
-          <p style={{ margin: "3px auto" }} className="font-bold">
+          <p className="nav-title">
             {step === 1 ? "Payment approval" : "Offer accepted"}
           </p>
         </div>

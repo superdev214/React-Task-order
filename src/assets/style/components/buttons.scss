@@ -27,6 +27,7 @@
   &-blue {
     padding: 13px;
     background: $blue;
+    border: 1px solid $blue;
     color: white;
     font-family: "SF Pro Text Bold";
     @extend %button;
@@ -102,6 +103,9 @@
     @extend %button;
     @extend %text-body1;
 
+    &:hover {
+      background: #ff3b30;
+    }
     &:disabled {
       background: #ff3b30;
       color: #ffffff;

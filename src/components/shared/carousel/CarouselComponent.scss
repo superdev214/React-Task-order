@@ -2,7 +2,7 @@
   -ms-overflow-style: -ms-autohiding-scrollbar;
   scrollbar-width: none !important;
   -ms-overflow-style: none;
-
+  height: auto !important;
   &::-webkit-scrollbar {
     display: none;
   }
