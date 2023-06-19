@@ -1,6 +1,7 @@
 body {
   margin: 0;
   color: #000000;
+  overscroll-behavior: none;
 }
 
 code {

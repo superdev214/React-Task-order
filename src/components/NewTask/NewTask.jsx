@@ -404,7 +404,7 @@ export default function NewTask() {
             )}
             <p className="nav-title">New Task</p>
           </div>
-          <div className="px-20">
+          <div className="pa-20">
             <div className={"task-tab-bar step" + step}>
               <div className="tab1">
                 <button>ABOUT</button>

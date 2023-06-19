@@ -34,7 +34,7 @@ export default function TaskPublished() {
         </ul>
       </div>
       <div className="fixed-bottom">
-        <NavLink to={"/home"}>
+        <NavLink to={"/tasks"}>
           <button className="d-block btn btn-green btn-w-350">
             Go to my tasks
           </button>
