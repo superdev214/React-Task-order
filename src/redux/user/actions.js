@@ -32,9 +32,9 @@ export const loginWithSMSFail = (error) => ({
     payload: {error}
 })
 
-export const verifyOtp = ({phone_no, verifyCode}) => ({
+export const verifyOtp = (data) => ({
     type:VERIFY_OTP,
-    payload: {phone_no, verifyCode}
+    payload:data
 })
 
 export const verifyOtpSuccess = (opt) =>({

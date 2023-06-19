@@ -8,16 +8,32 @@ import TickIcon from "../../assets/images/TickDark.svg";
 import "./NewTask.scss";
 import "../../assets/style/components/task-tab-bar.scss";
 
-export default function NewTask() {
+import { connect } from 'react-redux';
+import { postTask } from "../../redux/Post/actions";
+import { take } from "@redux-saga/core/effects";
+
+function NewTask(props) {
+  
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
   const [locationSelectionModal, setLocationSelectionModal] = useState(false);
+  const [address, setAddress] = useState("");
   const [task, setTask] = useState({
-    type: "InPerson",
+    type: 0,
     description: "",
     title: "",
     haveCertainTime: true,
     certainTime: "Morning",
+    lat: 0,
+    lng: 0,
+    category:"",
+    user_id:"",
+    total_budget:0,
+    is_hourly:0,
+    task_complete_date:null,
+    certainTime:"",
+    haveCertainTime:true,
+    budget:0,
   });
 
   const titleInputRef = useRef();
@@ -175,7 +191,7 @@ export default function NewTask() {
               "d-block btn btn-gray btn-w-350 mt-3 " +
               (task.type === "InPerson" && "active")
             }
-            onClick={() => setTask({ ...task, type: "InPerson" })}
+            onClick={() => setTask({ ...task, type: 0 })}
           >
             In person
           </button>
@@ -184,7 +200,7 @@ export default function NewTask() {
               "d-block btn btn-gray btn-w-350 mt-3 " +
               (task.type === "Remotely" && "active")
             }
-            onClick={() => setTask({ ...task, type: "Remotely" })}
+            onClick={() => setTask({ ...task, type: 1 })}
           >
             Remotely
           </button>
@@ -224,7 +240,7 @@ export default function NewTask() {
           />
           Add must haves
         </button>
-        {task.type === "InPerson" && (
+        {task.type === 0 && (
           <button
             className="d-block btn btn-gray btn-w-350 mt-3"
             onClick={() => setLocationSelectionModal(true)}
@@ -235,7 +251,7 @@ export default function NewTask() {
                 className="mr-10"
                 alt="location marker"
               />
-              {task.location ? task.location : "Choose location"}
+              {address ? address : "Choose location"}
             </>
           </button>
         )}
@@ -249,9 +265,9 @@ export default function NewTask() {
         <p className="mb-20 font-bold size-15">DATE AND TIME</p>
         <p className="mb-10 font-bold size-15">When do you need this done?</p>
         <DatePickerComponent
-          onChange={(date) => setTask({ ...task, date: date })}
+          onChange={(date) => setTask({ ...task, task_complete_date: date })}
         />
-        {task.date && (
+        {task.task_complete_date && (
           <>
             <p className="check-box-area mt-20 mb-10">
               <input
@@ -343,7 +359,8 @@ export default function NewTask() {
 
   const handleSubmit = () => {
     if (isBudgetValid()) {
-      // Proceed with task submission
+      props.postTask({title:task.title, details:task.description, is_task_remotely:task.type, task_complete_date:`${task.task_complete_date.getDate().toString().padStart(2, '0')}-${(task.task_complete_date.getMonth() + 1).toString().padStart(2, '0')}-${task.task_complete_date.getFullYear().toString()}`,
+    category:props.category, user_id:props.user_id})
     } else {
       // Show an error message or prevent task submission
     }
@@ -381,7 +398,8 @@ export default function NewTask() {
       )}
       {locationSelectionModal && (
         <LocationSelection
-          onChange={(address) => setTask({ ...task, location: address })}
+          onChange={(address) => setAddress(address)}
+          onGetValue={(latlng) => setTask({...task, lat:latlng.lat, lng:latlng.lng})}
           close={() => setLocationSelectionModal(false)}
         />
       )}
@@ -455,3 +473,15 @@ export default function NewTask() {
     </>
   );
 }
+
+const mapStateToProps = ({ postApi, userReducer}) => {
+  const {message, error, category} = postApi;
+  const { user_id } = userReducer;
+  return {message, error, category, user_id};
+};
+
+const mapDispatchToProps = {
+  postTask,
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewTask);
