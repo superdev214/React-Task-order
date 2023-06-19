@@ -147,7 +147,7 @@ export default function MakeOffer(props) {
           <Uploader />
           <div className="my-20">
             <img src="./assets/images/icons/task.svg" alt="Post a task" />
-            <span className="text-info ml-10">Forgot task details?</span>
+            <span className="text-blue ml-10">Forgot task details?</span>
           </div>
         </div>
       </div>
@@ -192,7 +192,7 @@ export default function MakeOffer(props) {
           </div>
           <div className="line light my-20"></div>
           <span>By submitting your offer you agree to the</span>
-          <span className="text-info p-1">terms & conditions</span>
+          <span className="text-blue p-1">terms & conditions</span>
           <span>and Community Guidelines</span>
         </div>
       </div>

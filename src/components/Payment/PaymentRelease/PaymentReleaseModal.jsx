@@ -83,7 +83,7 @@ export default function PaymentReleaseModal({ close }) {
           <p>
             Please note that by releasing the payment you’re agreeing to our
           </p>
-          <p className="text-info">terms & conditions</p>
+          <p className="text-blue">terms & conditions</p>
         </div>
       </div>
     );

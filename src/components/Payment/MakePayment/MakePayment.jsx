@@ -86,7 +86,7 @@ export default function MakePaymentModal(props) {
               Payment will be held securely inside taklief Pay until you’re
               happy the task has been completed.
             </span>
-            <span className="text-info p-1">View terms</span>
+            <span className="text-blue p-1">View terms</span>
           </span>
         </div>
       </>

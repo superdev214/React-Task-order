@@ -6,10 +6,10 @@ import ProfileHeader from "./Header/ProfileHeader";
 import "./Profile.scss";
 
 let badges = [
-  { label: "Mobile", icon: "mobile" },
-  { label: "Email", icon: "email" },
-  { label: "Bank Account", icon: "bank-account" },
-  { label: "Payment Method", icon: "wallet" },
+  { label: "Mobile", icon: "mobile", subitems: [] },
+  { label: "Email", icon: "email", subitems: [] },
+  { label: "Bank Account", icon: "bank-account", subitems: [] },
+  { label: "Payment Method", icon: "wallet", subitems: [] },
 ];
 
 let skills = [
@@ -17,42 +17,23 @@ let skills = [
     label: "Transportation",
     id: 1,
     icon: "transportation",
-    children: [
+    subitems: [
       { label: "Walk", icon: "walk" },
       { label: "Public transportation", icon: "public-transportation" },
-      { label: "Truck", icon: "truck" },
       { label: "Car", icon: "car" },
+      { label: "Truck", icon: "truck-white" },
       { label: "Helicopter", icon: "helicopter" },
       { label: "Spaceship", icon: "spaceship" },
     ],
   },
-  { id: 2, label: "Education", icon: "education" },
-  { id: 3, label: "Language", icon: "language" },
-  { id: 4, label: "Work", icon: "work" },
-  { id: 5, label: "Specialties", icon: "specialties" },
+  { id: 2, label: "Education", icon: "education", subitems: [] },
+  { id: 3, label: "Language", icon: "language", subitems: [] },
+  { id: 4, label: "Work", icon: "work", subitems: [] },
+  { id: 5, label: "Specialties", icon: "specialties", subitems: [] },
 ];
 
 export default function ProfilePage() {
   const [activeTab, toggleActiveTab] = useState("Poster");
-  const [updateNow, setUpdateNow] = useState(true);
-  const [expansion, setExpansion] = useState(
-    skills.map(({ id }) => {
-      return {
-        id,
-        isOpened: false,
-      };
-    })
-  );
-
-  const toggle = (id) => {
-    let temp = expansion;
-    let index = expansion.map(({ id }) => id).indexOf(id);
-
-    temp[index].isOpened = !temp[index].isOpened;
-
-    setExpansion(temp);
-    setUpdateNow(!updateNow);
-  };
 
   const appendAction = () => {
     return (
@@ -97,67 +78,41 @@ export default function ProfilePage() {
     );
   };
 
-  const badgesView = () => {
+  const PersonalView = ({ items, title }) => {
     return (
       <div className="pa-20 gray-list">
-        <p className="font-bold">Badges</p>
+        <p className="font-bold">{title}</p>
         <ul>
-          {badges.map((badge, index) => {
-            return (
-              <li
-                key={index}
-                className="font-bold mt-10 d-flex align-items-center"
-              >
-                <img
-                  src={`./assets/images/profile/${badge.icon}.svg`}
-                  alt="avatar"
-                />
-                <span className="ml-10">{badge.label}</span>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-    );
-  };
-
-  const skillsView = () => {
-    return (
-      <div className="pa-20 gray-list">
-        <p className="font-bold">Skills</p>
-        <ul>
-          {skills.map((skill, index) => {
+          {items.map((item, index) => {
             return (
               <li
                 key={index}
                 className="font-bold mt-10"
                 style={{ display: "block" }}
-                onClick={() => toggle(skill.id)}
               >
                 <img
-                  src={`./assets/images/profile/${skill.icon}.svg`}
+                  src={`./assets/images/profile/${item.icon}.svg`}
                   alt="avatar"
                 />
-                <span className="ml-10">{skill.label}</span>
-                {expansion.length > 0 &&
-                  expansion.filter(({ id }) => id === skill.id)[0].isOpened && (
-                    <div className="d-flex flex-wrap mt-10">
-                      {skill.children &&
-                        skill.children.map((child, childIndex) => {
-                          return (
-                            <div className="chip m-1" key={childIndex}>
-                              <img
-                                src={`./assets/images/profile/${child.icon}.svg`}
-                                alt="avatar"
-                              />
-                              <span className="text-white ml-10 size-15">
-                                {child.label}
-                              </span>
-                            </div>
-                          );
-                        })}
-                    </div>
-                  )}
+                <span className="ml-10">{item.label}</span>
+                {item.subitems?.length > 0 && (
+                  <div className="d-flex flex-wrap mt-10">
+                    {item.subitems &&
+                      item.subitems.map((child, childIndex) => {
+                        return (
+                          <div className="chip mr-10 mb-10" key={childIndex}>
+                            <img
+                              src={`./assets/images/icons/${child.icon}.svg`}
+                              alt="avatar"
+                            />
+                            <span className="text-white ml-10 size-15">
+                              {child.label}
+                            </span>
+                          </div>
+                        );
+                      })}
+                  </div>
+                )}
               </li>
             );
           })}
@@ -213,7 +168,7 @@ export default function ProfilePage() {
         <div className="pa-20">
           <button
             className="d-block btn btn-gray btn-w-350"
-            style={{ color: "#42ADE2" }}
+            style={{ color: "#2D93C7" }}
           >
             Read all reviews
           </button>
@@ -238,7 +193,7 @@ export default function ProfilePage() {
               return (
                 <button
                   className="d-block btn btn-gray btn-w-350 mt-3"
-                  style={{ color: "#42ADE2" }}
+                  style={{ color: "#2D93C7" }}
                 >
                   Update portfolio
                 </button>
@@ -247,9 +202,9 @@ export default function ProfilePage() {
           />
         </div>
         <div className="line light"></div>
-        {badgesView()}
+        <PersonalView title={"Badges"} items={badges} />
         <div className="line light"></div>
-        {skillsView()}
+        <PersonalView title={"Skills"} items={skills} />
       </div>
     </div>
   );

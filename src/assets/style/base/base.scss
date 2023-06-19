@@ -275,7 +275,7 @@ hr {
 }
 
 .text-blue {
-  color: #2d93c7 !important;
+  color: $blue !important;
 }
 
 .bg-grey {
@@ -288,8 +288,7 @@ hr {
 
 .scroll-area {
   overflow-y: scroll;
-  padding-bottom: 60px !important;
-  height: 85vh;
+  height: calc(100vh - 83px);
 }
 
 .form-control-group {
