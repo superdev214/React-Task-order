@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <AccountContext.Provider value={accountContext}>
-        {true ? (
+        {loading === 0 ? (
           <div className="earth-flash">
               <img
                 id="earth-img"
