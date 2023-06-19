@@ -55,7 +55,7 @@ const verifyOtpAsync = async (payload) => {
 function*  verifyOtpFunc(payload) {
     try{
         const response = yield call(verifyOtpAsync, payload);
-        yield put(verifyOtpSuccess(payload.phone_no))
+        yield put(verifyOtpSuccess(response.data.data))
         // if(response.data) {
         //     // yield put(loginWithSMSSuccess(response.data))
 
@@ -71,7 +71,7 @@ export function* watchEditProfile() {
 }
 
 const editProfileAsync = async(payload) =>{
-    return axios.post(`${server_url}/edit-profile`)
+    return axios.post(`${server_url}/edit-profile`, payload)
     .then((response) => response)
     .catch((error) => error)
 }

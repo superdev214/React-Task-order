@@ -14,6 +14,8 @@ const INIT_STATE = {
     error:"",
     message:"",
     verifyCode:0,
+    user_id:74,
+    token:""
 }
 
 export default (state = INIT_STATE, action) => {
@@ -24,7 +26,7 @@ export default (state = INIT_STATE, action) => {
         case LOGIN_WITH_SMS_FAIL:
             return {...state, error:action.payload};
         case VERIFY_OTP_SUCCESS:
-            return {...state, otp:action.payload, error:""};
+            return {...state, user_id:action.payload.id, token:action.payload.token};
         case VERIFY_OTP_FAIL:
             return {...state, error:action.payload};
         case EDIT_PROFILE_SUCCESS: 

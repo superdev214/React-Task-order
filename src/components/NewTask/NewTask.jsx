@@ -10,6 +10,7 @@ import "../../assets/style/components/task-tab-bar.scss";
 
 import { connect } from 'react-redux';
 import { postTask } from "../../redux/Post/actions";
+import { take } from "@redux-saga/core/effects";
 
 function NewTask(props) {
   
@@ -308,7 +309,8 @@ function NewTask(props) {
 
   const handleSubmit = () => {
     if (isBudgetValid()) {
-      props.postTask({task:task, address: address})
+      props.postTask({title:task.title, details:task.description, is_task_remotely:task.type, task_complete_date:`${task.task_complete_date.getDate().toString().padStart(2, '0')}-${(task.task_complete_date.getMonth() + 1).toString().padStart(2, '0')}-${task.task_complete_date.getFullYear().toString()}`,
+    category:props.category, user_id:props.user_id})
     } else {
       // Show an error message or prevent task submission
     }
@@ -427,9 +429,10 @@ function NewTask(props) {
   );
 }
 
-const mapStateToProps = ({ postApi}) => {
-  const {message, error} = postApi;
-  return {message, error};
+const mapStateToProps = ({ postApi, userReducer}) => {
+  const {message, error, category} = postApi;
+  const { user_id } = userReducer;
+  return {message, error, category, user_id};
 };
 
 const mapDispatchToProps = {

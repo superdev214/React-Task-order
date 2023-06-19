@@ -22,10 +22,12 @@ function AboutStep(props) {
       return true;
     return false;
   };
-
+  console.log(props.phone_no.slice(3, 14))
   const onContinue = () => {
     if(isValidForm()) {
-      props.editProfile({fullName:fullName, address:latlng})
+      props.editProfile({first_name:fullName.firstName, 
+        last_name:fullName.lastName, lat:latlng.lat, lng:latlng.lng, address:address, country_code:props.phone_no.slice(0, 3),
+      phone:props.phone_no.slice(4, 11), country_code_name:"SA", user_id:props.user_id})
       props.onContinue()
     } else {
       console.log("error==================>")
@@ -100,8 +102,8 @@ function AboutStep(props) {
 }
 
 const mapStateToProps = ({ userReducer}) => {
-  const {message, error} = userReducer;
-  return {message, error};
+  const {message, error, phone_no, user_id} = userReducer;
+  return {message, error, phone_no, user_id};
 };
 
 const mapDispatchToProps = {
