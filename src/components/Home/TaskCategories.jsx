@@ -1,61 +1,20 @@
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { connect } from 'react-redux';
+import { getAllCategory } from '../../redux/actions'
 
-export default function TaskCategories() {
+function TaskCategories(props) {
   const navigate = useNavigate();
 
-  const handleImageClick = () => {
-    navigate("/new-task");
-  };
+  useEffect(() => {
+    props.getAllCategory()
+  }, [])
 
-  const categories = [
-    { title: "Moving furniture", iconSrc: "./assets/images/icons/truck.svg" },
-    {
-      title: "Events & Photography",
-      iconSrc: "./assets/images/icons/video.svg",
-    },
-    { title: "Gardening", iconSrc: "./assets/images/icons/leaves-leaf.svg" },
-    {
-      title: "Handyman",
-      iconSrc: "./assets/images/icons/paint-roller-roller.svg",
-    },
-    {
-      title: "Furniture Assembly",
-      iconSrc: "./assets/images/icons/drill-drilling.svg",
-    },
-    {
-      title: "Cleaning",
-      iconSrc: "./assets/images/icons/sprayer-spray-bottle.svg",
-    },
-    {
-      title: "Business & Admin",
-      iconSrc: "./assets/images/icons/suitcase.svg",
-    },
-    { title: "Delivery", iconSrc: "./assets/images/icons/trolley.svg" },
-    { title: "Delivery", iconSrc: "./assets/images/icons/obar.svg" },
-    { title: "Manpower", iconSrc: "./assets/images/icons/people.svg" },
-    { title: "Safety", iconSrc: "./assets/images/icons/safety-vest.svg" },
-    { title: "Health", iconSrc: "./assets/images/icons/medical-kit.svg" },
-    { title: "Art", iconSrc: "./assets/images/icons/paint-brush-art.svg" },
-    {
-      title: "Construction",
-      iconSrc: "./assets/images/icons/construction.svg",
-    },
-    {
-      title: "Pedicure & manicure",
-      iconSrc: "./assets/images/icons/manicure.svg",
-    },
-    {
-      title: "Lab & Research",
-      iconSrc: "./assets/images/icons/microscope-medical.svg",
-    },
-    {
-      title: "Mechanic",
-      iconSrc: "./assets/images/icons/steering-wheel-car.svg",
-    },
-    { title: "Pets care", iconSrc: "./assets/images/icons/pet.svg" },
-    { title: "Web & design", iconSrc: "./assets/images/icons/web-design.svg" },
-    { title: "Baby care", iconSrc: "./assets/images/icons/blocks-child.svg" },
-  ];
+  const handleImageClick = (category) => {
+    navigate("/new-task");
+    props.category = category.title
+  };
+  console.log(props.category)
 
   return (
     <section className="py-4">
@@ -65,10 +24,10 @@ export default function TaskCategories() {
           <p className="tasks-title">Post a task & get offers</p>
         </div>
         <div className="row row-cols-3 g-3 task-list">
-          {categories.map((category, key) => (
+          {props.categories.length > 0 && props.categories.map((category, key) => (
             <div key={key} className="col">
               <div className="task-card">
-                <div className="task-image" onClick={handleImageClick}>
+                <div className="task-image" onClick={(category) => handleImageClick(category)}>
                   <img src={category.iconSrc} alt={category.title} />
                 </div>
                 <p className="task-name">{category.title}</p>
@@ -80,3 +39,15 @@ export default function TaskCategories() {
     </section>
   );
 }
+
+const mapStateToProps = ({ postApi}) => {
+  const {category, categories} = postApi;
+  return {category, categories};
+};
+
+const mapDispatchToProps = {
+  getAllCategory,
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(TaskCategories);

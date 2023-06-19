@@ -7,6 +7,9 @@ import {
     VERIFY_OTP, 
     VERIFY_OTP_FAIL, 
     VERIFY_OTP_SUCCESS,
+    EDIT_PROFILE,
+    EDIT_PROFILE_SUCCESS,
+    EDIT_PROFILE_FAIL,
 } from '../actions';
 
 export const loginToken = () => ({
@@ -23,14 +26,14 @@ export const loginWithSMSSuccess = (verifycode) => ({
     payload: verifycode
 });
 
-export const loginWithSMSFail = (message) => ({
+export const loginWithSMSFail = (error) => ({
     type: LOGIN_WITH_SMS_FAIL,
-    payload: {message}
+    payload: {error}
 })
 
-export const verifyOtp = ({phone_no, verifyCode}) => ({
+export const verifyOtp = (data) => ({
     type:VERIFY_OTP,
-    payload: {phone_no, verifyCode}
+    payload:data
 })
 
 export const verifyOtpSuccess = (opt) =>({
@@ -38,7 +41,22 @@ export const verifyOtpSuccess = (opt) =>({
     payload: opt
 })
 
-export const verifyOtpFail = (message) => ({
+export const verifyOtpFail = ({message}) => ({
     type:VERIFY_OTP_FAIL,
     payload:message,
+})
+
+export const editProfile = (profile) => ({
+    type:EDIT_PROFILE,
+    payload:profile,
+})
+
+export const editProfileSuccess = ({message}) => ({
+    type:EDIT_PROFILE_SUCCESS,
+    payload:message,
+})
+
+export const editProfileFail = ({error}) => ({
+    type:EDIT_PROFILE_FAIL,
+    payload:error
 })

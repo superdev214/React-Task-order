@@ -8,61 +8,53 @@ const loader = new Loader({
   libraries: ["places"],
 });
 
-const LocationSelection = ({ close, onChange }) => {
+const LocationSelection = ({ close, onChange, onGetValue }) => {
   const mapDiv = useRef(null);
   const [address, setAddress] = useState("");
-  const [marker, setMarker] = useState(null);
-  const [map, setMap] = useState(null);
-
-  const handle = (e) => {
-    setMarker(
-      new google.maps.Marker({
-        map: map,
-      })
-    );
-    setTimeout(() => {
-      console.log("marker", marker);
-    }, 2000);
-  };
+  const [latlng ,setLatlng] = useState({lat:45.508, lng:-73.587})
 
   const onContinue = () => {
     onChange && onChange(address);
+    onGetValue && onGetValue(latlng);
     close();
   };
 
   useEffect(() => {
     const fetchMap = async () => {
       await loader.load();
-      const myCenter = new google.maps.LatLng(45.508, -73.587);
+      const myCenter = new  google.maps.LatLng(45.508, -73.587);
       const map = new google.maps.Map(mapDiv.current, {
         center: myCenter,
         zoom: 5,
+        disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
       });
-
       const marker = new google.maps.Marker({
         position: myCenter,
+        icon:"./assets/images/marker.png",
+        map: map,
       });
-      marker.setMap(map);
-
-      const geocoder = new google.maps.Geocoder();
-
-      geocoder.geocode({ address: "Montreal" }, (e) => {
-        if (e.length > 0) setAddress(e[0].formatted_address);
+      google.maps.event.addListener(map, "click", function (event) {
+        map.setCenter({lat:event.latLng.lat() ,lng:event.latLng.lng()});
+        marker.setPosition({lat:event.latLng.lat() ,lng:event.latLng.lng()});
+        setLatlng({...latlng, lat:event.latLng.lat(), lng:event.latLng.lng()})
       });
-
-      google.maps.event.addListener(marker, "click", function () {
-        console.log("click");
-        map.setZoom(9);
-        map.setCenter(marker.getPosition());
-      });
-
-      setMarker(marker);
-      setMap(map);
     };
 
     fetchMap();
   }, []);
+
+  useEffect(() => {
+    const geocoder = new google.maps.Geocoder();
+
+      geocoder.geocode({ location: latlng }, (results, status) => {
+        if (status === "OK") {
+          setAddress(results[0].formatted_address);
+        } else {
+          console.error(status);
+        }
+      });
+  }, [latlng])
 
   return (
     <div className="modal-area">

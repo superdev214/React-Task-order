@@ -15,6 +15,9 @@ export const CHAT_INFOR = "CHAT_INFOR";
 export const SEND_MESSSAGE = "SEND_MESSAGE";
 export const PAYMENT_HISTORY = "PAYMENT_HISTORY";
 export const USER_PROFILE = "USER_PROFILE";
+export const EDIT_PROFILE = "EDIT_PROFILE";
+export const EDIT_PROFILE_SUCCESS = "EDIT_PROFILE_SUCCESS";
+export const EDIT_PROFILE_FAIL = "EDIT_PROFILE_FAIL";
 export const ADD_SKILLS = "ADD_SKILLS";
 export const VIEW_SKILLS = "VIEW_SKILLS";
 export const ADD_PORTFOLIO = "ADD_PORTFOLIO";
@@ -23,10 +26,19 @@ export const NOTIFICATIONS  = "NOTIFICATIONS";
 export const NOTIFICATIONS_SETTINGS_SHOW = "NOTIFICATIONS_SETTINGS_SHOW";
 export const CANCEL_REQUEST_FOR_DELETE_ACCOUNT = "CANCEL_REQUEST_FOR_DELETE_ACCOUNT";
 
+/*POST API CONST*/
+
+export const POST_TASK = "POST_TASK";
+export const POST_TASK_SUCCESS = "POST_TASK_SUCCESS";
+export const POST_TASK_FAIL = "POST_TASK_FAIL";
+export const GET_ALL_CATEGORY = "GET_ALL_CATEGORY";
+export const GET_ALL_CATEGORY_SUCCESS = "GET_ALL_CATEGORY_SUCCESS";
+export const GET_ALL_CATEGORY_FAIL = "GET_ALL_CATEGORY_FAIL";
+
 
 
 export * from './user/actions';
 export * from './category/actions';
-export * from './default/actions';
+export * from './Post/actions';
 export * from './task/actions';
 export * from './payment/actions';

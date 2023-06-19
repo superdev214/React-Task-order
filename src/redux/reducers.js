@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import userReducer from './user/reducer';
-import defaults from './default/reducer';
+import postApi from './Post/reducer';
 import payment from './payment/reducer';
 import task from './task/reducer';
 import category from './category/reducer';
 
 const reducers = combineReducers({
     userReducer,
-    defaults,
+    postApi,
     payment, 
     task,
     category,
