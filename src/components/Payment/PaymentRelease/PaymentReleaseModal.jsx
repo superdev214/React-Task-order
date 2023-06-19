@@ -2,21 +2,21 @@ import { useState } from "react";
 import ModalComponent from "../../shared/modal/ModalComponent";
 import RatingComponent from "./Rating/RatingComponent";
 
-let filters = [
+const filters = [
   { key: 0, value: "SR 30" },
   { key: 1, value: "SR 60" },
   { key: 2, value: "SR 100" },
 ];
 
-let btnCaptions = {
+const btnCaptions = {
   1: "Release payment",
-  2: "Review Aden J.",
+  2: "Leave review",
   3: "Continue",
   4: "Close",
 };
 
-let titles = {
-  1: "Payment release",
+const titles = {
+  1: "Release payment",
   2: "Payment released",
   3: "Payment successful ",
   4: "Review sent",
@@ -83,7 +83,7 @@ export default function PaymentReleaseModal({ close }) {
           <p>
             Please note that by releasing the payment you’re agreeing to our
           </p>
-          <p className="text-info">terms & conditions</p>
+          <p className="text-blue">terms & conditions</p>
         </div>
       </div>
     );
@@ -98,9 +98,13 @@ export default function PaymentReleaseModal({ close }) {
         <div className="container">
           <p className="mt-20 font-bold">Released</p>
           <p className="mt-20">
-            Thank you Sara A. Payment has been released successfully to Aden J.
+            Thank you <span className="font-bold">Sara A.</span> Payment has
+            been released successfully to{" "}
+            <span className="font-bold">Aden J.</span>
           </p>
-          <p className="mt-10">Tap below to review Aden J.</p>
+          <p className="mt-10">
+            Tap below to review <span className="font-bold">Aden J.</span>
+          </p>
         </div>
       </>
     );
@@ -110,9 +114,13 @@ export default function PaymentReleaseModal({ close }) {
     return (
       <>
         <div className="bg-grey pa-20 mt-20">
-          <p>Thanks Sara A. Payment has been released to Aden J.</p>
+          <p>
+            Thanks <span className="font-bold">Sara A.</span> Payment has been
+            released to <span className="font-bold">Aden J.</span>
+          </p>
           <p className="mt-10">
-            Leave a review for Aden J. Tap below to set star rating.
+            Leave a review for <span className="font-bold">Aden J.</span> Tap
+            below to set star rating.
           </p>
         </div>
         <RatingComponent />
@@ -166,7 +174,7 @@ export default function PaymentReleaseModal({ close }) {
           step >= 4 ? close() : setStep(step + 1);
         }}
       >
-        <div className="scroll-area">
+        <div className="scroll-area" style={{ height: "calc(100vh - 110px)" }}>
           {step === 1
             ? informationView()
             : step === 2

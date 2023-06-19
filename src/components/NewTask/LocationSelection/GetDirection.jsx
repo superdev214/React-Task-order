@@ -9,7 +9,7 @@ const loader = new Loader({
   libraries: ["places"],
 });
 
-const LocationSelection = ({ close, onChange, onGetValue }) => {
+const GetDirection = ({ close, onChange, onGetValue }) => {
   const mapDiv = useRef(null);
   const [address, setAddress] = useState("");
   const [latlng, setLatlng] = useState({ lat: 45.508, lng: -73.587 });
@@ -83,14 +83,21 @@ const LocationSelection = ({ close, onChange, onGetValue }) => {
       </div>
       <div className="fixed-bottom">
         <button
-          className="d-block btn btn-green btn-w-350"
+          className="d-flex align-items-center justify-content-center btn btn-gray text-blue btn-w-350"
           onClick={onContinue}
         >
-          Confirm
+          <>
+            <img
+              src="./assets/images/icons/get-direction.svg"
+              className="mr-10"
+              alt="close"
+            />
+            Get directions
+          </>
         </button>
       </div>
     </div>
   );
 };
 
-export default LocationSelection;
+export default GetDirection;

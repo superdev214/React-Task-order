@@ -1,5 +1,11 @@
 .swiper {
-  height: 88vh;
+  height: calc(100vh - 64px);
+}
+
+.swiper-pagination {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
 }
 
 .swiper-pagination-bullet {

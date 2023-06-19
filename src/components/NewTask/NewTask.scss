@@ -1,4 +1,4 @@
-@import "../../assets/style/utils/Variables.scss";
+@import "../../assets/style/utils/variables.scss";
 @import "../../assets/style/utils/placeholders.scss";
 @import "../../assets/style/utils/mixins.scss";
 @import "../../assets/style/components/switch-button.scss";
@@ -9,6 +9,20 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+// .asdasd {
+//   box-sizing: border-box;
+//   border: 1px solid #dfe1e5;
+//   border-radius: 3px;
+//   padding: 8px 5px;
+//   font-size: 13px;
+//   text-align: left;
+// }
+// .highlight {
+//   background-color: #e0245e;
+// }
+// .excess-characters {
+//   background-color: #e0245e;
+// }
 
 .NewTask {
   .btn-date::placeholder {
@@ -37,17 +51,39 @@
       }
     }
   }
+  //words limit exceed label for title
+
   .word-count-title {
-    position: absolute;
+    position: relative;
     font-family: "SF Pro Text Regular";
     color: gray;
     right: 2px;
-    bottom: 3px;
+    // bottom: 3px;
   }
+  //words limit after exceed the char above 50 for title
+  .text-red-title {
+    position: relative;
+    font-family: "SF Pro Text Regular";
+    color: $red;
+    right: 2px;
+    // bottom: 3px;
+  }
+
+  //words limit exceed label for description
+
   .word-count-description {
-    position: absolute;
+    position: relative;
     font-family: "SF Pro Text Regular";
     color: gray;
+    right: 2px;
+    bottom: 6px;
+  }
+
+  //words limit after exceed the char above 2000 for title
+  .text-red-description {
+    position: relative;
+    font-family: "SF Pro Text Regular";
+    color: red;
     right: 2px;
     bottom: 6px;
   }

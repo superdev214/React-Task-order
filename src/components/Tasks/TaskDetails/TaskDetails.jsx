@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import MakeOffer from "../Offer/MakeOffer";
+import ViewAllOffer from "../Offer/ViewAllOffer";
 import PaymentReleaseModal from "../../Payment/PaymentRelease/PaymentReleaseModal";
 import MakePaymentModal from "../../Payment/MakePayment/MakePayment";
 import CancellationRequest from "../CancellationRequest/CancellationRequest";
@@ -8,6 +9,7 @@ import IncreasePrice from "../IncreasePrice/IncreasePrice";
 import Uploader from "../../shared/uploader/Uploader";
 import MapComponent from "../../shared/map/MapComponent";
 import ModalComponent from "../../shared/modal/ModalComponent";
+import GetDirection from "../../NewTask/LocationSelection/GetDirection";
 import TickIcon from "../../../assets/images/Tick.svg";
 import "./TaskDetails.scss";
 import "../../../assets/style/components/task-tab-bar.scss";
@@ -40,6 +42,8 @@ const offers = [
 
 export default function TaskDetails() {
   const [step, setStep] = useState(1);
+  const [address, setAddress] = useState("");
+  const [latlng, setLatlng] = useState({ lat: 0, lng: 0 });
   const [question, setQuestion] = useState("");
   const [makeOfferModal, setMakeOfferModal] = useState(false);
   const [increasePriceModal, setIncreasePriceModal] = useState(false);
@@ -48,6 +52,7 @@ export default function TaskDetails() {
   const [makePaymentModal, setMakePaymentModal] = useState(false);
   const [paymentReleaseModal, setPaymentReleaseModal] = useState(false);
   const [locationModal, setLocationModal] = useState(false);
+  const [viewAllOfferModal, setviewAllOfferModal] = useState(false);
 
   const actions = [
     {
@@ -100,9 +105,11 @@ export default function TaskDetails() {
                 />
               </div>
               <div className="ml-20 mr-20">
-                <div className="mb-10 font-bold size-15">LOCATION</div>
+                <div className="mbb-5 font-bold size-15">LOCATION</div>
                 <span className="size-15">
-                  Qaisar Bagh 226001, Lucknow, Uttar Pradesh, India{" "}
+                  {address
+                    ? address
+                    : "Qaisar Bagh 226001, Lucknow, Uttar Pradesh, India"}
                 </span>
               </div>
             </div>
@@ -122,7 +129,7 @@ export default function TaskDetails() {
                 />
               </div>
               <div className="ml-20 mr-20">
-                <div className="mb-10 font-bold size-15">TO BE DONE ON</div>
+                <div className="mbb-5 font-bold size-15">TO BE DONE ON</div>
                 <span className="size-15">
                   Thursday, 25 August Afternoon (2pm - 6pm){" "}
                 </span>
@@ -252,12 +259,7 @@ export default function TaskDetails() {
                 <img src="./assets/images/icons/fly-dark.svg" alt="logo big" />
               </div>
               <div className="ml-20">
-                <div
-                  className="mbb-5 font-bold size-15"
-                  // style={{ marginBottom: "5px" }}
-                >
-                  Gaurav C.
-                </div>
+                <div className="mbb-5 font-bold size-15">Gaurav C.</div>
                 <span>
                   <span className="font-bold size-15">
                     3.8{" "}
@@ -335,13 +337,14 @@ export default function TaskDetails() {
             <button
               className="d-block btn btn-gray btn-w-350"
               style={{ color: "#42ADE2" }}
+              onClick={() => setviewAllOfferModal(true)}
             >
               View all offers
             </button>
           </div>
         </div>
-        <div className="container">
-          <p className="font-bold mt-20">QUESTIONS (12)</p>
+        <div className="container my-20">
+          <p className="font-bold">QUESTIONS (12)</p>
           <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex justify-content-between align-items-center">
               <div>
@@ -394,6 +397,9 @@ export default function TaskDetails() {
   return (
     <>
       {makeOfferModal && <MakeOffer close={() => setMakeOfferModal(false)} />}
+      {viewAllOfferModal && (
+        <ViewAllOffer close={() => setviewAllOfferModal(false)} />
+      )}
       {makePaymentModal && (
         <MakePaymentModal close={() => setMakePaymentModal(false)} />
       )}
@@ -414,39 +420,50 @@ export default function TaskDetails() {
           btnStyle="btn-gray text-blue"
           noPadding
           onClick={() => {}}
+          onGetValue={(latlng) => setLatlng(latlng)}
           btnCaption="Get directions"
           title="Task location"
           close={() => setLocationModal(false)}
         >
-          <MapComponent onChange={(text) => {}} />
+          {/* <LocationSelection
+            onChange={(address) => setAddress(address)}
+            onGetValue={(latlng) => setLatlng(latlng)}
+            close={() => setLocationModal(false)}
+          /> */}
+          <GetDirection
+            onChange={(address) => setAddress(address)}
+            onGetValue={(latlng) => setLatlng(latlng)}
+            close={() => setLocationModal(false)}
+          />
+          <MapComponent onChange={(text) => setAddress(text)} />
         </ModalComponent>
       )}
       <>
         <div className="TaskDetails">
           <div className="header">
-            <div style={{ padding: "16px 16px 0px" }}>
-              <div className="d-flex align-items-center justify-content-center">
-                <div className="features-area">
-                  <button className="bg-transparent border-0 mr-10">
-                    <img src="./assets/images/icons/flag.svg" alt="close" />
-                  </button>
-                  <button className="bg-transparent border-0 ml-10">
-                    <img src="./assets/images/icons/forward.svg" alt="close" />
-                  </button>
-                </div>
-                <NavLink to={"/tasks"}>
-                  <button
-                    className="position-absolute bg-transparent border-0"
-                    style={{ left: "20px", top: "10px" }}
-                  >
-                    <img
-                      src="./assets/images/icons/arrow-back.svg"
-                      alt="close"
-                    />
-                  </button>
-                </NavLink>
-                <p className="font-bold">Task details</p>
+            <div className="top-bar d-flex align-items-center justify-content-center border-bottom1">
+              <div className="features-area">
+                <button className="bg-transparent border-0 mr-10">
+                  <img src="./assets/images/icons/flag.svg" alt="flag" />
+                </button>
+                <button className="bg-transparent border-0 ml-10">
+                  <img src="./assets/images/icons/forward.svg" alt="forward" />
+                </button>
               </div>
+              <NavLink to={"/tasks"}>
+                <button
+                  className="position-absolute bg-transparent border-0"
+                  style={{ left: "20px", top: "10px" }}
+                >
+                  <img
+                    src="./assets/images/icons/arrow-back.svg"
+                    alt="arrow back"
+                  />
+                </button>
+              </NavLink>
+              <p className="font-bold">Task details</p>
+            </div>
+            <div className="pa-20">
               <div className={" task-tab-bar step" + step}>
                 <div className="tab1">
                   <button onClick={() => setStep(1)}>OPEN</button>

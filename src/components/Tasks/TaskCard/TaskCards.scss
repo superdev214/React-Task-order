@@ -1,5 +1,6 @@
 .task-cards {
-  border-top: 2px solid #f5f7fa;
+  border-top: 1px solid #f5f7fa;
+  height: calc(100vh - 184px) !important;
   margin-top: 101px;
 
   a {

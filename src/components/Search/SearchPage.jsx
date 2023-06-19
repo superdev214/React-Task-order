@@ -33,7 +33,7 @@ export default function SearchPage({ query }) {
   const [filter, setFilter] = useState("");
   const [filterModal, setFilterModal] = useState(false);
   const [locationModal, setLocationModal] = useState(false);
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useState(allTasks);
   const [address, setAddress] = useState("");
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function SearchPage({ query }) {
         >
           <img
             src={`./assets/images/icons/${
-              !locationModal ? "frame.svg" : "list.png"
+              !locationModal ? "frame.svg" : "list.svg"
             }`}
             alt=""
           />
@@ -87,8 +87,8 @@ export default function SearchPage({ query }) {
           <MapComponent
             style={{
               width: "100%",
-              height: "75vh",
-              top: "95px",
+              height: "calc(100vh - 183px)",
+              top: "100px",
               position: "absolute",
             }}
             onChange={(text) => setAddress(text)}

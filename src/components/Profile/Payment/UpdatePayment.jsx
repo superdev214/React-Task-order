@@ -11,7 +11,7 @@ export default function UpdatePayment() {
   const update = () => {};
 
   return (
-    <div>
+    <>
       {modal && (
         <>
           <ModalComponent
@@ -77,6 +77,6 @@ export default function UpdatePayment() {
           </button>
         </li>
       </div>
-    </div>
+    </>
   );
 }

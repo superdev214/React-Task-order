@@ -71,28 +71,27 @@ const TasksOffer = ({ close, onChange, allItems }) => {
           <button
             disabled={!text || items.length >= 3}
             className="d-block btn btn-info"
+            style={{ padding: "7px 10px" }}
             onClick={addItem}
           >
             Add
           </button>
         </div>
-        <hr />
-        <div className="pt-sm">
-          {items.map((item, index) => (
-            <div
-              className="my-xs radius-3 bg-light p-2 d-flex justify-content-between"
-              key={index}
+        <div className="border-bottom my-10"></div>
+        {items.map((item, index) => (
+          <div
+            className="mb-10 py-10 px-20 radius-3 bg-light d-flex justify-content-between"
+            key={index}
+          >
+            <span>{item.value}</span>
+            <button
+              onClick={() => remove(index)}
+              className="bg-transparent border-0 close-btn"
             >
-              <span>{item.value}</span>
-              <button
-                onClick={() => remove(index)}
-                className="bg-transparent border-0 close-btn"
-              >
-                <img src="./assets/images/icons/close.svg" alt="close" />
-              </button>
-            </div>
-          ))}
-        </div>
+              <img src="./assets/images/icons/close.svg" alt="close" />
+            </button>
+          </div>
+        ))}
       </div>
     </ModalComponent>
   );

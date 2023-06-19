@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import TasksOffer from "./TasksOffer/TasksOffer";
 import LocationSelection from "./LocationSelection/LocationSelection";
@@ -20,11 +20,30 @@ export default function NewTask() {
     certainTime: "Morning",
   });
 
+  const titleInputRef = useRef();
+
   //title input handler
   const handleTitleChange = (e) => {
     const value = e.target.value;
     setTask({ ...task, title: value });
   };
+
+  // const handleTitleChange = () => {
+  //   const element = titleInputRef.current;
+  //   const maxLength = 50;
+  //   let text = element.textContent;
+
+  //   if (text.length > maxLength) {
+  //     const overText = text.substr(maxLength);
+  //     text = text.substr(0, maxLength);
+  //     element.innerHTML = `${text}<span class="highlight">${overText}</span>`;
+  //   } else {
+  //     element.innerHTML = text;
+  //   }
+
+  //   const value = element.textContent.trim();
+  //   setTask({ ...task, title: value });
+  // };
 
   //Description input handler
 
@@ -49,8 +68,10 @@ export default function NewTask() {
     if (
       task.title &&
       task.title.length > 10 &&
+      task.title.length < 51 &&
       task.description &&
-      task.description.length > 25
+      task.description.length > 25 &&
+      task.description.length < 2000
     )
       return true;
     return false;
@@ -80,16 +101,38 @@ export default function NewTask() {
             </p>
           </div>
           <input
-            style={{ marginBottom: "5px" }}
             className="phone-input w-100"
             type="text"
             minLength={10}
-            maxLength={50}
             value={task.title}
             onChange={handleTitleChange}
           />
+
+          {/* //title highlight// */}
+          {/* <div
+            ref={titleInputRef}
+            // style={{ direction: "ltr", unicodeBidi: "plaintext" }}
+            className="asdasd"
+            contentEditable="true"
+            onInput={handleTitleChange}
+            spellCheck={false}
+          >
+            {task.title}
+            {task.excessCharacters && (
+              <span className="excess-characters">{task.excessCharacters}</span>
+            )}
+          </div> */}
+
           <div className="form-control-group-description">
-            {remainingTitleWords >= 0 && (
+            {(
+              <span
+                className={`word-count-title ${
+                  remainingTitleWords < 0 && "text-red-title"
+                }`}
+              >
+                {remainingTitleWords}
+              </span>
+            ) || (
               <span className="word-count-title">{remainingTitleWords}</span>
             )}
           </div>
@@ -105,12 +148,20 @@ export default function NewTask() {
           <textarea
             className="phone-input w-100"
             minLength={25}
-            maxLength={2000}
+            // maxLength={2000}
             value={task.description}
             onChange={handleDescriptionChange}
           />
           <div className="form-control-group-description">
-            {remainingDescriptionWords >= 0 && (
+            {(
+              <span
+                className={`word-count-description ${
+                  remainingDescriptionWords < 0 && "text-red-description"
+                }`}
+              >
+                {remainingDescriptionWords}
+              </span>
+            ) || (
               <span className="word-count-description">
                 {remainingDescriptionWords}
               </span>
@@ -281,14 +332,13 @@ export default function NewTask() {
     );
   };
 
-  //
   const handleBudgetChange = (e) => {
     const value = parseFloat(e.target.value);
     setTask({ ...task, budget: value });
   };
 
   const isBudgetValid = () => {
-    return task.budget >= 15 && task.budget <= 2000;
+    return task.budget >= 15 && task.budget <= 20000;
   };
 
   const handleSubmit = () => {
@@ -298,7 +348,7 @@ export default function NewTask() {
       // Show an error message or prevent task submission
     }
   };
-  //
+
   const stepBudget = () => {
     return (
       <>
@@ -337,38 +387,33 @@ export default function NewTask() {
       )}
       <div className="NewTask">
         <div className="new-task">
-          <div style={{ padding: "13px 13px 0px" }}>
-            <div>
-              <div className="d-flex align-items-center justify-content-center">
-                <NavLink to={"/home"}>
-                  <button className="position-absolute bg-transparent border-0 close-btn">
-                    <img src="./assets/images/icons/close.svg" alt="close" />
-                  </button>
-                </NavLink>
-                {step > 1 && (
-                  <button
-                    className="position-absolute bg-transparent border-0"
-                    style={{ left: "20px" }}
-                    onClick={() => setStep(step - 1)}
-                  >
-                    <img
-                      src="./assets/images/icons/arrow-back.svg"
-                      alt="close"
-                    />
-                  </button>
-                )}
-                <p className="nav-title">New Task</p>
+          <div className="top-bar d-flex align-items-center justify-content-center">
+            <NavLink to={"/home"}>
+              <button className="position-absolute bg-transparent border-0 close-btn">
+                <img src="./assets/images/icons/close.svg" alt="close" />
+              </button>
+            </NavLink>
+            {step > 1 && (
+              <button
+                className="position-absolute bg-transparent border-0"
+                style={{ left: "20px" }}
+                onClick={() => setStep(step - 1)}
+              >
+                <img src="./assets/images/icons/arrow-back.svg" alt="close" />
+              </button>
+            )}
+            <p className="nav-title">New Task</p>
+          </div>
+          <div className="pa-20">
+            <div className={"task-tab-bar step" + step}>
+              <div className="tab1">
+                <button>ABOUT</button>
               </div>
-              <div className={"task-tab-bar step" + step}>
-                <div className="tab1">
-                  <button>ABOUT</button>
-                </div>
-                <div className="tab2">
-                  <button>DATE & TIME</button>
-                </div>
-                <div className="tab3">
-                  <button>BUDGET</button>
-                </div>
+              <div className="tab2">
+                <button>DATE & TIME</button>
+              </div>
+              <div className="tab3">
+                <button>BUDGET</button>
               </div>
             </div>
           </div>
@@ -377,7 +422,7 @@ export default function NewTask() {
             style={{
               height: "80vh",
               overflowY: "scroll",
-              paddingBottom: "36px",
+              paddingBottom: "40px",
             }}
           >
             {step === 1 ? stepAbout() : step === 2 ? dateTime() : stepBudget()}
