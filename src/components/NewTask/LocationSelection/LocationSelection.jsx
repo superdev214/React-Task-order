@@ -31,7 +31,7 @@ const LocationSelection = ({ close, onChange, onGetValue }) => {
       });
       const marker = new google.maps.Marker({
         position: myCenter,
-        icon: "./assets/images/marker.png",
+        icon: "./assets/images/marker.svg",
         map: map,
       });
       google.maps.event.addListener(map, "click", function (event) {
