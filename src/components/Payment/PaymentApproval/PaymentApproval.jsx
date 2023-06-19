@@ -2,7 +2,7 @@ import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import CreditCardView from "../CreditCardView/CreditCardView";
 
-let gate = {
+const gate = {
   title: "MasterCard *** 4473",
   desc: "Expires 5/27",
   image: "master-card",

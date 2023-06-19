@@ -5,14 +5,14 @@ import CardReview from "../Tasks/Card/CardReview";
 import ProfileHeader from "./Header/ProfileHeader";
 import "./Profile.scss";
 
-let badges = [
+const badges = [
   { label: "Mobile", icon: "mobile", subitems: [] },
   { label: "Email", icon: "email", subitems: [] },
   { label: "Bank Account", icon: "bank-account", subitems: [] },
   { label: "Payment Method", icon: "wallet", subitems: [] },
 ];
 
-let skills = [
+const skills = [
   {
     label: "Transportation",
     id: 1,

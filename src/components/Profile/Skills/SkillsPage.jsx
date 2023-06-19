@@ -3,7 +3,7 @@ import accountContext from "../../../context/AccountContext";
 import ToggleSwitch from "../../shared/toggle-switch/ToggleSwitch";
 import ProfileHeader from "../Header/ProfileHeader";
 
-let skillData = [
+const skillData = [
   {
     icon: "education",
     items: [],
@@ -30,7 +30,7 @@ let skillData = [
   },
 ];
 
-let transportationData = [
+const transportationData = [
   {
     isSelected: false,
     title: "Walk",

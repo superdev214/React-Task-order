@@ -2,20 +2,20 @@ import { useState } from "react";
 import ModalComponent from "../../shared/modal/ModalComponent";
 import RatingComponent from "./Rating/RatingComponent";
 
-let filters = [
+const filters = [
   { key: 0, value: "SR 30" },
   { key: 1, value: "SR 60" },
   { key: 2, value: "SR 100" },
 ];
 
-let btnCaptions = {
+const btnCaptions = {
   1: "Release payment",
   2: "Leave review",
   3: "Continue",
   4: "Close",
 };
 
-let titles = {
+const titles = {
   1: "Release payment",
   2: "Payment released",
   3: "Payment successful ",
@@ -174,7 +174,7 @@ export default function PaymentReleaseModal({ close }) {
           step >= 4 ? close() : setStep(step + 1);
         }}
       >
-        <div className="scroll-area">
+        <div className="scroll-area" style={{ height: "calc(100vh - 110px)" }}>
           {step === 1
             ? informationView()
             : step === 2
