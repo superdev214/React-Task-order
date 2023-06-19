@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AccountContext from "./context/AccountContext";
 import Routing from "./routes/Routing";
+import "./App.scss";
 
 function App() {
   const accountContext = {
@@ -13,18 +14,27 @@ function App() {
   const [loading, setLoading] = useState(0);
   setTimeout(() => {
     setLoading(1);
-  }, 1000);
+  }, 2800);
 
   return (
     <div className="App">
       <AccountContext.Provider value={accountContext}>
-        {loading === 0 ? (
-          <img
-            id="flash-img"
-            src="./assets/images/flash-img.png"
-            alt="flash"
-            style={{ width: "90%" }}
-          />
+        {true ? (
+          <div className="earth-flash">
+              <img
+                id="earth-img"
+                src="./assets/images/earth.png"
+                alt="earth"
+              />
+            <div className="vector-flash">
+              <img
+                id="vector-img"
+                src="./assets/images/vector.png"
+                alt="vector"
+              />
+            </div>
+          </div>
+
         ) : (
           <Routing />
         )}
