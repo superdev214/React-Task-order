@@ -28,7 +28,7 @@ function WalkthroughStep(props) {
             inputMode="numeric"
             pattern="[0-9]*"
             onInput={(event) => {
-              event.target.value = event.target.value.slice(0, 10);
+              event.target.value = event.target.value.slice(0, 13);
             }}
             placeholder="Enter phone number"
             onChange={(e) => setPhoneNum(e.target.value)}

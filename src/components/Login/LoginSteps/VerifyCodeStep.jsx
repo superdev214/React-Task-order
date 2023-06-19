@@ -12,7 +12,7 @@ function VerifyCodeStep(props) {
   const onContinue = () => {
     const verifyCode = firstNum*1000+secondNum*100+thirdNum*10 + forthNum*1;
     if(firstNum !== null | secondNum !== null | thirdNum !== null | forthNum !== null) {//change, props.verifyCode === verifyCode
-      props.verifyOtp({phone_no:props.phone_no, verifyCode:verifyCode})
+      props.verifyOtp({phone_no:props.phone_no, otp:verifyCode})
     }
     if(verifyCode !== 0) { /// chanage code. props.otp != null
       props.onContinue()

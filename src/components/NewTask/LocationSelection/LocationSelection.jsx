@@ -1,7 +1,6 @@
 /*global google*/
 import React, { useRef, useEffect, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
-import { useMemo } from "react";
 
 const loader = new Loader({
   apiKey: String(process.env.API_HEY_GOOGLE_MAP),
@@ -27,13 +26,14 @@ const LocationSelection = ({ close, onChange, onGetValue }) => {
       const map = new google.maps.Map(mapDiv.current, {
         center: myCenter,
         zoom: 5,
+        disableDefaultUI: true,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
       });
       const marker = new google.maps.Marker({
         position: myCenter,
+        icon: "./assets/images/marker.png",
         map: map,
       });
-      console.log("marker", marker);
       google.maps.event.addListener(map, "click", function (event) {
         map.setCenter({ lat: event.latLng.lat(), lng: event.latLng.lng() });
         marker.setPosition({
