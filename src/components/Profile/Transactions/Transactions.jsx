@@ -231,7 +231,7 @@ export default function TransactionsPage() {
         <div className="mt-20">
           <div className="d-flex justify-content-between align-items-center">
             <p className="font-bold">Showing:</p>
-            <div className="text-info">
+            <div className="text-blue">
               <img src="./assets/images/icons/history.svg" alt="close" />
               <span className="ml-10">Today</span>
             </div>
@@ -243,7 +243,7 @@ export default function TransactionsPage() {
           </li>
           <div className="d-flex mt-20 justify-content-between align-items-center">
             <p className="font-bold">Records</p>
-            <div className="text-info">
+            <div className="text-blue">
               <img
                 src="./assets/images/icons/statistics.svg"
                 alt="statistics"

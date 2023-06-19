@@ -11,7 +11,7 @@ const loader = new Loader({
 const LocationSelection = ({ close, onChange, onGetValue }) => {
   const mapDiv = useRef(null);
   const [address, setAddress] = useState("");
-  const [latlng ,setLatlng] = useState({lat:45.508, lng:-73.587})
+  const [latlng, setLatlng] = useState({ lat: 45.508, lng: -73.587 });
 
   const onContinue = () => {
     onChange && onChange(address);
@@ -22,7 +22,7 @@ const LocationSelection = ({ close, onChange, onGetValue }) => {
   useEffect(() => {
     const fetchMap = async () => {
       await loader.load();
-      const myCenter = new  google.maps.LatLng(45.508, -73.587);
+      const myCenter = new google.maps.LatLng(45.508, -73.587);
       const map = new google.maps.Map(mapDiv.current, {
         center: myCenter,
         zoom: 5,
@@ -31,13 +31,20 @@ const LocationSelection = ({ close, onChange, onGetValue }) => {
       });
       const marker = new google.maps.Marker({
         position: myCenter,
-        icon:"./assets/images/marker.png",
+        icon: "./assets/images/marker.png",
         map: map,
       });
       google.maps.event.addListener(map, "click", function (event) {
-        map.setCenter({lat:event.latLng.lat() ,lng:event.latLng.lng()});
-        marker.setPosition({lat:event.latLng.lat() ,lng:event.latLng.lng()});
-        setLatlng({...latlng, lat:event.latLng.lat(), lng:event.latLng.lng()})
+        map.setCenter({ lat: event.latLng.lat(), lng: event.latLng.lng() });
+        marker.setPosition({
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng(),
+        });
+        setLatlng({
+          ...latlng,
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng(),
+        });
       });
     };
 
@@ -47,27 +54,25 @@ const LocationSelection = ({ close, onChange, onGetValue }) => {
   useEffect(() => {
     const geocoder = new google.maps.Geocoder();
 
-      geocoder.geocode({ location: latlng }, (results, status) => {
-        if (status === "OK") {
-          setAddress(results[0].formatted_address);
-        } else {
-          console.error(status);
-        }
-      });
-  }, [latlng])
+    geocoder.geocode({ location: latlng }, (results, status) => {
+      if (status === "OK") {
+        setAddress(results[0].formatted_address);
+      } else {
+        console.error(status);
+      }
+    });
+  }, [latlng]);
 
   return (
     <div className="modal-area">
-      <div className="py-md d-flex justify-content-between p-3 font-bold">
+      <div className="top-bar d-flex align-items-center justify-content-center">
         <button
           onClick={close}
           className="position-absolute bg-transparent border-0 close-btn"
         >
           <img src="./assets/images/icons/close.svg" alt="close" />
         </button>
-        <p style={{ margin: "3px auto" }} className="font-bold">
-          Location
-        </p>
+        <p className="nav-title">Location</p>
       </div>
       <div>
         <div

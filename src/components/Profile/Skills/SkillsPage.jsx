@@ -3,7 +3,7 @@ import accountContext from "../../../context/AccountContext";
 import ToggleSwitch from "../../shared/toggle-switch/ToggleSwitch";
 import ProfileHeader from "../Header/ProfileHeader";
 
-let skillData = [
+const skillData = [
   {
     icon: "education",
     items: [],
@@ -30,30 +30,36 @@ let skillData = [
   },
 ];
 
-let transportationData = [
+const transportationData = [
   {
     isSelected: false,
     title: "Walk",
+    icon: "walk",
   },
   {
     isSelected: false,
     title: "Public transportation",
+    icon: "public-transportation",
   },
   {
     isSelected: false,
     title: "Car",
+    icon: "car",
   },
   {
     isSelected: false,
     title: "Truck",
+    icon: "truck",
   },
   {
     isSelected: false,
     title: "Helicopter",
+    icon: "helicopter",
   },
   {
     isSelected: false,
     title: "Spaceship",
+    icon: "spaceship",
   },
 ];
 
@@ -127,8 +133,15 @@ export default class SkillsPage extends React.Component {
           {transportations.map((preference, index) => {
             return (
               <div key={index} className="py-10 px-20">
-                <div className="d-flex align-items-center justify-content-between">
-                  <p className="font-bold">{preference.title}</p>
+                <div className=" d-flex align-items-center justify-content-between">
+                  <div className="d-flex align-items-center gap-4">
+                    <img
+                      src={`./assets/images/profile/${preference.icon}.svg`}
+                      alt="avatar"
+                    />
+                    <p className="font-text">{preference.title}</p>
+                  </div>
+
                   <ToggleSwitch
                     dark={true}
                     id={`toggle-${preference.title}`}

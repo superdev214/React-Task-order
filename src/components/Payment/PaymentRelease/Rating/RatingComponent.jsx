@@ -1,19 +1,23 @@
 import { useState } from "react";
-import { Rating } from "react-simple-star-rating";
+import StarRatings from "react-star-ratings";
 
 export default function RatingComponent() {
   const [rate, setRate] = useState(0);
 
   return (
-    <div className="text-center mt-20">
-      <Rating
-        onClick={(value) => setRate(value)}
-        ratingValue={rate}
-        size={40}
-        transition
-        SVGstyle={{ marginLeft: "16px", marginRight: "16px" }}
-        fillColor="#FFE818"
-        emptyColor="#C5CDD9"
+    <div className="text-center mt-20 mx-20">
+      <StarRatings
+        rating={rate}
+        starRatedColor="#FFE818"
+        starHoverColor="#FFE818"
+        starEmptyColor="#F5F7FA"
+        starSpacing={0}
+        starDimension={45}
+        changeRating={(value) => setRate(value)}
+        numberOfStars={5}
+        name="rating"
+        svgIconViewBox="0 0 39 37"
+        svgIconPath="M30.4359 36.0419C30.1306 36.0429 29.8296 35.9716 29.5579 35.8339L19.8176 30.7928L10.0773 35.8339C9.76108 35.9983 9.40458 36.0717 9.04829 36.0458C8.69199 36.0199 8.35018 35.8958 8.06169 35.6875C7.7732 35.4792 7.5496 35.195 7.4163 34.8673C7.283 34.5397 7.24535 34.1816 7.30761 33.8339L9.21744 23.2048L1.34952 15.6509C1.09775 15.4069 0.920401 15.0978 0.837679 14.759C0.754957 14.4202 0.770194 14.0653 0.881653 13.7346C0.993111 13.404 1.19631 13.1109 1.46807 12.8889C1.73984 12.6669 2.06925 12.5248 2.41874 12.4788L13.3052 10.9118L18.0989 1.22685C18.2551 0.907212 18.4993 0.637586 18.8035 0.448911C19.1077 0.260236 19.4595 0.160156 19.8186 0.160156C20.1777 0.160156 20.5295 0.260236 20.8337 0.448911C21.1378 0.637586 21.382 0.907212 21.5382 1.22685L26.3937 10.8938L37.269 12.4608C37.6185 12.5068 37.9479 12.6489 38.2197 12.8709C38.4915 13.0929 38.6947 13.386 38.8061 13.7166C38.9176 14.0473 38.9328 14.4022 38.8501 14.741C38.7674 15.0798 38.59 15.3889 38.3382 15.6328L30.4693 23.1848L32.3791 33.8139C32.4348 34.0924 32.4256 34.3798 32.3521 34.6543C32.2786 34.9287 32.1428 35.183 31.9549 35.3978C31.7671 35.6126 31.5322 35.7822 31.2682 35.8938C31.0041 36.0054 30.7177 36.0561 30.4309 36.0419H30.4359Z"
       />
     </div>
   );

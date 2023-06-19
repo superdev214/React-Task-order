@@ -4,7 +4,7 @@ import "./TaskPublished.scss";
 export default function TaskPublished() {
   return (
     <div className="TaskPublished">
-      <div className="py-13">
+      <div className="top-bar d-flex align-items-center justify-content-center">
         <p className="text-center nav-title">Published</p>
       </div>
       <div className="container">
@@ -34,7 +34,7 @@ export default function TaskPublished() {
         </ul>
       </div>
       <div className="fixed-bottom">
-        <NavLink to={"/home"}>
+        <NavLink to={"/tasks"}>
           <button className="d-block btn btn-green btn-w-350">
             Go to my tasks
           </button>

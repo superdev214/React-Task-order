@@ -1,4 +1,4 @@
-@import "../utils/Variables.scss";
+@import "../utils/variables.scss";
 @import "../utils/placeholders.scss";
 @import "../utils/mixins.scss";
 
@@ -81,6 +81,19 @@ a {
   padding-left: 8px;
 }
 
+.py-10 {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.py-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.px-20 {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .pt-sm {
   padding-top: 8px;
 }
@@ -110,13 +123,20 @@ a {
   margin: 6px 0;
 }
 
+.mx-20 {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
 .modal-area {
   height: 100vh;
   position: absolute;
   width: 100vw;
+  left: 0;
   top: 0;
   z-index: 10000;
   background-color: #fff;
+  // overflow: hidden;
 }
 
 hr {
@@ -190,6 +210,10 @@ hr {
   padding-right: 10px;
 }
 
+.pt-20 {
+  padding-top: 20px;
+}
+
 .mt-20 {
   margin-top: 20px;
 }
@@ -205,6 +229,7 @@ hr {
 .mbb-5 {
   margin-bottom: 5px;
 }
+
 .mt-10 {
   margin-top: 10px;
 }
@@ -257,7 +282,7 @@ hr {
 }
 
 .text-blue {
-  color: #2d93c7 !important;
+  color: $blue !important;
 }
 
 .bg-grey {
@@ -270,8 +295,7 @@ hr {
 
 .scroll-area {
   overflow-y: scroll;
-  padding-bottom: 60px !important;
-  height: 85vh;
+  height: calc(100vh - 83px);
 }
 
 .form-control-group {
@@ -384,9 +408,9 @@ p {
     top: 0 !important;
     background: #fff !important;
     width: 100% !important;
-    padding-top: 10px;
-    padding-bottom: 10px;
     z-index: 1;
+    height: 44px;
+    padding: 0;
   }
 }
 
@@ -399,11 +423,25 @@ p {
 }
 
 .chat-grey {
-  background: #f5f7fa;
+  background: rgb(66, 173, 226);
 }
 
 .nav-title {
   font-family: "SF Pro Text Bold" !important;
   text-align: center;
   @extend %text-caption;
+}
+
+.top-bar {
+  height: 44px;
+}
+.border-bottom1 {
+  border-bottom: 1px solid #f5f7fa;
+}
+
+.star-ratings {
+  width: 100%;
+  display: flex !important;
+  align-items: center;
+  justify-content: space-between;
 }

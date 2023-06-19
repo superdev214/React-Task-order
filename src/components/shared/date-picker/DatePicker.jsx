@@ -37,12 +37,12 @@ export default function DatePickerComponent(props) {
     }
   };
 
-  // let nowDate = new Date(Date.now());
-  // let minDate = {
-  //   year: nowDate.getFullYear(),
-  //   month: nowDate.getMonth() + 1,
-  //   day: nowDate.getDate(),
-  // };
+  let nowDate = new Date(Date.now());
+  let minDate = {
+    year: nowDate.getFullYear(),
+    month: nowDate.getMonth() + 1,
+    day: nowDate.getDate(),
+  };
 
   return (
     <div>
@@ -51,7 +51,7 @@ export default function DatePickerComponent(props) {
         // shouldHighlightWeekends
         inputClassName="form-control"
         value={date}
-        // minimumDate={minDate}
+        minimumDate={minDate}
         onChange={(dateValue) => onChange(dateValue)}
         colorPrimary="#42ade2"
         renderInput={renderCustomInput}

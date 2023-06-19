@@ -2,7 +2,7 @@
   -ms-overflow-style: -ms-autohiding-scrollbar;
   scrollbar-width: none !important;
   -ms-overflow-style: none;
-
+  height: auto !important;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -21,9 +21,7 @@
   }
 
   .t-card {
-    width: 90vw;
-    margin: 20px 10px;
-    border-bottom: unset !important;
+    width: 100vw;
   }
 
   cursor: pointer;

@@ -2,8 +2,20 @@ import { useState } from "react";
 import ModalComponent from "../../shared/modal/ModalComponent";
 
 export default function IncreasePrice({ close, openPayment }) {
-  const [description, setDescription] = useState("");
+  const [task, setTask] = useState({
+    type: "InPerson",
+    description: "",
+    title: "",
+  });
+  const handleDescriptionChange = (e) => {
+    const value = e.target.value;
+    setTask({ ...task, description: value });
+  };
 
+  const getDescriptionCharacterCount = () => {
+    return task.description.length;
+  };
+  const remainingDescriptionWords = 2000 - getDescriptionCharacterCount();
   return (
     <>
       <ModalComponent
@@ -37,10 +49,24 @@ export default function IncreasePrice({ close, openPayment }) {
             <textarea
               className="phone-input w-100"
               minLength={15}
-              maxLength={200}
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              // maxLength={2000}
+              value={task.description}
+              onChange={handleDescriptionChange}
             />
+            <div
+              className="remaining-letter-description"
+              style={{ textAlign: "end" }}
+            >
+              {remainingDescriptionWords < 0 ? (
+                <span className="text-red-description">
+                  {remainingDescriptionWords}
+                </span>
+              ) : (
+                <span className="word-count-description">
+                  {remainingDescriptionWords}
+                </span>
+              )}
+            </div>
           </div>
         </div>
       </ModalComponent>

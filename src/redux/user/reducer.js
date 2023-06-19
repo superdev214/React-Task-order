@@ -8,6 +8,7 @@ import {
     EDIT_PROFILE_FAIL
 } from '../actions';
 
+
 const INIT_STATE = {
     phone_no:"",
     otp:"",
