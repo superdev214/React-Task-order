@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { verifyOtp } from "../../../redux/user/actions";
+import { loginWithSMS } from "../../../redux/user/actions";
 
 function VerifyCodeStep(props) {
   const [firstNum, setFirst] = useState("");
@@ -27,15 +28,8 @@ function VerifyCodeStep(props) {
   const onContinue = () => {
     const verifyCode =
       firstNum * 1000 + secondNum * 100 + thirdNum * 10 + forthNum * 1;
-    if (
-      firstNum !== "" ||
-      secondNum !== "" ||
-      thirdNum !== "" ||
-      forthNum !== ""
-    ) {
-      props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
-    }
     if (verifyCode !== 0) {
+      props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
       props.onContinue();
     }
   };
@@ -43,8 +37,11 @@ function VerifyCodeStep(props) {
   const onResend = () => {
     setTimer(60);
     setShowResend(false);
+    props.loginWithSMS(props.phone_no);
     // Add logic to resend the code
   };
+
+  const isContinueDisabled = firstNum === "" || secondNum === "" || thirdNum === "" || forthNum === "";
 
   return (
     <section id="verify-code">
@@ -131,7 +128,7 @@ function VerifyCodeStep(props) {
       </div>
       <div className="fixed-bottom">
         {showResend && (
-          <button className="resend-code bottom-txt bg-transparent" onClick={onResend}>
+          <button className="d-block btn btn-green btn-w-350" onClick={onResend}>
             Resend code
           </button>
         )}
@@ -139,6 +136,7 @@ function VerifyCodeStep(props) {
           <button
             className="d-block btn btn-green btn-w-350"
             onClick={onContinue}
+            disabled={isContinueDisabled}
           >
              Continue
           </button>
@@ -155,6 +153,7 @@ const mapStateToProps = ({ userReducer }) => {
 
 const mapDispatchToProps = {
   verifyOtp,
+  loginWithSMS
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(VerifyCodeStep);

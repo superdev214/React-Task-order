@@ -1,11 +1,10 @@
 import { NavLink } from "react-router-dom";
 import logoSvg from "../../../assets/images/logo.svg";
 import { loginWithSMS } from "../../../redux/user/actions";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { useState } from "react";
 
 function WalkthroughStep(props) {
-
   const [phoneNum, setPhoneNum] = useState("");
   const [error, setError] = useState("");
 
@@ -22,6 +21,14 @@ function WalkthroughStep(props) {
     }
   };
 
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value;
+    setPhoneNum(value);
+    setError("");
+  };
+
+  const isContinueDisabled = phoneNum === "" || !/^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$/.test(phoneNum);
+
   return (
     <div className="text-center" id="phone-number">
       <div className="form">
@@ -29,7 +36,7 @@ function WalkthroughStep(props) {
         <div className="container">
           {error && <p className="error-message">{error}</p>}
           <input
-            className={`phone-input w-100 text-center ${error ? 'error' : ''}`}
+            className={`phone-input w-100 text-center ${error ? "error" : ""}`}
             type="text"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -37,10 +44,7 @@ function WalkthroughStep(props) {
               event.target.value = event.target.value.slice(0, 13);
             }}
             placeholder="Enter phone number"
-            onChange={(e) => {
-              setPhoneNum(e.target.value);
-              setError("");
-            }}
+            onChange={handlePhoneNumberChange}
           />
           <p style={{ fontSize: "13px" }}>
             By joining you agree to Taklief’s
@@ -66,6 +70,7 @@ function WalkthroughStep(props) {
           className="d-block btn btn-green btn-w-350"
           style={{ marginTop: "20px" }}
           onClick={continueTo}
+          disabled={isContinueDisabled}
         >
           Continue
         </button>
