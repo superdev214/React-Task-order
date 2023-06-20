@@ -1,7 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { verifyOtp } from "../../../redux/user/actions";
 import { loginWithSMS } from "../../../redux/user/actions";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function VerifyCodeStep(props) {
   const [firstNum, setFirst] = useState("");
@@ -10,6 +12,11 @@ function VerifyCodeStep(props) {
   const [forthNum, setForth] = useState("");
   const [timer, setTimer] = useState(60);
   const [showResend, setShowResend] = useState(false);
+
+  const firstNumRef = useRef(null);
+  const secondNumRef = useRef(null);
+  const thirdNumRef = useRef(null);
+  const forthNumRef = useRef(null);
 
   useEffect(() => {
     let interval = null;
@@ -38,10 +45,15 @@ function VerifyCodeStep(props) {
     setTimer(60);
     setShowResend(false);
     props.loginWithSMS(props.phone_no);
-    // Add logic to resend the code
+    setFirst("");
+    setSecond("");
+    setThird("");
+    setForth("");
+    toast.info("OTP sent successfully", { autoClose: 2000 });
   };
 
-  const isContinueDisabled = firstNum === "" || secondNum === "" || thirdNum === "" || forthNum === "";
+  const isContinueDisabled =
+    firstNum === "" || secondNum === "" || thirdNum === "" || forthNum === "";
 
   return (
     <section id="verify-code">
@@ -72,7 +84,7 @@ function VerifyCodeStep(props) {
           Please enter the SMS code sent to
           <br />
           <span style={{ fontFamily: "SF Pro Text Bold" }}>
-            {props.phone_no}
+            +{props.phone_no}
           </span>
         </p>
         <div className="d-flex align-items-center justify-content-between area-inputs">
@@ -84,8 +96,15 @@ function VerifyCodeStep(props) {
             onInput={(event) => {
               event.target.value = event.target.value.slice(0, 1);
             }}
-            onChange={(e) => setFirst(e.target.value)}
+            onChange={(e) => {
+              setFirst(e.target.value);
+              if (e.target.value.length === 1) {
+                secondNumRef.current.focus();
+              }
+            }}
+            value={firstNum}
             alt="code number"
+            ref={firstNumRef}
           />
           <input
             className="input-code"
@@ -95,8 +114,15 @@ function VerifyCodeStep(props) {
             onInput={(event) => {
               event.target.value = event.target.value.slice(0, 1);
             }}
-            onChange={(e) => setSecond(e.target.value)}
+            onChange={(e) => {
+              setSecond(e.target.value);
+              if (e.target.value.length === 1) {
+                thirdNumRef.current.focus();
+              }
+            }}
+            value={secondNum}
             alt="code number"
+            ref={secondNumRef}
           />
           <input
             className="input-code"
@@ -106,8 +132,15 @@ function VerifyCodeStep(props) {
             onInput={(event) => {
               event.target.value = event.target.value.slice(0, 1);
             }}
-            onChange={(e) => setThird(e.target.value)}
+            onChange={(e) => {
+              setThird(e.target.value);
+              if (e.target.value.length === 1) {
+                forthNumRef.current.focus();
+              }
+            }}
+            value={thirdNum}
             alt="code number"
+            ref={thirdNumRef}
           />
           <input
             className="input-code"
@@ -118,7 +151,9 @@ function VerifyCodeStep(props) {
               event.target.value = event.target.value.slice(0, 1);
             }}
             onChange={(e) => setForth(e.target.value)}
+            value={forthNum}
             alt="code number"
+            ref={forthNumRef}
           />
         </div>
         <p>
@@ -127,21 +162,18 @@ function VerifyCodeStep(props) {
         </p>
       </div>
       <div className="fixed-bottom">
-        {showResend && (
-          <button className="d-block btn btn-green btn-w-350" onClick={onResend}>
-            Resend code
-          </button>
-        )}
-        {!showResend && (
-          <button
-            className="d-block btn btn-green btn-w-350"
-            onClick={onContinue}
-            disabled={isContinueDisabled}
-          >
-             Continue
-          </button>
-        )}
+        <button className="btn-no-border" onClick={onResend} disabled={!showResend}>
+          Didn't receive a code?
+        </button>
+        <button
+          className="d-block btn btn-green btn-w-350"
+          onClick={onContinue}
+          disabled={isContinueDisabled}
+        >
+          Continue
+        </button>
       </div>
+      <ToastContainer />
     </section>
   );
 }
