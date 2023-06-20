@@ -1,33 +1,31 @@
-import React, { useState, useEffect } from 'react';
-import { debounce } from 'lodash';
+import React, { useState, useEffect } from "react";
 
 export default function HomeFooter() {
   const [showFullImage, setShowFullImage] = useState(false);
 
   useEffect(() => {
     let bottomValue;
-    let isScrolling =true;
+    let isScrolling = true;
     const handleTouchEnd = () => {
       isScrolling = false;
       setShowFullImage(false);
     };
     const trackScrolling = () => {
-      const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+      const { scrollTop, clientHeight, scrollHeight } =
+        document.documentElement;
       if (scrollTop + clientHeight >= scrollHeight) {
-        console.log("true");
         bottomValue = scrollTop;
         setShowFullImage(true);
       } else {
         if (showFullImage === true && isScrolling === false) {
-          console.log("false");
           setShowFullImage(false);
         }
       }
     };
-    document.addEventListener('touchend', handleTouchEnd);
-    window.addEventListener('scroll', trackScrolling);
+    document.addEventListener("touchend", handleTouchEnd);
+    window.addEventListener("scroll", trackScrolling);
     return () => {
-      window.removeEventListener('scroll', trackScrolling);
+      window.removeEventListener("scroll", trackScrolling);
     };
   }, [showFullImage]);
 
@@ -40,7 +38,10 @@ export default function HomeFooter() {
           tasks done.
         </p>
       </div>
-      <div id='imagediv' className={`${showFullImage ? 'show-full' : 'show-half'}`}>
+      <div
+        id="imagediv"
+        className={`${showFullImage ? "show-full" : "show-half"}`}
+      >
         <img
           className="home-bottom__img image-container-img"
           style={{ paddingTop: "20px", paddingBottom: "20px" }}
