@@ -1,7 +1,6 @@
 /*global google*/
 import React, { useRef, useEffect, useState } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
-import { useMemo } from "react";
 
 const loader = new Loader({
   apiKey: String(process.env.API_HEY_GOOGLE_MAP),
@@ -77,9 +76,8 @@ const GetDirection = ({ close, onChange, onGetValue }) => {
       <div>
         <div
           ref={mapDiv}
-          style={{ width: "100%", height: "90vh", borderRadius: "5px" }}
+          style={{ width: "100%", height: "calc(100vh - 112px)" }}
         />
-        <div style={{ height: "100vh", width: "100%" }}></div>
       </div>
       <div className="fixed-bottom">
         <button

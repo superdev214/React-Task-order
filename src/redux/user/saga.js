@@ -1,95 +1,98 @@
-import { all, call, fork, put, take, takeEvery} from "redux-saga/effects";
-import {
-    LOGIN_WITH_SMS, VERIFY_OTP,
-    EDIT_PROFILE,
-} from '../actions'
+import { all, call, fork, put, take, takeEvery } from "redux-saga/effects";
+import { LOGIN_WITH_SMS, VERIFY_OTP, EDIT_PROFILE } from "../actions";
 
 import {
-    loginWithSMSFail,
-    loginWithSMSSuccess,
-    verifyOtpSuccess,
-    verifyOtpFail,
-    editProfileSuccess,
-    editProfileFail,
-} from './actions';
+  loginWithSMSFail,
+  loginWithSMSSuccess,
+  verifyOtpSuccess,
+  verifyOtpFail,
+  editProfileSuccess,
+  editProfileFail,
+} from "./actions";
 
-import axios from 'axios';
+import axios from "axios";
 
-const server_url = "http://8.213.23.19/api"
-
+const server_url = "http://8.213.23.19/api";
 
 export function* watchLoginSMS() {
-    yield takeEvery(LOGIN_WITH_SMS, loginWithSMSFunc);
+  yield takeEvery(LOGIN_WITH_SMS, loginWithSMSFunc);
 }
 
-const loginWithSMSAsync = async (payload)  => {
-   return axios.post(`${server_url}/user/login-with-sms`, payload)
-   .then((response) => response)
-   .catch((error) => error)
-}
+const loginWithSMSAsync = async (payload) => {
+  return axios
+    .post(`${server_url}/user/login-with-sms`, payload)
+    .then((response) => response)
+    .catch((error) => error);
+};
 
-function* loginWithSMSFunc({payload}) {
-    try{
-        const response = yield call(loginWithSMSAsync, payload);
-        yield put(loginWithSMSSuccess({phone_no:payload.phone_no, verifyCode:response.data}))
-        // if(response.data) {
-        //     // yield put(loginWithSMSSuccess(response.data))
+function* loginWithSMSFunc({ payload }) {
+  try {
+    const response = yield call(loginWithSMSAsync, payload);
+    yield put(
+      loginWithSMSSuccess({
+        phone_no: payload.phone_no,
+        verifyCode: response.data,
+      })
+    );
+    // if(response.data) {
+    //     // yield put(loginWithSMSSuccess(response.data))
 
-        // } else {
-        // }
-    } catch(error) {
-        yield put(loginWithSMSFail(error));
-    }
+    // } else {
+    // }
+  } catch (error) {
+    yield put(loginWithSMSFail(error));
+  }
 }
 
 export function* watchVerifyOtp() {
-    yield takeEvery(VERIFY_OTP, verifyOtpFunc)
+  yield takeEvery(VERIFY_OTP, verifyOtpFunc);
 }
 
 const verifyOtpAsync = async (payload) => {
-    return axios.post(`${server_url}/user/verify-otp`, payload.payload)
+  return axios
+    .post(`${server_url}/user/verify-otp`, payload.payload)
     .then((response) => response)
-    .catch((error) => error)
-}
+    .catch((error) => error);
+};
 
-function*  verifyOtpFunc(payload) {
-    try{
-        const response = yield call(verifyOtpAsync, payload);
-        yield put(verifyOtpSuccess(response.data.data))
-        // if(response.data) {
-        //     // yield put(loginWithSMSSuccess(response.data))
+function* verifyOtpFunc(payload) {
+  try {
+    const response = yield call(verifyOtpAsync, payload);
+    yield put(verifyOtpSuccess(response.data.data));
+    // if(response.data) {
+    //     // yield put(loginWithSMSSuccess(response.data))
 
-        // } else {
-        // }
-    } catch(error) {
-        yield put(verifyOtpFail(error));
-    }
+    // } else {
+    // }
+  } catch (error) {
+    yield put(verifyOtpFail(error));
+  }
 }
 
 export function* watchEditProfile() {
-    yield takeEvery(EDIT_PROFILE, editProfileFunc)
+  yield takeEvery(EDIT_PROFILE, editProfileFunc);
 }
 
-const editProfileAsync = async(payload) =>{
-    return axios.post(`${server_url}/edit-profile`, payload)
+const editProfileAsync = async (payload) => {
+  return axios
+    .post(`${server_url}/edit-profile`, payload)
     .then((response) => response)
-    .catch((error) => error)
-}
+    .catch((error) => error);
+};
 
-function* editProfileFunc({payload}) {
-    try{
-        const result = yield call(editProfileAsync, payload)
-        yield put(editProfileSuccess(result))
-    } catch (error) {
-        yield put(editProfileFail(error))
-    }
+function* editProfileFunc({ payload }) {
+  try {
+    const result = yield call(editProfileAsync, payload);
+    yield put(editProfileSuccess(result));
+  } catch (error) {
+    yield put(editProfileFail(error));
+  }
 }
-
 
 export default function* rootSaga() {
-    yield all([
-        fork(watchLoginSMS),
-        fork(watchVerifyOtp),
-        fork(watchEditProfile),
-    ]);
+  yield all([
+    fork(watchLoginSMS),
+    fork(watchVerifyOtp),
+    fork(watchEditProfile),
+  ]);
 }

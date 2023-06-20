@@ -1,5 +1,4 @@
 import ModalComponent from "../../shared/modal/ModalComponent";
-import "./ViewAllOffer.scss";
 
 const offers = [
   {
