@@ -1,5 +1,6 @@
 import React from "react";
 import "./PopupComponent.scss";
+
 const PopupComponent = (props) => {
   const handleClick = (event) => {
     props.setTransactionContent(event.target.textContent);
@@ -28,7 +29,7 @@ const PopupComponent = (props) => {
     },
   ];
   return (
-    <main className="position-absolute start-0 bottom-0 popup">
+    <div className="position-absolute start-0 bottom-0 popup">
       {props.isVisblePopup && (
         <>
           <div className="menu">
@@ -60,7 +61,7 @@ const PopupComponent = (props) => {
           </div>
         </>
       )}
-    </main>
+    </div>
   );
 };
 
