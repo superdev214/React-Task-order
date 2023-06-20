@@ -1,7 +1,5 @@
 .popup {
-  margin-left: "8px";
-  margin-right: "8px";
-  width: calc(100% - 16px);
+  width: calc(100% - 16px) !important;
 }
 .menu {
   border-radius: 14px !important;
@@ -30,7 +28,6 @@
 }
 .activeItem {
   font-weight: 700;
-  font-size: 18px;
 }
 .popClose {
   font-family: SF Pro Text;
@@ -42,5 +39,6 @@
   border-radius: 14px;
   height: 56px;
   background-color: white;
-  border-color: grey;
+  border-color: rgb(205, 197, 197);
+  border-width: 0.1px;
 }

@@ -243,7 +243,7 @@ export default function TransactionsPage() {
             <p className="font-bold">Showing:</p>
             <div className="text-blue">
               <img src="./assets/images/icons/history.svg" alt="close" />
-              <span className="ml-10" onClick={() => setIsVisble(true)}>
+              <span className="ml-10 size-15" onClick={() => setIsVisble(true)}>
                 {transactions}
               </span>
               {/* popup */}

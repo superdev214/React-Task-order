@@ -28,19 +28,24 @@ const PopupComponent = (props) => {
     },
   ];
   return (
-    <main className="position-absolute start-0 bottom-0 popup">
+    <main
+      className="position-absolute start-0 bottom-0 popup"
+      style={{ marginLeft: "8px" }}
+    >
       {props.isVisblePopup && (
         <>
           <div className="menu">
             <ul className="list-group">
-              <li className="header list-group-item">Show transactions by:</li>
+              <li className="header list-group-item size-13">
+                Show transactions by:
+              </li>
               {ulList.map((list) => (
                 <li
                   key={list.index}
                   className={
                     props.transactions === list.content
-                      ? "activeItem items list-group-item"
-                      : "items list-group-item"
+                      ? "activeItem items list-group-item size-17"
+                      : "items list-group-item size-17"
                   }
                   onClick={handleClick}
                 >
