@@ -236,7 +236,7 @@ export default function TransactionsPage() {
   return (
     <>
       <ProfileHeader title="Transaction history" />
-      <div className="pa-20 gray-list h-100" style={{ marginTop: "30px" }}>
+      <div className="pa-20 gray-list h-100 mt-3">
         {tabView()}
         <div className="mt-20">
           <div className="d-flex justify-content-between align-items-center">
@@ -255,29 +255,23 @@ export default function TransactionsPage() {
               />
             </div>
           </div>
-          <p className="mt-10" style={{ fontSize: "13px" }}>
+          <p className="mt-10 size-13">
             20 transactions for Thursday 25 May 2023{" "}
           </p>
           <li className="large font-bold mt-20 d-flex justify-content-between align-items-center">
-            <span className="font-bold" style={{ fontSize: "15px" }}>
+            <span className="font-bold size-15">
               {activeTab === "Earned" ? "Net earnings:" : "Net outgoing:"}
             </span>
-            <span className="font-bold" style={{ fontSize: "15px" }}>
-              SR 900.00
-            </span>
+            <span className="font-bold size-15">SR 900.00</span>
           </li>
           <div className="d-flex mt-20 justify-content-between align-items-center">
-            <p className="font-bold" style={{ fontSize: "15px" }}>
-              Records
-            </p>
+            <p className="font-bold size-15">Records</p>
             <div className="text-blue">
               <img
                 src="./assets/images/icons/statistics.svg"
                 alt="statistics"
               />
-              <span className="ml-10" style={{ fontSize: "15px" }}>
-                Download CSV file
-              </span>
+              <span className="ml-10 size-15">Download CSV file</span>
             </div>
           </div>
         </div>
