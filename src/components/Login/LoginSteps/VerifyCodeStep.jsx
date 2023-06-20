@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
-import { connect } from "react-redux";
-import { verifyOtp } from "../../../redux/user/actions";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { loginWithSMSFail, verifyOtp } from "../../../redux/user/actions";
 import { loginWithSMS } from "../../../redux/user/actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -17,6 +17,9 @@ function VerifyCodeStep(props) {
   const secondNumRef = useRef(null);
   const thirdNumRef = useRef(null);
   const forthNumRef = useRef(null);
+
+  const data = useSelector(state => state.user)
+  const verificationStatus = data.verifyCode.status;
 
   useEffect(() => {
     let interval = null;
@@ -74,7 +77,11 @@ function VerifyCodeStep(props) {
       firstNum * 1000 + secondNum * 100 + thirdNum * 10 + forthNum * 1;
     if (verifyCode !== 0) {
       props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
-      props.onContinue();
+      if (verificationStatus === 200) {
+        props.onContinue();
+      } else {
+        toast.error("Wrong OTP. Please try again.");
+      }
     }
   };
 
@@ -193,8 +200,8 @@ function VerifyCodeStep(props) {
 }
 
 const mapStateToProps = ({ userReducer }) => {
-  const { phone_no, otp, error, verifyCode } = userReducer;
-  return { phone_no, error, verifyCode, otp };
+  const { phone_no, otp, error, verifyCode, token } = userReducer;
+  return { phone_no, error, verifyCode, otp, token };
 };
 
 const mapDispatchToProps = {

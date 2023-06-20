@@ -19,7 +19,7 @@ const INIT_STATE = {
     token:""
 }
 
-export default (state = INIT_STATE, action) => {
+export default function user(state = INIT_STATE, action) {
     switch(action.type) {
         case LOGIN_WITH_SMS_SUCCESS:
             return {...state, phone_no: action.payload.phone_no,

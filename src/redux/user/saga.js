@@ -48,7 +48,9 @@ export function* watchVerifyOtp() {
 
 const verifyOtpAsync = async (payload) => {
     return axios.post(`${server_url}/user/verify-otp`, payload.payload)
-    .then((response) => response)
+    .then((response) => {
+        response.json();
+    })
     .catch((error) => error)
 }
 

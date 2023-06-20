@@ -5,6 +5,7 @@ import payment from './payment/reducer';
 import task from './task/reducer';
 import category from './category/reducer';
 import chat from './chat/reducer';
+import user from './user/reducer';
 
 const reducers = combineReducers({
     userReducer,
@@ -12,7 +13,8 @@ const reducers = combineReducers({
     payment, 
     task,
     category,
-    chat
+    chat,
+    user
 });
 
 export default reducers;
