@@ -3,8 +3,10 @@ import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "./SliderComponent.scss";
+import { useSwiper } from "swiper/react";
 
-export default function SliderComponent() {
+export default function SliderComponent({onContinue}) {
+
   return (
     <>
       <Swiper
@@ -69,7 +71,29 @@ export default function SliderComponent() {
             </div>
           </div>
         </SwiperSlide>
+        <div className="fixed-bottom">
+          <SwiperButtonNext onContinue={onContinue}>Continue</SwiperButtonNext>
+        </div>
       </Swiper>
     </>
   );
 }
+
+const SwiperButtonNext = ({ onContinue, children }) => {
+  const swiper = useSwiper();
+  const handleClickNext = () => {
+    if (swiper.activeIndex < 2) {
+      swiper.slideNext();
+    } else {
+      onContinue();
+    }
+  }
+  return (
+    <button
+      className="d-block btn btn-green btn-w-350"
+      onClick={handleClickNext}
+    >
+      {children}
+    </button>
+  );
+};

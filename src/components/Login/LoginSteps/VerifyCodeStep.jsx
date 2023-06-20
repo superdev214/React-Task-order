@@ -180,7 +180,7 @@ function VerifyCodeStep(props) {
       </div>
       <div className="fixed-bottom">
         <button
-          className="btn-no-border"
+          className="btn-no-border bg-transparent font-bold size-13"
           onClick={onResend}
           disabled={!showResend}
         >
@@ -206,7 +206,7 @@ const mapStateToProps = ({ userReducer }) => {
 
 const mapDispatchToProps = {
   verifyOtp,
-  loginWithSMS
+  loginWithSMS,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(VerifyCodeStep);

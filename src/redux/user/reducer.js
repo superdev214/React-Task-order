@@ -1,23 +1,21 @@
-
 import {
-    LOGIN_WITH_SMS_SUCCESS,
-    LOGIN_WITH_SMS_FAIL,
-    VERIFY_OTP_SUCCESS,
-    VERIFY_OTP_FAIL,
-    EDIT_PROFILE_SUCCESS,
-    EDIT_PROFILE_FAIL
-} from '../actions';
-
+  LOGIN_WITH_SMS_SUCCESS,
+  LOGIN_WITH_SMS_FAIL,
+  VERIFY_OTP_SUCCESS,
+  VERIFY_OTP_FAIL,
+  EDIT_PROFILE_SUCCESS,
+  EDIT_PROFILE_FAIL,
+} from "../actions";
 
 const INIT_STATE = {
-    phone_no:"",
-    otp:"",
-    error:"",
-    message:"",
-    verifyCode:0,
-    user_id:74,
-    token:""
-}
+  phone_no: "",
+  otp: "",
+  error: "",
+  message: "",
+  verifyCode: 0,
+  user_id: 74,
+  token: "",
+};
 
 export default function user(state = INIT_STATE, action) {
     switch(action.type) {

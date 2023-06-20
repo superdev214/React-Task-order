@@ -38,7 +38,6 @@ function AboutStep(props) {
 
   return (
     <>
-      {" "}
       <section id="verify-code">
         <div style={{ padding: "13px 0" }}>
           <div className="container">

@@ -27,7 +27,9 @@ function WalkthroughStep(props) {
     setError("");
   };
 
-  const isContinueDisabled = phoneNum === "" || !/^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$/.test(phoneNum);
+  const isContinueDisabled =
+    phoneNum === "" ||
+    !/^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$/.test(phoneNum);
 
   return (
     <div className="text-center" id="phone-number">
@@ -37,7 +39,7 @@ function WalkthroughStep(props) {
           {error && <p className="error-message">{error}</p>}
           <input
             className={`phone-input w-100 text-center ${error ? "error" : ""}`}
-            type="text"
+            type="number"
             inputMode="numeric"
             pattern="[0-9]*"
             onInput={(event) => {
@@ -46,14 +48,14 @@ function WalkthroughStep(props) {
             placeholder="Enter phone number"
             onChange={handlePhoneNumberChange}
           />
-          <p style={{ fontSize: "13px" }}>
+          <p className="size-13">
             By joining you agree to Taklief’s
             <br />
-            <a style={{ fontSize: "13px" }} href="/">
+            <a className="size-13" href="/">
               Terms & Conditions
             </a>{" "}
             and&nbsp;
-            <a style={{ fontSize: "13px" }} href="/">
+            <a className="size-13" href="/">
               Community Guidelines
             </a>
           </p>
