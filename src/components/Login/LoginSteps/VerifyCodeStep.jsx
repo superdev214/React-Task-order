@@ -177,7 +177,7 @@ function VerifyCodeStep(props) {
           onClick={onResend}
           disabled={!showResend}
         >
-          Didn't receive a code?
+          Didn't receive the code?
         </button>
         <button
           className="d-block btn btn-green btn-w-350"
