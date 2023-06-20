@@ -32,6 +32,43 @@ function VerifyCodeStep(props) {
     };
   }, [timer]);
 
+  const handleFirstNumChange = (e) => {
+    const value = e.target.value.slice(0, 1);
+    setFirst(value);
+    if (value === "") {
+      return;
+    }
+    secondNumRef.current.focus();
+  };
+
+  const handleSecondNumChange = (e) => {
+    const value = e.target.value.slice(0, 1);
+    setSecond(value);
+    if (value === "") {
+      firstNumRef.current.focus();
+    } else {
+      thirdNumRef.current.focus();
+    }
+  };
+
+  const handleThirdNumChange = (e) => {
+    const value = e.target.value.slice(0, 1);
+    setThird(value);
+    if (value === "") {
+      secondNumRef.current.focus();
+    } else {
+      forthNumRef.current.focus();
+    }
+  };
+
+  const handleForthNumChange = (e) => {
+    const value = e.target.value.slice(0, 1);
+    setForth(value);
+    if (value === "") {
+      thirdNumRef.current.focus();
+    }
+  };
+
   const onContinue = () => {
     const verifyCode =
       firstNum * 1000 + secondNum * 100 + thirdNum * 10 + forthNum * 1;
@@ -93,15 +130,7 @@ function VerifyCodeStep(props) {
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
-            onInput={(event) => {
-              event.target.value = event.target.value.slice(0, 1);
-            }}
-            onChange={(e) => {
-              setFirst(e.target.value);
-              if (e.target.value.length === 1) {
-                secondNumRef.current.focus();
-              }
-            }}
+            onChange={handleFirstNumChange}
             value={firstNum}
             alt="code number"
             ref={firstNumRef}
@@ -111,15 +140,7 @@ function VerifyCodeStep(props) {
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
-            onInput={(event) => {
-              event.target.value = event.target.value.slice(0, 1);
-            }}
-            onChange={(e) => {
-              setSecond(e.target.value);
-              if (e.target.value.length === 1) {
-                thirdNumRef.current.focus();
-              }
-            }}
+            onChange={handleSecondNumChange}
             value={secondNum}
             alt="code number"
             ref={secondNumRef}
@@ -129,15 +150,7 @@ function VerifyCodeStep(props) {
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
-            onInput={(event) => {
-              event.target.value = event.target.value.slice(0, 1);
-            }}
-            onChange={(e) => {
-              setThird(e.target.value);
-              if (e.target.value.length === 1) {
-                forthNumRef.current.focus();
-              }
-            }}
+            onChange={handleThirdNumChange}
             value={thirdNum}
             alt="code number"
             ref={thirdNumRef}
@@ -147,10 +160,7 @@ function VerifyCodeStep(props) {
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
-            onInput={(event) => {
-              event.target.value = event.target.value.slice(0, 1);
-            }}
-            onChange={(e) => setForth(e.target.value)}
+            onChange={handleForthNumChange}
             value={forthNum}
             alt="code number"
             ref={forthNumRef}
@@ -162,7 +172,11 @@ function VerifyCodeStep(props) {
         </p>
       </div>
       <div className="fixed-bottom">
-        <button className="btn-no-border" onClick={onResend} disabled={!showResend}>
+        <button
+          className="btn-no-border"
+          onClick={onResend}
+          disabled={!showResend}
+        >
           Didn't receive a code?
         </button>
         <button
