@@ -10,7 +10,11 @@ const PopupComponent = (props) => {
   return (
     <main
       className="position-absolute start-0 bottom-0 popup"
-      style={{ marginLeft: "8px", marginRight: "8px",width: "calc(100% - 16px)" }}
+      style={{
+        marginLeft: "8px",
+        marginRight: "8px",
+        width: "calc(100% - 16px)",
+      }}
     >
       {props.isVisblePopup && (
         <>

@@ -138,17 +138,23 @@ export default function TransactionsPage() {
                             </div>
                             <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Service fee</span>
-                              <span className="size-15">SR {item.serviceFee}</span>
+                              <span className="size-15">
+                                SR {item.serviceFee}
+                              </span>
                             </div>
                             <div className="line my-10"></div>
                             <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Net profit</span>
-                              <span className="size-15">SR {item.netProfile}</span>
+                              <span className="size-15">
+                                SR {item.netProfile}
+                              </span>
                             </div>
                             <div className="line my-10"></div>
                             <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Bank reference</span>
-                              <span className="size-15">SR {item.bankReference}</span>
+                              <span className="size-15">
+                                SR {item.bankReference}
+                              </span>
                             </div>
                             <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">Company</span>
@@ -156,7 +162,9 @@ export default function TransactionsPage() {
                             </div>
                             <div className="d-flex mt-10 justify-content-between align-items-center">
                               <span className="size-13">CR number</span>
-                              <span className="size-15">SR {item.cRNumber}</span>
+                              <span className="size-15">
+                                SR {item.cRNumber}
+                              </span>
                             </div>
                           </>
                         ) : (
@@ -247,19 +255,29 @@ export default function TransactionsPage() {
               />
             </div>
           </div>
-          <p className="mt-10" style={{fontSize: "13px"}}>20 transactions for Thursday 25 May 2023 </p>
+          <p className="mt-10" style={{ fontSize: "13px" }}>
+            20 transactions for Thursday 25 May 2023{" "}
+          </p>
           <li className="large font-bold mt-20 d-flex justify-content-between align-items-center">
-            <span className="font-bold" style={{fontSize: "15px"}}>{activeTab === "Earned" ? "Net earnings:" : "Net outgoing:"}</span>
-            <span className="font-bold" style={{fontSize: "15px"}}>SR 900.00</span>
+            <span className="font-bold" style={{ fontSize: "15px" }}>
+              {activeTab === "Earned" ? "Net earnings:" : "Net outgoing:"}
+            </span>
+            <span className="font-bold" style={{ fontSize: "15px" }}>
+              SR 900.00
+            </span>
           </li>
           <div className="d-flex mt-20 justify-content-between align-items-center">
-            <p className="font-bold" style={{fontSize: "15px"}}>Records</p>
+            <p className="font-bold" style={{ fontSize: "15px" }}>
+              Records
+            </p>
             <div className="text-blue">
               <img
                 src="./assets/images/icons/statistics.svg"
                 alt="statistics"
               />
-              <span className="ml-10" style={{fontSize: "15px"}}>Download CSV file</span>
+              <span className="ml-10" style={{ fontSize: "15px" }}>
+                Download CSV file
+              </span>
             </div>
           </div>
         </div>
