@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { loginWithSMSFail, verifyOtp } from "../../../redux/user/actions";
+import { loginWithSMSFail, verifyOtp,verifyOtpSuccess } from "../../../redux/user/actions";
 import { loginWithSMS } from "../../../redux/user/actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
 
 function VerifyCodeStep(props) {
   const [firstNum, setFirst] = useState("");
@@ -12,14 +13,22 @@ function VerifyCodeStep(props) {
   const [forthNum, setForth] = useState("");
   const [timer, setTimer] = useState(60);
   const [showResend, setShowResend] = useState(false);
-
+  const dispatch = useDispatch();
   const firstNumRef = useRef(null);
   const secondNumRef = useRef(null);
   const thirdNumRef = useRef(null);
   const forthNumRef = useRef(null);
 
-  const data = useSelector(state => state.user)
-  const verificationStatus = data.verifyCode.status;
+  const data = useSelector(state => state.userReducer.verifyCode.status)
+  
+  const token = useSelector(state => state.userReducer?.token)
+  const verificationStatus = data;
+  console.log(token, "token");
+  // console.log(data, "22222222");
+  // useEffect(() => {
+  //   dispatch(verifyOtp());
+  // }, [dispatch])
+  
 
   useEffect(() => {
     let interval = null;
@@ -72,13 +81,15 @@ function VerifyCodeStep(props) {
     }
   };
 
-  const onContinue = () => {
+  const onContinue = async () => {
+    // dispatch(verifyOtp());
     const verifyCode =
       firstNum * 1000 + secondNum * 100 + thirdNum * 10 + forthNum * 1;
     if (verifyCode !== 0) {
-      props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
+      await props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
       if (verificationStatus === 200) {
-        props.onContinue();
+        await props.onContinue();
+        console.log('token', token);
       } else {
         toast.error("Wrong OTP. Please try again.");
       }
@@ -206,6 +217,7 @@ const mapStateToProps = ({ userReducer }) => {
 
 const mapDispatchToProps = {
   verifyOtp,
+  verifyOtpSuccess,
   loginWithSMS,
 };
 
