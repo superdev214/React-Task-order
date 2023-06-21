@@ -1,0 +1,83 @@
+.popupReport {
+  width: calc(100% - 16px) !important;
+  margin-left: 8px !important;
+  z-index: 999 !important;
+}
+.menuReport {
+  border-radius: 15px !important;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(67.957px);
+  border: 1px solid white;
+  overflow: hidden;
+}
+.headerReport {
+  font-family: "SF Pro Text Bold" !important;
+  line-height: 22px !important;
+  font-size: 17px !important;
+  display: block !important;
+  text-align: center;
+  color: black;
+  font-weight: 700 !important;
+  border: none !important;
+  border-bottom: 0.1px solid rgba(0, 0, 0, 0.2) !important;
+}
+.detailReport {
+  font-family: "SF Pro Text Regular" !important;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  letter-spacing: 0px;
+  text-align: center;
+  margin-top: 2px;
+  margin-bottom: 17px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.itemsReport {
+  font-size: 17px;
+  font-weight: 400 !important;
+  display: block !important;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: center;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    rgba(255, 255, 255, 0.25);
+  border: none !important;
+}
+.itemsReport:hover {
+  color: rgba(255, 59, 48, 1) !important;
+}
+.overlayReport {
+  background-color: grey;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 998;
+  background-color: rgba(0, 0, 0, 0.1) !important;
+}
+.popCloseReport {
+  font-family: "SF Pro Text Bold" !important;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 20px;
+  letter-spacing: 0px;
+  text-align: center;
+  border-radius: 14px;
+  height: 56px;
+  background-color: white;
+  border: none;
+  margin-bottom: 10px;
+}
+.popCloseReport:hover {
+  color: rgba(255, 59, 48, 1) !important;
+}

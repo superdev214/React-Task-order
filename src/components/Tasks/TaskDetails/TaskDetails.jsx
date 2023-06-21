@@ -13,7 +13,8 @@ import GetDirection from "../../NewTask/LocationSelection/GetDirection";
 import TickIcon from "../../../assets/images/Tick.svg";
 import "./TaskDetails.scss";
 import "../../../assets/style/components/task-tab-bar.scss";
-
+import ReportModal from "../../shared/popup-menu/ReportModal";
+import SubmitReport from "../../shared/popup-menu/SubmitReport";
 const task = {
   images: [
     { path: "person/1" },
@@ -45,6 +46,10 @@ export default function TaskDetails() {
   const [address, setAddress] = useState("");
   const [latlng, setLatlng] = useState({ lat: 0, lng: 0 });
   const [question, setQuestion] = useState("");
+  const [offer, setOffer] = useState("");
+  const [addOffer, setAddOffer] = useState(
+    "Thank you for the offer, could you please make sure you have the right tools."
+  );
   const [makeOfferModal, setMakeOfferModal] = useState(false);
   const [increasePriceModal, setIncreasePriceModal] = useState(false);
   const [cancellationRequestModal, setCancellationRequestModal] =
@@ -53,7 +58,17 @@ export default function TaskDetails() {
   const [paymentReleaseModal, setPaymentReleaseModal] = useState(false);
   const [locationModal, setLocationModal] = useState(false);
   const [viewAllOfferModal, setviewAllOfferModal] = useState(false);
+  const [viewSendOffer, setViewSendOffer] = useState(false);
 
+  const [taskOwner, setTaskOwner] = useState("Aftab A");
+  const [offerOwner, setOfferOwner] = useState("Gaurav C");
+
+  const [isVisbleReport, setViewReport] = useState(false);
+  const [isVisbleSubmitReport, setSubmitReport] = useState(false);
+  const handleClickSendOffer = () => {
+    setViewSendOffer(false);
+    setAddOffer(offer);
+  };
   const actions = [
     {
       caption: "Make an offer",
@@ -235,6 +250,8 @@ export default function TaskDetails() {
     return (
       <>
         <div className="container">
+          {isVisbleReport && <div className="overlay"></div>}
+          {isVisbleSubmitReport && <div className="submitOverlay"></div>}
           <p className="font-bold mt-20">OFFERS (3)</p>
         </div>
         <div className="bg-grey pa-20 mt-20 mb-20">
@@ -259,7 +276,7 @@ export default function TaskDetails() {
                 <img src="./assets/images/icons/fly-dark.svg" alt="logo big" />
               </div>
               <div className="ml-20">
-                <div className="mbb-5 font-bold size-15">Gaurav C.</div>
+                <div className="mbb-5 font-bold size-15 "> {offerOwner}</div>
                 <span>
                   <span className="font-bold size-15">
                     3.8{" "}
@@ -282,16 +299,75 @@ export default function TaskDetails() {
           <div className="mt-10 size-13 d-flex justify-content-between align-items-center">
             <span className="">
               12m
-              <img
-                className="ml-10"
-                src="./assets/images/icons/chat.svg"
-                alt="logo big"
-              />
+              <button
+                className="bg-transparent border-0"
+                onClick={() => setViewSendOffer(true)}
+              >
+                <img
+                  className="ml-10"
+                  src="./assets/images/icons/chat.svg"
+                  alt="logo big"
+                />
+              </button>
             </span>
-            <button className="bg-transparent border-0">
+            <button
+              className="bg-transparent border-0"
+              onClick={() => setViewReport(true)}
+            >
               <img src="./assets/images/icons/more.svg" alt="more" />
             </button>
+            <ReportModal
+              isVisbleReport={isVisbleReport}
+              setViewReport={setViewReport}
+              isVisbleSubmitReport={isVisbleSubmitReport}
+              setSubmitReport={setSubmitReport}
+            />
           </div>
+          {isVisbleSubmitReport && (
+            <SubmitReport
+              isVisbleSubmitReport={isVisbleSubmitReport}
+              setSubmitReport={setSubmitReport}
+            />
+          )}
+          {/* send-offer */}
+          {viewSendOffer && (
+            <div className="container my-20 bg-white mx-0">
+              <textarea
+                className="mt-20 w-100 size-15"
+                type="text"
+                placeholder={"Ask " + offerOwner + " a question."}
+                maxLength={2000}
+                value={offer}
+                rows={3}
+                onChange={(e) => setOffer(e.target.value)}
+              />
+              {/*  */}
+
+              <div className="mt-20 position-relative">
+                <Uploader
+                  renderBtn={() => {
+                    return (
+                      <img
+                        className="mr-10"
+                        src="./assets/images/icons/attach-icon.svg"
+                        alt="logo big"
+                      />
+                    );
+                  }}
+                />
+                <button
+                  disabled={!offer}
+                  className="d-block btn btn-info small position-absolute size-13"
+                  style={{ right: 0, bottom: "-2px" }}
+                  onClick={handleClickSendOffer}
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/*  */}
         </div>
         <div className="pa-20 border-bottom">
           <div className="d-flex align-items-center">
@@ -302,7 +378,7 @@ export default function TaskDetails() {
             />
             <div className="ml-10">
               <div className="font-bold size-15 d-flex align-items-center">
-                Aftab A.
+                {taskOwner + "."}
                 <button
                   className="d-block btn btn-gray ml-10 poster"
                   style={{
@@ -322,13 +398,14 @@ export default function TaskDetails() {
             </div>
           </div>
           <p className="mt-10">
-            Thank you for the offer, could you please make sure
+            {/* Thank you for the offer, could you please make sure
             <img
               src="./assets/images/icons/moderated.svg"
               alt="logo big"
               style={{ padding: "0 5px" }}
             />
-            you have the right tools.
+            you have the right tools. */}
+            {addOffer}
           </p>
           <div className="mt-10" style={{ fontSize: "13px" }}>
             15m ago
@@ -361,7 +438,7 @@ export default function TaskDetails() {
           <input
             className="mt-20 w-100"
             type="text"
-            placeholder="Ask Aftab a question"
+            placeholder={"Ask Gaurav C a question"}
             maxLength={2000}
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
