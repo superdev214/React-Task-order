@@ -13,7 +13,7 @@ import {
 import axios from "axios";
 
 const server_url = "http://8.213.23.19/api";
-
+const token = localStorage.getItem('token');
 export function* watchLoginSMS() {
   yield takeLeading(LOGIN_WITH_SMS, loginWithSMSFunc);
 }
@@ -69,10 +69,16 @@ export function* watchEditProfile() {
 }
 
 const editProfileAsync = async (payload) => {
-  return axios
-    .post(`${server_url}/edit-profile`, payload)
-    .then((response) => response)
-    .catch((error) => error);
+  try {
+    const response = await axios.post(`${server_url}/edit-profile`, payload, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response;
+  } catch (error) {
+    return error;
+  }
 };
 
 function* editProfileFunc({ payload }) {

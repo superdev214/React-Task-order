@@ -13,17 +13,25 @@ import {
 import axios from "axios";
 
 const server_url = "http://8.213.23.19/api";
+const token = localStorage.getItem('token');
 
 export function* watchPostTask() {
   yield takeEvery(POST_TASK, postTaskFunc);
 }
 
 const postTaskAsync = async (payload) => {
-  console.log(payload);
-  return axios
-    .post(`${server_url}/post-task`, payload)
-    .then((response) => response)
-    .catch((error) => error);
+
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  try {
+    const response = await axios.post(`${server_url}/post-task`, payload, config);
+    return response;
+  } catch (error) {
+    return error;
+  }
 };
 
 function* postTaskFunc({ payload }) {
@@ -39,11 +47,18 @@ export function* watchGetCategory() {
   yield takeEvery(GET_ALL_CATEGORY, getCategoryFunc);
 }
 
-const getCategoryAsync = () => {
-  return axios
-    .get(`${server_url}/get-all-category`)
-    .then((response) => response)
-    .catch(console.log);
+const getCategoryAsync = async () => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  try {
+    const response = await axios.get(`${server_url}/get-all-category`, config);
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 function* getCategoryFunc() {
