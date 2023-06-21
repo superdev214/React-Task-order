@@ -1,4 +1,4 @@
-import { all, call, fork, put, take, takeEvery } from "redux-saga/effects";
+import { all, call, fork, put, take, takeLeading } from "redux-saga/effects";
 import { LOGIN_WITH_SMS, VERIFY_OTP, EDIT_PROFILE } from "../actions";
 
 import {
@@ -15,7 +15,7 @@ import axios from "axios";
 const server_url = "http://8.213.23.19/api";
 
 export function* watchLoginSMS() {
-  yield takeEvery(LOGIN_WITH_SMS, loginWithSMSFunc);
+  yield takeLeading(LOGIN_WITH_SMS, loginWithSMSFunc);
 }
 
 const loginWithSMSAsync = async (payload) => {
@@ -45,32 +45,27 @@ function* loginWithSMSFunc({ payload }) {
 }
 
 export function* watchVerifyOtp() {
-  yield takeEvery(VERIFY_OTP, verifyOtpFunc);
+  yield takeLeading(VERIFY_OTP, verifyOtpFunc);
 }
 
 const verifyOtpAsync = async (payload) => {
-  return axios
-    .post(`${server_url}/user/verify-otp`, payload.payload)
-    .then((response) => response)
-    .catch((error) => error);
-};
+    const response = await axios.post(`${server_url}/user/verify-otp`, payload.payload);
+    return response.data;
+}
 
 function* verifyOtpFunc(payload) {
   try {
     const response = yield call(verifyOtpAsync, payload);
-    yield put(verifyOtpSuccess(response.data.data));
-    // if(response.data) {
-    //     // yield put(loginWithSMSSuccess(response.data))
+    // yield put({ type: "VERIFY_OTP", response});
 
-    // } else {
-    // }
+    yield put(verifyOtpSuccess(response.data));
   } catch (error) {
     yield put(verifyOtpFail(error));
   }
 }
 
 export function* watchEditProfile() {
-  yield takeEvery(EDIT_PROFILE, editProfileFunc);
+  yield takeLeading(EDIT_PROFILE, editProfileFunc);
 }
 
 const editProfileAsync = async (payload) => {
