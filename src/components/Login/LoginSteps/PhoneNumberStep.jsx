@@ -33,7 +33,7 @@ function WalkthroughStep(props) {
 
   return (
     <div className="text-center" id="phone-number">
-      <div className="form">
+      <div className="phone-form">
         <img className="logo-login" src={logoSvg} alt="logo" />
         <div className="container">
           {error && <p className="error-message">{error}</p>}
