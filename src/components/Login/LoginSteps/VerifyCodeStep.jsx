@@ -1,6 +1,6 @@
-import { useState, useEffect, useRef } from "react";
-import { connect } from "react-redux";
-import { verifyOtp } from "../../../redux/user/actions";
+import React, { useState, useEffect, useRef } from "react";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { loginWithSMSFail, verifyOtp, verifyOtpSuccess } from "../../../redux/user/actions";
 import { loginWithSMS } from "../../../redux/user/actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,11 +12,15 @@ function VerifyCodeStep(props) {
   const [forthNum, setForth] = useState("");
   const [timer, setTimer] = useState(60);
   const [showResend, setShowResend] = useState(false);
-
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
+  const dispatch = useDispatch();
   const firstNumRef = useRef(null);
   const secondNumRef = useRef(null);
   const thirdNumRef = useRef(null);
   const forthNumRef = useRef(null);
+
+  const verificationStatus = useSelector((state) => state.userReducer.verifyCode.status);
+  const isVerificationFailed = verificationStatus !== 200;
 
   useEffect(() => {
     let interval = null;
@@ -69,12 +73,21 @@ function VerifyCodeStep(props) {
     }
   };
 
-  const onContinue = () => {
+  const onContinue = async () => {
     const verifyCode =
       firstNum * 1000 + secondNum * 100 + thirdNum * 10 + forthNum * 1;
     if (verifyCode !== 0) {
       props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
-      props.onContinue();
+      if (verificationStatus === 200) {
+        toast.success("Login Successfully.");
+        setTimeout(() => {
+          props.onContinue();
+        }, 1000);
+      } else {
+        toast.error("Wrong OTP. Please try again.");
+      }
+    } else {
+      toast.error("Please enter the OTP.");
     }
   };
 
@@ -121,7 +134,7 @@ function VerifyCodeStep(props) {
         </p>
         <div className="d-flex align-items-center justify-content-between area-inputs">
           <input
-            className="input-code"
+            className={`input-code ${isVerificationFailed ? 'wrong-otp' : ''}`}
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -131,7 +144,7 @@ function VerifyCodeStep(props) {
             ref={firstNumRef}
           />
           <input
-            className="input-code"
+            className={`input-code ${isVerificationFailed ? 'wrong-otp' : ''}`}
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -141,7 +154,7 @@ function VerifyCodeStep(props) {
             ref={secondNumRef}
           />
           <input
-            className="input-code"
+            className={`input-code ${isVerificationFailed ? 'wrong-otp' : ''}`}
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -151,7 +164,7 @@ function VerifyCodeStep(props) {
             ref={thirdNumRef}
           />
           <input
-            className="input-code"
+            className={`input-code ${isVerificationFailed ? 'wrong-otp' : ''}`}
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -187,12 +200,13 @@ function VerifyCodeStep(props) {
 }
 
 const mapStateToProps = ({ userReducer }) => {
-  const { phone_no, otp, error, verifyCode } = userReducer;
-  return { phone_no, error, verifyCode, otp };
+  const { phone_no, otp, error, verifyCode, token } = userReducer;
+  return { phone_no, error, verifyCode, otp, token };
 };
 
 const mapDispatchToProps = {
   verifyOtp,
+  verifyOtpSuccess,
   loginWithSMS,
 };
 
