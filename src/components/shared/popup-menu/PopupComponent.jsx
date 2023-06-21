@@ -34,14 +34,16 @@ const PopupComponent = (props) => {
         <>
           <div className="menu">
             <ul className="list-group">
-              <li className="header list-group-item">Show transactions by:</li>
+              <li className="header list-group-item size-13">
+                Show transactions by:
+              </li>
               {ulList.map((list) => (
                 <li
                   key={list.index}
                   className={
                     props.transactions === list.content
-                      ? "activeItem items list-group-item"
-                      : "items list-group-item"
+                      ? "activeItem items list-group-item size-17"
+                      : "items list-group-item size-17"
                   }
                   onClick={handleClick}
                 >
