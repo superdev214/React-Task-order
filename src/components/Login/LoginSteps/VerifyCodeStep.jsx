@@ -94,7 +94,7 @@ function VerifyCodeStep(props) {
 
   return (
     <section id="verify-code">
-      <div style={{ padding: "13px 0", borderBottom: "2px solid #F5F7FA" }}>
+      <div className="top-bar d-flex align-items-center border-bottom">
         <div className="container">
           <div className="d-flex align-items-center justify-content-center">
             <button className="position-absolute bg-transparent border-0 close-btn">
@@ -108,21 +108,16 @@ function VerifyCodeStep(props) {
           </div>
         </div>
       </div>
-      <div
-        className="container d-flex justify-content-center flex-column align-items-center"
-        style={{ height: "70vh", overflowY: "scroll" }}
-      >
+      <div className="container d-flex justify-content-center flex-column align-items-center sms-form">
         <img
+          className="sms-form__img"
           src="./assets/images/sms.png"
           alt="message"
-          style={{ width: "139px", height: "139px" }}
         />
-        <p style={{ lineHeight: "22px", paddingTop: "45px" }}>
+        <p className="sms-form__phone">
           Please enter the SMS code sent to
           <br />
-          <span style={{ fontFamily: "SF Pro Text Bold" }}>
-            +{props.phone_no}
-          </span>
+          <span className="font-bold">+{props.phone_no}</span>
         </p>
         <div className="d-flex align-items-center justify-content-between area-inputs">
           <input
@@ -167,8 +162,7 @@ function VerifyCodeStep(props) {
           />
         </div>
         <p>
-          Time remaining:{" "}
-          <span style={{ fontFamily: "SF Pro Text Bold" }}>{timer}s</span>
+          Time remaining: <span className="font-bold">{timer}s</span>
         </p>
       </div>
       <div className="fixed-bottom">

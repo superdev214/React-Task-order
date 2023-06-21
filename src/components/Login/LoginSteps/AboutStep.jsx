@@ -39,7 +39,7 @@ function AboutStep(props) {
   return (
     <>
       <section id="verify-code">
-        <div style={{ padding: "13px 0" }}>
+        <div className="top-bar d-flex align-items-center">
           <div className="container">
             <div className="d-flex align-items-center justify-content-center">
               <button className="position-absolute bg-transparent border-0 close-btn">
