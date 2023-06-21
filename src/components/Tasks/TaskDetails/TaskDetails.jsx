@@ -425,11 +425,6 @@ export default function TaskDetails() {
           title="Task location"
           close={() => setLocationModal(false)}
         >
-          {/* <LocationSelection
-            onChange={(address) => setAddress(address)}
-            onGetValue={(latlng) => setLatlng(latlng)}
-            close={() => setLocationModal(false)}
-          /> */}
           <GetDirection
             onChange={(address) => setAddress(address)}
             onGetValue={(latlng) => setLatlng(latlng)}
@@ -461,7 +456,7 @@ export default function TaskDetails() {
                   />
                 </button>
               </NavLink>
-              <p className="font-bold">Task details</p>
+              <p className="nav-title">Task details</p>
             </div>
             <div className="pa-20">
               <div className={" task-tab-bar step" + step}>

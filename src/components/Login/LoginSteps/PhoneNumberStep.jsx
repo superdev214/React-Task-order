@@ -1,29 +1,44 @@
 import { NavLink } from "react-router-dom";
 import logoSvg from "../../../assets/images/logo.svg";
-import { loginWithSMS } from "../../../redux/user/actions"
-import { connect } from 'react-redux';
+import { loginWithSMS } from "../../../redux/user/actions";
+import { connect } from "react-redux";
 import { useState } from "react";
 
 function WalkthroughStep(props) {
-
   const [phoneNum, setPhoneNum] = useState("");
+  const [error, setError] = useState("");
 
   const continueTo = () => {
-    if(phoneNum !== "") {
-      props.loginWithSMS(phoneNum)
-    } 
-    if(phoneNum !== "") {///Insert Verifycode condition.
-      props.onContinue()
+    if (phoneNum !== "") {
+      if (/^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$/.test(phoneNum)) {
+        props.loginWithSMS(phoneNum);
+        props.onContinue();
+      } else {
+        setError("Please enter a valid phone number for Saudi Arabia.");
+      }
+    } else {
+      setError("Please enter a phone number.");
     }
-  }
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    const value = e.target.value;
+    setPhoneNum(value);
+    setError("");
+  };
+
+  const isContinueDisabled =
+    phoneNum === "" ||
+    !/^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$/.test(phoneNum);
 
   return (
     <div className="text-center" id="phone-number">
-      <div className="form">
+      <div className="phone-form">
         <img className="logo-login" src={logoSvg} alt="logo" />
         <div className="container">
+          {error && <p className="error-message">{error}</p>}
           <input
-            className="phone-input w-100 text-center"
+            className={`phone-input w-100 text-center ${error ? "error" : ""}`}
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -31,17 +46,17 @@ function WalkthroughStep(props) {
               event.target.value = event.target.value.slice(0, 13);
             }}
             placeholder="Enter phone number"
-            onChange={(e) => setPhoneNum(e.target.value)}
+            onChange={handlePhoneNumberChange}
           />
-          <p style={{ fontSize: "13px" }}>
+          <p className="size-13">
             By joining you agree to Taklief’s
             <br />
-            <a style={{ fontSize: "13px" }} href="/">
+            <a className="size-13" href="/">
               Terms & Conditions
             </a>{" "}
             and&nbsp;
-            <a style={{ fontSize: "13px" }} href="/">
-              Community Guidlines
+            <a className="size-13" href="/">
+              Community Guidelines
             </a>
           </p>
         </div>
@@ -57,6 +72,7 @@ function WalkthroughStep(props) {
           className="d-block btn btn-green btn-w-350"
           style={{ marginTop: "20px" }}
           onClick={continueTo}
+          disabled={isContinueDisabled}
         >
           Continue
         </button>
@@ -65,13 +81,13 @@ function WalkthroughStep(props) {
   );
 }
 
-const mapStateToProps = ({ userReducer}) => {
-  const {phone_no, error, verifyCode} = userReducer;
-  return {phone_no, error};
+const mapStateToProps = ({ userReducer }) => {
+  const { phone_no, error, verifyCode } = userReducer;
+  return { phone_no, error };
 };
 
 const mapDispatchToProps = {
   loginWithSMS,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(WalkthroughStep);

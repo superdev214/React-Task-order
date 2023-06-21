@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 import { connect } from 'react-redux';
-import { getAllCategory } from '../../redux/actions'
+import { getAllCategory, storeCategoryId } from '../../redux/actions'
 
 const categories = [
   { title: "Moving furniture", iconSrc: "./assets/images/icons/truck.svg" },
@@ -61,10 +61,10 @@ function TaskCategories(props) {
   }, [])
 
   const handleImageClick = (category) => {
+    const o = {...props, category:category.id}
     navigate("/new-task");
-    props.category = category.title
+    props.storeCategoryId(o.category)
   };
-  console.log(props.category)
 
   return (
     <section className="py-4 task_category">
@@ -77,7 +77,7 @@ function TaskCategories(props) {
           {categories.length > 0 && categories.map((category, key) => (
             <div key={key} className="col">
               <div className="task-card">
-                <div className="task-image" onClick={(category) => handleImageClick(category)}>
+                <div className="task-image" onClick={() => handleImageClick(category)}>
                   <img src={category.iconSrc} alt={category.title} />
                 </div>
                 <p className="task-name">{category.title}</p>
@@ -97,6 +97,7 @@ const mapStateToProps = ({ postApi}) => {
 
 const mapDispatchToProps = {
   getAllCategory,
+  storeCategoryId,
 }
 
 

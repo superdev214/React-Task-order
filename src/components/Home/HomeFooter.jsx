@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 export default function HomeFooter({ showFullImage }) {
   return (
@@ -10,7 +10,10 @@ export default function HomeFooter({ showFullImage }) {
           tasks done.
         </p>
       </div>
-      <div id='imagediv' className={`${showFullImage ? 'show-full' : 'show-half'}`}>
+      <div
+        id="imagediv"
+        className={`${showFullImage ? "show-full" : "show-half"}`}
+      >
         <img
           className="home-bottom__img image-container-img"
           style={{ paddingTop: "20px", paddingBottom: "40px" }}

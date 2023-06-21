@@ -12,7 +12,7 @@ const reducers = combineReducers({
     payment, 
     task,
     category,
-    chat
+    chat,
 });
 
 export default reducers;

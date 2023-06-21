@@ -135,18 +135,30 @@
 .logo-login {
   padding-bottom: 40px;
 }
+.error-message {
+  color: red;
+}
 .about-heading {
   font-family: SF Pro Text Bold;
 }
-.form {
+.phone-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 70vh;
+  height: calc(100vh - 166px);
   overflow-y: scroll;
   justify-content: center;
 }
 
+.sms-form {
+  &__img {
+    margin-top: 70px;
+  }
+  &__phone {
+    margin-top: 20px;
+    line-height: 22px;
+  }
+}
 .area-inputs {
   max-width: 320px;
   margin: 20px auto;
@@ -159,6 +171,16 @@
   left: 0;
   right: 0;
   bottom: 96px;
+}
+
+.btn-no-border {
+  border: none !important;
+  outline: none !important;
+  margin-bottom: 10px;
+}
+
+.wrong-otp {
+  border-color: #FF3B30;
 }
 
 @media only screen and (max-width: 320px) and (max-height: 546px) {

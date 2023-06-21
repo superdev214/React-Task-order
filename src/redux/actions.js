@@ -22,9 +22,10 @@ export const ADD_SKILLS = "ADD_SKILLS";
 export const VIEW_SKILLS = "VIEW_SKILLS";
 export const ADD_PORTFOLIO = "ADD_PORTFOLIO";
 export const UPDATE_NOTIFICATIONS = "UPDATE_NOTIFICATIONS";
-export const NOTIFICATIONS  = "NOTIFICATIONS";
+export const NOTIFICATIONS = "NOTIFICATIONS";
 export const NOTIFICATIONS_SETTINGS_SHOW = "NOTIFICATIONS_SETTINGS_SHOW";
-export const CANCEL_REQUEST_FOR_DELETE_ACCOUNT = "CANCEL_REQUEST_FOR_DELETE_ACCOUNT";
+export const CANCEL_REQUEST_FOR_DELETE_ACCOUNT =
+  "CANCEL_REQUEST_FOR_DELETE_ACCOUNT";
 
 /*POST API CONST*/
 
@@ -34,11 +35,11 @@ export const POST_TASK_FAIL = "POST_TASK_FAIL";
 export const GET_ALL_CATEGORY = "GET_ALL_CATEGORY";
 export const GET_ALL_CATEGORY_SUCCESS = "GET_ALL_CATEGORY_SUCCESS";
 export const GET_ALL_CATEGORY_FAIL = "GET_ALL_CATEGORY_FAIL";
+export const STORE_CATEGORY_ID = "STORE_CATEGORY_ID";
+export const STORE_CATEGORY_ID_SUCCESS = "STORE_CATEGORY_ID_SUCCESS";
 
-
-
-export * from './user/actions';
-export * from './category/actions';
-export * from './Post/actions';
-export * from './task/actions';
-export * from './payment/actions';
+export * from "./user/actions";
+export * from "./category/actions";
+export * from "./Post/actions";
+export * from "./task/actions";
+export * from "./payment/actions";
