@@ -100,6 +100,7 @@ function VerifyCodeStep(props) {
     setSecond("");
     setThird("");
     setForth("");
+    toast.info("OTP Resent");
   };
 
   const isContinueDisabled =
