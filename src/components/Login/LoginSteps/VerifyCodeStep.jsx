@@ -10,7 +10,7 @@ function VerifyCodeStep(props) {
   const [secondNum, setSecond] = useState("");
   const [thirdNum, setThird] = useState("");
   const [forthNum, setForth] = useState("");
-  const [timer, setTimer] = useState(10);
+  const [timer, setTimer] = useState(60);
   const [showResend, setShowResend] = useState(false);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   const dispatch = useDispatch();
@@ -93,7 +93,7 @@ function VerifyCodeStep(props) {
   };
 
   const onResend = () => {
-    setTimer(10);
+    setTimer(60);
     setShowResend(false);
     props.loginWithSMS(props.phone_no);
     setFirst("");
