@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink,useLocation  } from "react-router-dom";
 import TasksOffer from "./TasksOffer/TasksOffer";
 import LocationSelection from "./LocationSelection/LocationSelection";
 import DatePickerComponent from "../shared/date-picker/DatePicker";
@@ -13,7 +13,7 @@ import { postTask } from "../../redux/Post/actions";
 import { take } from "@redux-saga/core/effects";
 
 function NewTask(props) {
-  
+  const location = useLocation();
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
   const [locationSelectionModal, setLocationSelectionModal] = useState(false);
@@ -36,6 +36,9 @@ function NewTask(props) {
     budget:0,
   });
 
+  const searchParams = new URLSearchParams(location.search);
+  const id = searchParams.get("id");
+  console.log(id, "idid");
   const titleInputRef = useRef();
 
   //title input handler
@@ -360,7 +363,7 @@ function NewTask(props) {
   const handleSubmit = () => {
     if (isBudgetValid()) {
       props.postTask({title:task.title, details:task.description, is_task_remotely:task.type, task_complete_date:`${task.task_complete_date.getDate().toString().padStart(2, '0')}-${(task.task_complete_date.getMonth() + 1).toString().padStart(2, '0')}-${task.task_complete_date.getFullYear().toString()}`,
-    category:props.category, user_id:props.user_id, total_budget:task.budget, latitude:task.lat, longtude:task.lng, address:address})
+    category:id, user_id:props.user_id, total_budget:task.budget, latitude:task.lat, longtude:task.lng, address:address})
     } else {
       // Show an error message or prevent task submission
     }
