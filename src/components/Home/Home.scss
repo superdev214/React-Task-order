@@ -57,6 +57,17 @@
   }
 }
 
+.task_category {
+  background-color: white;
+}
+
+#main_wrapper {
+  height: 100vh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  background-color: #f5f7fa;
+}
+
 .show-full {
   height: 270px;
 }

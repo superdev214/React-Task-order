@@ -1,34 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-export default function HomeFooter() {
-  const [showFullImage, setShowFullImage] = useState(false);
-
-  useEffect(() => {
-    let bottomValue;
-    let isScrolling = true;
-    const handleTouchEnd = () => {
-      isScrolling = false;
-      setShowFullImage(false);
-    };
-    const trackScrolling = () => {
-      const { scrollTop, clientHeight, scrollHeight } =
-        document.documentElement;
-      if (scrollTop + clientHeight >= scrollHeight) {
-        bottomValue = scrollTop;
-        setShowFullImage(true);
-      } else {
-        if (showFullImage === true && isScrolling === false) {
-          setShowFullImage(false);
-        }
-      }
-    };
-    document.addEventListener("touchend", handleTouchEnd);
-    window.addEventListener("scroll", trackScrolling);
-    return () => {
-      window.removeEventListener("scroll", trackScrolling);
-    };
-  }, [showFullImage]);
-
+export default function HomeFooter({ showFullImage }) {
   return (
     <section className={`home-bottom`} style={{ paddingBottom: "150px" }}>
       <div className="container">
@@ -44,7 +16,7 @@ export default function HomeFooter() {
       >
         <img
           className="home-bottom__img image-container-img"
-          style={{ paddingTop: "20px", paddingBottom: "20px" }}
+          style={{ paddingTop: "20px", paddingBottom: "40px" }}
           src="./assets/images/earth.png"
           alt="earth"
         />
