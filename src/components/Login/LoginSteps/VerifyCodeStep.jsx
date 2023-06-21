@@ -79,8 +79,10 @@ function VerifyCodeStep(props) {
     if (verifyCode !== 0) {
       props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
       if (verificationStatus === 200) {
-        alert("Login Successfully.");
-        props.onContinue();
+        toast.success("Login Successfully.");
+        setTimeout(() => {
+          props.onContinue();
+        }, 1000);
       } else {
         toast.error("Wrong OTP. Please try again.");
       }
