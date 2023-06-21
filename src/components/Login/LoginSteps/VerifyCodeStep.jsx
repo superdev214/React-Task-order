@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { loginWithSMSFail, verifyOtp,verifyOtpSuccess } from "../../../redux/user/actions";
+import { loginWithSMSFail, verifyOtp, verifyOtpSuccess } from "../../../redux/user/actions";
 import { loginWithSMS } from "../../../redux/user/actions";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 
 function VerifyCodeStep(props) {
   const [firstNum, setFirst] = useState("");
@@ -13,22 +12,15 @@ function VerifyCodeStep(props) {
   const [forthNum, setForth] = useState("");
   const [timer, setTimer] = useState(60);
   const [showResend, setShowResend] = useState(false);
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
   const dispatch = useDispatch();
   const firstNumRef = useRef(null);
   const secondNumRef = useRef(null);
   const thirdNumRef = useRef(null);
   const forthNumRef = useRef(null);
 
-  const data = useSelector(state => state.userReducer.verifyCode.status)
-  
-  const token = useSelector(state => state.userReducer?.token)
-  const verificationStatus = data;
-  console.log(token, "token");
-  // console.log(data, "22222222");
-  // useEffect(() => {
-  //   dispatch(verifyOtp());
-  // }, [dispatch])
-  
+  const verificationStatus = useSelector((state) => state.userReducer.verifyCode.status);
+  const isVerificationFailed = verificationStatus !== 200;
 
   useEffect(() => {
     let interval = null;
@@ -82,17 +74,18 @@ function VerifyCodeStep(props) {
   };
 
   const onContinue = async () => {
-    // dispatch(verifyOtp());
     const verifyCode =
       firstNum * 1000 + secondNum * 100 + thirdNum * 10 + forthNum * 1;
     if (verifyCode !== 0) {
-      await props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
+      props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
       if (verificationStatus === 200) {
-        await props.onContinue();
-        console.log('token', token);
+        alert("Login Successfully.");
+        props.onContinue();
       } else {
         toast.error("Wrong OTP. Please try again.");
       }
+    } else {
+      toast.error("Please enter the OTP.");
     }
   };
 
@@ -144,7 +137,7 @@ function VerifyCodeStep(props) {
         </p>
         <div className="d-flex align-items-center justify-content-between area-inputs">
           <input
-            className="input-code"
+            className={`input-code ${isVerificationFailed ? 'wrong-otp' : ''}`}
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -154,7 +147,7 @@ function VerifyCodeStep(props) {
             ref={firstNumRef}
           />
           <input
-            className="input-code"
+            className={`input-code ${isVerificationFailed ? 'wrong-otp' : ''}`}
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -164,7 +157,7 @@ function VerifyCodeStep(props) {
             ref={secondNumRef}
           />
           <input
-            className="input-code"
+            className={`input-code ${isVerificationFailed ? 'wrong-otp' : ''}`}
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"
@@ -174,7 +167,7 @@ function VerifyCodeStep(props) {
             ref={thirdNumRef}
           />
           <input
-            className="input-code"
+            className={`input-code ${isVerificationFailed ? 'wrong-otp' : ''}`}
             type="number"
             inputMode="numeric"
             pattern="[0-9]*"

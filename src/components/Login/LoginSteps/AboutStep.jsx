@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LocationSelection from "../../NewTask/LocationSelection/LocationSelection";
 import { editProfile } from "../../../redux/user/actions";
-import { connect } from "react-redux";
+import { connect, useSelector } from "react-redux";
 
 function AboutStep(props) {
   const [locationSelectionModal, setLocationSelectionModal] = useState(false);
@@ -11,6 +11,16 @@ function AboutStep(props) {
     firstName: null,
     lastName: null,
   });
+  const [showUnauthorized, setShowUnauthorized] = useState(false);
+  const token = useSelector(state => state.userReducer?.token);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowUnauthorized(true);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const isValidForm = () => {
     if (fullName.firstName && fullName.lastName) return true;
@@ -38,7 +48,7 @@ function AboutStep(props) {
 
   return (
     <>
-      <section id="verify-code">
+    {token ? <section id="verify-code">
         <div style={{ padding: "13px 0" }}>
           <div className="container">
             <div className="d-flex align-items-center justify-content-center">
@@ -110,6 +120,10 @@ function AboutStep(props) {
           </button>
         </div>
       </section>
+      
+    : showUnauthorized ? (
+      <div>Unauthorized</div>
+    ) : null}
     </>
   );
 }
