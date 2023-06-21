@@ -236,6 +236,7 @@ export default function TransactionsPage() {
   return (
     <>
       <ProfileHeader title="Transaction history" />
+      {isVisblePopup && <div className="overlay"></div>}
       <div className="pa-20 gray-list h-100 mt-3">
         {tabView()}
         <div className="mt-20">
