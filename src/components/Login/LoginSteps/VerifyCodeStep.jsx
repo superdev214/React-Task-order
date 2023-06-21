@@ -19,8 +19,21 @@ function VerifyCodeStep(props) {
   const thirdNumRef = useRef(null);
   const forthNumRef = useRef(null);
 
-  const verificationStatus = useSelector((state) => state.userReducer.verifyCode.status);
-  const isVerificationFailed = verificationStatus !== 200;
+  const verificationStatus = useSelector((state) => state.userReducer.otpError);
+  const isVerificationFailed = verificationStatus.stauts !== 200;
+
+  useEffect(() => {
+    if(verificationStatus) {
+      if(verificationStatus.status === 200) {
+        toast.success("Login Successfully.");
+        setTimeout(() => {
+          props.onContinue();
+        }, 1000);
+      } else {
+        toast.error("Wrong OTP. Please try again.");
+      }
+    }
+  }, [verificationStatus])
 
   useEffect(() => {
     let interval = null;
@@ -76,19 +89,7 @@ function VerifyCodeStep(props) {
   const onContinue = async () => {
     const verifyCode =
       firstNum * 1000 + secondNum * 100 + thirdNum * 10 + forthNum * 1;
-    if (verifyCode !== 0) {
-      props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode });
-      if (verificationStatus === 200) {
-        toast.success("Login Successfully.");
-        setTimeout(() => {
-          props.onContinue();
-        }, 1000);
-      } else {
-        toast.error("Wrong OTP. Please try again.");
-      }
-    } else {
-      toast.error("Please enter the OTP.");
-    }
+      await props.verifyOtp({ phone_no: props.phone_no, otp: verifyCode })
   };
 
   const onResend = () => {
@@ -99,7 +100,6 @@ function VerifyCodeStep(props) {
     setSecond("");
     setThird("");
     setForth("");
-    toast.info("OTP sent successfully", { autoClose: 2000 });
   };
 
   const isContinueDisabled =

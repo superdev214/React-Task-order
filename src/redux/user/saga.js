@@ -57,8 +57,12 @@ function* verifyOtpFunc(payload) {
   try {
     const response = yield call(verifyOtpAsync, payload);
     // yield put({ type: "VERIFY_OTP", response});
-
-    yield put(verifyOtpSuccess(response.data));
+    console.log("Response", response)
+    if(response.status === 200) {
+      yield put(verifyOtpSuccess(response));
+    } else {
+      yield put(verifyOtpFail(response));
+    }
   } catch (error) {
     yield put(verifyOtpFail(error));
   }

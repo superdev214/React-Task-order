@@ -39,9 +39,9 @@ export const verifyOtpSuccess = (opt) => ({
   payload: opt,
 });
 
-export const verifyOtpFail = ({ message }) => ({
+export const verifyOtpFail = (object) => ({
   type: VERIFY_OTP_FAIL,
-  payload: message,
+  payload: object,
 });
 
 export const editProfile = (profile) => ({
