@@ -98,8 +98,8 @@ export default function TransactionsPage() {
       <>
         {transactions.map((item, index) => {
           return (
-            <ul className="mt-20" key={index}>
-              <li className="large d-flex flex-column font-bold mt-20">
+            <ul className="mt-10 mb-0" key={index}>
+              <li className="large d-flex flex-column font-bold mb-10">
                 <div className="w-100" onClick={() => toggle(item.id)}>
                   <div className="d-flex mt-10 justify-content-between align-items-center">
                     <span className="size-13">{item.date}</span>
@@ -113,15 +113,15 @@ export default function TransactionsPage() {
                     <span className="size-13">
                       {type === "Earned" ? "Poster by" : "Assigned to"}
                     </span>
-                    <span className="size-15">
+                    <p className="d-flex align-items-center">
                       <img
                         src={`./assets/images/icons/${item.owner.icon}.svg`}
                         style={{ width: "20px", height: "20px" }}
                         alt=""
                         className="mr-10"
                       />
-                      {item.owner.name}
-                    </span>
+                      <span className="size-15">{item.owner.name}</span>
+                    </p>
                   </div>
                 </div>
                 <>
@@ -241,9 +241,12 @@ export default function TransactionsPage() {
         <div className="mt-20">
           <div className="d-flex justify-content-between align-items-center">
             <p className="font-bold">Showing:</p>
-            <div className="text-blue">
+            <div className="d-flex align-items-center">
               <img src="./assets/images/icons/history.svg" alt="close" />
-              <span className="ml-10 size-15" onClick={() => setIsVisble(true)}>
+              <span
+                className="ml-10 text-blue size-15"
+                onClick={() => setIsVisble(true)}
+              >
                 {transactions}
               </span>
               {/* popup */}
@@ -266,12 +269,12 @@ export default function TransactionsPage() {
           </li>
           <div className="d-flex mt-20 justify-content-between align-items-center">
             <p className="font-bold size-15">Records</p>
-            <div className="text-blue">
+            <div className="d-flex align-items-center">
               <img
                 src="./assets/images/icons/statistics.svg"
                 alt="statistics"
               />
-              <span className="ml-10 size-15">Download CSV file</span>
+              <span className="ml-10 text-blue size-15">Download CSV file</span>
             </div>
           </div>
         </div>
