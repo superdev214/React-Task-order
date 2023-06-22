@@ -127,12 +127,15 @@ export default function UserAccount() {
   return (
     <div>
       <SecondaryHeader hideSearch={true} title="Account" />
-      <div className="pa-20 scroll-area">
-        <p className="font-bold" style={{ marginTop: "48px" }}>
+      <div
+        className="scroll-area px-20"
+        style={{ height: "calc(100vh - 83px)" }}
+      >
+        <p className="font-bold" style={{ marginTop: "64px" }}>
           PUBLIC PROFILE
         </p>
         {informationView()}
-        <div className="gray-list" style={{ marginTop: "40px" }}>
+        <div className="gray-list mt-20">
           <NavLink to={"/profile"}>
             <li className="text-blue">My public profile</li>
           </NavLink>
