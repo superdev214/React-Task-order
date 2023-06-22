@@ -161,13 +161,13 @@ function NewTask(props) {
               <span
                 className={`word-count-title ${
                   remainingTitleWords < 0 && "text-red-title"
-                }`}
+                  }`}
               >
                 {remainingTitleWords}
               </span>
             ) || (
-              <span className="word-count-title">{remainingTitleWords}</span>
-            )}
+                <span className="word-count-title">{remainingTitleWords}</span>
+              )}
           </div>
         </div>
 
@@ -190,15 +190,15 @@ function NewTask(props) {
               <span
                 className={`word-count-description ${
                   remainingDescriptionWords < 0 && "text-red-description"
-                }`}
+                  }`}
               >
                 {remainingDescriptionWords}
               </span>
             ) || (
-              <span className="word-count-description">
-                {remainingDescriptionWords}
-              </span>
-            )}
+                <span className="word-count-description">
+                  {remainingDescriptionWords}
+                </span>
+              )}
           </div>
         </div>
         <p className="mt-20 font-bold">How this task can be done?</p>
@@ -382,10 +382,10 @@ function NewTask(props) {
           .getDate()
           .toString()
           .padStart(2, "0")}-${(task.task_complete_date.getMonth() + 1)
-          .toString()
-          .padStart(2, "0")}-${task.task_complete_date
-          .getFullYear()
-          .toString()}`,
+            .toString()
+            .padStart(2, "0")}-${task.task_complete_date
+              .getFullYear()
+              .toString()}`,
         category: id,
         user_id: props.user_id,
         total_budget: task.budget,
@@ -419,42 +419,6 @@ function NewTask(props) {
     );
   };
 
-  const handlePrevClick = () => {
-    if (step > 0) {
-      setStep(step - 1);
-      if (step === 2) {
-        document.querySelectorAll(".buttonBg1").forEach((button) => {
-          button.classList.remove("radiusLeft");
-          setTimeout(() => {
-            button.classList.add("radiusLeft");
-          }, 300);
-        });
-      }
-      if (step === 3) {
-        document.querySelectorAll(".buttonBg2").forEach((button) => {
-          button.classList.remove("radiusLeft");
-          setTimeout(() => {
-            button.classList.add("radiusLeft");
-          }, 300);
-        });
-      }
-    }
-  };
-
-  const handleContinue = () => {
-    setTimeout(() => setStep(step + 1));
-    if (step === 1) {
-      document.querySelectorAll(".buttonBg2").forEach((button) => {
-        button.classList.add("radiusLeft");
-      });
-    }
-    if (step === 2) {
-      document.querySelectorAll(".buttonBg3").forEach((button) => {
-        button.classList.add("radiusLeft");
-      });
-    }
-  };
-
   return (
     <>
       {modal && (
@@ -485,7 +449,7 @@ function NewTask(props) {
               <button
                 className="position-absolute bg-transparent border-0"
                 style={{ left: "20px" }}
-                onClick={handlePrevClick}
+                onClick={() => setStep(step - 1)}
               >
                 <img src="./assets/images/icons/arrow-back.svg" alt="close" />
               </button>
@@ -494,22 +458,20 @@ function NewTask(props) {
           </div>
           <div className="button-container pa-20">
             <div className={"button-wrapper selected" + step}>
+              <div className="buttonBg"></div>
               <div
                 className={`button ${step >= 1 ? "selected selected1" : ""}`}
               >
-                <div className="buttonBg buttonBg1 radiusLeft"></div>
                 <div className="button-label font-bold">ABOUT</div>
               </div>
               <div
                 className={`button ${step >= 2 ? "selected selected2" : ""}`}
               >
-                <div className="buttonBg buttonBg2"></div>
                 <div className="button-label font-bold">DATE & TIME</div>
               </div>
               <div
                 className={`button ${step >= 3 ? "selected selected3" : ""}`}
               >
-                <div className="buttonBg buttonBg3"></div>
                 <div className="button-label font-bold">BUDGET</div>
               </div>
             </div>
@@ -529,7 +491,9 @@ function NewTask(props) {
               <button
                 className="d-block btn btn-gray btn-w-350 button-continue"
                 disabled={!isValidForm()}
-                onClick={handleContinue}
+                onClick={() => {
+                  setTimeout(() => setStep(step + 1));
+                }}
               >
                 Continue
               </button>
