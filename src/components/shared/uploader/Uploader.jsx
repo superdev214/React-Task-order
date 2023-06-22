@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Uploader.scss";
 
-export default function UploaderComponent({ renderBtn }) {
+export default function UploaderComponent(props) {
   const [images, setImages] = useState([]);
+  // const { setOfferImages } = props;
+  // props.setOfferImages(images);
 
   const handleChange = (event) => {
     let images_url = images ? [...images] : [];
@@ -16,6 +18,9 @@ export default function UploaderComponent({ renderBtn }) {
         return;
       images_url.push({ path: URL.createObjectURL(file) });
       setImages(images_url);
+      if (props.setOfferImages) props.setOfferImages(images_url);
+      if (props.setQuestionImages) props.setQuestionImages(images_url);
+      if (props.setReplyImages) props.setReplyImages(images_url);
     });
   };
 
@@ -57,8 +62,8 @@ export default function UploaderComponent({ renderBtn }) {
         )}
       </div>
       <div className="uploader">
-        {renderBtn ? (
-          renderBtn()
+        {props.renderBtn ? (
+          props.renderBtn()
         ) : (
           <button className="d-block btn btn-gray btn-w-350 mt-3">
             <img
