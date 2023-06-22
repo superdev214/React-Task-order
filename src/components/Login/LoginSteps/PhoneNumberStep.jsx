@@ -27,6 +27,10 @@ function WalkthroughStep(props) {
     setError("");
   };
 
+  const verifyuser = () => {
+    localStorage.removeItem('user_id');
+  }
+
   const isContinueDisabled =
     phoneNum === "" ||
     !/^((?:[+?0?0?966]+)(?:\s?\d{2})(?:\s?\d{7}))$/.test(phoneNum);
@@ -64,7 +68,11 @@ function WalkthroughStep(props) {
       <div className="fixed-bottom">
         <p className="made-for-community">Made for the community</p>
         <NavLink to={"/home"}>
-          <button className="d-block btn btn-gray btn-w-350" id="skipBtn">
+          <button 
+          className="d-block btn btn-gray btn-w-350" 
+          id="skipBtn"
+          onClick={verifyuser}
+          >
             Skip
           </button>
         </NavLink>

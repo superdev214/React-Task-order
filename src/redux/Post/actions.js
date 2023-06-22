@@ -7,11 +7,17 @@ import {
   GET_ALL_CATEGORY_SUCCESS,
   STORE_CATEGORY_ID,
   STORE_CATEGORY_ID_SUCCESS,
-  GET_MY_POST
+  GET_MY_POST,
+  GET_BROWSE_POST
 } from "../actions";
 
 export const postTaskget = (task) => ({
   type: GET_MY_POST,
+  payload: task,
+});
+
+export const getBrowsetask = (task) => ({
+  type: GET_BROWSE_POST,
   payload: task,
 });
 

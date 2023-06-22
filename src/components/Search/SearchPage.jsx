@@ -4,6 +4,9 @@ import FilterComponent from "../Tasks/Filter/TaskFilter";
 import TaskCards from "../Tasks/TaskCard/TaskCards";
 import CarouselComponent from "../shared/carousel/CarouselComponent";
 import MapComponent from "../shared/map/MapComponent";
+import BrowseTaskCards from "../Tasks/TaskCard/Card/Card";
+import { useDispatch, useSelector } from "react-redux";
+import { getBrowsetask } from "../../redux/actions";
 
 const allTasks = [
   {
@@ -35,6 +38,14 @@ export default function SearchPage({ query }) {
   const [locationModal, setLocationModal] = useState(false);
   const [tasks, setTasks] = useState(allTasks);
   const [address, setAddress] = useState("");
+
+  const dispatch = useDispatch();
+  const lat = useSelector(state => state.postApi.categories);
+
+  useEffect(() => {
+    dispatch(getBrowsetask());
+  }, [])
+
 
   useEffect(() => {
     let data = query
@@ -80,7 +91,7 @@ export default function SearchPage({ query }) {
           <div style={{ position: "sticky", zIndex: 10 }}>
             <div>
               <CarouselComponent>
-                <TaskCards tasks={tasks} />
+                <BrowseTaskCards tasks={tasks} />
               </CarouselComponent>
             </div>
           </div>
@@ -92,11 +103,12 @@ export default function SearchPage({ query }) {
               position: "absolute",
             }}
             onChange={(text) => setAddress(text)}
+            lat={lat}
           />
         </>
       ) : (
         <div className="task-cards scroll-area">
-          <TaskCards tasks={tasks} />
+          <BrowseTaskCards tasks={tasks} />
         </div>
       )}
       <SecondaryHeader title="Browse tasks" appendEvent={appendEventHeader} />

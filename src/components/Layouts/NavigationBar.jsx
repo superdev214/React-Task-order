@@ -15,6 +15,7 @@ export default function NavigationBar() {
     setActiveItem(pathname);
   }, [pathname]);
 
+  const verifyuser = localStorage.getItem('user_id');
   return (
     <nav className="footer-nav">
       <ul className="nav justify-content-between">
@@ -24,7 +25,7 @@ export default function NavigationBar() {
           </NavLink>
         </li>
         <li className={"nav-item"} onClick={() => setActiveItem("/tasks")}>
-          <NavLink to={"/tasks"} className="nav-link px-2 py-0">
+          <NavLink to={ verifyuser === null ? '/' : "/tasks"} className="nav-link px-2 py-0">
             {TaskListIcon(activeItem === "/tasks" && "fill")}
           </NavLink>
         </li>
