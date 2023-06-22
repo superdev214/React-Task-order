@@ -208,6 +208,7 @@ function NewTask(props) {
               "d-block btn btn-gray btn-w-350 mt-10 " +
               (task.type === "InPerson" && "active")
             }
+            style={{ backgroundColor: task.type === 0 ? "#42ADE2" : "" }}
             onClick={() => setTask({ ...task, type: 0 })}
           >
             In person
@@ -217,6 +218,7 @@ function NewTask(props) {
               "d-block btn btn-gray btn-w-350 mt-10 " +
               (task.type === "Remotely" && "active")
             }
+            style={{ backgroundColor: task.type === 1 ? "#42ADE2" : "" }}
             onClick={() => setTask({ ...task, type: 1 })}
           >
             Remotely

@@ -58,11 +58,7 @@ function TaskCategories(props) {
     props.getAllCategory();
   }, []);
 
-  // const handleImageClick = (category) => {
-  //   const categoryId = category.id;
-  //   props.storeCategoryId(categoryId);
-  // };
-
+  const verify_user = localStorage.getItem("user_id");
   return (
     <section className="py-4 task_category">
       <div className="container">
@@ -75,7 +71,7 @@ function TaskCategories(props) {
             props.categories.map((category) => (
               <div key={category.id} className="col">
                 <NavLink
-                  to={`/new-task?id=${category.id}`} // Pass categoryId as a query parameter
+                  to={ verify_user === null ? `/` : `/new-task?id=${category.id}`}
                   className="task-card"
                 >
                   <div className="task-image">
