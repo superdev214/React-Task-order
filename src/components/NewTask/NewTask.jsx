@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { NavLink,useLocation  } from "react-router-dom";
+import { NavLink,useLocation, useNavigate  } from "react-router-dom";
 import TasksOffer from "./TasksOffer/TasksOffer";
 import LocationSelection from "./LocationSelection/LocationSelection";
 import DatePickerComponent from "../shared/date-picker/DatePicker";
@@ -8,9 +8,11 @@ import TickIcon from "../../assets/images/TickDark.svg";
 import "./NewTask.scss";
 import "../../assets/style/components/task-tab-bar.scss";
 
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import { postTask } from "../../redux/Post/actions";
 import { take } from "@redux-saga/core/effects";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function NewTask(props) {
   const location = useLocation();
@@ -18,6 +20,7 @@ function NewTask(props) {
   const [modal, setModal] = useState(false);
   const [locationSelectionModal, setLocationSelectionModal] = useState(false);
   const [address, setAddress] = useState("");
+  const [redirect, setRedirect] = useState(false);
   const [task, setTask] = useState({
     type: 0,
     description: "",
@@ -35,10 +38,13 @@ function NewTask(props) {
     haveCertainTime:true,
     budget:0,
   });
+  const post = useSelector(state => state.postApi.addtask)
+  const navigate = useNavigate()
+
+  console.log(post, "postpost11110000000000");
 
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
-  console.log(id, "idid");
   const titleInputRef = useRef();
 
   //title input handler
@@ -46,6 +52,19 @@ function NewTask(props) {
     const value = e.target.value;
     setTask({ ...task, title: value });
   };
+
+  useEffect(() => {
+    if(post === 200) {
+      setRedirect(true)
+    }
+  }, [post])
+
+  console.log('red', redirect);
+
+  useEffect(() => {
+    redirect && navigate('/new-task-published')
+  }, [redirect])
+  
 
   // const handleTitleChange = () => {
   //   const element = titleInputRef.current;
@@ -243,7 +262,6 @@ function NewTask(props) {
           />
           Add must haves
         </button>
-        {task.type === 0 && (
           <button
             className="d-block btn btn-gray btn-w-350 mt-3"
             onClick={() => setLocationSelectionModal(true)}
@@ -257,7 +275,6 @@ function NewTask(props) {
               {address ? address : "Choose location"}
             </>
           </button>
-        )}
       </>
     );
   };
@@ -363,7 +380,7 @@ function NewTask(props) {
   const handleSubmit = () => {
     if (isBudgetValid()) {
       props.postTask({title:task.title, details:task.description, is_task_remotely:task.type, task_complete_date:`${task.task_complete_date.getDate().toString().padStart(2, '0')}-${(task.task_complete_date.getMonth() + 1).toString().padStart(2, '0')}-${task.task_complete_date.getFullYear().toString()}`,
-    category:id, user_id:props.user_id, total_budget:task.budget, latitude:task.lat, longtude:task.lng, address:address})
+    category:id, user_id:props.user_id, total_budget:task.budget, latitude:task.lat, longitude:task.lng, address:address})
     } else {
       // Show an error message or prevent task submission
     }
@@ -460,7 +477,7 @@ function NewTask(props) {
                 Continue
               </button>
             ) : (
-              <NavLink to={isBudgetValid() ? "/new-task-published" : "#"}>
+              <NavLink>
                 <button
                   className="d-block btn btn-gray btn-w-350 button-continue"
                   disabled={!isBudgetValid()} // Disable if the budget is not valid
@@ -472,15 +489,17 @@ function NewTask(props) {
             )}
           </div>
         </div>
+        <ToastContainer />
       </div>
     </>
   );
 }
 
 const mapStateToProps = ({ postApi, userReducer}) => {
-  const {message, error, category} = postApi;
+
+  const {message, error, category, success, addtask } = postApi;
   const { user_id } = userReducer;
-  return {message, error, category, user_id};
+  return {message, error, category, user_id, success, addtask};
 };
 
 const mapDispatchToProps = {

@@ -4,19 +4,24 @@ import {
   GET_ALL_CATEGORY_SUCCESS,
   GET_ALL_CATEGORY_FAIL,
   STORE_CATEGORY_ID_SUCCESS,
+  POST_TASK
 } from "../actions";
 
 const INIT_STATE = {
+  success: "",
   message: "",
+  addtask: "",
   error: "",
   categories: [],
   category: 0,
 };
 
-export default (state = INIT_STATE, action) => {
+export default function postApi(state = INIT_STATE, action) {
   switch (action.type) {
+    case POST_TASK:
+      return { ...state, success: action.payload };
     case POST_TASK_SUCCESS:
-      return { ...state, message: action.payload };
+      return { ...state, addtask: action.payload.status };
     case POST_TASK_FAIL:
       return { ...state, message: "", error: action.payload };
     case GET_ALL_CATEGORY_SUCCESS:
