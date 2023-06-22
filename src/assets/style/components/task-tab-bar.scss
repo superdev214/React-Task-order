@@ -1,3 +1,107 @@
+.task-tab-bar {
+  display: flex;
+  background: #f5f7fa;
+  border-radius: 100px;
+  min-height: 30px;
+  & > div {
+    width: 33.33%;
+    text-align: center;
+    font-style: normal;
+    font-family: SF Pro Text Bold;
+    font-size: 13px;
+    line-height: 16px;
+    align-items: center;
+    text-align: center;
+    color: #c5cdd9;
+
+    & > button {
+      background: none;
+      border: 0;
+      padding: 5px;
+      width: 100%;
+      height: 100%;
+      color: #c5cdd9;
+    }
+  }
+
+  &.step1 {
+    .tab1 {
+      button {
+        border-radius: 100px;
+        background: #6eb925;
+        color: #ffffff;
+      }
+    }
+  }
+
+  &.step2 {
+    .tab1 {
+      background: #6eb925;
+      border-radius: 100px 0 0 100px;
+
+      button {
+        border-radius: 100px;
+        background: #6eb925;
+        color: #ffffff;
+      }
+    }
+
+    .tab2 {
+      position: relative;
+      button {
+        border-radius: 0 100px 100px 0;
+        background: #6eb925;
+        color: #ffffff;
+        // animation-fill-mode: forwards;
+        // animation-name: load;
+        // animation-duration: 2s;
+        // animation: load 3s normal forwards;
+      }
+    }
+  }
+
+  &.step3 {
+    .tab1 {
+      background: #6eb925;
+      border-radius: 100px 0 0 100px;
+
+      button {
+        border-radius: 100px;
+        background: #6eb925;
+        color: #ffffff;
+      }
+    }
+
+    .tab2 {
+      background: #6eb925;
+
+      button {
+        border-radius: 0 100px 100px 0;
+        background: #6eb925;
+        color: #ffffff;
+      }
+    }
+
+    .tab3 {
+      button {
+        border-radius: 0 100px 100px 0;
+        background: #6eb925;
+        // animation: load 1s normal forwards;
+        color: #ffffff;
+      }
+    }
+  }
+}
+
+@keyframes load {
+  0% {
+    background-color: #f5f7fa;
+  }
+  100% {
+    background-color: #6eb925;
+  }
+}
+
 .button-wrapper {
   display: flex;
   position: relative;
