@@ -33,17 +33,15 @@ const PopupComponent = (props) => {
       {props.isVisblePopup && (
         <>
           <div className="menu">
-            <ul className="list-group">
-              <li className="header list-group-item size-13">
-                Show transactions by:
-              </li>
+            <ul className="m-0">
+              <li className="header size-13">Show transactions by:</li>
               {ulList.map((list) => (
                 <li
                   key={list.index}
                   className={
                     props.transactions === list.content
-                      ? "activeItem items list-group-item size-17"
-                      : "items list-group-item size-17"
+                      ? "activeItem items size-17"
+                      : "items size-17"
                   }
                   onClick={handleClick}
                 >
@@ -58,7 +56,7 @@ const PopupComponent = (props) => {
               className="w-100 popClose"
               onClick={() => props.setIsVisble(!props.isVisblePopup)}
             >
-              Close
+              Cancel
             </button>
           </div>
         </>

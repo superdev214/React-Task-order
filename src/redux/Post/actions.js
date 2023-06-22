@@ -14,9 +14,9 @@ export const postTask = (task) => ({
   payload: task,
 });
 
-export const postTaskSuccess = ({ message }) => ({
+export const postTaskSuccess = (task) => ({
   type: POST_TASK_SUCCESS,
-  payload: message,
+  payload: task,
 });
 
 export const postTaskFail = ({ error }) => ({

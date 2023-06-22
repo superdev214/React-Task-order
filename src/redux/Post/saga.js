@@ -1,5 +1,6 @@
-import { all, call, fork, put, takeEvery } from "redux-saga/effects";
+import { all, call, fork, put, takeLeading } from "redux-saga/effects";
 import { POST_TASK, GET_ALL_CATEGORY, STORE_CATEGORY_ID } from "../actions";
+import { toast } from "react-toastify";
 
 import {
   postTaskSuccess,
@@ -16,18 +17,18 @@ const server_url = "http://8.213.23.19/api";
 const token = localStorage.getItem('token');
 
 export function* watchPostTask() {
-  yield takeEvery(POST_TASK, postTaskFunc);
+  yield takeLeading(POST_TASK, postTaskFunc);
 }
 
 const postTaskAsync = async (payload) => {
 
-  const config = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
+  // const config = {
+  //   headers: {
+  //     Authorization: `Bearer ${token}`,
+  //   },
+  // };
   try {
-    const response = await axios.post(`${server_url}/post-task`, payload, config);
+    const response = await axios.post(`${server_url}/post-task`, payload);
     return response;
   } catch (error) {
     return error;
@@ -37,6 +38,9 @@ const postTaskAsync = async (payload) => {
 function* postTaskFunc({ payload }) {
   try {
     const response = yield call(postTaskAsync, payload);
+    if(response.data.status !== 200) {
+      toast.error("sometings went wrong");
+    }
     yield put(postTaskSuccess(response.data));
   } catch (error) {
     yield put(postTaskFail(error));
@@ -44,7 +48,7 @@ function* postTaskFunc({ payload }) {
 }
 
 export function* watchGetCategory() {
-  yield takeEvery(GET_ALL_CATEGORY, getCategoryFunc);
+  yield takeLeading(GET_ALL_CATEGORY, getCategoryFunc);
 }
 
 const getCategoryAsync = async () => {
@@ -71,7 +75,7 @@ function* getCategoryFunc() {
 }
 
 export function* watchCategoryID() {
-  yield takeEvery(STORE_CATEGORY_ID, storeCategoryIdFunc);
+  yield takeLeading(STORE_CATEGORY_ID, storeCategoryIdFunc);
 }
 
 function* storeCategoryIdFunc({ payload }) {

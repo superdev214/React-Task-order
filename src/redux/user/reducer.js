@@ -15,12 +15,12 @@ const INIT_STATE = {
   otpError: "",
   message: "",
   verifyCode: 0,
-  user_id: 74,
+  user_id: null,
   token: "",
 };
 
 export default function user(state = INIT_STATE, action) {
-  console.log("action.payload.token", action?.payload);
+//   console.log("action.payload.token", action?.payload);
   switch (action.type) {
     case LOGIN_WITH_SMS_SUCCESS:
       return {
