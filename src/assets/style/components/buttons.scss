@@ -2,15 +2,24 @@
 @import "../utils/placeholders.scss";
 @import "../utils/mixins.scss";
 
+@keyframes fade-in {
+  0% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
 .btn {
   &-bell {
     padding: 0;
   }
 
   &:checked,
-  &:hover,
+  &:hover {
+    box-shadow: none !important;
+  }
+
   &:active {
     opacity: 0.8;
+    animation: fade-in 0.2s;
     box-shadow: none !important;
   }
 
