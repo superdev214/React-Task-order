@@ -501,9 +501,9 @@ function NewTask(props) {
           <div
             className="container"
             style={{
-              height: "80vh",
+              height: "calc(100vh - 180px)",
               overflowY: "scroll",
-              paddingBottom: "40px",
+              paddingBottom: "20px",
             }}
           >
             {step === 1 ? stepAbout() : step === 2 ? dateTime() : stepBudget()}
