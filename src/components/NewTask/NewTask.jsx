@@ -8,12 +8,11 @@ import TickIcon from "../../assets/images/TickDark.svg";
 import "./NewTask.scss";
 import "../../assets/style/components/task-tab-bar.scss";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 import { postTask } from "../../redux/Post/actions";
 import { take } from "@redux-saga/core/effects";
 
 function NewTask(props) {
-
   const [step, setStep] = useState(1);
   const [modal, setModal] = useState(false);
   const [locationSelectionModal, setLocationSelectionModal] = useState(false);
@@ -26,14 +25,14 @@ function NewTask(props) {
     certainTime: "Morning",
     lat: 0,
     lng: 0,
-    category:"",
-    user_id:"",
-    total_budget:0,
-    is_hourly:0,
-    task_complete_date:null,
-    certainTime:"",
-    haveCertainTime:true,
-    budget:0,
+    category: "",
+    user_id: "",
+    total_budget: 0,
+    is_hourly: 0,
+    task_complete_date: null,
+    certainTime: "",
+    haveCertainTime: true,
+    budget: 0,
   });
 
   const titleInputRef = useRef();
@@ -108,7 +107,7 @@ function NewTask(props) {
   const stepAbout = () => {
     return (
       <>
-        <p className="mb-20 font-bold">ABOUT</p>
+        <p className="mb-10 font-bold">ABOUT</p>
         <div className="form-control-group">
           <div className="d-flex align-items-center justify-content-between mb-10">
             <p className="form-control-group-label">Task title</p>
@@ -144,13 +143,13 @@ function NewTask(props) {
               <span
                 className={`word-count-title ${
                   remainingTitleWords < 0 && "text-red-title"
-                  }`}
+                }`}
               >
                 {remainingTitleWords}
               </span>
             ) || (
-                <span className="word-count-title">{remainingTitleWords}</span>
-              )}
+              <span className="word-count-title">{remainingTitleWords}</span>
+            )}
           </div>
         </div>
 
@@ -173,22 +172,22 @@ function NewTask(props) {
               <span
                 className={`word-count-description ${
                   remainingDescriptionWords < 0 && "text-red-description"
-                  }`}
+                }`}
               >
                 {remainingDescriptionWords}
               </span>
             ) || (
-                <span className="word-count-description">
-                  {remainingDescriptionWords}
-                </span>
-              )}
+              <span className="word-count-description">
+                {remainingDescriptionWords}
+              </span>
+            )}
           </div>
         </div>
         <p className="mt-20 font-bold">How this task can be done?</p>
         <div className="switch-button">
           <button
             className={
-              "d-block btn btn-gray btn-w-350 mt-3 " +
+              "d-block btn btn-gray btn-w-350 mt-10 " +
               (task.type === "InPerson" && "active")
             }
             onClick={() => setTask({ ...task, type: 0 })}
@@ -197,7 +196,7 @@ function NewTask(props) {
           </button>
           <button
             className={
-              "d-block btn btn-gray btn-w-350 mt-3 " +
+              "d-block btn btn-gray btn-w-350 mt-10 " +
               (task.type === "Remotely" && "active")
             }
             onClick={() => setTask({ ...task, type: 1 })}
@@ -359,8 +358,25 @@ function NewTask(props) {
 
   const handleSubmit = () => {
     if (isBudgetValid()) {
-      props.postTask({title:task.title, details:task.description, is_task_remotely:task.type, task_complete_date:`${task.task_complete_date.getDate().toString().padStart(2, '0')}-${(task.task_complete_date.getMonth() + 1).toString().padStart(2, '0')}-${task.task_complete_date.getFullYear().toString()}`,
-    category:props.category, user_id:props.user_id, total_budget:task.budget, latitude:task.lat, longtude:task.lng, address:address})
+      props.postTask({
+        title: task.title,
+        details: task.description,
+        is_task_remotely: task.type,
+        task_complete_date: `${task.task_complete_date
+          .getDate()
+          .toString()
+          .padStart(2, "0")}-${(task.task_complete_date.getMonth() + 1)
+          .toString()
+          .padStart(2, "0")}-${task.task_complete_date
+          .getFullYear()
+          .toString()}`,
+        category: props.category,
+        user_id: props.user_id,
+        total_budget: task.budget,
+        latitude: task.lat,
+        longtude: task.lng,
+        address: address,
+      });
     } else {
       // Show an error message or prevent task submission
     }
@@ -389,20 +405,20 @@ function NewTask(props) {
 
   const handlePrevClick = () => {
     if (step > 0) {
-      setStep(step - 1)
+      setStep(step - 1);
       if (step === 2) {
-        document.querySelectorAll('.buttonBg1').forEach((button) => {
-          button.classList.remove("radiusLeft")
+        document.querySelectorAll(".buttonBg1").forEach((button) => {
+          button.classList.remove("radiusLeft");
           setTimeout(() => {
-            button.classList.add("radiusLeft")
+            button.classList.add("radiusLeft");
           }, 300);
         });
       }
       if (step === 3) {
-        document.querySelectorAll('.buttonBg2').forEach((button) => {
-          button.classList.remove("radiusLeft")
+        document.querySelectorAll(".buttonBg2").forEach((button) => {
+          button.classList.remove("radiusLeft");
           setTimeout(() => {
-              button.classList.add("radiusLeft")
+            button.classList.add("radiusLeft");
           }, 300);
         });
       }
@@ -412,16 +428,16 @@ function NewTask(props) {
   const handleContinue = () => {
     setTimeout(() => setStep(step + 1));
     if (step === 1) {
-      document.querySelectorAll('.buttonBg2').forEach((button) => {
-        button.classList.add("radiusLeft")
+      document.querySelectorAll(".buttonBg2").forEach((button) => {
+        button.classList.add("radiusLeft");
       });
     }
-    if(step === 2){
-      document.querySelectorAll('.buttonBg3').forEach((button) => {
-        button.classList.add("radiusLeft")
-    });
+    if (step === 2) {
+      document.querySelectorAll(".buttonBg3").forEach((button) => {
+        button.classList.add("radiusLeft");
+      });
     }
-  }
+  };
 
   return (
     <>
@@ -435,7 +451,9 @@ function NewTask(props) {
       {locationSelectionModal && (
         <LocationSelection
           onChange={(address) => setAddress(address)}
-          onGetValue={(latlng) => setTask({...task, lat:latlng.lat, lng:latlng.lng})}
+          onGetValue={(latlng) =>
+            setTask({ ...task, lat: latlng.lat, lng: latlng.lng })
+          }
           close={() => setLocationSelectionModal(false)}
         />
       )}
@@ -460,17 +478,23 @@ function NewTask(props) {
           </div>
           <div className="button-container pa-20">
             <div className={"button-wrapper selected" + step}>
-              <div className={`button ${step >= 1 ? 'selected selected1' : ''}`}>
+              <div
+                className={`button ${step >= 1 ? "selected selected1" : ""}`}
+              >
                 <div className="buttonBg buttonBg1 radiusLeft"></div>
-                <div className="button-label">ABOUT</div>
+                <div className="button-label font-bold">ABOUT</div>
               </div>
-              <div className={`button ${step >= 2 ? 'selected selected2' : ''}`}>
+              <div
+                className={`button ${step >= 2 ? "selected selected2" : ""}`}
+              >
                 <div className="buttonBg buttonBg2"></div>
-                <div className="button-label">DATE & TIME</div>
+                <div className="button-label font-bold">DATE & TIME</div>
               </div>
-              <div className={`button ${step >= 3 ? 'selected selected3' : ''}`}>
+              <div
+                className={`button ${step >= 3 ? "selected selected3" : ""}`}
+              >
                 <div className="buttonBg buttonBg3"></div>
-                <div className="button-label">BUDGET</div>
+                <div className="button-label font-bold">BUDGET</div>
               </div>
             </div>
           </div>
@@ -511,14 +535,14 @@ function NewTask(props) {
   );
 }
 
-const mapStateToProps = ({ postApi, userReducer}) => {
-  const {message, error, category} = postApi;
+const mapStateToProps = ({ postApi, userReducer }) => {
+  const { message, error, category } = postApi;
   const { user_id } = userReducer;
-  return {message, error, category, user_id};
+  return { message, error, category, user_id };
 };
 
 const mapDispatchToProps = {
   postTask,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewTask);

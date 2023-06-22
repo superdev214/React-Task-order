@@ -77,9 +77,8 @@ const LocationSelection = ({ close, onChange, onGetValue }) => {
       <div>
         <div
           ref={mapDiv}
-          style={{ width: "100%", height: "90vh", borderRadius: "5px" }}
+          style={{ width: "100%", height: "calc(100vh - 108px)" }}
         />
-        <div style={{ height: "100vh", width: "100%" }}></div>
       </div>
       <div className="fixed-bottom">
         <button
