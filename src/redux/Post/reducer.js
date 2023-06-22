@@ -4,7 +4,8 @@ import {
   GET_ALL_CATEGORY_SUCCESS,
   GET_ALL_CATEGORY_FAIL,
   STORE_CATEGORY_ID_SUCCESS,
-  POST_TASK
+  POST_TASK,
+  GET_MY_POST
 } from "../actions";
 
 const INIT_STATE = {
@@ -14,6 +15,7 @@ const INIT_STATE = {
   error: "",
   categories: [],
   category: 0,
+  mypost: []
 };
 
 export default function postApi(state = INIT_STATE, action) {
@@ -26,6 +28,8 @@ export default function postApi(state = INIT_STATE, action) {
       return { ...state, message: "", error: action.payload };
     case GET_ALL_CATEGORY_SUCCESS:
       return { ...state, categories: action.payload };
+      case GET_MY_POST:
+      return { ...state, mypost: action.payload };
     case STORE_CATEGORY_ID_SUCCESS:
       return { ...state, category: action.payload };
     case GET_ALL_CATEGORY_FAIL:

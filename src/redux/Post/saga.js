@@ -1,5 +1,5 @@
 import { all, call, fork, put, takeLeading } from "redux-saga/effects";
-import { POST_TASK, GET_ALL_CATEGORY, STORE_CATEGORY_ID } from "../actions";
+import { POST_TASK, GET_ALL_CATEGORY, STORE_CATEGORY_ID, GET_MY_POST } from "../actions";
 import { toast } from "react-toastify";
 
 import {
@@ -74,6 +74,35 @@ function* getCategoryFunc() {
   }
 }
 
+const gettaskAsync = async () => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  try {
+    const user_id = localStorage.getItem("user_id");
+    const response = await axios.get(`${server_url}/my-post?user_id=${user_id}`, config);
+
+    return response;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+function* gettaskFunc() {
+  try {
+    const response = yield call(gettaskAsync);
+    yield put(getAllCategorySuccess(response.data));
+  } catch (error) {
+    yield put(getAllCategoryFail(error));
+  }
+}
+
+export function* watchGetpost() {
+  yield takeLeading(GET_MY_POST, gettaskFunc);
+}
+
 export function* watchCategoryID() {
   yield takeLeading(STORE_CATEGORY_ID, storeCategoryIdFunc);
 }
@@ -85,6 +114,7 @@ function* storeCategoryIdFunc({ payload }) {
 export default function* rootSaga() {
   yield all([
     fork(watchGetCategory),
+    fork(watchGetpost),
     fork(watchPostTask),
     fork(watchCategoryID),
   ]);

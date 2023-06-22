@@ -41,8 +41,6 @@ function NewTask(props) {
   const post = useSelector((state) => state.postApi.addtask);
   const navigate = useNavigate();
 
-  console.log(post, "postpost11110000000000");
-
   const searchParams = new URLSearchParams(location.search);
   const id = searchParams.get("id");
   const titleInputRef = useRef();
@@ -58,8 +56,6 @@ function NewTask(props) {
       setRedirect(true);
     }
   }, [post]);
-
-  console.log("red", redirect);
 
   useEffect(() => {
     redirect && navigate("/new-task-published");
@@ -556,8 +552,8 @@ function NewTask(props) {
   );
 }
 
-const mapStateToProps = ({ postApi, userReducer }) => {
-  const { message, error, category, success, addtask } = postApi;
+const mapStateToProps = ({ postApi, userReducer}) => {
+  const {message, error, category, success, addtask } = postApi;
   const { user_id } = userReducer;
   return { message, error, category, user_id, success, addtask };
 };
