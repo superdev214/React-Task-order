@@ -8,6 +8,7 @@
   background: #f5f7fa;
 
   &__text {
+    padding-top: 60px;
     margin-bottom: 0;
     font-size: 27px;
     line-height: 32px;
@@ -68,16 +69,12 @@
   background-color: #f5f7fa;
 }
 
-.show-full {
+.earth-image-wrapper {
   height: 270px;
 }
 
-.show-half {
-  height: 200px;
-}
-
 .text_gap {
-  margin-bottom: 30px;
+  margin-bottom: -30px;
 }
 
 .home-bottom {
