@@ -40,7 +40,7 @@ export default function NavigationBar() {
           }
           onClick={() => setActiveItem("/messages")}
         >
-          <NavLink to={"/messages"} className="nav-link px-2 py-0">
+          <NavLink to={  verifyuser === null ? '/' : "/messages"} className="nav-link px-2 py-0">
             {ChatIcon(activeItem === "/messages" && "fill")}
           </NavLink>
         </li>
@@ -48,7 +48,7 @@ export default function NavigationBar() {
           className={"nav-item " + (activeItem === "/account" && "active-item")}
           onClick={() => setActiveItem("/account")}
         >
-          <NavLink to={"/account"} className="nav-link px-2 py-0">
+          <NavLink to={verifyuser === null ? '/' : "/account"} className="nav-link px-2 py-0">
             {UserProfileIcon(activeItem === "/account" && "fill")}
           </NavLink>
         </li>

@@ -45,7 +45,7 @@ const MapComponent = ({ onChange, style, lat }) => {
     };
 
     initializeMap();
-  }, [lat, onChange]);
+  }, []);
 
   return (
     <div

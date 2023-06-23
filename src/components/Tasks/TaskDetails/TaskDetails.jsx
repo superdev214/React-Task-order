@@ -107,12 +107,20 @@ export default function TaskDetails() {
     setViewQuestion(question);
     setQuestion("");
   };
-  const actions = [
-    {
+
+  const verifyuser = localStorage.getItem("user_id");
+
+  const actions = [];
+
+  if (verifyuser !== null) {
+    actions.push({
       caption: "Make an offer",
       onClick: () => setMakeOfferModal(true),
       bg: "green",
-    },
+    });
+  }
+
+  actions.push(
     {
       caption: "Release payment",
       onClick: () => setPaymentReleaseModal(true),
@@ -129,8 +137,8 @@ export default function TaskDetails() {
       caption: "View cancellation request",
       onClick: () => setCancellationRequestModal(true),
       bg: "danger",
-    },
-  ];
+    }
+  );
 
   const openView = () => {
     return (
@@ -518,39 +526,42 @@ export default function TaskDetails() {
               </div>
             </div>
           </div>
-          <input
-            className="mt-20 w-100"
-            type="text"
-            placeholder={"Ask Gaurav C a question"}
-            maxLength={2000}
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-          />
-
-          <div className="mt-20 position-relative">
-            <Uploader
-              renderBtn={() => {
-                return (
-                  <img
-                    className="mr-10"
-                    src="./assets/images/icons/attach-icon.svg"
-                    alt="logo big"
-                  />
-                );
-              }}
-              questionImages={questionImages}
-              setQuestionImages={setQuestionImages}
-              questionState={questionImages}
-            />
-            <button
-              disabled={!question}
-              className="d-block btn btn-info small position-absolute"
-              style={{ right: 0, bottom: "-2px" }}
-              onClick={handleClickSendQuestion}
-            >
-              Send
-            </button>
-          </div>
+          {verifyuser && (
+            <>
+              <input
+                className="mt-20 w-100"
+                type="text"
+                placeholder={"Ask Gaurav C a question"}
+                maxLength={2000}
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+              />
+              <div className="mt-20 position-relative">
+                <Uploader
+                  renderBtn={() => {
+                    return (
+                      <img
+                        className="mr-10"
+                        src="./assets/images/icons/attach-icon.svg"
+                        alt="logo big"
+                      />
+                    );
+                  }}
+                  questionImages={questionImages}
+                  setQuestionImages={setQuestionImages}
+                  questionState={questionImages}
+                />
+                <button
+                  disabled={!question}
+                  className="d-block btn btn-info small position-absolute"
+                  style={{ right: 0, bottom: "-2px" }}
+                  onClick={handleClickSendQuestion}
+                >
+                  Send
+                </button>
+              </div>
+            </>
+          )}
         </div>
         {/* view question section */}
         {viewQuestion && (
