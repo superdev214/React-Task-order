@@ -54,12 +54,19 @@ export default function TaskDetails() {
   const [locationModal, setLocationModal] = useState(false);
   const [viewAllOfferModal, setviewAllOfferModal] = useState(false);
 
-  const actions = [
-    {
+  const verifyuser = localStorage.getItem('user_id');
+
+  const actions = [];
+
+  if (verifyuser !== null) {
+    actions.push({
       caption: "Make an offer",
       onClick: () => setMakeOfferModal(true),
       bg: "green",
-    },
+    });
+  }
+  
+  actions.push(
     {
       caption: "Release payment",
       onClick: () => setPaymentReleaseModal(true),
@@ -76,8 +83,8 @@ export default function TaskDetails() {
       caption: "View cancellation request",
       onClick: () => setCancellationRequestModal(true),
       bg: "danger",
-    },
-  ];
+    }
+  );
 
   const openView = () => {
     return (
@@ -358,6 +365,8 @@ export default function TaskDetails() {
               </div>
             </div>
           </div>
+          {verifyuser && (
+            <>
           <input
             className="mt-20 w-100"
             type="text"
@@ -366,7 +375,6 @@ export default function TaskDetails() {
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
           />
-
           <div className="mt-20 position-relative">
             <Uploader
               renderBtn={() => {
@@ -387,6 +395,10 @@ export default function TaskDetails() {
               Send
             </button>
           </div>
+          </>
+          )}
+          
+         
         </div>
       </>
     );
