@@ -13,7 +13,8 @@ import GetDirection from "../../NewTask/LocationSelection/GetDirection";
 import TickIcon from "../../../assets/images/Tick.svg";
 import "./TaskDetails.scss";
 import "../../../assets/style/components/task-tab-bar.scss";
-
+import ReportModal from "../../shared/popup-menu/ReportModal";
+import SubmitReport from "../../shared/popup-menu/SubmitReport";
 const task = {
   images: [
     { path: "person/1" },
@@ -44,7 +45,23 @@ export default function TaskDetails() {
   const [step, setStep] = useState(1);
   const [address, setAddress] = useState("");
   const [latlng, setLatlng] = useState({ lat: 0, lng: 0 });
+
   const [question, setQuestion] = useState("");
+  const [viewQuestion, setViewQuestion] = useState("");
+
+  const [offer, setOffer] = useState("");
+  const [addOffer, setAddOffer] = useState(
+    "Thank you for the offer, could you please make sure you have the right tools."
+  );
+  const [offerImages, setOfferImages] = useState([]);
+  const [viewOfferImages, setViewOfferImages] = useState([]);
+
+  const [reply, setReply] = useState("");
+  const [viewReply, setViewReply] = useState(false);
+  const [sendReply, setSendReply] = useState("");
+  const [replyImages, setReplyImages] = useState([]);
+  const [viewReplyImages, setViewReplyImages] = useState([]);
+
   const [makeOfferModal, setMakeOfferModal] = useState(false);
   const [increasePriceModal, setIncreasePriceModal] = useState(false);
   const [cancellationRequestModal, setCancellationRequestModal] =
@@ -53,8 +70,45 @@ export default function TaskDetails() {
   const [paymentReleaseModal, setPaymentReleaseModal] = useState(false);
   const [locationModal, setLocationModal] = useState(false);
   const [viewAllOfferModal, setviewAllOfferModal] = useState(false);
+  const [viewSendOffer, setViewSendOffer] = useState(false);
 
-  const verifyuser = localStorage.getItem('user_id');
+  const [taskOwner, setTaskOwner] = useState("Aftab A");
+  const [offerOwner, setOfferOwner] = useState("Gaurav C");
+
+  const [isVisbleReport, setViewReport] = useState(false);
+  const [isVisbleSubmitReport, setSubmitReport] = useState(false);
+
+  const [questionImages, setQuestionImages] = useState([]);
+
+  const [viewQuestionImages, setViewQuestionImages] = useState([]);
+  const handleClickSendOffer = () => {
+    setViewSendOffer(false);
+    setAddOffer(offer);
+    setViewOfferImages(offerImages);
+    setOfferImages([]);
+  };
+  const handleClickOffer = () => {
+    setViewSendOffer(true);
+    setOffer("");
+  };
+  const handleClickReply = () => {
+    setViewReply(true);
+    setReply("");
+  };
+  const handleClickSendReply = () => {
+    setSendReply(reply);
+    setViewReply(false);
+    setReplyImages([]);
+    setViewReplyImages(replyImages);
+  };
+  const handleClickSendQuestion = () => {
+    setViewQuestionImages(questionImages);
+    setQuestionImages([]);
+    setViewQuestion(question);
+    setQuestion("");
+  };
+
+  const verifyuser = localStorage.getItem("user_id");
 
   const actions = [];
 
@@ -65,7 +119,7 @@ export default function TaskDetails() {
       bg: "green",
     });
   }
-  
+
   actions.push(
     {
       caption: "Release payment",
@@ -221,6 +275,19 @@ export default function TaskDetails() {
       </div>
     );
   };
+  const questionGallery = (images) => {
+    return (
+      <div className="d-flex justify-content-between gallery flex-wrap">
+        {images.map((image, index) => {
+          return (
+            <div key={index} className="mt-10 img-area">
+              <img src={image.path} alt="close" />
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
 
   const mustHaveView = () => {
     return (
@@ -242,6 +309,8 @@ export default function TaskDetails() {
     return (
       <>
         <div className="container">
+          {isVisbleReport && <div className="overlay"></div>}
+          {isVisbleSubmitReport && <div className="submitOverlay"></div>}
           <p className="font-bold mt-20">OFFERS (3)</p>
         </div>
         <div className="bg-grey pa-20 mt-20 mb-20">
@@ -266,7 +335,7 @@ export default function TaskDetails() {
                 <img src="./assets/images/icons/fly-dark.svg" alt="logo big" />
               </div>
               <div className="ml-20">
-                <div className="mbb-5 font-bold size-15">Gaurav C.</div>
+                <div className="mbb-5 font-bold size-15 "> {offerOwner}</div>
                 <span>
                   <span className="font-bold size-15">
                     3.8{" "}
@@ -289,16 +358,77 @@ export default function TaskDetails() {
           <div className="mt-10 size-13 d-flex justify-content-between align-items-center">
             <span className="">
               12m
-              <img
-                className="ml-10"
-                src="./assets/images/icons/chat.svg"
-                alt="logo big"
-              />
+              <button
+                className="bg-transparent border-0"
+                onClick={handleClickOffer}
+              >
+                <img
+                  className="ml-10"
+                  src="./assets/images/icons/chat.svg"
+                  alt="logo big"
+                />
+              </button>
             </span>
-            <button className="bg-transparent border-0">
+            <button
+              className="bg-transparent border-0"
+              onClick={() => setViewReport(true)}
+            >
               <img src="./assets/images/icons/more.svg" alt="more" />
             </button>
+            <ReportModal
+              isVisbleReport={isVisbleReport}
+              setViewReport={setViewReport}
+              isVisbleSubmitReport={isVisbleSubmitReport}
+              setSubmitReport={setSubmitReport}
+            />
           </div>
+          {isVisbleSubmitReport && (
+            <SubmitReport
+              isVisbleSubmitReport={isVisbleSubmitReport}
+              setSubmitReport={setSubmitReport}
+            />
+          )}
+          {/* send-offer */}
+          {viewSendOffer && (
+            <div className="container my-20 bg-white mx-0">
+              <textarea
+                className="mt-20 w-100 size-15"
+                type="text"
+                placeholder={"Ask " + offerOwner + " a question."}
+                maxLength={2000}
+                value={offer}
+                rows={3}
+                onChange={(e) => setOffer(e.target.value)}
+              />
+              {/*  */}
+
+              <div className="mt-20 position-relative">
+                <Uploader
+                  renderBtn={() => {
+                    return (
+                      <img
+                        className="mr-10"
+                        src="./assets/images/icons/attach-icon.svg"
+                        alt="logo big"
+                      />
+                    );
+                  }}
+                  offerImages={offerImages}
+                  setOfferImages={setOfferImages}
+                />
+                <button
+                  disabled={!offer}
+                  className="d-block btn btn-info small position-absolute size-13"
+                  style={{ right: 0, bottom: "-2px" }}
+                  onClick={handleClickSendOffer}
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          )}
+
+          {/*  */}
         </div>
         <div className="pa-20 border-bottom">
           <div className="d-flex align-items-center">
@@ -309,7 +439,7 @@ export default function TaskDetails() {
             />
             <div className="ml-10">
               <div className="font-bold size-15 d-flex align-items-center">
-                Aftab A.
+                {taskOwner + "."}
                 <button
                   className="d-block btn btn-gray ml-10 poster"
                   style={{
@@ -329,17 +459,47 @@ export default function TaskDetails() {
             </div>
           </div>
           <p className="mt-10">
-            Thank you for the offer, could you please make sure
+            {/* Thank you for the offer, could you please make sure
             <img
               src="./assets/images/icons/moderated.svg"
               alt="logo big"
               style={{ padding: "0 5px" }}
             />
-            you have the right tools.
+            you have the right tools. */}
+            {addOffer}
           </p>
-          <div className="mt-10" style={{ fontSize: "13px" }}>
-            15m ago
+          {/* file load */}
+          <div className="position-relative">
+            {viewOfferImages && viewOfferImages.length > 0 && (
+              <div className="attachment-task">
+                {viewOfferImages.map((image, key) => {
+                  return (
+                    <div className="area-img pt-md" key={key}>
+                      <img
+                        style={{ width: "100%", height: "100%" }}
+                        src={image.path}
+                        alt=""
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
+          {/* file load */}
+          <div
+            className="mt-10 size-13 d-flex justify-content-between align-items-center"
+            style={{ fontSize: "13px" }}
+          >
+            15m ago
+            <button
+              className="bg-transparent border-0"
+              onClick={() => setViewReport(true)}
+            >
+              <img src="./assets/images/icons/more.svg" alt="more" />
+            </button>
+          </div>
+
           <div className="mt-20">
             <button
               className="d-block btn btn-gray btn-w-350"
@@ -350,6 +510,7 @@ export default function TaskDetails() {
             </button>
           </div>
         </div>
+        {/* question */}
         <div className="container my-20">
           <p className="font-bold">QUESTIONS (12)</p>
           <div className="d-flex justify-content-between align-items-center">
@@ -367,39 +528,199 @@ export default function TaskDetails() {
           </div>
           {verifyuser && (
             <>
-          <input
-            className="mt-20 w-100"
-            type="text"
-            placeholder="Ask Aftab a question"
-            maxLength={2000}
-            value={question}
-            onChange={(e) => setQuestion(e.target.value)}
-          />
-          <div className="mt-20 position-relative">
-            <Uploader
-              renderBtn={() => {
-                return (
+              <input
+                className="mt-20 w-100"
+                type="text"
+                placeholder={"Ask Gaurav C a question"}
+                maxLength={2000}
+                value={question}
+                onChange={(e) => setQuestion(e.target.value)}
+              />
+              <div className="mt-20 position-relative">
+                <Uploader
+                  renderBtn={() => {
+                    return (
+                      <img
+                        className="mr-10"
+                        src="./assets/images/icons/attach-icon.svg"
+                        alt="logo big"
+                      />
+                    );
+                  }}
+                  questionImages={questionImages}
+                  setQuestionImages={setQuestionImages}
+                  questionState={questionImages}
+                />
+                <button
+                  disabled={!question}
+                  className="d-block btn btn-info small position-absolute"
+                  style={{ right: 0, bottom: "-2px" }}
+                  onClick={handleClickSendQuestion}
+                >
+                  Send
+                </button>
+              </div>
+            </>
+          )}
+        </div>
+        {/* view question section */}
+        {viewQuestion && (
+          <div className="bg-grey pa-20 mt-20 mb-20">
+            <div className="mt-10 d-flex justify-content-between align-items-center">
+              <div className="d-flex justify-content-between align-items-center">
+                <div>
                   <img
-                    className="mr-10"
-                    src="./assets/images/icons/attach-icon.svg"
+                    src="./assets/images/icons/fly-dark.svg"
                     alt="logo big"
                   />
-                );
-              }}
-            />
-            <button
-              disabled={!question}
-              className="d-block btn btn-info small position-absolute"
-              style={{ right: 0, bottom: "-2px" }}
-            >
-              Send
-            </button>
+                </div>
+                <div className="ml-20">
+                  <div className="mbb-5 font-bold size-15 "> {offerOwner}</div>
+                </div>
+              </div>
+            </div>
+            <p className="mt-10">{viewQuestion}</p>
+            {/*  */}
+            {/* viewQuestionImages */}
+            {viewQuestionImages.length && questionGallery(viewQuestionImages)}
+            <div className="mt-10 size-13 d-flex justify-content-between align-items-center">
+              <span className="">
+                12m
+                <button
+                  className="bg-transparent border-0"
+                  onClick={handleClickReply}
+                >
+                  <img
+                    className="ml-10"
+                    src="./assets/images/icons/chat.svg"
+                    alt="logo big"
+                  />
+                </button>
+              </span>
+              <button
+                className="bg-transparent border-0"
+                onClick={() => setViewReport(true)}
+              >
+                <img src="./assets/images/icons/more.svg" alt="more" />
+              </button>
+              <ReportModal
+                isVisbleReport={isVisbleReport}
+                setViewReport={setViewReport}
+                isVisbleSubmitReport={isVisbleSubmitReport}
+                setSubmitReport={setSubmitReport}
+              />
+            </div>
+            {isVisbleSubmitReport && (
+              <SubmitReport
+                isVisbleSubmitReport={isVisbleSubmitReport}
+                setSubmitReport={setSubmitReport}
+              />
+            )}
+            {/* send-reply */}
+            {viewReply && (
+              <div className="container my-20 bg-white mx-0">
+                <textarea
+                  className="mt-20 w-100 size-15"
+                  type="text"
+                  placeholder={"Reply to " + offerOwner + "."}
+                  maxLength={2000}
+                  value={reply}
+                  rows={3}
+                  onChange={(e) => setReply(e.target.value)}
+                />
+                {/*  */}
+
+                <div className="mt-20 position-relative">
+                  <Uploader
+                    renderBtn={() => {
+                      return (
+                        <img
+                          className="mr-10"
+                          src="./assets/images/icons/attach-icon.svg"
+                          alt="logo big"
+                        />
+                      );
+                    }}
+                    setReplyImages={setReplyImages}
+                  />
+                  <button
+                    disabled={!reply}
+                    className="d-block btn btn-info small position-absolute size-13"
+                    style={{ right: 0, bottom: "-2px" }}
+                    onClick={handleClickSendReply}
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/*  */}
           </div>
-          </>
-          )}
-          
-         
-        </div>
+        )}
+        {sendReply && (
+          <div className="pa-20 border-bottom">
+            <div className="d-flex align-items-center">
+              <img
+                src="./assets/images/icons/fly-mark.svg"
+                style={{ width: "24px", height: "24px" }}
+                alt="logo big"
+              />
+              <div className="ml-10">
+                <div className="font-bold size-15 d-flex align-items-center">
+                  {taskOwner + "."}
+                  <button
+                    className="d-block btn btn-gray ml-10 poster"
+                    style={{
+                      color: "#42ADE2",
+                      padding: "2px 12px",
+                      fontSize: "10px",
+                    }}
+                  >
+                    <img
+                      src="./assets/images/icons/poster.svg"
+                      alt="logo big"
+                      className="mr-10"
+                    />
+                    <span className="font-bold text-black">POSTER</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <p className="mt-10">{sendReply}</p>
+            {/* file load */}
+            <div className="position-relative">
+              {viewReplyImages && viewReplyImages.length > 0 && (
+                <div className="attachment-task">
+                  {viewReplyImages.map((image, key) => {
+                    return (
+                      <div className="area-img pt-md" key={key}>
+                        <img
+                          style={{ width: "100%", height: "100%" }}
+                          src={image.path}
+                          alt=""
+                        />
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+            {/* file load */}
+            <div
+              className="mt-10 size-13 d-flex justify-content-between align-items-center"
+              style={{ fontSize: "13px" }}
+            >
+              15m ago
+              <button
+                className="bg-transparent border-0"
+                onClick={() => setViewReport(true)}
+              >
+                <img src="./assets/images/icons/more.svg" alt="more" />
+              </button>
+            </div>
+          </div>
+        )}
       </>
     );
   };
