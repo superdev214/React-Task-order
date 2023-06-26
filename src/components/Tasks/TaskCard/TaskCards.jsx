@@ -1,19 +1,30 @@
 import { NavLink } from "react-router-dom";
 import taskStatusDisplayBadge from "../Enum/TaskStatus";
 import "./TaskCards.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { postTaskget } from "../../../redux/actions";
 
 export default function TaskCards(props) {
+
+  const dispatch = useDispatch();
+  const myposts = useSelector(state => state.postApi.categories.data)
+
+  useEffect(() => {
+    dispatch(postTaskget());
+  }, [dispatch])
+
   return (
     <>
-      {props.tasks &&
-        props.tasks.length > 0 &&
-        props.tasks.map((task, index) => {
+      {myposts &&
+        myposts.length > 0 &&
+         myposts.map((task, index) => {
           return (
             <NavLink to={"/task-details"} key={index}>
               <div className="t-card">
                 <div className="d-flex justify-content-between">
-                  <p className="font-bold">{task.title}</p>
-                  <p className="font-bold">SR 650</p>
+                  <p className="font-bold">{task.task_title}</p>
+                  <p className="font-bold">SR {task.task_total_budget}</p>
                 </div>
                 <div className="mt-10">
                   <img
@@ -21,14 +32,14 @@ export default function TaskCards(props) {
                     alt="logo big"
                     style={{ paddingLeft: "1px", paddingRight: "1px" }}
                   />
-                  <span>{task.location}</span>
+                  <span>{task.address}</span>
                 </div>
                 <div className="mt-10">
                   <img
                     src="./assets/images/icons/calendar-light.svg"
                     alt="logo big"
                   />
-                  <span>{task.date}</span>
+                  <span>{task.task_complete_date}</span>
                 </div>
                 <div className="mt-10">
                   <img
@@ -38,7 +49,7 @@ export default function TaskCards(props) {
                   <span>Anytime</span>
                 </div>
                 <div className="d-flex justify-content-between align-items-center mt-10">
-                  {taskStatusDisplayBadge(task.status)}
+                  {taskStatusDisplayBadge(task?.task_going_status)}
                   <img
                     src="./assets/images/icons/fly-mark.svg"
                     alt="logo big"

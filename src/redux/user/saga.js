@@ -50,6 +50,7 @@ export function* watchVerifyOtp() {
 
 const verifyOtpAsync = async (payload) => {
     const response = await axios.post(`${server_url}/user/verify-otp`, payload.payload);
+    localStorage.setItem("user_id", response.data.data.id)
     return response.data;
 }
 

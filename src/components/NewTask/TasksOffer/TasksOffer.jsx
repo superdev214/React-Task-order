@@ -39,7 +39,7 @@ const TasksOffer = ({ close, onChange, allItems }) => {
       close={close}
       onClick={save}
     >
-      <div>
+      <div className="mt-20">
         <span>
           Add up to 3 things the tasker needs to have or do to make an offer,
           eg:

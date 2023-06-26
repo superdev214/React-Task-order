@@ -7,16 +7,28 @@ import {
   GET_ALL_CATEGORY_SUCCESS,
   STORE_CATEGORY_ID,
   STORE_CATEGORY_ID_SUCCESS,
+  GET_MY_POST,
+  GET_BROWSE_POST
 } from "../actions";
+
+export const postTaskget = (task) => ({
+  type: GET_MY_POST,
+  payload: task,
+});
+
+export const getBrowsetask = (task) => ({
+  type: GET_BROWSE_POST,
+  payload: task,
+});
 
 export const postTask = (task) => ({
   type: POST_TASK,
   payload: task,
 });
 
-export const postTaskSuccess = ({ message }) => ({
+export const postTaskSuccess = (task) => ({
   type: POST_TASK_SUCCESS,
-  payload: message,
+  payload: task,
 });
 
 export const postTaskFail = ({ error }) => ({

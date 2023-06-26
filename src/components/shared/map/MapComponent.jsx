@@ -2,7 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { Loader } from "@googlemaps/js-api-loader";
 
-const MapComponent = ({ onChange, style }) => {
+const MapComponent = ({ onChange, style, lat }) => {
   const mapDiv = useRef(null);
 
   useEffect(() => {
@@ -14,35 +14,38 @@ const MapComponent = ({ onChange, style }) => {
 
     const initializeMap = async () => {
       await loader.load();
-      const myCenter = new google.maps.LatLng(45.508, -73.587);
       const map = new google.maps.Map(mapDiv.current, {
-        center: myCenter,
+        center: new google.maps.LatLng(45.508, -73.587),
         zoom: 5,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
       });
 
-      const marker = new google.maps.Marker({
-        position: myCenter,
-      });
-      marker.setMap(map);
-
       const geocoder = new google.maps.Geocoder();
+      lat?.forEach((location) => {
+        const marker = new google.maps.Marker({
+          position: new google.maps.LatLng(location.latitude, location.longitude),
+          icon: "./assets/images/marker.svg",
+          map: map,
+        });
 
-      geocoder.geocode({ address: "Montreal" }, (e) => {
-        if (e.length > 0) {
-          onChange && onChange(e[0].formatted_address);
-        }
-      });
+        geocoder.geocode({ location: marker.getPosition() }, (results, status) => {
+          if (status === google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+              onChange && onChange(results[0].formatted_address);
+            }
+          }
+        });
 
-      google.maps.event.addListener(marker, "click", () => {
-        console.log("click");
-        map.setZoom(9);
-        map.setCenter(marker.getPosition());
+        google.maps.event.addListener(marker, "click", () => {
+          console.log("click");
+          map.setZoom(9);
+          map.setCenter(marker.getPosition());
+        });
       });
     };
 
     initializeMap();
-  }, [onChange]);
+  }, []);
 
   return (
     <div

@@ -12,7 +12,7 @@ export default function HomeFooter({ showFullImage }) {
       </div>
       <div
         id="imagediv"
-        className={`${showFullImage ? "show-full" : "show-half"}`}
+        className="earth-image-wrapper"
       >
         <img
           className="home-bottom__img image-container-img"

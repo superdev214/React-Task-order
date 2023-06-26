@@ -56,7 +56,7 @@ const PopupComponent = (props) => {
               className="w-100 popClose"
               onClick={() => props.setIsVisble(!props.isVisblePopup)}
             >
-              Close
+              Cancel
             </button>
           </div>
         </>

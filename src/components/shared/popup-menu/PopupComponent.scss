@@ -1,6 +1,7 @@
 .popup {
   width: calc(100% - 16px) !important;
   margin-left: 8px !important;
+  margin-bottom: 20px;
   z-index: 999 !important;
 }
 .menu {
@@ -12,7 +13,6 @@
     ),
     rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(67.957px);
-  border: 1px solid white;
   overflow: hidden;
 }
 .header {
@@ -46,7 +46,7 @@
     rgba(255, 255, 255, 0.25);
   border: none !important;
 }
-li:not(:last-child) {
+.items:not(:last-child) {
   border-radius: 0px !important;
   border-bottom: 0.1px solid rgba(0, 0, 0, 0.2) !important;
 }

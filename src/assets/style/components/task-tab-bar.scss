@@ -102,6 +102,69 @@
   }
 }
 
+.button-wrapper {
+  display: flex;
+  position: relative;
+  min-height: 30px;
+  border-radius: 100px;
+}
+
+.button {
+  text-align: center;
+  font-style: normal;
+  font-family: SF Pro Text Bold;
+  font-size: 13px;
+  line-height: 16px;
+  align-items: center;
+  text-align: center;
+  color: #c5cdd9;
+  width: 33.33%;
+  position: relative;
+  overflow: hidden;
+}
+
+.buttonBg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #6eb925;
+  transition: width 0.3s;
+  z-index: -1;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+}
+
+.button-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #c5cdd9;
+  transition: color 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.selected3 .buttonBg {
+  width: 100%;
+}
+
+.selected2 .buttonBg {
+  width: 66.66%;
+}
+
+.selected1 .buttonBg {
+  width: 33.33%;
+}
+
+.button.selected .button-label {
+  color: #ffffff;
+}
+
 @media only screen and (max-width: 330px) {
   .NewTask {
     .task-tab-bar {

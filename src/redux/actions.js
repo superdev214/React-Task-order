@@ -37,6 +37,8 @@ export const GET_ALL_CATEGORY_SUCCESS = "GET_ALL_CATEGORY_SUCCESS";
 export const GET_ALL_CATEGORY_FAIL = "GET_ALL_CATEGORY_FAIL";
 export const STORE_CATEGORY_ID = "STORE_CATEGORY_ID";
 export const STORE_CATEGORY_ID_SUCCESS = "STORE_CATEGORY_ID_SUCCESS";
+export const GET_MY_POST = "GET_MY_POST";
+export const GET_BROWSE_POST = "GET_BROWSE_POST"
 
 export * from "./user/actions";
 export * from "./category/actions";

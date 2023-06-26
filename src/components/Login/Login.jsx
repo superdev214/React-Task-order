@@ -7,7 +7,9 @@ import AboutStep from "./LoginSteps/AboutStep";
 import "./Login.scss";
 
 export default function Login() {
-  const [activeStep, setActiveStep] = useState("Walkthrough");
+  const verifyuser = localStorage.getItem('user_id');
+  
+  const [activeStep, setActiveStep] = useState(verifyuser ? "Walkthrough" : "PhoneNumber");
   let activeStepJsx = null;
 
   switch (activeStep) {
