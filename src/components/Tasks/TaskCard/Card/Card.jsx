@@ -8,17 +8,12 @@ import TaskCardItem from "../TaskCardItem";
 
 export default function BrowseTaskCards(props) {
 
-  const dispatch = useDispatch();
-  const myposts = useSelector(state => state.postApi.categories)
-  useEffect(() => {
-    dispatch(getBrowsetask())
-  }, [dispatch])
-
+  const myPosts = useSelector(state => state.task.filteredTasks); 
   return (
     <>
-      {myposts &&
-        myposts.length > 0 &&
-         myposts.map((task, index) => {
+      {myPosts &&
+        myPosts.length > 0 &&
+         myPosts.map((task, index) => {
           return (
             <TaskCardItem key={index} task={task} />
           );

@@ -43,6 +43,9 @@ export const GET_BROWSE_POST = "GET_BROWSE_POST"
 
 /*TASK API CONST */
 export const CHOOSE_TASK = "CHOOSE_TASK";
+export const FILTER_TASK = "FILTER_TASK";
+export const GET_FILTER_TASK = "GET_FILTER_TASK";
+export const SHOW_TASK_DETAIL = "SHOW_TASK_DETAIL";
 
 export * from "./user/actions";
 export * from "./category/actions";

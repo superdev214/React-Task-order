@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import MakeOffer from "../Offer/MakeOffer";
 import ViewAllOffer from "../Offer/ViewAllOffer";
 import PaymentReleaseModal from "../../Payment/PaymentRelease/PaymentReleaseModal";
@@ -131,6 +132,11 @@ export default function TaskDetails() {
       bg: "danger",
     },
   ];
+  
+  const curTask = useSelector(state => state.task.currentTaskId);
+
+  console.log("curtask", curTask);
+
 
   const openView = () => {
     return (
