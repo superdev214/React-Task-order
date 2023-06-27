@@ -7,7 +7,8 @@ import MapComponent from "../shared/map/MapComponent";
 import BrowseTaskCards from "../Tasks/TaskCard/Card/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { getBrowsetask } from "../../redux/actions";
-
+import TaskCardItem from "../Tasks/TaskCard/TaskCardItem";
+import { chooseTask } from "../../redux/actions";
 const allTasks = [
   {
     description: "",
@@ -41,11 +42,12 @@ export default function SearchPage({ query }) {
 
   const dispatch = useDispatch();
   const lat = useSelector(state => state.postApi.categories);
+  const selectedTaskId = useSelector(state => state.task.selectedTaskId);
 
+  console.log("selectedTaskId", selectedTaskId);
   useEffect(() => {
     dispatch(getBrowsetask());
   }, [])
-
 
   useEffect(() => {
     let data = query
@@ -53,7 +55,6 @@ export default function SearchPage({ query }) {
       : [];
     setTasks(data);
   }, [query]);
-
   const appendEventHeader = () => {
     return (
       <>
@@ -91,7 +92,7 @@ export default function SearchPage({ query }) {
           <div style={{ position: "sticky", zIndex: 10 }}>
             <div>
               <CarouselComponent>
-                <BrowseTaskCards tasks={tasks} />
+                <TaskCardItem task={lat[selectedTaskId]} />
               </CarouselComponent>
             </div>
           </div>

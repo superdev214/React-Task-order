@@ -1,10 +1,33 @@
 /*global google*/
 import React, { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { chooseTask } from "../../../redux/actions";
 import { Loader } from "@googlemaps/js-api-loader";
 
 const MapComponent = ({ onChange, style, lat }) => {
   const mapDiv = useRef(null);
 
+  let initLat = 45.508, initLong = -73.587;
+  const dispatch = useDispatch();
+
+  for (let i = 0; i<lat.length; i++) {
+    if (lat[i].latitude && lat[i].longitude) {
+      initLat = lat[i].latitude;
+      initLong = lat[i].longitude;
+      break;
+    }
+  }
+  const getTaskId = (latitude, longitude) => {
+    let selectedTaskId = 0;
+    for (let i = 0; i<lat.length; i++) {
+      if (lat[i].latitude == latitude && lat[i].longitude == longitude) {
+        selectedTaskId = i;
+        break;
+      }
+    }
+    console.log("select map", selectedTaskId);
+    dispatch(chooseTask(selectedTaskId));  
+  }
   useEffect(() => {
     const loader = new Loader({
       apiKey: String(process.env.API_HEY_GOOGLE_MAP),
@@ -15,7 +38,7 @@ const MapComponent = ({ onChange, style, lat }) => {
     const initializeMap = async () => {
       await loader.load();
       const map = new google.maps.Map(mapDiv.current, {
-        center: new google.maps.LatLng(45.508, -73.587),
+        center: new google.maps.LatLng(initLat, initLong),
         zoom: 5,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
       });
@@ -37,14 +60,14 @@ const MapComponent = ({ onChange, style, lat }) => {
         });
 
         google.maps.event.addListener(marker, "click", () => {
-          console.log("click");
           map.setZoom(9);
           map.setCenter(marker.getPosition());
+          getTaskId(marker.getPosition().lat(), marker.getPosition().lng());
         });
       });
     };
 
-    initializeMap();
+   initializeMap();
   }, []);
 
   return (

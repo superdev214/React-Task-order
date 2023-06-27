@@ -17,7 +17,7 @@ const INIT_STATE = {
   categories: [],
   category: 0,
   mypost: [],
-  browsepost: []
+  browsepost: ""
 };
 
 export default function postApi(state = INIT_STATE, action) {

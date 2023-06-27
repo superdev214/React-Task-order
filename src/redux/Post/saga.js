@@ -107,7 +107,7 @@ const getbrowsetaskAsync = async () => {
   };
   try {
     const response = await axios.get(`${server_url}/browse-task`, config);
-
+    console.log("response", response);
     return response;
   } catch (error) {
     console.log(error);

@@ -4,6 +4,7 @@ import "./TaskCards.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { postTaskget } from "../../../redux/actions";
+import TaskCardItem from "./TaskCardItem";
 
 export default function TaskCards(props) {
 
@@ -57,6 +58,7 @@ export default function TaskCards(props) {
                 </div>
               </div>
             </NavLink>
+            // <TaskCardItem key={index} task={task} />
           );
         })}
     </>

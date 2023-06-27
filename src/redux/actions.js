@@ -40,6 +40,10 @@ export const STORE_CATEGORY_ID_SUCCESS = "STORE_CATEGORY_ID_SUCCESS";
 export const GET_MY_POST = "GET_MY_POST";
 export const GET_BROWSE_POST = "GET_BROWSE_POST"
 
+
+/*TASK API CONST */
+export const CHOOSE_TASK = "CHOOSE_TASK";
+
 export * from "./user/actions";
 export * from "./category/actions";
 export * from "./Post/actions";
