@@ -36,7 +36,7 @@ export default function Notifications({ close }) {
 
   const dispatch = useDispatch();
   messages = useSelector(state => state.userReducer.notifications);
-
+  console.log("no========", messages);
   useEffect(() => {
     dispatch(updateNotifications());
   }, [])

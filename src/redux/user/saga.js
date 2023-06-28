@@ -1,5 +1,5 @@
 import { all, call, fork, put, take, takeLeading } from "redux-saga/effects";
-import { LOGIN_WITH_SMS, VERIFY_OTP, EDIT_PROFILE, PUBLISH_REPORT } from "../actions";
+import { LOGIN_WITH_SMS, VERIFY_OTP, EDIT_PROFILE, PUBLISH_REPORT, UPDATE_NOTIFICATIONS } from "../actions";
 import { toast } from "react-toastify";
 
 import {
@@ -119,7 +119,7 @@ function* publishReportFunc({ payload }) {
 }
 
 export function* watchUpdateNotifications() {
-  yield takeLeading(updateNotifications, updateNotificationsFunc);
+  yield takeLeading(UPDATE_NOTIFICATIONS, updateNotificationsFunc);
 }
 
 const updateNotificationsAsync = async () => {
@@ -150,6 +150,7 @@ export default function* rootSaga() {
     fork(watchLoginSMS),
     fork(watchVerifyOtp),
     fork(watchEditProfile),
-    fork(publishReport)
+    fork(publishReport),
+    fork(watchUpdateNotifications)
   ]);
 }
