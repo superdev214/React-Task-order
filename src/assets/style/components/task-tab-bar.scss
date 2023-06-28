@@ -35,21 +35,21 @@
   }
 
   &.step2 {
-    .tab1 {
-      background: #6eb925;
-      border-radius: 100px 0 0 100px;
+    // .tab1 {
+    //   background: #6eb925;
+    //   border-radius: 100px 0 0 100px;
 
-      button {
-        border-radius: 100px;
-        background: #6eb925;
-        color: #ffffff;
-      }
-    }
+    //   button {
+    //     border-radius: 100px;
+    //     background: #6eb925;
+    //     color: #ffffff;
+    //   }
+    // }
 
     .tab2 {
       position: relative;
       button {
-        border-radius: 0 100px 100px 0;
+        border-radius: 100px;
         background: #6eb925;
         color: #ffffff;
         // animation-fill-mode: forwards;
@@ -61,30 +61,30 @@
   }
 
   &.step3 {
-    .tab1 {
-      background: #6eb925;
-      border-radius: 100px 0 0 100px;
+    // .tab1 {
+    //   background: #6eb925;
+    //   border-radius: 100px 0 0 100px;
 
-      button {
-        border-radius: 100px;
-        background: #6eb925;
-        color: #ffffff;
-      }
-    }
+    //   button {
+    //     border-radius: 100px;
+    //     background: #6eb925;
+    //     color: #ffffff;
+    //   }
+    // }
 
-    .tab2 {
-      background: #6eb925;
+    // .tab2 {
+    //   background: #6eb925;
 
-      button {
-        border-radius: 0 100px 100px 0;
-        background: #6eb925;
-        color: #ffffff;
-      }
-    }
+    //   button {
+    //     border-radius: 0 100px 100px 0;
+    //     background: #6eb925;
+    //     color: #ffffff;
+    //   }
+    // }
 
     .tab3 {
       button {
-        border-radius: 0 100px 100px 0;
+        border-radius: 100px;
         background: #6eb925;
         // animation: load 1s normal forwards;
         color: #ffffff;

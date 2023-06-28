@@ -26,6 +26,7 @@ export const NOTIFICATIONS = "NOTIFICATIONS";
 export const NOTIFICATIONS_SETTINGS_SHOW = "NOTIFICATIONS_SETTINGS_SHOW";
 export const CANCEL_REQUEST_FOR_DELETE_ACCOUNT =
   "CANCEL_REQUEST_FOR_DELETE_ACCOUNT";
+export const PUBLISH_REPORT = "PUBLISH_REPORT";
 
 /*POST API CONST*/
 
@@ -38,7 +39,10 @@ export const GET_ALL_CATEGORY_FAIL = "GET_ALL_CATEGORY_FAIL";
 export const STORE_CATEGORY_ID = "STORE_CATEGORY_ID";
 export const STORE_CATEGORY_ID_SUCCESS = "STORE_CATEGORY_ID_SUCCESS";
 export const GET_MY_POST = "GET_MY_POST";
-export const GET_BROWSE_POST = "GET_BROWSE_POST"
+export const GET_BROWSE_POST = "GET_BROWSE_POST";
+export const POST_QUESTION = "POST_QUESTION";
+export const POST_QUESTION_REPLY = "POST_QUESTION_REPLY";
+export const POST_COMMENT = "POST_COMMENT";
 
 
 /*TASK API CONST */
@@ -46,6 +50,7 @@ export const CHOOSE_TASK = "CHOOSE_TASK";
 export const FILTER_TASK = "FILTER_TASK";
 export const GET_FILTER_TASK = "GET_FILTER_TASK";
 export const SHOW_TASK_DETAIL = "SHOW_TASK_DETAIL";
+export const GET_TASK = "GET_TASK";
 
 export * from "./user/actions";
 export * from "./category/actions";

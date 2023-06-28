@@ -3,6 +3,7 @@ import {
   FILTER_TASK,
   GET_FILTER_TASK,
   SHOW_TASK_DETAIL,
+  GET_TASK
 } from "../actions";
 
 export const chooseTask = (taskId) => ({
@@ -23,4 +24,9 @@ export const getFilterTask = (filteredTasks) => ({
 export const setTaskId = (taskId) => ({
   type: SHOW_TASK_DETAIL,
   payload: taskId
+})
+
+export const getTask = (payload) => ({
+  type: GET_TASK,
+  payload
 })

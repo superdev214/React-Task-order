@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
 import MakeOffer from "../Offer/MakeOffer";
 import ViewAllOffer from "../Offer/ViewAllOffer";
 import PaymentReleaseModal from "../../Payment/PaymentRelease/PaymentReleaseModal";
@@ -16,6 +16,7 @@ import "./TaskDetails.scss";
 import "../../../assets/style/components/task-tab-bar.scss";
 import ReportModal from "../../shared/popup-menu/ReportModal";
 import SubmitReport from "../../shared/popup-menu/SubmitReport";
+
 const task = {
   images: [
     { path: "person/1" },
@@ -80,9 +81,31 @@ export default function TaskDetails() {
   const [isVisbleSubmitReport, setSubmitReport] = useState(false);
 
   const [questionImages, setQuestionImages] = useState([]);
+  const [addressStr, setAddressStr] = useState("");
+
+  const selectedTaskId = useSelector(state => state.task.currentTaskId);
+  const selectedTask = useSelector(state => state.task.task);
+  const currentUser = useSelector(state => state.userReducer.user_id);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    selectedTaskId && currentUser !== undefined && dispatch({type: "GET_TASK", data: {id: selectedTaskId, user_id: currentUser}})
+  }, []);
+
+  useEffect(() => {
+      const url = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${selectedTask?.latitude || "0"},${selectedTask?.longitude || "0"}&key=${process.env.REACT_APP_API_HEY_GOOGLE_MAP}`;
+      fetch(url).then(response => response.json()).then(data => {
+        const res = data?.results[1]?.formatted_address;
+        setAddressStr(res)
+      }).catch(error => console.error(error));
+
+  }, [selectedTask])
+
 
   const [viewQuestionImages, setViewQuestionImages] = useState([]);
-  const handleClickSendOffer = () => {
+
+  const handleClickSendOffer = (offer_id) => {
+    dispatch({type: "POST_COMMENT", payload: {user_id: currentUser, question, task_id: selectedTaskId, offer_id, comment: offer}})
     setViewSendOffer(false);
     setAddOffer(offer);
     setViewOfferImages(offerImages);
@@ -92,22 +115,23 @@ export default function TaskDetails() {
     setViewSendOffer(true);
     setOffer("");
   };
-  const handleClickReply = () => {
-    setViewReply(true);
+  const handleClickReply = (questID) => {
+    setViewReply(questID);
     setReply("");
   };
-  const handleClickSendReply = () => {
+  const handleClickSendReply = ({task_id, question_id}) => {
+    dispatch({type: "POST_QUESTION_REPLY", payload: {sender_id: currentUser, task_id, question_id, reply}})
     setSendReply(reply);
-    setViewReply(false);
+    setViewReply();
     setReplyImages([]);
     setViewReplyImages(replyImages);
   };
   const handleClickSendQuestion = () => {
-    setViewQuestionImages(questionImages);
+    dispatch({type: "POST_QUESTION", payload: {sender_id: currentUser, question, task_id: selectedTaskId}})
     setQuestionImages([]);
-    setViewQuestion(question);
     setQuestion("");
   };
+
   const actions = [
     {
       caption: "Make an offer",
@@ -149,10 +173,10 @@ export default function TaskDetails() {
               </div>
               <div className="ml-20">
                 <div className="mbb-5 font-bold size-15">POSTED BY</div>
-                <span className="text-blue size-15">Aftab .A</span>
+                <span className="text-blue size-15">{selectedTask?.posted_by?.split(' ')[0] + "." + selectedTask?.posted_by?.split(' ')[1].at(0)}</span>
               </div>
             </div>
-            <p className="size-15">22s ago</p>
+            <p className="size-15">{selectedTask?.posted_at}</p>
           </div>
           <div className="mt-20 d-flex justify-content-between align-items-center">
             <div className="d-flex justify-content-between align-items-center">
@@ -165,8 +189,8 @@ export default function TaskDetails() {
               <div className="ml-20 mr-20">
                 <div className="mbb-5 font-bold size-15">LOCATION</div>
                 <span className="size-15">
-                  {address
-                    ? address
+                  {addressStr
+                    ? addressStr
                     : "Qaisar Bagh 226001, Lucknow, Uttar Pradesh, India"}
                 </span>
               </div>
@@ -189,7 +213,7 @@ export default function TaskDetails() {
               <div className="ml-20 mr-20">
                 <div className="mbb-5 font-bold size-15">TO BE DONE ON</div>
                 <span className="size-15">
-                  Thursday, 25 August Afternoon (2pm - 6pm){" "}
+                  {new Date(selectedTask?.task_complete_date).toUTCString()}
                 </span>
               </div>
             </div>
@@ -198,7 +222,7 @@ export default function TaskDetails() {
         <div className="bg-grey pa-20 mt-20 mb-20">
           <div className="text-center">
             <span className="font-heavy size-15">TASK PRICE</span>
-            <p className="font-heavy size-27 mt-10">SR 330</p>
+            <p className="font-heavy size-27 mt-10">SR {selectedTask?.task_total_budget}</p>
             <p className="font-bold mt-10">You offered SR 400</p>
           </div>
           <div className="line"></div>
@@ -246,11 +270,10 @@ export default function TaskDetails() {
         <div className="border-top border-bottom pa-20">
           <p className="font-bold">DETAILS</p>
           <p className="mt-10">
-            I need to mount 13 wall paintings, one of them will be on the
-            seedlings 6 meters of the ground
+           {selectedTask?.task_details}
           </p>
-          {gallery(task.images)}
-          {mustHaveView()}
+          {gallery(selectedTask?.more_images?.length > 0 ? selectedTask?.more_images : task.images)}
+          {mustHaveView(selectedTask?.must_have?.length > 0 ? selectedTask?.must_have : task.haveMusts)}
         </div>
         {offersView()}
       </div>
@@ -308,7 +331,7 @@ export default function TaskDetails() {
         <div className="container">
           {isVisbleReport && <div className="overlay"></div>}
           {isVisbleSubmitReport && <div className="submitOverlay"></div>}
-          <p className="font-bold mt-20">OFFERS (3)</p>
+          <p className="font-bold mt-20">OFFERS ({selectedTask?.offers?.length})</p>
         </div>
         <div className="bg-grey pa-20 mt-20 mb-20">
           <div className="text-end">
@@ -351,10 +374,10 @@ export default function TaskDetails() {
             Hi, i’m happy to help today, i have the tools and experience. Please
             check my portfolio for peace of mind.
           </p>
-          {gallery(offers[0].images)}
+          {selectedTask?.offers?.length > 0 ? gallery(selectedTask?.offers[0]?.images) : gallery(offers[0].images)}
           <div className="mt-10 size-13 d-flex justify-content-between align-items-center">
             <span className="">
-              12m
+              {selectedTask?.offers?.length > 0 ? selectedTask?.offers[0]?.posted_at : "12m"}
               <button
                 className="bg-transparent border-0"
                 onClick={handleClickOffer}
@@ -383,20 +406,39 @@ export default function TaskDetails() {
             <SubmitReport
               isVisbleSubmitReport={isVisbleSubmitReport}
               setSubmitReport={setSubmitReport}
+              handleReport={() => {
+                dispatch({type: "PUBLISH_REPORT", payload: {type: "task", reporter_id: currentUser, question, task_id: selectedTaskId}})
+              }}
             />
           )}
           {/* send-offer */}
           {viewSendOffer && (
             <div className="container my-20 bg-white mx-0">
               <textarea
-                className="mt-20 w-100 size-15"
+                className="mt-20 w-100 size-15 border-[#d9d9d9] p-2"
+                type="text"
+                placeholder={"Ask " + offerOwner + " a question."}
+                maxLength={2000}
+                value={offer}
+                rows={1}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.target.style.height = 'auto';
+                    e.target.style.height = e.target.scrollHeight + 18 + 'px';
+                  }
+                }}
+                onChange={(e) => setOffer(e.target.value)}
+              />
+
+              {/* <textarea
+                className="mt-20 w-100"
                 type="text"
                 placeholder={"Ask " + offerOwner + " a question."}
                 maxLength={2000}
                 value={offer}
                 rows={3}
                 onChange={(e) => setOffer(e.target.value)}
-              />
+              /> */}
               {/*  */}
 
               <div className="mt-20 position-relative">
@@ -417,7 +459,7 @@ export default function TaskDetails() {
                   disabled={!offer}
                   className="d-block btn btn-info small position-absolute size-13"
                   style={{ right: 0, bottom: "-2px" }}
-                  onClick={handleClickSendOffer}
+                  onClick={() => handleClickSendOffer(selectedTask?.offers[0]?.id)}
                 >
                   Send
                 </button>
@@ -509,7 +551,7 @@ export default function TaskDetails() {
         </div>
         {/* question */}
         <div className="container my-20">
-          <p className="font-bold">QUESTIONS (12)</p>
+          <p className="font-bold">QUESTIONS ({selectedTask?.questions?.length})</p>
           <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex justify-content-between align-items-center">
               <div>
@@ -523,15 +565,21 @@ export default function TaskDetails() {
               </div>
             </div>
           </div>
-          <input
-            className="mt-20 w-100"
+          <textarea
+            className="mt-20 w-100 size-15 border-[#d9d9d9] p-2"
             type="text"
-            placeholder={"Ask Gaurav C a question"}
+            placeholder={`Ask ${selectedTask?.posted_by?.split(' ')[0] + "." + selectedTask?.posted_by?.split(' ')[1].at(0)} a question`}
             maxLength={2000}
             value={question}
+            rows={1}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                e.target.style.height = 'auto';
+                e.target.style.height = e.target.scrollHeight + 18 + 'px';
+              }
+            }}
             onChange={(e) => setQuestion(e.target.value)}
           />
-
           <div className="mt-20 position-relative">
             <Uploader
               renderBtn={() => {
@@ -558,31 +606,31 @@ export default function TaskDetails() {
           </div>
         </div>
         {/* view question section */}
-        {viewQuestion && (
-          <div className="bg-grey pa-20 mt-20 mb-20">
+        {selectedTask?.questions?.map(quest => (
+          <div key={quest?.question_id} className="bg-grey pa-20 mt-20 mb-20">
             <div className="mt-10 d-flex justify-content-between align-items-center">
               <div className="d-flex justify-content-between align-items-center">
                 <div>
                   <img
-                    src="./assets/images/icons/fly-dark.svg"
-                    alt="logo big"
+                    src={quest?.profile_pic}
+                    alt="avatar"
                   />
                 </div>
                 <div className="ml-20">
-                  <div className="mbb-5 font-bold size-15 "> {offerOwner}</div>
+                  <div className="mbb-5 font-bold size-15 ">{quest?.first_name + " " + quest?.last_name.at(0)}</div>
                 </div>
               </div>
             </div>
-            <p className="mt-10">{viewQuestion}</p>
+            <p className="mt-10">{quest?.comment}</p>
             {/*  */}
             {/* viewQuestionImages */}
-            {viewQuestionImages.length && questionGallery(viewQuestionImages)}
+            {quest?.file?.length > 0 ? gallery(quest?.file) : null}
             <div className="mt-10 size-13 d-flex justify-content-between align-items-center">
               <span className="">
-                12m
+                {quest?.posted_at}
                 <button
                   className="bg-transparent border-0"
-                  onClick={handleClickReply}
+                  onClick={() => {handleClickReply(quest?.question_id)}}
                 >
                   <img
                     className="ml-10"
@@ -608,18 +656,27 @@ export default function TaskDetails() {
               <SubmitReport
                 isVisbleSubmitReport={isVisbleSubmitReport}
                 setSubmitReport={setSubmitReport}
+                handleReport={() => {
+                  dispatch({type: "PUBLISH_REPORT", payload: {type: "task", reporter_id: currentUser, question, task_id: selectedTaskId}})
+                }}
               />
             )}
             {/* send-reply */}
-            {viewReply && (
+            {viewReply === quest?.question_id && (
               <div className="container my-20 bg-white mx-0">
                 <textarea
-                  className="mt-20 w-100 size-15"
+                  className="mt-20 w-100 size-15 border-[#d9d9d9] p-2"
                   type="text"
-                  placeholder={"Reply to " + offerOwner + "."}
+                  placeholder={"Reply to " + quest?.first_name + " " + quest?.last_name.at(0) + "."}
                   maxLength={2000}
                   value={reply}
-                  rows={3}
+                  rows={1}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.target.style.height = 'auto';
+                      e.target.style.height = e.target.scrollHeight + 18 + 'px';
+                    }
+                  }}
                   onChange={(e) => setReply(e.target.value)}
                 />
                 {/*  */}
@@ -641,7 +698,7 @@ export default function TaskDetails() {
                     disabled={!reply}
                     className="d-block btn btn-info small position-absolute size-13"
                     style={{ right: 0, bottom: "-2px" }}
-                    onClick={handleClickSendReply}
+                    onClick={() => handleClickSendReply({question_id: quest?.question_id, task_id: quest?.task_id })}
                   >
                     Send
                   </button>
@@ -649,72 +706,71 @@ export default function TaskDetails() {
               </div>
             )}
 
-            {/*  */}
-          </div>
-        )}
-        {sendReply && (
-          <div className="pa-20 border-bottom">
-            <div className="d-flex align-items-center">
-              <img
-                src="./assets/images/icons/fly-mark.svg"
-                style={{ width: "24px", height: "24px" }}
-                alt="logo big"
-              />
-              <div className="ml-10">
-                <div className="font-bold size-15 d-flex align-items-center">
-                  {taskOwner + "."}
+            {quest?.questionReply.filter(item => item?.question_id === quest?.question_id)?.map(item => (
+              <div key={item?.id} className="pa-20 border-bottom">
+                <div className="d-flex align-items-center">
+                  <img
+                    src="./assets/images/icons/fly-mark.svg"
+                    style={{ width: "24px", height: "24px" }}
+                    alt="logo big"
+                  />
+                  <div className="ml-10">
+                    <div className="font-bold size-15 d-flex align-items-center">
+                      {taskOwner + "."}
+                      <button
+                        className="d-block btn btn-gray ml-10 poster"
+                        style={{
+                          color: "#42ADE2",
+                          padding: "2px 12px",
+                          fontSize: "10px",
+                        }}
+                      >
+                        <img
+                          src="./assets/images/icons/poster.svg"
+                          alt="logo big"
+                          className="mr-10"
+                        />
+                        <span className="font-bold text-black">POSTER</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <p className="mt-10">{item?.reply}</p>
+                {/* file load */}
+                <div className="position-relative">
+                  {viewReplyImages && viewReplyImages.length > 0 && (
+                    <div className="attachment-task">
+                      {viewReplyImages.map((image, key) => {
+                        return (
+                          <div className="area-img pt-md" key={key}>
+                            <img
+                              style={{ width: "100%", height: "100%" }}
+                              src={image.path}
+                              alt=""
+                            />
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+                {/* file load */}
+                <div
+                  className="mt-10 size-13 d-flex justify-content-between align-items-center"
+                  style={{ fontSize: "13px" }}
+                >
+                  {item?.posted_at}
                   <button
-                    className="d-block btn btn-gray ml-10 poster"
-                    style={{
-                      color: "#42ADE2",
-                      padding: "2px 12px",
-                      fontSize: "10px",
-                    }}
+                    className="bg-transparent border-0"
+                    onClick={() => setViewReport(true)}
                   >
-                    <img
-                      src="./assets/images/icons/poster.svg"
-                      alt="logo big"
-                      className="mr-10"
-                    />
-                    <span className="font-bold text-black">POSTER</span>
+                    <img src="./assets/images/icons/more.svg" alt="more" />
                   </button>
                 </div>
               </div>
-            </div>
-            <p className="mt-10">{sendReply}</p>
-            {/* file load */}
-            <div className="position-relative">
-              {viewReplyImages && viewReplyImages.length > 0 && (
-                <div className="attachment-task">
-                  {viewReplyImages.map((image, key) => {
-                    return (
-                      <div className="area-img pt-md" key={key}>
-                        <img
-                          style={{ width: "100%", height: "100%" }}
-                          src={image.path}
-                          alt=""
-                        />
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-            {/* file load */}
-            <div
-              className="mt-10 size-13 d-flex justify-content-between align-items-center"
-              style={{ fontSize: "13px" }}
-            >
-              15m ago
-              <button
-                className="bg-transparent border-0"
-                onClick={() => setViewReport(true)}
-              >
-                <img src="./assets/images/icons/more.svg" alt="more" />
-              </button>
-            </div>
+            ))}
           </div>
-        )}
+        ))}
       </>
     );
   };
@@ -786,7 +842,7 @@ export default function TaskDetails() {
               <p className="nav-title">Task details</p>
             </div>
             <div className="pa-20">
-              <div className={" task-tab-bar step" + step}>
+              <div className={"task-tab-bar step" + step}>
                 <div className="tab1">
                   <button onClick={() => setStep(1)}>OPEN</button>
                 </div>

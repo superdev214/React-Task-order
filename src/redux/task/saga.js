@@ -1,12 +1,35 @@
-import {all, call, fork, put, takeLeading} from 'redux-saga/effects';
-import { toast } from 'react-toastify';
-import axios from 'axios';
-
-import { FILTER_TASK } from '../actions';
+import { all, fork, call, put, takeLeading } from "redux-saga/effects";
+import { GET_TASK, getTask, FILTER_TASK } from "../actions";
 import {filterTask, getFilterTask} from './actions';
+
+import { toast } from 'react-toastify';
+import axios from "axios"
 
 const server_url = "http://8.213.23.19/api";
 const token = localStorage.getItem('token');
+
+
+export function* getSelectedTask() {
+  yield takeLeading(GET_TASK, getSelectedTaskFunc);
+}
+
+const getSelectedFuncAsync = async (payload) => {
+  return axios
+    .get(`${server_url}/view-task`, {params: {id: payload.id, user_id: payload.user_id}})
+    .then((response) => response)
+    .catch((error) => error);
+};
+
+function* getSelectedTaskFunc({ data }) {
+  
+  try {
+      const response = yield call(getSelectedFuncAsync, data);
+      yield put(
+        getTask({...response.data.data})
+      );
+    } catch (error) {
+  }
+}
 
 const getBrowseFilterTaskAsync = async ({payload}) => {
   const config = {
@@ -14,7 +37,6 @@ const getBrowseFilterTaskAsync = async ({payload}) => {
       Authorization: `Bearer ${token}`
     }
   };
-  console.log("filterquery:", payload);
   try {
     const response = await axios.get(`${server_url}/browse-task` + payload, config);
     return response;
@@ -41,6 +63,7 @@ export function *watchBrowseFilterTask() {
 
 export default function* rootSaga() {
   yield all([
-    fork(watchBrowseFilterTask)
+    fork(watchBrowseFilterTask),
+    fork(getSelectedTask),
   ]);
 }

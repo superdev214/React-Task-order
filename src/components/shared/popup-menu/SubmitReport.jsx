@@ -23,8 +23,10 @@ const SubmitReport = (props) => {
               </li>
               <li
                 className="itemsSubmit size-17"
-                onClick={() =>
-                  props.setSubmitReport(!props.isVisbleSubmitReport)
+                onClick={() => {
+                    props.setSubmitReport(!props.isVisbleSubmitReport)
+                    props.handleReport();
+                  }
                 }
               >
                 No, cancel
