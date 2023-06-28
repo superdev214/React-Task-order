@@ -150,5 +150,6 @@ export default function* rootSaga() {
     fork(watchLoginSMS),
     fork(watchVerifyOtp),
     fork(watchEditProfile),
+    fork(publishReport)
   ]);
 }
