@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 import MakeOffer from "../Offer/MakeOffer";
 import ViewAllOffer from "../Offer/ViewAllOffer";
 import PaymentReleaseModal from "../../Payment/PaymentRelease/PaymentReleaseModal";
@@ -83,7 +84,7 @@ export default function TaskDetails() {
   const [questionImages, setQuestionImages] = useState([]);
   const [addressStr, setAddressStr] = useState("");
 
-  const selectedTaskId = useSelector(state => state.task.selectedTaskId);
+  const selectedTaskId = useSelector(state => state.task.currentTaskId);
   const selectedTask = useSelector(state => state.task.task);
   const currentUser = useSelector(state => state.userReducer.user_id);
   const dispatch = useDispatch();
@@ -156,6 +157,10 @@ export default function TaskDetails() {
       bg: "danger",
     },
   ];
+  
+  const curTask = useSelector(state => state.task.currentTaskId);
+
+  console.log("curtask", curTask);
 
   const openView = () => {
     return (
@@ -809,7 +814,7 @@ export default function TaskDetails() {
             onGetValue={(latlng) => setLatlng(latlng)}
             close={() => setLocationModal(false)}
           />
-          <MapComponent onChange={(text) => setAddress(text)} />
+          {/* <MapComponent onChange={(text) => setAddress(text) } drawCircle={true} /> */}
         </ModalComponent>
       )}
       <>

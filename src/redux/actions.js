@@ -47,6 +47,9 @@ export const POST_COMMENT = "POST_COMMENT";
 
 /*TASK API CONST */
 export const CHOOSE_TASK = "CHOOSE_TASK";
+export const FILTER_TASK = "FILTER_TASK";
+export const GET_FILTER_TASK = "GET_FILTER_TASK";
+export const SHOW_TASK_DETAIL = "SHOW_TASK_DETAIL";
 export const GET_TASK = "GET_TASK";
 
 export * from "./user/actions";
