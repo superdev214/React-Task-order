@@ -44,7 +44,6 @@ export default function SearchPage({ query }) {
   const lat = useSelector(state => state.postApi.categories);
   const selectedTaskId = useSelector(state => state.task.selectedTaskId);
 
-  console.log("selectedTaskId", selectedTaskId);
   useEffect(() => {
     dispatch(getBrowsetask());
   }, [])

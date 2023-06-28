@@ -6,7 +6,10 @@ import {
   STORE_CATEGORY_ID_SUCCESS,
   POST_TASK,
   GET_MY_POST,
-  GET_BROWSE_POST
+  GET_BROWSE_POST,
+  POST_QUESTION,
+  POST_QUESTION_REPLY,
+  POST_COMMENT
 } from "../actions";
 
 const INIT_STATE = {
@@ -17,7 +20,8 @@ const INIT_STATE = {
   categories: [],
   category: 0,
   mypost: [],
-  browsepost: ""
+  browsepost: "",
+  question: [],
 };
 
 export default function postApi(state = INIT_STATE, action) {
@@ -38,6 +42,12 @@ export default function postApi(state = INIT_STATE, action) {
       return { ...state, category: action.payload };
     case GET_ALL_CATEGORY_FAIL:
       return { ...state, error: action.payload };
+    case POST_QUESTION: 
+      return { ... state }
+    case POST_QUESTION_REPLY:
+      return { ... state }
+    case POST_COMMENT:
+      return { ... state }
     default:
       return { ...state };
   }

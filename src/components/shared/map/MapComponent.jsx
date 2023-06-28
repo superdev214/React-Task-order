@@ -25,7 +25,7 @@ const MapComponent = ({ onChange, style, lat }) => {
         break;
       }
     }
-    console.log("select map", selectedTaskId);
+
     dispatch(chooseTask(selectedTaskId));  
   }
   useEffect(() => {

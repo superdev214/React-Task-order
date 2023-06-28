@@ -6,6 +6,7 @@ import {
   VERIFY_OTP,
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAIL,
+  PUBLISH_REPORT
 } from "../actions";
 
 const INIT_STATE = {
@@ -15,7 +16,7 @@ const INIT_STATE = {
   otpError: "",
   message: "",
   verifyCode: 0,
-  user_id: null,
+  user_id: 4,
   token: "",
 };
 

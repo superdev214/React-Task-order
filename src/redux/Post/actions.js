@@ -8,7 +8,7 @@ import {
   STORE_CATEGORY_ID,
   STORE_CATEGORY_ID_SUCCESS,
   GET_MY_POST,
-  GET_BROWSE_POST
+  GET_BROWSE_POST,
 } from "../actions";
 
 export const postTaskget = (task) => ({

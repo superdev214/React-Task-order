@@ -15,7 +15,7 @@ export default function* rootSaga() {
     // categorySagas(),
     // defaultSagas(),
     postSagas(),
-    // taskSagas(),
+    taskSagas(),
     // paymentSagas(),
   ]);
 }
