@@ -31,6 +31,14 @@ const GetDirection = ({ close, onChange, onGetValue }) => {
       const marker = new google.maps.Marker({
         position: myCenter,
         map: map,
+        icon: {
+          path: google.maps.SymbolPath.CIRCLE,
+          fillColor: "#42ADE2",
+          fillOpacity: 0.3,
+          scale: 85,
+          strokeColor: "#42ADE2",
+          strokeWeight: 2
+        }
       });
       console.log("marker", marker);
       google.maps.event.addListener(map, "click", function (event) {

@@ -137,7 +137,6 @@ export default function TaskDetails() {
 
   console.log("curtask", curTask);
 
-
   const openView = () => {
     return (
       <div>
@@ -758,7 +757,7 @@ export default function TaskDetails() {
             onGetValue={(latlng) => setLatlng(latlng)}
             close={() => setLocationModal(false)}
           />
-          <MapComponent onChange={(text) => setAddress(text)} />
+          {/* <MapComponent onChange={(text) => setAddress(text) } drawCircle={true} /> */}
         </ModalComponent>
       )}
       <>

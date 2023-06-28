@@ -29,9 +29,9 @@ const MapComponent = ({ onChange, style, lat, setLocation}) => {
         break;
       }
     }
-    console.log("select map", selectedTaskId);
     dispatch(chooseTask(selectedTaskId));  
   }
+
   useEffect(() => {
     const loader = new Loader({
       apiKey: String(process.env.API_HEY_GOOGLE_MAP),
@@ -46,6 +46,7 @@ const MapComponent = ({ onChange, style, lat, setLocation}) => {
         zoom: 5,
         mapTypeId: google.maps.MapTypeId.ROADMAP,
       });
+
       setMap(map);
       const geocoder = new google.maps.Geocoder();
       lat?.forEach((location) => {
@@ -81,6 +82,7 @@ const MapComponent = ({ onChange, style, lat, setLocation}) => {
       const handleClick = (event)=> {
         const {latLng} = event;
 
+        marker?.setMap(null);
         newMarker?.setMap(null);
 
         newMarker = new google.maps.Marker({
@@ -95,7 +97,6 @@ const MapComponent = ({ onChange, style, lat, setLocation}) => {
         geocoder.geocode({location: latLng}, (results, status) => {
           if (status === 'OK') {
             const cityResult = results[0].address_components.find((component) => component.types.includes('locality'));
-            console.log("cityResult", cityResult);
             setLocation && setLocation({lat: latLng.lat().toFixed(3), lng: latLng.lng().toFixed(3), location: cityResult === undefined ? "" : cityResult.long_name});
           } else {
             setLocation && setLocation({lat: latLng.lat().toFixed(3), lng: latLng.lng().toFixed(3)});
@@ -104,12 +105,8 @@ const MapComponent = ({ onChange, style, lat, setLocation}) => {
 
       }
       map.addListener('click', handleClick);
-
-      return () => {
-        google.maps.event.clearListeners('click');
-      }
     }
-  }, [map])
+  }, [map, marker])
 
   return (
     <div
