@@ -36,7 +36,7 @@ export default function Notifications({ close }) {
 
   const dispatch = useDispatch();
   messages = useSelector(state => state.userReducer.notifications);
-  console.log("no========", messages);
+
   useEffect(() => {
     dispatch(updateNotifications());
   }, [])
@@ -49,7 +49,7 @@ export default function Notifications({ close }) {
       title="Notifications"
       close={() => close()}
     >
-      <div className="text-black">
+      <div className="text-black scroll-area">
         {messages?.map((message, index) => {
           return (
             <div
