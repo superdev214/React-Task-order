@@ -10,6 +10,7 @@ import {
   EDIT_PROFILE,
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAIL,
+  UPDATE_NOTIFICATIONS,
 } from "../actions";
 
 export const loginToken = () => ({});
@@ -58,3 +59,8 @@ export const editProfileFail = ({ error }) => ({
   type: EDIT_PROFILE_FAIL,
   payload: error,
 });
+
+export const updateNotifications = (notifications) => ({
+  type: UPDATE_NOTIFICATIONS,
+  payload: notifications
+})

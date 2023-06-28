@@ -6,7 +6,8 @@ import {
   VERIFY_OTP,
   EDIT_PROFILE_SUCCESS,
   EDIT_PROFILE_FAIL,
-  PUBLISH_REPORT
+  PUBLISH_REPORT,
+  UPDATE_NOTIFICATIONS
 } from "../actions";
 
 const INIT_STATE = {
@@ -18,6 +19,7 @@ const INIT_STATE = {
   verifyCode: 0,
   user_id: 4,
   token: "",
+  notifications: []
 };
 
 export default function user(state = INIT_STATE, action) {
@@ -49,6 +51,8 @@ export default function user(state = INIT_STATE, action) {
       return { ...state, message: action.payload, error: "" };
     case EDIT_PROFILE_FAIL:
       return { ...state, error: action.payload };
+    case UPDATE_NOTIFICATIONS:
+      return {...state, notifications: action.payload}
     default:
       return { ...state };
   }

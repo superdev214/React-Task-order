@@ -1,5 +1,5 @@
 import { all, call, fork, put, take, takeLeading } from "redux-saga/effects";
-import { LOGIN_WITH_SMS, VERIFY_OTP, EDIT_PROFILE, PUBLISH_REPORT } from "../actions";
+import { LOGIN_WITH_SMS, VERIFY_OTP, EDIT_PROFILE, PUBLISH_REPORT, UPDATE_NOTIFICATIONS } from "../actions";
 import { toast } from "react-toastify";
 
 import {
@@ -9,6 +9,7 @@ import {
   verifyOtpFail,
   editProfileSuccess,
   editProfileFail,
+  updateNotifications,
 } from "./actions";
 
 import axios from "axios";
@@ -117,11 +118,39 @@ function* publishReportFunc({ payload }) {
   }
 }
 
+export function* watchUpdateNotifications() {
+  yield takeLeading(UPDATE_NOTIFICATIONS, updateNotificationsFunc);
+}
+
+const updateNotificationsAsync = async () => {
+  const userId = localStorage.getItem("user_id");
+  try {
+    const response = await axios.get(`${server_url}/notifications?user_id=${userId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    return response?.data?.data;
+  } catch (error) {
+    return [];
+  }
+}
+
+function* updateNotificationsFunc({payload}) {
+  try {
+    const result = yield call(updateNotificationsAsync, payload);
+    yield put(updateNotifications(result))
+  } catch (error) {
+    yield put(updateNotifications([]));
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     fork(watchLoginSMS),
     fork(watchVerifyOtp),
     fork(watchEditProfile),
-    fork(publishReport)
+    fork(publishReport),
+    fork(watchUpdateNotifications)
   ]);
 }
