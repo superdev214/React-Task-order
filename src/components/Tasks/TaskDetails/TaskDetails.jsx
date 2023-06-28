@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
 import MakeOffer from "../Offer/MakeOffer";
 import ViewAllOffer from "../Offer/ViewAllOffer";
 import PaymentReleaseModal from "../../Payment/PaymentRelease/PaymentReleaseModal";
