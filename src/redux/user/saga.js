@@ -1,5 +1,6 @@
 import { all, call, fork, put, take, takeLeading } from "redux-saga/effects";
-import { LOGIN_WITH_SMS, VERIFY_OTP, EDIT_PROFILE } from "../actions";
+import { LOGIN_WITH_SMS, VERIFY_OTP, EDIT_PROFILE, PUBLISH_REPORT } from "../actions";
+import { toast } from "react-toastify";
 
 import {
   loginWithSMSFail,
@@ -58,7 +59,6 @@ function* verifyOtpFunc(payload) {
   try {
     const response = yield call(verifyOtpAsync, payload);
     // yield put({ type: "VERIFY_OTP", response});
-    console.log("Response", response)
     if(response.status === 200) {
       yield put(verifyOtpSuccess(response));
     } else {
@@ -95,10 +95,33 @@ function* editProfileFunc({ payload }) {
   }
 }
 
+export function* publishReport() {
+  yield takeLeading(PUBLISH_REPORT, publishReportFunc);
+}
+
+const publishReportAsync = async (payload) => {
+  try {
+    const response = await axios.post(`${server_url}/create-report`, {type: payload.type, reporter_id: payload.reporter_id, task_id: payload?.task_id, user_id: payload?.user_id, offer_id: payload?.offer_id});
+    return response;
+  } catch (error) {
+    return error;
+  }
+};
+
+function* publishReportFunc({ payload }) {
+  try {
+    const result = yield call(publishReportAsync, payload);
+    toast.success("Reported successfully.");
+  } catch (error) {
+    yield put(editProfileFail(error));
+  }
+}
+
 export default function* rootSaga() {
   yield all([
     fork(watchLoginSMS),
     fork(watchVerifyOtp),
     fork(watchEditProfile),
+    fork(publishReport)
   ]);
 }

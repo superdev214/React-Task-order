@@ -1,4 +1,7 @@
+import {useState} from "react";
+
 import ModalComponent from "../../shared/modal/ModalComponent";
+import Uploader from "../../shared/uploader/Uploader";
 
 const offers = [
   {
@@ -7,6 +10,18 @@ const offers = [
 ];
 
 export default function ViewAllOffer({ close }) {
+  const [offer, setOffer] = useState("");
+  const [viewSendOffer, setViewSendOffer] = useState(false);
+  
+  const handleClickSendOffer = () => {
+    setViewSendOffer(false);
+  };
+
+  const handleClickOffer = () => {
+    setViewSendOffer(true);
+    setOffer("");
+  };
+
   const gallery = (images) => {
     return (
       <div className="d-flex justify-content-between gallery flex-wrap">
@@ -59,16 +74,67 @@ export default function ViewAllOffer({ close }) {
           <div className="mt-10 size-13 d-flex justify-content-between align-items-center">
             <span className="">
               12m
+              <button
+                className="bg-transparent border-0"
+                onClick={handleClickOffer}
+              >
               <img
                 className="ml-10"
                 src="./assets/images/icons/chat.svg"
                 alt="logo big"
               />
+              </button>
             </span>
             <button className="bg-transparent border-0">
               <img src="./assets/images/icons/more.svg" alt="more" />
             </button>
           </div>
+
+          {viewSendOffer && (
+            <div className="container my-20 bg-white mx-0">              
+              <textarea
+                className="mt-20 w-100 size-15 border-[#d9d9d9] p-2"
+                type="text"
+                placeholder={"Ask Aftab A. a question."}
+                maxLength={2000}
+                value={offer}
+                rows={1}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
+                    e.target.style.height = 'auto';
+                    e.target.style.height = e.target.scrollHeight + 18 + 'px';
+                  }
+                }}
+                onChange={(e) => setOffer(e.target.value)}
+              />
+
+
+              <div className="mt-20 position-relative">
+                <Uploader
+                  renderBtn={() => {
+                    return (
+                      <img
+                        className="mr-10"
+                        src="./assets/images/icons/attach-icon.svg"
+                        alt="logo big"
+                      />
+                    );
+                  }}
+                  offerImages={[]}
+                  setOfferImages={[]}
+                />
+                <button
+                  disabled={!offer}
+                  className="d-block btn btn-info small position-absolute size-13"
+                  style={{ right: 0, bottom: "-2px" }}
+                  onClick={handleClickSendOffer}
+                >
+                  Send
+                </button>
+              </div>
+            </div>
+          )}
+
         </div>
         <div className="pa-20 border-bottom">
           <div className="d-flex align-items-center">
