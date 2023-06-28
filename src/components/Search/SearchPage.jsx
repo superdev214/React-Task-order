@@ -117,7 +117,7 @@ export default function SearchPage({ query }) {
               position: "absolute",
             }}
             onChange={(text) => setAddress(text)}
-            // lat={total}
+            lat={total}
           />
         </>
       ) : (
